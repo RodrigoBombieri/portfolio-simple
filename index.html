@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Rodrigo Bombieri">
+    <meta name="description" content="Portafolio de desarrollo Web con Bootstrap en Free Code Camp">
+    <meta name="keywords" content="HTML, CSS, Javascript, Bootstrap">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo Bombieri | Portfolio FreeCodeCamp</title>
+
+    <!--Links CDN para Bootstrap (se descargan al momento de usar la pagina)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--ICONOS DE BOOTSTRAP-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <!--Hoja de estilos personalizados-->
+    <link rel="stylesheet" href="style.css">
+    <!--Favicon-->
+    <link rel="shortcut icon" href="img/asterisk.svg" type="image/x-icon">
+    <!--Fuentes de Google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Rubik+Dirt&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!--Barra de navegacion-->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbar-toggler"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-toggler">
+                <a class="navbar-brand" href="#">
+                    <img src="img/logo.svg" alt="logo de la pagina" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    Rodrigo S. Bombieri
+                </a>
+                <ul class="navbar-nav d-flex justify-content-center align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#sobre-mi">Sobre Mi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experiencia">Experiencia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#proyectos-recientes">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#articulos">Articulos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#testimonios">Testimonios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Fin de la barra de navegacion-->
+
+    <!--Seccion Hero-->
+    <section id="hero" class="hero align-items-stretch">
+        <div class="hero-principal d-flex flex-column justify-content-center align-items-center">
+            <img class="foto-perfil rounded-circle" src="img/auto-crecimiento.png" alt="foto de rodrigo">
+            <h1>Hola, soy Rodrigo Bombieri</h1>
+            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, tenetur.</h2>
+        </div>
+        <div class="hero-inferior">
+            <img class="hero-inferior-img img-fluid" src="img/desarrollo-movil.png" alt="monitor, smartphone">
+        </div>
+    </section>
+    <!--Fin de la seccion Hero-->
+
+    <!--Seccion Sobre Mi-->
+    <section id="sobre-mi" class="sobre-mi seccion-oscura">
+        <div class="contenedor">
+            <h2 class="text-center seccion-titulo">Conoce a Rodrigo Bombieri</h2>
+            <p class="text-center seccion-texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+                voluptatum.</p>
+        </div>
+    </section>
+    <!--Fin de la seccion Sobre Mi-->
+
+    <!--Seccion Experiencia-->
+    <section id="experiencia" class="experiencia seccion-clara">
+        <div class="container text-center">
+            <div class="row">
+                <!--Desarrollo Web-->
+                <!--El col-12 hace que en dispositivos pequeños ocupe todo el ancho de la pantalla-->
+                <!--El col-md-4 hace que al llegar al siz de md (≥768px) pasa a ocupar 4 columnas de ancho 
+                y se ubiquen uno arriba del otro-->
+                <div class="columna col-12 col-md-4">
+                    <i class="bi bi-laptop"></i>
+                    <p class="experiencia-titulo">Desarrollo Web</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime, unde est. Tenetur aut quaerat
+                        obcaecati.</p>
+                    <div class="badges-contenedor">
+                        <span class="badge text-bg-primary">HTML</span>
+                        <span class="badge text-bg-primary">CSS</span>
+                        <span class="badge text-bg-primary">Javascript</span>
+                        <span class="badge text-bg-primary">Bootstrap</span>
+                    </div>
+                </div>
+                <!--Articulos-->
+                <div class="columna col-12 col-md-4">
+                    <i class="bi bi-pencil"></i>
+                    <p class="experiencia-titulo">Articulos</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime, unde est. Tenetur aut quaerat
+                        obcaecati.</p>
+                    <div class="badges-contenedor">
+                        <span class="badge text-bg-primary">Escribir</span>
+                        <span class="badge text-bg-primary">Editar</span>
+                        <span class="badge text-bg-primary">Blogs</span>
+                    </div>
+                </div>
+                <!--Estudiante-->
+                <div class="columna col-12 col-md-4">
+                    <i class="bi bi-book"></i>
+                    <p class="experiencia-titulo">Estudios</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime, unde est. Tenetur aut quaerat
+                        obcaecati.</p>
+                    <div class="badges-contenedor">
+                        <span class="badge text-bg-primary">FreeCodeCamp</span>
+                        <span class="badge text-bg-primary">UTN</span>
+                        <span class="badge text-bg-primary">Maxi Programa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Fin de la seccion Experiencia-->
+
+    <!--Seccion Proyectos-->
+    <section id="proyectos-recientes" class="proyectos-recientes seccion-clara d-flex flex-column">
+        <h2 class="seccion-titulo texto-negro">Mis proyectos recientes</h2>
+        <h3 class="seccion-descripcion">Estos son algunos de los proyectos en los que trabajé recientemente: </h3>
+        <!--Galeria de Proyectos--> 
+        <div class="container text-center proyectos-contenedor">
+            <div class="row">
+                <!--Proyecto 1-->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="proyecto">
+                        <img src="img/calculadora.png" alt="Proyecto 1, calculadora">
+                        <div class="overlay">
+                            <p>Calculadora</p>
+                            <div class="iconos-contenedor">
+                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <i class="bi bi-laptop"></i>
+                                </a>
+                                <a href="https://github.com/RodrigoBombieri/ArgentinaPrograma/tree/main/Calculadora"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Proyecto 2-->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="proyecto">
+                        <img src="img/weather-app.png" alt="Proyecto 2, weather-app">
+                        <div class="overlay">
+                            <p>Weather App</p>
+                            <div class="iconos-contenedor">
+                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <i class="bi bi-laptop"></i>
+                                </a>
+                                <a href="https://github.com/RodrigoBombieri/weatherBombApp/tree/main/Weather%20App"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Proyecto 3-->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="proyecto">
+                        <img src="img/ecommerce.png" alt="Proyecto 3, ecommerce">
+                        <div class="overlay">
+                            <p>Ecommerce</p>
+                            <div class="iconos-contenedor">
+                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <i class="bi bi-laptop"></i>
+                                </a>
+                                <a href="https://github.com/RodrigoBombieri/app-E-commerce"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Proyecto 4-->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="proyecto">
+                        <img src="img/calculadora.png" alt="Proyecto 4, calculadora">
+                        <div class="overlay">
+                            <p>Calculadora</p>
+                            <div class="iconos-contenedor">
+                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <i class="bi bi-laptop"></i>
+                                </a>
+                                <a href="https://github.com/RodrigoBombieri/ArgentinaPrograma/tree/main/Calculadora"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Proyecto 5-->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="proyecto">
+                        <img src="img/weather-app.png" alt="Proyecto 5, weather-app">
+                        <div class="overlay">
+                            <p>Weather App</p>
+                            <div class="iconos-contenedor">
+                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <i class="bi bi-laptop"></i>
+                                </a>
+                                <a href="https://github.com/RodrigoBombieri/weatherBombApp/tree/main/Weather%20App"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Proyecto 6-->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="proyecto">
+                        <img src="img/ecommerce.png" alt="Proyecto 6, ecommerce">
+                        <div class="overlay">
+                            <p>Ecommerce</p>
+                            <div class="iconos-contenedor">
+                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <i class="bi bi-laptop"></i>
+                                </a>
+                                <a href="https://github.com/RodrigoBombieri/app-E-commerce"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="bi bi-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="https://github.com/RodrigoBombieri?tab=repositories" target="_blank" rel="noopener noreferrer">
+            <button type="button" class="btn btn-info ">
+                Ver mas proyectos
+                <i class="bi bi-arrow-right-circle-fill"></i>
+            </button>
+        </a>
+        <!--Fin de la galeria de proyectos-->
+    </section>
+    <!--Fin de la seccion Proyectos-->
+
+    <!--Seccion Articulos-->
+    <section id="articulos" class="articulos justify-content-start seccion-oscura">
+        <h2 class="seccion-titulo">Artículos</h2>
+        <div class="card">
+            <div class="card-header">
+              Mas recientes
+            </div>
+            <ul class="list-group list-group-flush">
+                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+                    <li class="list-group-item">El decorador @property en Phyton - cómo usarlo, ventajas y sintaxis</li>
+                </a>
+                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+                    <li class="list-group-item">Python tutorial ciclos while . while true ejemplos de sintaxis y ciclos infinitos</li>
+                </a>
+                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+                    <li class="list-group-item">Python leer archivos JSON - cómo cargar JSON desde un archivo y procesar dumps</li>
+                </a>
+                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+                    <li class="list-group-item">Python cómo escribir en un archivo - abrir, leer, escribir y otras funciones de archivos explicadas</li>
+                </a>
+                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+                    <li class="list-group-item">¿Para qué se usa Python? 10+ usos del lenguaje de programación Python</li>
+                </a>
+            </ul>
+          </div>
+            <a href="https://github.com/RodrigoBombieri/" target="_blank" rel="noopener noreferrer">
+                <button type="button" class="btn btn-info">Ver más articulos
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                </button>
+            </a>          
+    </section>
+    <!--Fin de la seccion Articulos-->
+
+    <!--Seccion Testimonios-->
+    <section id="testimonios" class="testimonios seccion-clara">
+        <h2 class="seccion-titulo">Testimonios</h2>
+        <h3 class="seccion-descripcion">Éstos son algunos testimonios de mis clientes</h3>
+         <!--Carrousel-->   
+         <div id="testimonios-carrusel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">             
+                <div class="container">
+                    <img src="img/cliente1.jpg" class="testimonio-imagen rounded-circle" alt="foto de cliente Gino">
+                    <p class="testimonio-texto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime magnam voluptas, illum excepturi voluptatum distinctio nesciunt beatae neque porro consectetur alias odit eos perspiciatis ut, rerum accusamus, recusandae doloribus explicabo!</p>
+                    <div class="testimonio-info">
+                        <p class="cliente">Gino</p>
+                        <p class="cargo">Gerente de Proyectos en Desarrollo Web</p>
+                    </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="container">
+                    <img src="img/cliente2.jpg" class="testimonio-imagen rounded-circle" alt="foto de cliente Nora">
+                    <p class="testimonio-texto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime magnam voluptas, illum excepturi voluptatum distinctio nesciunt beatae neque porro consectetur alias odit eos perspiciatis ut, rerum accusamus, recusandae doloribus explicabo!</p>
+                    <div class="testimonio-info">
+                        <p class="cliente">Nora</p>
+                        <p class="cargo">Gerente de Diseña Mi Pagina Web</p>
+                    </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="container">
+                    <img src="img/cliente3.jpg" class="testimonio-imagen rounded-circle" alt="foto de cliente Leonardo">
+                    <p class="testimonio-texto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime magnam voluptas, illum excepturi voluptatum distinctio nesciunt beatae neque porro consectetur alias odit eos perspiciatis ut, rerum accusamus, recusandae doloribus explicabo!</p>
+                    <div class="testimonio-info">
+                        <p class="cliente">Leonardo</p>
+                        <p class="cargo">Director de Aprende a Programar</p>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonios-carrusel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonios-carrusel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+          </div>
+    </section>
+    <!--Fin de la seccion Testimonios-->
+
+    <!--Seccion Contacto-->
+    <section id="contacto" class="contacto seccion-oscura">
+        <div class="container">
+            <div class="container text-center d-flex justify-content-evenly rectangulo">
+                <div class="row">
+                    <div class="col-12 col-md-4 seccion-titulo">
+                        Hablemos !
+                    </div>
+                    <div class="col-12 col-md-4 descripcion">
+                        Contactame para cualquier consulta o proyecto que tengas en mente y hare que tu idea se vuelva realidad.
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <a href="mailto:rodrigosbombieri@gmail.com">
+                            <button type="button">
+                                Contacto 
+                                <i class="bi bi-envelope-check-fill"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Fin de la seccion Contacto-->
+
+    <!--Pie de pagina-->
+    <footer class="seccion-oscura d-flex flex-column justify-content-center align-items-center">
+        <img class="footer-logo" src="img/logo.svg" alt="Logo del portafolio">
+        <p class="footer-texto text-center">Aprendo y creo todos los días.<br>Creemos un proyecto juntos!</p>
+        <div class="iconos-redes-sociales d-flex flex-wrap align-items-center justify-content-center">
+            <a href="https://www.linkedin.com/in/rodrigo-bombieri/" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/BombaDev7" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="https://github.com/RodrigoBombieri" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-github"></i>
+            </a>
+            <a href="https://www.instagram.com/rodrigo_bombieri/" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="mailto:rodrigosbombieri@gmail.com" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-envelope"></i>
+            </a>
+        </div>
+    <div class="derechos-de-autor">Creado por Rodrigo Bombieri (2023) &#169;</div>
+    </footer>
+    <!--Fin del pie de pagina-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
