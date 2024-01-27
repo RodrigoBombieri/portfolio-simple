@@ -425,6 +425,10 @@ footer{
     .testimonio-texto {
         font-size: 18px;
     }
+
+    .articulos .card {
+        max-width: 100%; /* Ajusta el ancho máximo para ocupar el 100% del contenedor padre */
+    }
 }
 
 /* Para tablets con una pantalla de hasta 768px de ancho */
@@ -444,6 +448,10 @@ footer{
 
     .testimonio-texto {
         font-size: 18px;
+    }
+
+    .articulos .card {
+        max-width: 100%; /* Ajusta el ancho máximo para ocupar el 100% del contenedor padre */
     }
 }
 
