@@ -212,7 +212,7 @@ h1{
 
 /* Seccion Articulos */
 .articulos{
-    min-width: 500px;
+    /*min-width: 500px;*/
     padding: 60px;
 
 }
