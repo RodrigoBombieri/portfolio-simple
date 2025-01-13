@@ -73,6 +73,12 @@ h1{
     padding: 3rem;
 }
 
+.hero-inferior-img{
+    width: 20%;
+    height: 20%;
+    padding-bottom: 3rem;
+}
+
 .foto-perfil{
     width: 200px;
     height: 200px;
