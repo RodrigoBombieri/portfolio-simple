@@ -2,410 +2,552 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="author" content="Rodrigo Bombieri">
-    <meta name="description" content="Portafolio de desarrollo Web con Bootstrap en Free Code Camp">
-    <meta name="keywords" content="HTML, CSS, Javascript, Bootstrap">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodrigo Bombieri | Portfolio FreeCodeCamp</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Rodrigo Bombieri">
+  <meta name="description" content="Rodrigo Bombieri — Técnico Universitario en Programación UTN. Desarrollo web con C# .Net, Python, Java, HTML, CSS y más. Portfolio de proyectos y experiencia.">
+  <meta name="keywords" content="Rodrigo Bombieri, programador, desarrollador web, C# .Net, Python, Java, HTML, CSS, Bootstrap, portfolio, UTN, Entre Ríos">
+  <meta name="robots" content="index, follow">
 
-    <!--Links CDN para Bootstrap (se descargan al momento de usar la pagina)-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!--ICONOS DE BOOTSTRAP-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <!--Hoja de estilos personalizados-->
-    <link rel="stylesheet" href="style.css">
-    <!--Favicon-->
-    <link rel="shortcut icon" href="img/asterisk.svg" type="image/x-icon">
-    <!--Fuentes de Google-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Rubik+Dirt&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rodrigo Bombieri | Desarrollador Web">
+  <meta property="og:description" content="Portfolio de Rodrigo Bombieri — Técnico en Programación UTN. Proyectos en C#, Python, Java y más.">
+  <meta property="og:image" content="img/foto.jpg">
 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@BombaDev7">
+  <meta name="twitter:title" content="Rodrigo Bombieri | Desarrollador Web">
+  <meta name="twitter:description" content="Portfolio de Rodrigo Bombieri — Técnico en Programación UTN.">
+
+  <title>Rodrigo Bombieri | Desarrollador Web</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="img/asterisk.svg" type="image/x-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!--Barra de navegacion-->
-    <nav class="navbar navbar-expand-md navbar-light">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbar-toggler"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar-toggler">
-                <a class="navbar-brand" href="#">
-                    <img src="img/logo.svg" alt="logo de la pagina" width="30" height="24"
-                        class="d-inline-block align-text-top">
-                    Rodrigo S. Bombieri
-                </a>
-                <ul class="navbar-nav d-flex justify-content-center align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#sobre-mi">Sobre Mi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experiencia">Experiencia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#proyectos-recientes">Proyectos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#articulos">Articulos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#contacto">Contacto</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
+  <!-- ═══════════════════════════════════════ NAVBAR ═══════════════════════════════════════ -->
+  <header class="navbar" role="banner">
+    <nav class="nav-container" aria-label="Navegación principal">
+      <a href="#" class="nav-logo" aria-label="Inicio">
+        <img src="img/logo.svg" alt="Logo RB" width="28" height="28">
+        <span>RB</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+        <li><a href="#articulos" class="nav-link">Artículos</a></li>
+        <li><a href="#contacto" class="nav-link nav-cta">Contacto</a></li>
+      </ul>
     </nav>
-    <!--Fin de la barra de navegacion-->
+  </header>
 
-    <!--Seccion Hero-->
-    <section id="hero" class="hero align-items-stretch">
-        <div class="hero-principal d-flex flex-column justify-content-center align-items-center">
-            <img class="foto-perfil rounded-circle" src="img/foto.jpg" alt="foto de rodrigo">
-            <h1>Hola, soy Rodrigo Bombieri</h1>
-            <h2>Técnico Universitario en Programación - UTN</h2>
+  <main>
+
+    <!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
+    <section id="hero" class="hero" aria-label="Presentación">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot" aria-hidden="true"></span>
+          <span>Disponible para proyectos</span>
         </div>
-        <div class="hero-inferior">
-            <img class="hero-inferior-img img-fluid" src="img/desarrollo-movil.png" alt="monitor, smartphone">
+        <h1 class="hero-title">
+          Hola, soy<br>
+          <em>Rodrigo Bombieri</em>
+        </h1>
+        <p class="hero-subtitle">Técnico Universitario en Programación — UTN</p>
+        <p class="hero-description">
+          Construyo software con foco en la calidad del código y la experiencia del usuario.
+          Apasionado por aprender cada detalle de la tecnología que uso.
+        </p>
+        <div class="hero-actions">
+          <a href="#proyectos" class="btn btn-primary">
+            Ver proyectos
+            <i class="bi bi-arrow-down-right" aria-hidden="true"></i>
+          </a>
+          <a href="mailto:rodrigosbombieri@gmail.com" class="btn btn-ghost">
+            Escribirme
+          </a>
         </div>
+        <div class="hero-social" aria-label="Redes sociales">
+          <a href="https://www.linkedin.com/in/rodrigobombieri-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="bi bi-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="https://github.com/RodrigoBombieri" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="bi bi-github" aria-hidden="true"></i>
+          </a>
+          <a href="https://twitter.com/BombaDev7" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+            <i class="bi bi-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/rodrigo_bombieri/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="bi bi-instagram" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-img-wrapper">
+          <img src="img/foto.jpg" alt="Foto de Rodrigo Bombieri" class="hero-photo">
+        </div>
+        <div class="hero-device-img">
+          <img src="img/desarrollo-movil.png" alt="">
+        </div>
+      </div>
     </section>
-    <!--Fin de la seccion Hero-->
 
-    <!--Seccion Sobre Mi-->
-    <section id="sobre-mi" class="sobre-mi seccion-oscura">
-        <div class="contenedor">
-            <h2 class="text-center seccion-titulo">Conoceme</h2>
-            <p class="text-center seccion-texto"> Soy de Urdinarrain, Entre Ríos, Argentina, tengo 34 años y en Diciembre de 2024 finalicé la Tecnicatura en Programación, en la Universidad Tecnológica Nacional.
-                Me fascina aprender nuevas temáticas, mi curiosidad me lleva a querer conocer hasta el último detalle de la tecnología en la que esté trabajando 
-                y a continuar capacitándome hasta perfeccionarla.
-                Si crees que puedo ayudar a un proyecto que estés desarrollando ¡Contáctame!</p>
+    <!-- ═══════════════════════════════════════ SOBRE MÍ ═══════════════════════════════════════ -->
+    <section id="sobre-mi" class="section sobre-mi" aria-labelledby="sobre-mi-title">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-label">01 — Sobre mí</span>
+          <h2 id="sobre-mi-title" class="section-title">Quién soy</h2>
         </div>
-    </section>
-    <!--Fin de la seccion Sobre Mi-->
-
-    <!--Seccion Experiencia-->
-    <section id="experiencia" class="experiencia seccion-clara">
-        <div class="container text-center">
-            <div class="row">
-                <!--Desarrollo Web-->
-                <!--El col-12 hace que en dispositivos pequeños ocupe todo el ancho de la pantalla-->
-                <!--El col-md-4 hace que al llegar al siz de md (≥768px) pasa a ocupar 4 columnas de ancho 
-                y se ubiquen uno arriba del otro-->
-                <div class="columna col-12 col-md-4">
-                    <i class="bi bi-laptop"></i>
-                    <p class="experiencia-titulo">Desarrollo Web</p>
-                    <p>Algunas de las tecnologías en las que tengo conocimientos son:
-                    C# .Net | SQL | HTML | CSS | Python | Git | GitHub | C++ | Bootstrap | Java | </p>
-                    <div class="badges-contenedor">
-                        <span class="badge text-bg-primary">HTML</span>
-                        <span class="badge text-bg-primary">CSS</span>
-                        <span class="badge text-bg-primary">Javascript</span>
-                        <span class="badge text-bg-primary">Bootstrap</span>
-                        <span class="badge text-bg-primary">Java</span>
-                    </div>
-                </div>
-                <!--Articulos-->
-                <div class="columna col-12 col-md-4">
-                    <i class="bi bi-pencil"></i>
-                    <p class="experiencia-titulo">Articulos</p>
-                    <p>Próximanente..</p>
-                    <div class="badges-contenedor">
-                        <span class="badge text-bg-primary">Escribir</span>
-                        <span class="badge text-bg-primary">Editar</span>
-                        <span class="badge text-bg-primary">Blogs</span>
-                    </div>
-                </div>
-                <!--Estudiante-->
-                <div class="columna col-12 col-md-4">
-                    <i class="bi bi-book"></i>
-                    <p class="experiencia-titulo">Estudios</p>
-                    <p> UADER 2023: Introducción a la Programación en Lenguaje Python.
-                        MAXI PROGRAMA 2023-24: Curso C# .Net Nivel 1, 2 y 3 finalizados.
-                        UTN 2023-24: Tecnicatura Universitaria en Programación.
-                        UTN 2024: Curso de Programación interactiva e IA.                       
-                    </p>
-                    <div class="badges-contenedor">
-                        <span class="badge text-bg-primary">FreeCodeCamp</span>
-                        <span class="badge text-bg-primary">UTN</span>
-                        <span class="badge text-bg-primary">Maxi Programa</span>
-                    </div>
-                </div>
+        <div class="sobre-mi-grid">
+          <div class="sobre-mi-text">
+            <p class="lead">
+              Soy de Urdinarrain, Entre Ríos, Argentina. En diciembre de 2024 finalicé la
+              <strong>Tecnicatura Universitaria en Programación</strong> en la UTN.
+            </p>
+            <p>
+              Me fascina aprender nuevas tecnologías a fondo — mi curiosidad me lleva a querer
+              entender cada detalle antes de seguir adelante. Busco siempre escribir código limpio,
+              mantenible y bien documentado.
+            </p>
+            <p>
+              Si tenés un proyecto en mente y creés que puedo sumar,
+              <a href="mailto:rodrigosbombieri@gmail.com" class="text-accent">¡escribime!</a>
+            </p>
+            <div class="sobre-mi-stats">
+              <div class="stat">
+                <span class="stat-number">6+</span>
+                <span class="stat-label">Proyectos completados</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">4+</span>
+                <span class="stat-label">Años estudiando</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Tecnologías</span>
+              </div>
             </div>
-        </div>
-    </section>
-    <!--Fin de la seccion Experiencia-->
-
-    <!--Seccion Proyectos-->
-    <section id="proyectos-recientes" class="proyectos-recientes seccion-oscura d-flex flex-column">
-        <h2 class="seccion-titulo texto-blanco">Mis proyectos recientes</h2>
-        <h3 class="seccion-texto">Estos son algunos de los proyectos en los que trabajé recientemente: </h3>
-        <!--Galeria de Proyectos--> 
-        <div class="container text-center proyectos-contenedor">
-            <div class="row">
-                <!--Proyecto 1-->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="proyecto">
-                        <img src="img/bank-app.png" alt="Proyecto 1, App banco">
-                        <div class="overlay">
-                            <p>Sistema de Gestión Bancaria </p>
-                            <div class="iconos-contenedor">
-                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <i class="bi bi-laptop"></i>
-                                </a>
-                                <a href="https://github.com/RodrigoBombieri/TPINT_GRUPO_2_LAB4"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="bi bi-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+          </div>
+          <div class="sobre-mi-education">
+            <h3 class="sobre-mi-education-title">Formación</h3>
+            <ul class="timeline" role="list">
+              <li class="timeline-item">
+                <span class="timeline-year">2024</span>
+                <div>
+                  <strong>Curso de Programación Interactiva e IA</strong>
+                  <span class="timeline-org">UTN</span>
                 </div>
-                <!--Proyecto 2-->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="proyecto">
-                        <img src="img/cloud-clasif.png" alt="Proyecto 2, cloud-clasif-app">
-                        <div class="overlay">
-                            <p>Clasificador de Nubes</p>
-                            <div class="iconos-contenedor">
-                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <i class="bi bi-laptop"></i>
-                                </a>
-                                <a href="https://github.com/RodrigoBombieri/IA-Projects"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="bi bi-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-year">2023–24</span>
+                <div>
+                  <strong>Tecnicatura Universitaria en Programación</strong>
+                  <span class="timeline-org">UTN</span>
                 </div>
-                <!--Proyecto 3-->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="proyecto">
-                        <img src="img/ecommerce.png" alt="Proyecto 3, ecommerce">
-                        <div class="overlay">
-                            <p>Ecommerce</p>
-                            <div class="iconos-contenedor">
-                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <i class="bi bi-laptop"></i>
-                                </a>
-                                <a href="https://github.com/RodrigoBombieri/app-E-commerce"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="bi bi-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-year">2023–24</span>
+                <div>
+                  <strong>C# .Net — Niveles 1, 2, 3 y 4</strong>
+                  <span class="timeline-org">Maxi Programa</span>
                 </div>
-                <!--Proyecto 4-->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="proyecto">
-                        <img src="img/ecommerce-web.png" alt="Proyecto 4, ecommerce-web">
-                        <div class="overlay">
-                            <p>Ecommerce-Web</p>
-                            <div class="iconos-contenedor">
-                                <a href="http://bcommerce-net.somee.com/" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <i class="bi bi-laptop"></i>
-                                </a>
-                                <a href="https://github.com/RodrigoBombieri/tp-final-nivel3-Bombieri-Rodrigo"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="bi bi-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-year">2023</span>
+                <div>
+                  <strong>Introducción a Python</strong>
+                  <span class="timeline-org">UADER</span>
                 </div>
-                <!--Proyecto 5-->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="proyecto">
-                        <img src="img/cine.png" alt="Proyecto 5, software de cine">
-                        <div class="overlay">
-                            <p>Software de Gestión de Cine</p>
-                            <div class="iconos-contenedor">
-                                <a href="https://www.freecodecamp.org/espanol/" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <i class="bi bi-laptop"></i>
-                                </a>
-                                <a href="https://github.com/RodrigoBombieri/UTN_Proyecto-Laboratorio2/tree/main"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="bi bi-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Proyecto 6-->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="proyecto">
-                        <img src="img/webapi.png" alt="Proyecto 6, API de Productos">
-                        <div class="overlay">
-                            <p>WEB API Productos</p>
-                            <div class="iconos-contenedor">
-                                <a href="https://github.com/RodrigoBombieri/API_Producto" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <i class="bi bi-laptop"></i>
-                                </a>
-                                <a href="https://github.com/RodrigoBombieri/API_Producto"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="bi bi-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href="https://github.com/RodrigoBombieri?tab=repositories" target="_blank" rel="noopener noreferrer">
-            <button type="button" class="btn btn-info ">
-                Ver mas proyectos
-                <i class="bi bi-arrow-right-circle-fill"></i>
-            </button>
-        </a>
-        <!--Fin de la galeria de proyectos-->
-    </section>
-    <!--Fin de la seccion Proyectos-->
-
-    <!--Seccion Articulos-->
-    <section id="articulos" class="articulos justify-content-start seccion-clara">
-        <h2 class="seccion-titulo">Artículos</h2>
-        <div class="card">
-            <div class="card-header">
-             EN CONSTRUCCIÓN...
-            </div>
-            <ul class="list-group list-group-flush">
-                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
-                    <li class="list-group-item">El decorador @property en Phyton - cómo usarlo, ventajas y sintaxis</li>
-                </a>
-                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
-                    <li class="list-group-item">Python tutorial ciclos while . while true ejemplos de sintaxis y ciclos infinitos</li>
-                </a>
-                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
-                    <li class="list-group-item">Python leer archivos JSON - cómo cargar JSON desde un archivo y procesar dumps</li>
-                </a>
-                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
-                    <li class="list-group-item">Python cómo escribir en un archivo - abrir, leer, escribir y otras funciones de archivos explicadas</li>
-                </a>
-                <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
-                    <li class="list-group-item">¿Para qué se usa Python? 10+ usos del lenguaje de programación Python</li>
-                </a>
+              </li>
             </ul>
           </div>
-            <a href="https://github.com/RodrigoBombieri/" target="_blank" rel="noopener noreferrer">
-                <button type="button" class="btn btn-info">Ver más articulos
-                    <i class="bi bi-arrow-right-circle-fill"></i>
-                </button>
-            </a>          
+        </div>
+      </div>
     </section>
-    <!--Fin de la seccion Articulos-->
 
-    <!--Seccion Testimonios-->
-    <!-- <section id="testimonios" class="testimonios seccion-clara">
-        <h2 class="seccion-titulo">Testimonios</h2>
-        <h3 class="seccion-descripcion">Éstos son algunos testimonios de mis clientes</h3>
-         <!--Carrousel-->   
-         <!-- <div id="testimonios-carrusel" class="carousel slide carousel-dark" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">             
-                <div class="container">
-                    <img src="img/cliente1.jpg" class="testimonio-imagen rounded-circle" alt="foto de cliente Gino">
-                    <p class="testimonio-texto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime magnam voluptas, illum excepturi voluptatum distinctio nesciunt beatae neque porro consectetur alias odit eos perspiciatis ut, rerum accusamus, recusandae doloribus explicabo!</p>
-                    <div class="testimonio-info">
-                        <p class="cliente">Gino</p>
-                        <p class="cargo">Gerente de Proyectos en Desarrollo Web</p>
-                    </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="container">
-                    <img src="img/cliente2.jpg" class="testimonio-imagen rounded-circle" alt="foto de cliente Nora">
-                    <p class="testimonio-texto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime magnam voluptas, illum excepturi voluptatum distinctio nesciunt beatae neque porro consectetur alias odit eos perspiciatis ut, rerum accusamus, recusandae doloribus explicabo!</p>
-                    <div class="testimonio-info">
-                        <p class="cliente">Nora</p>
-                        <p class="cargo">Gerente de Diseña Mi Pagina Web</p>
-                    </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="container">
-                    <img src="img/cliente3.jpg" class="testimonio-imagen rounded-circle" alt="foto de cliente Leonardo">
-                    <p class="testimonio-texto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime magnam voluptas, illum excepturi voluptatum distinctio nesciunt beatae neque porro consectetur alias odit eos perspiciatis ut, rerum accusamus, recusandae doloribus explicabo!</p>
-                    <div class="testimonio-info">
-                        <p class="cliente">Leonardo</p>
-                        <p class="cargo">Director de Aprende a Programar</p>
-                    </div>
+    <!-- ═══════════════════════════════════════ SKILLS ═══════════════════════════════════════ -->
+    <section id="skills" class="section skills section-dark" aria-labelledby="skills-title">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-label">02 — Habilidades</span>
+          <h2 id="skills-title" class="section-title">Stack tecnológico</h2>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card" aria-label="Desarrollo Backend">
+            <div class="skill-card-icon" aria-hidden="true">
+              <i class="bi bi-server"></i>
+            </div>
+            <h3>Backend</h3>
+            <p>Desarrollo de aplicaciones y APIs robustas con enfoque en arquitectura limpia.</p>
+            <ul class="skill-tags" role="list" aria-label="Tecnologías backend">
+              <li>C# .Net</li>
+              <li>Java</li>
+              <li>Python</li>
+              <li>SQL</li>
+              <li>Web API REST</li>
+            </ul>
+          </article>
+          <article class="skill-card" aria-label="Desarrollo Frontend">
+            <div class="skill-card-icon" aria-hidden="true">
+              <i class="bi bi-window"></i>
+            </div>
+            <h3>Frontend</h3>
+            <p>Interfaces responsivas, accesibles y con buenas prácticas de semántica HTML.</p>
+            <ul class="skill-tags" role="list" aria-label="Tecnologías frontend">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>Bootstrap</li>
+            </ul>
+          </article>
+          <article class="skill-card" aria-label="Herramientas y entorno">
+            <div class="skill-card-icon" aria-hidden="true">
+              <i class="bi bi-terminal"></i>
+            </div>
+            <h3>Herramientas</h3>
+            <p>Control de versiones, entorno de desarrollo y despliegue de proyectos.</p>
+            <ul class="skill-tags" role="list" aria-label="Herramientas de desarrollo">
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>Visual Studio</li>
+              <li>C++</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ PROYECTOS ═══════════════════════════════════════ -->
+    <section id="proyectos" class="section proyectos" aria-labelledby="proyectos-title">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-label">03 — Trabajo</span>
+          <h2 id="proyectos-title" class="section-title">Proyectos recientes</h2>
+        </div>
+        <div class="proyectos-grid">
+
+          <article class="proyecto-card">
+            <div class="proyecto-img-wrap">
+              <img src="img/bank-app.png" alt="Captura de pantalla del Sistema de Gestión Bancaria" loading="lazy">
+              <div class="proyecto-overlay" aria-hidden="true">
+                <div class="proyecto-links">
+                  <a href="https://www.freecodecamp.org/espanol/" target="_blank" rel="noopener noreferrer" aria-label="Ver demo del Sistema Bancario">
+                    <i class="bi bi-laptop"></i>
+                  </a>
+                  <a href="https://github.com/RodrigoBombieri/TPINT_GRUPO_2_LAB4" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub">
+                    <i class="bi bi-github"></i>
+                  </a>
                 </div>
               </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#testimonios-carrusel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#testimonios-carrusel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Siguiente</span>
-            </button>
-          </div>
-    </section> -->
-    <!--Fin de la seccion Testimonios-->
-
-    <!--Seccion Contacto-->
-    <section id="contacto" class="contacto seccion-oscura">
-        <div class="container">
-            <div class="container text-center d-flex justify-content-evenly rectangulo">
-                <div class="row">
-                    <div class="col-12 col-md-4 seccion-titulo">
-                        Hablemos !
-                    </div>
-                    <div class="col-12 col-md-4 descripcion">
-                        Contactame para cualquier consulta o proyecto que tengas en mente y hare que tu idea se vuelva realidad.
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <a href="mailto:rodrigosbombieri@gmail.com">
-                            <button type="button">
-                                Contacto 
-                                <i class="bi bi-envelope-check-fill"></i>
-                            </button>
-                        </a>
-                    </div>
-                </div>
+            <div class="proyecto-info">
+              <h3>Sistema de Gestión Bancaria</h3>
+              <p>Aplicación de escritorio para gestión de cuentas, transacciones y usuarios bancarios.</p>
+              <div class="proyecto-tags" aria-label="Tecnologías usadas">
+                <span>C# .Net</span><span>SQL</span><span>WinForms</span>
+              </div>
             </div>
-        </div>
-    </section>
-    <!--Fin de la seccion Contacto-->
+          </article>
 
-    <!--Pie de pagina-->
-    <footer class="seccion-oscura d-flex flex-column justify-content-center align-items-center">
-        <img class="footer-logo" src="img/logo.svg" alt="Logo del portafolio">
-        <p class="footer-texto text-center">Aprendo y creo todos los días.<br>Creemos un proyecto juntos!</p>
-        <div class="iconos-redes-sociales d-flex flex-wrap align-items-center justify-content-center">
-            <a href="https://www.linkedin.com/in/rodrigobombieri-dev/" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-linkedin"></i>
-            </a>
-            <a href="https://twitter.com/BombaDev7" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-twitter"></i>
-            </a>
-            <a href="https://github.com/RodrigoBombieri" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-github"></i>
-            </a>
-            <a href="https://www.instagram.com/rodrigo_bombieri/" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-instagram"></i>
-            </a>
-            <a href="mailto:rodrigosbombieri@gmail.com" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-envelope"></i>
-            </a>
+          <article class="proyecto-card">
+            <div class="proyecto-img-wrap">
+              <img src="img/cloud-clasif.png" alt="Captura del Clasificador de Nubes con IA" loading="lazy">
+              <div class="proyecto-overlay" aria-hidden="true">
+                <div class="proyecto-links">
+                  <a href="https://www.freecodecamp.org/espanol/" target="_blank" rel="noopener noreferrer" aria-label="Ver demo del Clasificador de Nubes">
+                    <i class="bi bi-laptop"></i>
+                  </a>
+                  <a href="https://github.com/RodrigoBombieri/IA-Projects" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub">
+                    <i class="bi bi-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="proyecto-info">
+              <h3>Clasificador de Nubes</h3>
+              <p>Proyecto de Machine Learning para identificar tipos de nubes a partir de imágenes.</p>
+              <div class="proyecto-tags" aria-label="Tecnologías usadas">
+                <span>Python</span><span>IA / ML</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proyecto-card">
+            <div class="proyecto-img-wrap">
+              <img src="img/ecommerce-web.png" alt="Captura del Ecommerce Web desplegado" loading="lazy">
+              <div class="proyecto-overlay" aria-hidden="true">
+                <div class="proyecto-links">
+                  <a href="http://bcommerce-net.somee.com/" target="_blank" rel="noopener noreferrer" aria-label="Ver demo del Ecommerce Web">
+                    <i class="bi bi-laptop"></i>
+                  </a>
+                  <a href="https://github.com/RodrigoBombieri/tp-final-nivel3-Bombieri-Rodrigo" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub">
+                    <i class="bi bi-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="proyecto-info">
+              <h3>Ecommerce Web</h3>
+              <p>Tienda online completa con carrito, autenticación y panel de administración. Desplegada en producción.</p>
+              <div class="proyecto-tags" aria-label="Tecnologías usadas">
+                <span>C# .Net</span><span>SQL</span><span>HTML/CSS</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proyecto-card">
+            <div class="proyecto-img-wrap">
+              <img src="img/ecommerce.png" alt="Captura del Ecommerce de escritorio" loading="lazy">
+              <div class="proyecto-overlay" aria-hidden="true">
+                <div class="proyecto-links">
+                  <a href="https://www.freecodecamp.org/espanol/" target="_blank" rel="noopener noreferrer" aria-label="Ver demo del Ecommerce">
+                    <i class="bi bi-laptop"></i>
+                  </a>
+                  <a href="https://github.com/RodrigoBombieri/app-E-commerce" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub">
+                    <i class="bi bi-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="proyecto-info">
+              <h3>Ecommerce — App Desktop</h3>
+              <p>Aplicación de escritorio para gestión de productos, stock y ventas.</p>
+              <div class="proyecto-tags" aria-label="Tecnologías usadas">
+                <span>C# .Net</span><span>SQL</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proyecto-card">
+            <div class="proyecto-img-wrap">
+              <img src="img/cine.png" alt="Captura del Software de Gestión de Cine" loading="lazy">
+              <div class="proyecto-overlay" aria-hidden="true">
+                <div class="proyecto-links">
+                  <a href="https://www.freecodecamp.org/espanol/" target="_blank" rel="noopener noreferrer" aria-label="Ver demo del Software de Cine">
+                    <i class="bi bi-laptop"></i>
+                  </a>
+                  <a href="https://github.com/RodrigoBombieri/UTN_Proyecto-Laboratorio2/tree/main" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub">
+                    <i class="bi bi-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="proyecto-info">
+              <h3>Software de Gestión de Cine</h3>
+              <p>Sistema para administrar funciones, salas, entradas y clientes de un complejo cinematográfico.</p>
+              <div class="proyecto-tags" aria-label="Tecnologías usadas">
+                <span>Java</span><span>SQL</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proyecto-card">
+            <div class="proyecto-img-wrap">
+              <img src="img/webapi.png" alt="Captura de la WEB API de Productos" loading="lazy">
+              <div class="proyecto-overlay" aria-hidden="true">
+                <div class="proyecto-links">
+                  <a href="https://github.com/RodrigoBombieri/API_Producto" target="_blank" rel="noopener noreferrer" aria-label="Ver demo de la Web API">
+                    <i class="bi bi-laptop"></i>
+                  </a>
+                  <a href="https://github.com/RodrigoBombieri/API_Producto" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub">
+                    <i class="bi bi-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="proyecto-info">
+              <h3>WEB API — Productos</h3>
+              <p>API REST para gestión de productos con operaciones CRUD y documentación Swagger.</p>
+              <div class="proyecto-tags" aria-label="Tecnologías usadas">
+                <span>C# .Net</span><span>REST API</span><span>Swagger</span>
+              </div>
+            </div>
+          </article>
+
         </div>
-    <div class="derechos-de-autor">Creado por Rodrigo Bombieri (2023) &#169;</div>
-    </footer>
-    <!--Fin del pie de pagina-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+
+        <div class="proyectos-footer">
+          <a href="https://github.com/RodrigoBombieri?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Ver todos en GitHub
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ ARTÍCULOS ═══════════════════════════════════════ -->
+    <section id="articulos" class="section articulos section-dark" aria-labelledby="articulos-title">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-label">04 — Escritura</span>
+          <h2 id="articulos-title" class="section-title">Artículos</h2>
+          <span class="section-wip">
+            <i class="bi bi-cone-striped" aria-hidden="true"></i>
+            En construcción
+          </span>
+        </div>
+        <!-- <ul class="articulos-list" role="list">
+          <li class="articulo-item">
+            <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+              <span class="articulo-num">01</span>
+              <span class="articulo-titulo">El decorador @property en Python — cómo usarlo, ventajas y sintaxis</span>
+              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="articulo-item">
+            <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+              <span class="articulo-num">02</span>
+              <span class="articulo-titulo">Python tutorial ciclos while — sintaxis, while true y ciclos infinitos</span>
+              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="articulo-item">
+            <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+              <span class="articulo-num">03</span>
+              <span class="articulo-titulo">Python leer archivos JSON — cargar JSON desde un archivo y procesar dumps</span>
+              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="articulo-item">
+            <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+              <span class="articulo-num">04</span>
+              <span class="articulo-titulo">Python cómo escribir en un archivo — abrir, leer, escribir y otras funciones</span>
+              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="articulo-item">
+            <a href="https://www.freecodecamp.org/espanol/news" target="_blank" rel="noopener noreferrer">
+              <span class="articulo-num">05</span>
+              <span class="articulo-titulo">¿Para qué se usa Python? — 10+ usos del lenguaje de programación</span>
+              <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul> -->
+        <div class="articulos-footer">
+          <a href="https://github.com/RodrigoBombieri/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+            Ver más artículos
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ CONTACTO ═══════════════════════════════════════ -->
+    <section id="contacto" class="section contacto" aria-labelledby="contacto-title">
+      <div class="section-container">
+        <div class="contacto-inner">
+          <span class="section-label">05 — Contacto</span>
+          <h2 id="contacto-title" class="contacto-title">¿Tenés un proyecto?<br><em>Hablemos.</em></h2>
+          <p class="contacto-desc">
+            Estoy disponible para proyectos freelance, colaboraciones y oportunidades laborales.
+            No dudes en escribirme.
+          </p>
+          <a href="mailto:rodrigosbombieri@gmail.com" class="btn btn-primary btn-large">
+            Escribirme un email
+            <i class="bi bi-envelope-check-fill" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════ FOOTER ═══════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="img/logo.svg" alt="Logo RB" width="28" height="28">
+        <p>Aprendo y creo todos los días.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Navegación del footer">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="footer-social" aria-label="Redes sociales">
+        <a href="https://www.linkedin.com/in/rodrigobombieri-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="bi bi-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="https://github.com/RodrigoBombieri" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="bi bi-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://twitter.com/BombaDev7" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <i class="bi bi-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/rodrigo_bombieri/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="bi bi-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="mailto:rodrigosbombieri@gmail.com" aria-label="Email">
+          <i class="bi bi-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Rodrigo Bombieri. Diseñado y desarrollado por mí.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.classList.toggle('active', isOpen);
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Intersection Observer for scroll-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.proyecto-card, .skill-card, .articulo-item, .timeline-item, .stat').forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+  </script>
+
 </body>
-
 </html>
