@@ -1,0 +1,37 @@
+---
+import Icon from "@components/ui/Icon.astro";
+import type { Testimonial } from "@data/testimonials";
+
+export interface Props {
+  testimonial: Testimonial;
+  index?: number;
+}
+
+const { testimonial, index = 0 } = Astro.props;
+---
+
+<figure
+  class="glass-card flex h-full flex-col gap-6 rounded-3xl p-8"
+  data-animate
+  style={`transition-delay:${index * 60}ms`}
+>
+  <div class="flex gap-1 text-cyan">
+    {Array.from({ length: 5 }).map(() => <Icon name="star" class="size-4" fill="currentColor" strokeWidth={0} />)}
+  </div>
+
+  <blockquote class="flex-1 text-balance leading-relaxed text-ink/90">
+    “{testimonial.quote}”
+  </blockquote>
+
+  <figcaption class="flex items-center gap-3 border-t border-border-soft pt-5">
+    <div
+      class="flex size-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary to-cyan text-sm font-semibold text-white"
+    >
+      {testimonial.name.charAt(0)}
+    </div>
+    <div class="flex flex-col">
+      <span class="text-sm font-semibold text-ink">{testimonial.name}</span>
+      <span class="text-xs text-muted">{testimonial.role} · {testimonial.company}</span>
+    </div>
+  </figcaption>
+</figure>

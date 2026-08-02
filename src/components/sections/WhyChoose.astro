@@ -1,0 +1,34 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import Icon from "@components/ui/Icon.astro";
+import { ADVANTAGES } from "@data/whyChoose";
+---
+
+<section id="por-que-elegirme" class="relative py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <SectionHeader
+      eyebrow="Por qué elegirme"
+      title="Un desarrollador,"
+      highlight="todo el compromiso de un equipo"
+      description="Trabajo directo, sin intermediarios: cada decisión técnica está alineada con el resultado de negocio que buscas."
+    />
+
+    <div class="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        ADVANTAGES.map((advantage, i) => (
+          <div
+            class="flex flex-col gap-4 rounded-2xl border border-border bg-bg-elevated/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/40"
+            data-animate
+            style={`transition-delay:${i * 50}ms`}
+          >
+            <span class="flex size-11 items-center justify-center rounded-xl bg-linear-to-br from-primary/20 to-cyan/10 text-cyan">
+              <Icon name={advantage.icon} class="size-5" />
+            </span>
+            <h3 class="font-semibold text-ink">{advantage.title}</h3>
+            <p class="text-sm leading-relaxed text-muted">{advantage.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

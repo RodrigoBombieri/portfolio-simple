@@ -1,0 +1,96 @@
+---
+import Icon from "@components/ui/Icon.astro";
+import { SITE, WHATSAPP_LINK } from "@data/site";
+---
+
+<section id="contacto" class="relative overflow-hidden py-24 lg:py-32">
+  <div class="pointer-events-none absolute left-1/2 top-0 size-[600px] -translate-x-1/2 rounded-full bg-primary/20 blur-[140px]"></div>
+
+  <div class="relative mx-auto max-w-6xl px-6 lg:px-8">
+    <div class="glow-border relative overflow-hidden rounded-[2.5rem] border border-border bg-bg-elevated/60 p-8 sm:p-12 lg:p-16">
+      <div class="bg-grid pointer-events-none absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_0%,black,transparent)]"></div>
+
+      <div class="relative grid grid-cols-1 gap-14 lg:grid-cols-2">
+        <div class="flex flex-col gap-6" data-animate>
+          <span class="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-cyan">
+            <span class="size-1.5 rounded-full bg-cyan"></span>
+            Hablemos de tu proyecto
+          </span>
+          <h2 class="text-balance text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+            ¿Listo para llevar tu idea<br class="hidden sm:block" /> al <span class="text-gradient">siguiente nivel?</span>
+          </h2>
+          <p class="text-lg leading-relaxed text-muted">
+            Contame en pocas líneas qué necesitás y te respondo con una
+            propuesta clara y sin compromiso.
+          </p>
+
+          <div class="mt-4 flex flex-col gap-4 text-sm">
+            <a href={`mailto:${SITE.email}`} class="flex items-center gap-3 text-muted transition-colors hover:text-ink">
+              <span class="flex size-9 items-center justify-center rounded-lg bg-bg text-cyan"><Icon name="mail" class="size-4" /></span>
+              {SITE.email}
+            </a>
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-muted transition-colors hover:text-ink">
+              <span class="flex size-9 items-center justify-center rounded-lg bg-bg text-cyan"><Icon name="whatsapp" class="size-4" /></span>
+              Escribime por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <form
+          class="flex flex-col gap-4 rounded-2xl border border-border bg-bg/60 p-6 sm:p-8"
+          data-contact-form
+          data-endpoint={SITE.formEndpoint}
+          data-animate
+        >
+          <div class="flex flex-col gap-1.5">
+            <label for="name" class="text-xs font-medium text-muted-soft">Nombre</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              autocomplete="name"
+              class="rounded-xl border border-border bg-bg-elevated px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-cyan"
+              placeholder="Tu nombre"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="email" class="text-xs font-medium text-muted-soft">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              class="rounded-xl border border-border bg-bg-elevated px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-cyan"
+              placeholder="tu@empresa.com"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="message" class="text-xs font-medium text-muted-soft">Contame sobre tu proyecto</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              class="resize-none rounded-xl border border-border bg-bg-elevated px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-cyan"
+              placeholder="Necesito..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="group mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-primary to-cyan px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:shadow-glow"
+          >
+            Enviar solicitud
+            <Icon name="arrow-right" class="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </button>
+
+          <p class="text-center text-xs text-muted-soft" data-form-status role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

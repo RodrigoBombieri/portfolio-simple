@@ -1,0 +1,19 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import TestimonialCard from "@components/ui/TestimonialCard.astro";
+import { TESTIMONIALS } from "@data/testimonials";
+---
+
+<section id="testimonios" class="relative py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <SectionHeader
+      eyebrow="Testimonios"
+      title="Lo que dicen"
+      highlight="quienes ya trabajaron conmigo"
+    />
+
+    <div class="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {TESTIMONIALS.map((testimonial, i) => <TestimonialCard testimonial={testimonial} index={i} />)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+---
+import Icon from "@components/ui/Icon.astro";
+import type { Service } from "@data/services";
+
+export interface Props {
+  service: Service;
+  index?: number;
+}
+
+const { service, index = 0 } = Astro.props;
+---
+
+<article
+  class="glow-border group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-border bg-bg-elevated/60 p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40"
+  data-animate
+  style={`transition-delay:${index * 60}ms`}
+>
+  <div
+    class="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-primary/10 blur-3xl transition-opacity duration-500 group-hover:opacity-100 opacity-0"
+  >
+  </div>
+
+  <div
+    class="relative flex size-14 items-center justify-center rounded-2xl bg-linear-to-br from-primary/20 to-cyan/10 text-cyan ring-1 ring-inset ring-white/10"
+  >
+    <Icon name={service.icon} class="size-7" />
+  </div>
+
+  <div class="relative flex flex-col gap-3">
+    <h3 class="text-xl font-semibold text-ink">{service.title}</h3>
+    <p class="leading-relaxed text-muted">{service.description}</p>
+  </div>
+
+  <ul class="relative mt-auto flex flex-col gap-2.5 border-t border-border-soft pt-5">
+    {
+      service.features.map((feature) => (
+        <li class="flex items-center gap-2.5 text-sm text-muted-soft">
+          <Icon name="check" class="size-4 shrink-0 text-cyan" strokeWidth={2.25} />
+          {feature}
+        </li>
+      ))
+    }
+  </ul>
+</article>

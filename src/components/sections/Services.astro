@@ -1,0 +1,20 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import ServiceCard from "@components/ui/ServiceCard.astro";
+import { SERVICES } from "@data/services";
+---
+
+<section id="servicios" class="relative py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <SectionHeader
+      eyebrow="Servicios"
+      title="Soluciones de software"
+      highlight="para cada etapa de tu negocio"
+      description="Desde una landing page que convierte hasta sistemas empresariales complejos: construyo exactamente lo que tu operación necesita."
+    />
+
+    <div class="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {SERVICES.map((service, i) => <ServiceCard service={service} index={i} />)}
+    </div>
+  </div>
+</section>

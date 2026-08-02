@@ -1,0 +1,31 @@
+---
+import { ICONS } from "@data/icons";
+
+export interface Props {
+  name: keyof typeof ICONS | string;
+  class?: string;
+  strokeWidth?: number;
+  fill?: "none" | "currentColor";
+}
+
+const {
+  name,
+  class: className = "size-6",
+  strokeWidth = 1.75,
+  fill = "none",
+} = Astro.props;
+const path = ICONS[name] ?? "";
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill={fill}
+  stroke="currentColor"
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  aria-hidden="true"
+  set:html={path}
+/>

@@ -1,0 +1,20 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import ProjectCard from "@components/ui/ProjectCard.astro";
+import { PROJECTS } from "@data/projects";
+---
+
+<section id="proyectos" class="relative py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <SectionHeader
+      eyebrow="Proyectos"
+      title="Trabajo reciente"
+      highlight="con resultados medibles"
+      description="Una muestra de soluciones desarrolladas a medida para distintos sectores."
+    />
+
+    <div class="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {PROJECTS.map((project, i) => <ProjectCard project={project} index={i} />)}
+    </div>
+  </div>
+</section>

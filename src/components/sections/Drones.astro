@@ -1,0 +1,84 @@
+---
+import Icon from "@components/ui/Icon.astro";
+import Button from "@components/ui/Button.astro";
+import { DRONE_USE_CASES } from "@data/drones";
+---
+
+<section id="drones" class="relative overflow-hidden py-24 lg:py-32">
+  <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-primary/5 to-transparent"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="glow-border relative overflow-hidden rounded-[2.5rem] border border-border bg-bg-elevated/60 p-8 sm:p-12 lg:p-16">
+      <div class="bg-grid pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black,transparent)]"></div>
+      <div class="pointer-events-none absolute -right-24 -top-24 size-[420px] rounded-full bg-cyan/20 blur-[120px]"></div>
+
+      <div class="relative grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+        <div class="flex flex-col gap-6" data-animate>
+          <span class="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-cyan">
+            <span class="size-1.5 rounded-full bg-cyan"></span>
+            Software para Drones
+          </span>
+          <h2 class="text-balance text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+            Operaciones aéreas <span class="text-gradient">inteligentes y automatizadas</span>
+          </h2>
+          <p class="text-lg leading-relaxed text-muted">
+            Diseño software que conecta drones, sensores y datos en tiempo real
+            para automatizar tareas críticas en el campo, la industria y la
+            seguridad.
+          </p>
+          <div>
+            <Button href="#contacto" icon="arrow-right">Cuéntame tu proyecto</Button>
+          </div>
+        </div>
+
+        <!-- Ilustración del dron -->
+        <div class="animate-float relative mx-auto flex aspect-square w-full max-w-sm items-center justify-center">
+          <div class="absolute inset-0 rounded-full border border-dashed border-border"></div>
+          <div class="absolute inset-8 rounded-full border border-dashed border-border-soft"></div>
+
+          <svg viewBox="0 0 200 200" class="relative size-48 text-cyan drop-shadow-[0_0_30px_rgba(34,211,238,0.35)]" fill="none">
+            <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <circle cx="100" cy="100" r="16" />
+              <circle cx="40" cy="40" r="16" opacity="0.85" />
+              <circle cx="160" cy="40" r="16" opacity="0.85" />
+              <circle cx="40" cy="160" r="16" opacity="0.85" />
+              <circle cx="160" cy="160" r="16" opacity="0.85" />
+              <path d="M88 88 52 52" />
+              <path d="M112 88 148 52" />
+              <path d="M88 112 52 148" />
+              <path d="M112 112 148 148" />
+            </g>
+            <g stroke="currentColor" stroke-width="1.5" opacity="0.5">
+              <circle cx="40" cy="40" r="24" />
+              <circle cx="160" cy="40" r="24" />
+              <circle cx="40" cy="160" r="24" />
+              <circle cx="160" cy="160" r="24" />
+            </g>
+          </svg>
+
+          <div class="glass-card absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-xl px-4 py-2 text-xs font-medium text-ink">
+            <span class="text-cyan">●</span> Telemetría en vivo
+          </div>
+        </div>
+      </div>
+
+      <div class="relative mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        {
+          DRONE_USE_CASES.map((useCase, i) => (
+            <div
+              class="flex flex-col items-center gap-3 rounded-2xl border border-border-soft bg-bg/40 p-5 text-center transition-colors duration-300 hover:border-primary/40"
+              data-animate
+              style={`transition-delay:${i * 60}ms`}
+            >
+              <span class="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-cyan">
+                <Icon name={useCase.icon} class="size-5" />
+              </span>
+              <span class="text-sm font-medium text-ink">{useCase.title}</span>
+              <span class="text-xs leading-relaxed text-muted-soft">{useCase.description}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

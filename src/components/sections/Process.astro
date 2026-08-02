@@ -1,0 +1,24 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import ProcessStep from "@components/ui/ProcessStep.astro";
+import { PROCESS_STEPS } from "@data/process";
+---
+
+<section id="proceso" class="relative py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <SectionHeader
+      eyebrow="Cómo trabajo"
+      title="Un proceso claro,"
+      highlight="de la idea a producción"
+      description="Cinco pasos simples para pasar de una conversación a software funcionando en tu negocio."
+    />
+
+    <div class="mt-20 flex flex-col gap-12 md:flex-row md:items-start md:gap-4" data-timeline>
+      {
+        PROCESS_STEPS.map((step, i) => (
+          <ProcessStep step={step} index={i} total={PROCESS_STEPS.length} />
+        ))
+      }
+    </div>
+  </div>
+</section>

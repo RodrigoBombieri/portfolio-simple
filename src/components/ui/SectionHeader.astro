@@ -1,0 +1,28 @@
+---
+export interface Props {
+  eyebrow?: string;
+  title: string;
+  highlight?: string;
+  description?: string;
+  align?: "left" | "center";
+}
+
+const { eyebrow, title, highlight, description, align = "center" } = Astro.props;
+const alignClass = align === "center" ? "text-center items-center mx-auto" : "text-left items-start";
+---
+
+<div class={`flex max-w-2xl flex-col gap-4 ${alignClass}`} data-animate>
+  {
+    eyebrow && (
+      <span class="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-cyan">
+        <span class="size-1.5 rounded-full bg-cyan" />
+        {eyebrow}
+      </span>
+    )
+  }
+  <h2 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl md:text-5xl">
+    {title}{" "}
+    {highlight && <span class="text-gradient">{highlight}</span>}
+  </h2>
+  {description && <p class="text-balance text-lg leading-relaxed text-muted">{description}</p>}
+</div>

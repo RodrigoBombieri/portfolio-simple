@@ -1,0 +1,58 @@
+---
+import Icon from "@components/ui/Icon.astro";
+
+export interface Props {
+  href: string;
+  variant?: "primary" | "secondary" | "ghost";
+  size?: "md" | "lg";
+  icon?: string;
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  icon,
+  class: className = "",
+  target,
+  rel,
+} = Astro.props;
+
+const base =
+  "group relative inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 ease-out will-change-transform focus-visible:outline-2 focus-visible:outline-cyan";
+
+const sizes = {
+  md: "px-6 py-3 text-sm",
+  lg: "px-8 py-4 text-base",
+};
+
+const variants = {
+  primary:
+    "bg-linear-to-r from-primary to-cyan text-white shadow-[0_0_0_1px_rgba(255,255,255,0.08)] hover:shadow-glow hover:-translate-y-0.5 active:translate-y-0",
+  secondary:
+    "glass-card text-ink hover:border-primary/60 hover:-translate-y-0.5 active:translate-y-0",
+  ghost: "text-muted hover:text-ink",
+};
+---
+
+<a
+  href={href}
+  target={target}
+  rel={rel}
+  class={`${base} ${sizes[size]} ${variants[variant]} ${className}`}
+>
+  <span>
+    <slot />
+  </span>
+  {
+    icon && (
+      <Icon
+        name={icon}
+        class="size-4 transition-transform duration-300 group-hover:translate-x-1"
+      />
+    )
+  }
+</a>

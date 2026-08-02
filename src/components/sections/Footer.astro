@@ -1,0 +1,63 @@
+---
+import Icon from "@components/ui/Icon.astro";
+import { SITE, WHATSAPP_LINK, NAV_LINKS } from "@data/site";
+
+const year = new Date().getFullYear();
+
+const socials = [
+  { icon: "github", href: SITE.github, label: "GitHub" },
+  { icon: "linkedin", href: SITE.linkedin, label: "LinkedIn" },
+  { icon: "mail", href: `mailto:${SITE.email}`, label: "Email" },
+  { icon: "whatsapp", href: WHATSAPP_LINK, label: "WhatsApp" },
+];
+---
+
+<footer class="relative border-t border-border-soft py-14">
+  <div class="mx-auto flex max-w-7xl flex-col gap-10 px-6 lg:px-8">
+    <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+      <div class="flex flex-col gap-3">
+        <a href="#top" class="flex items-center gap-2 text-sm font-bold text-ink">
+          <span class="flex size-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-cyan text-white">
+            <Icon name="code" class="size-4" strokeWidth={2.5} />
+          </span>
+          Rodrigo<span class="text-cyan">.dev</span>
+        </a>
+        <p class="max-w-sm text-sm leading-relaxed text-muted">
+          Software a medida que ahorra tiempo, dinero y reduce tareas
+          repetitivas para empresas y profesionales.
+        </p>
+      </div>
+
+      <div class="flex gap-3">
+        {
+          socials.map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.label}
+              class="flex size-11 items-center justify-center rounded-xl border border-border text-muted transition-all duration-300 hover:-translate-y-1 hover:border-cyan/50 hover:text-cyan"
+            >
+              <Icon name={social.icon} class="size-4" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <nav class="flex flex-wrap gap-x-8 gap-y-3 border-t border-border-soft pt-8 text-sm text-muted" aria-label="Footer">
+      {
+        NAV_LINKS.map((link) => (
+          <a href={link.href} class="transition-colors hover:text-ink">
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex flex-col gap-2 border-t border-border-soft pt-8 text-xs text-muted-soft sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} Rodrigo — Software a Medida. Todos los derechos reservados.</p>
+      <p>Diseñado y desarrollado con Astro + Tailwind CSS.</p>
+    </div>
+  </div>
+</footer>

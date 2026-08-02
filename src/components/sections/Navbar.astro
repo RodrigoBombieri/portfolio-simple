@@ -1,0 +1,72 @@
+---
+import Button from "@components/ui/Button.astro";
+import Icon from "@components/ui/Icon.astro";
+import { NAV_LINKS } from "@data/site";
+---
+
+<header
+  id="navbar"
+  class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300"
+  data-navbar
+>
+  <nav
+    class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8"
+    aria-label="Navegación principal"
+  >
+    <a href="#top" class="flex items-center gap-2 text-sm font-bold tracking-tight text-ink">
+      <span
+        class="flex size-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-cyan text-white"
+      >
+        <Icon name="code" class="size-4" strokeWidth={2.5} />
+      </span>
+      Rodrigo<span class="text-cyan">.dev</span>
+    </a>
+
+    <ul class="hidden items-center gap-8 text-sm font-medium text-muted md:flex">
+      {
+        NAV_LINKS.map((link) => (
+          <li>
+            <a href={link.href} class="transition-colors duration-200 hover:text-ink">
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="hidden md:block">
+      <Button href="#contacto" size="md">Solicitar presupuesto</Button>
+    </div>
+
+    <button
+      type="button"
+      class="flex size-10 items-center justify-center rounded-lg border border-border text-ink md:hidden"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <Icon name="menu" class="size-5" data-menu-icon-open />
+      <Icon name="close" class="hidden size-5" data-menu-icon-close />
+    </button>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="hidden flex-col gap-1 border-t border-border bg-bg/95 px-6 py-4 backdrop-blur-xl md:hidden"
+    data-mobile-menu
+  >
+    {
+      NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class="rounded-lg px-3 py-3 text-sm font-medium text-muted transition-colors hover:bg-bg-elevated hover:text-ink"
+          data-mobile-link
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <Button href="#contacto" class="mt-2 justify-center" data-mobile-link>Solicitar presupuesto</Button>
+  </div>
+</header>

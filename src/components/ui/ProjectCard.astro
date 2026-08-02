@@ -1,0 +1,85 @@
+---
+import Icon from "@components/ui/Icon.astro";
+import type { Project } from "@data/projects";
+
+export interface Props {
+  project: Project;
+  index?: number;
+}
+
+const { project, index = 0 } = Astro.props;
+
+// Si el proyecto tiene `url`, la tarjeta entera se renderiza como <a>; si no, como <article>.
+const Tag = project.url ? "a" : "article";
+const linkAttrs = project.url
+  ? {
+      href: project.url,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      "aria-label": `Ver repositorio de ${project.title} en GitHub`,
+    }
+  : {};
+---
+
+<Tag
+  {...linkAttrs}
+  class:list={[
+    "group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-bg-elevated/60 transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-glow",
+    { "cursor-pointer": project.url },
+  ]}
+  data-animate
+  style={`transition-delay:${index * 60}ms`}
+>
+  <div class="relative aspect-video overflow-hidden bg-bg-soft">
+    <img
+      src={project.image}
+      alt={`Captura del proyecto ${project.title}`}
+      loading="lazy"
+      decoding="async"
+      width="640"
+      height="360"
+      class="h-full w-full scale-100 object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
+      onerror="this.style.display='none'"
+    />
+    <div
+      class="absolute inset-0 bg-linear-to-t from-bg via-bg/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-40"
+    >
+    </div>
+    <span
+      class="absolute left-4 top-4 rounded-full border border-white/15 bg-bg/70 px-3 py-1 text-xs font-medium text-cyan backdrop-blur-sm"
+    >
+      {project.category}
+    </span>
+    {
+      project.url && (
+        <span class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-white/15 bg-bg/70 px-3 py-1 text-xs font-medium text-ink opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+          <Icon name="github" class="size-3.5" />
+          Ver código
+        </span>
+      )
+    }
+  </div>
+
+  <div class="flex flex-1 flex-col gap-3 p-6">
+    <h3 class="flex items-center gap-2 text-lg font-semibold text-ink transition-colors group-hover:text-gradient">
+      {project.title}
+      {project.url && (
+        <Icon
+          name="arrow-right"
+          class="size-4 -translate-x-1 text-cyan opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+          strokeWidth={2.25}
+        />
+      )}
+    </h3>
+    <p class="text-sm leading-relaxed text-muted">{project.description}</p>
+    <div class="mt-auto flex flex-wrap gap-2 pt-4">
+      {
+        project.tags.map((tag) => (
+          <span class="rounded-full border border-border-soft px-3 py-1 text-xs text-muted-soft">
+            {tag}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</Tag>

@@ -1,0 +1,26 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import TechBadge from "@components/ui/TechBadge.astro";
+import { TECHNOLOGIES } from "@data/tech";
+---
+
+<section id="tecnologias" class="relative py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <SectionHeader
+      eyebrow="Stack tecnológico"
+      title="Tecnología moderna,"
+      highlight="probada en producción"
+      description="Elijo la herramienta correcta para cada problema, no la más de moda."
+    />
+  </div>
+
+  <div class="group relative mt-16 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+    <div class="animate-marquee flex w-max gap-4 group-hover:[animation-play-state:paused]">
+      {
+        [...TECHNOLOGIES, ...TECHNOLOGIES].map((tech) => (
+          <TechBadge tech={tech} />
+        ))
+      }
+    </div>
+  </div>
+</section>
