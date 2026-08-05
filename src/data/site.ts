@@ -2,10 +2,10 @@
 export const SITE = {
   name: "Rodrigo — Software a Medida",
   role: "Desarrollador de Software",
-  email: import.meta.env.PUBLIC_CONTACT_EMAIL || "hola@tudominio.dev",
-  whatsapp: import.meta.env.PUBLIC_WHATSAPP_NUMBER || "5491100000000",
-  github: import.meta.env.PUBLIC_GITHUB_URL || "https://github.com/tu-usuario",
-  linkedin: import.meta.env.PUBLIC_LINKEDIN_URL || "https://linkedin.com/in/tu-usuario",
+  email: import.meta.env.PUBLIC_CONTACT_EMAIL || "rodrigosbombieri@gmail.com",
+  whatsapp: import.meta.env.PUBLIC_WHATSAPP_NUMBER || "5493446523423",
+  github: import.meta.env.PUBLIC_GITHUB_URL || "https://github.com/RodrigoBombieri",
+  linkedin: import.meta.env.PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/rodrigobombieri-dev/",
   formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT || "",
 };
 
