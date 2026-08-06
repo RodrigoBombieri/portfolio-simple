@@ -19,5 +19,6 @@ export const NAV_LINKS = [
   { label: "Drones", href: "#drones" },
   { label: "Por qué elegirme", href: "#por-que-elegirme" },
   { label: "Proceso", href: "#proceso" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contacto", href: "#contacto" },
 ];

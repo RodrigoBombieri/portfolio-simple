@@ -3,7 +3,7 @@ import Icon from "@components/ui/Icon.astro";
 import { SITE, WHATSAPP_LINK } from "@data/site";
 ---
 
-<section id="contacto" class="relative overflow-hidden border-t border-border-soft py-24 lg:py-32">
+<section id="contacto" class="relative overflow-hidden border-t border-border-soft py-16 lg:py-24">
   <div class="pointer-events-none absolute left-1/2 top-0 size-[600px] -translate-x-1/2 rounded-full bg-primary/15 blur-[140px]"></div>
 
   <div class="relative mx-auto max-w-6xl px-6 lg:px-8">
@@ -63,6 +63,23 @@ import { SITE, WHATSAPP_LINK } from "@data/site";
             class="rounded-xl border border-border bg-bg-elevated px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-cyan"
             placeholder="tu@empresa.com"
           />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label for="project-type" class="text-xs font-medium text-muted-soft">Tipo de proyecto</label>
+          <select
+            id="project-type"
+            name="projectType"
+            required
+            class="rounded-xl border border-border bg-bg-elevated px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-cyan"
+          >
+            <option value="" selected disabled>Elegí una opción</option>
+            <option value="Landing Page">Landing Page</option>
+            <option value="Aplicación Web">Aplicación Web</option>
+            <option value="Aplicación de Escritorio">Aplicación de Escritorio</option>
+            <option value="Software para Drones">Software para Drones</option>
+            <option value="Otro">Otro</option>
+          </select>
         </div>
 
         <div class="flex flex-col gap-1.5">

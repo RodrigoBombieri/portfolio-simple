@@ -96,9 +96,12 @@ function initContactForm(): void {
         // Sin endpoint configurado: fallback a mailto
         const name = formData.get("name");
         const email = formData.get("email");
+        const projectType = formData.get("projectType");
         const message = formData.get("message");
-        const subject = encodeURIComponent(`Presupuesto — ${name}`);
-        const body = encodeURIComponent(`${message}\n\nContacto: ${email}`);
+        const subject = encodeURIComponent(`${projectType || "Presupuesto"} — ${name}`);
+        const body = encodeURIComponent(
+          `Tipo de proyecto: ${projectType}\n\n${message}\n\nContacto: ${email}`
+        );
         window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
       }
 

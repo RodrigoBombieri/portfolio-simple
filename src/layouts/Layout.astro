@@ -11,7 +11,7 @@ export interface Props {
 
 const {
   title = "Desarrollo de Software a Medida | Landing Pages, Apps y Drones",
-  description = "Desarrollo landing pages, aplicaciones web, software de escritorio, automatización y soluciones para drones a medida. Software que ahorra tiempo, dinero y reduce tareas repetitivas.",
+  description = "Desarrollo landing pages, aplicaciones web, software de escritorio y soluciones para drones a medida en Argentina y Latinoamérica. Software que ahorra tiempo, dinero y reduce tareas repetitivas.",
   image = "/og-image.png",
   noindex = false,
 } = Astro.props;
@@ -86,7 +86,7 @@ const ogImageURL = new URL(image, Astro.site);
         name: "Software a Medida — Rodrigo",
         description,
         url: canonicalURL.toString(),
-        areaServed: "Global",
+        areaServed: ["Argentina", "Latinoamérica"],
         priceRange: "$$",
         serviceType: [
           "Desarrollo de Landing Pages",

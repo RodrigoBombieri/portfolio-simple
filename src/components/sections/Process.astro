@@ -4,7 +4,7 @@ import ProcessStep from "@components/ui/ProcessStep.astro";
 import { PROCESS_STEPS } from "@data/process";
 ---
 
-<section id="proceso" class="relative py-24 lg:py-32">
+<section id="proceso" class="relative py-16 lg:py-24">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <SectionHeader
       eyebrow="Cómo trabajo"
@@ -13,7 +13,7 @@ import { PROCESS_STEPS } from "@data/process";
       description="Cinco pasos simples para pasar de una conversación a software funcionando en tu negocio."
     />
 
-    <div class="mt-20 flex flex-col gap-12 md:flex-row md:items-start md:gap-4" data-timeline>
+    <div class="mt-12 flex flex-col gap-12 md:flex-row md:items-start md:gap-4" data-timeline>
       {
         PROCESS_STEPS.map((step, i) => (
           <ProcessStep step={step} index={i} total={PROCESS_STEPS.length} />

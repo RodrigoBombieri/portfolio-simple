@@ -4,7 +4,7 @@ import TechBadge from "@components/ui/TechBadge.astro";
 import { TECHNOLOGIES } from "@data/tech";
 ---
 
-<section id="tecnologias" class="band-soft relative py-24 lg:py-32">
+<section id="tecnologias" class="band-soft relative py-16 lg:py-24">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <SectionHeader
       eyebrow="Stack tecnológico"
@@ -14,7 +14,7 @@ import { TECHNOLOGIES } from "@data/tech";
     />
   </div>
 
-  <div class="group relative mt-16 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+  <div class="group relative mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
     <div class="animate-marquee flex w-max gap-4 group-hover:[animation-play-state:paused]">
       {
         [...TECHNOLOGIES, ...TECHNOLOGIES].map((tech) => (

@@ -28,7 +28,7 @@
 
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-float: float 6s ease-in-out infinite;
-  --animate-marquee: marquee 32s linear infinite;
+  --animate-marquee: marquee 26s linear infinite;
 
   @keyframes fade-up {
     from {

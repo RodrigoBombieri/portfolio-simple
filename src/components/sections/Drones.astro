@@ -4,7 +4,7 @@ import Button from "@components/ui/Button.astro";
 import { DRONE_USE_CASES } from "@data/drones";
 ---
 
-<section id="drones" class="relative overflow-hidden py-24 lg:py-32">
+<section id="drones" class="relative overflow-hidden py-16 lg:py-24">
   <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-primary/5 to-transparent"></div>
 
   <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
@@ -62,7 +62,7 @@ import { DRONE_USE_CASES } from "@data/drones";
         </div>
       </div>
 
-      <div class="relative mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+      <div class="relative mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
         {
           DRONE_USE_CASES.map((useCase, i) => (
             <div
