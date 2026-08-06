@@ -4,45 +4,27 @@ export interface Advantage {
   description: string;
 }
 
+// Ventajas diferenciales — evitar solapar con lo ya cubierto en Servicios/Drones
+// (código limpio, escalabilidad y automatización ya se explican ahí).
 export const ADVANTAGES: Advantage[] = [
-  {
-    icon: "check",
-    title: "Software a medida",
-    description: "Cada solución se diseña alrededor de tu proceso, no al revés.",
-  },
-  {
-    icon: "trending-up",
-    title: "Escalable",
-    description: "Arquitectura pensada para crecer sin reescribir desde cero.",
-  },
-  {
-    icon: "code",
-    title: "Código limpio",
-    description: "Mantenible, documentado y fácil de extender por cualquier equipo.",
-  },
-  {
-    icon: "layers",
-    title: "Arquitecturas modernas",
-    description: "Patrones actuales, buenas prácticas y estándares de la industria.",
-  },
-  {
-    icon: "cpu",
-    title: "Automatización",
-    description: "Elimino tareas repetitivas para que tu equipo enfoque tiempo en lo importante.",
-  },
-  {
-    icon: "life-buoy",
-    title: "Soporte",
-    description: "Acompañamiento post-entrega para resolver incidencias y evolucionar el producto.",
-  },
   {
     icon: "message",
     title: "Comunicación directa",
     description: "Trato directo conmigo, sin intermediarios ni capas de gestión.",
   },
   {
+    icon: "layers",
+    title: "Código limpio y escalable",
+    description: "Arquitectura moderna, documentada y pensada para crecer sin reescribir desde cero.",
+  },
+  {
+    icon: "life-buoy",
+    title: "Soporte post-entrega",
+    description: "Acompañamiento para resolver incidencias y evolucionar el producto.",
+  },
+  {
     icon: "shield",
-    title: "Seguridad",
+    title: "Seguridad y buenas prácticas",
     description: "Protección de datos y cumplimiento de normativas de privacidad.",
-  }
+  },
 ];

@@ -29,9 +29,9 @@ Abre `http://localhost:4321`.
 
 1. **Dominio**: cambia `SITE_URL` en `astro.config.mjs` (afecta `sitemap.xml`, canonical y OG tags).
 2. **Contacto**: copia `.env.example` a `.env` y completa `PUBLIC_CONTACT_EMAIL`, `PUBLIC_WHATSAPP_NUMBER`, `PUBLIC_GITHUB_URL`, `PUBLIC_LINKEDIN_URL`. Si tienes un backend de formularios (Formspree, Resend, etc.) agrega `PUBLIC_FORM_ENDPOINT`; si lo dejas vacío, el formulario cae a un `mailto:` como respaldo.
-3. **Contenido**: todo el copy vive en `src/data/*.ts` (servicios, proyectos, testimonios, tecnologías, ventajas, proceso). Edita ahí, no en los componentes.
+3. **Contenido**: todo el copy vive en `src/data/*.ts` (servicios, proyectos, tecnologías, ventajas, proceso). Edita ahí, no en los componentes.
 4. **Imágenes**: coloca capturas reales en `public/images/` siguiendo `public/images/README.md`. Mientras no existan, las tarjetas ocultan la imagen rota automáticamente.
-5. **OG image**: `public/og-image.svg` es un placeholder generado; reemplázalo por un PNG/JPG de 1200×630 si quieres una vista previa con diseño fijo en redes sociales.
+5. **OG image**: `public/og-image.png` (1200×630) se usa para Open Graph / Twitter Cards.
 
 ## Estructura
 
@@ -47,9 +47,9 @@ dev-landing-astro/
 │
 ├── public/                        # Archivos estáticos servidos tal cual, sin procesar
 │   ├── favicon.svg                # Ícono del sitio
-│   ├── og-image.svg               # Imagen para Open Graph / Twitter Cards (placeholder)
+│   ├── og-image.png                # Imagen para Open Graph / Twitter Cards
 │   ├── robots.txt                 # Reglas para crawlers + referencia al sitemap
-│   └── images/                    # Capturas de proyectos y avatares de testimonios
+│   └── images/                    # Capturas de proyectos
 │       └── README.md              # Qué archivos poner y con qué nombre exacto
 │
 └── src/
@@ -74,8 +74,7 @@ dev-landing-astro/
     │   ├── whyChoose.ts             # Las 7 ventajas de "Por qué elegirme"
     │   ├── process.ts               # Los 5 pasos de "Cómo trabajo"
     │   ├── tech.ts                  # Las tecnologías del marquee (stack)
-    │   ├── projects.ts              # Las tarjetas de "Proyectos" (título, tags, imagen)
-    │   └── testimonials.ts          # Los testimonios (placeholder — reemplazar por reales)
+    │   └── projects.ts              # Las tarjetas de "Proyectos" (título, tags, imagen)
     │
     ├── components/
     │   ├── ui/                    # Componentes reutilizables y sin contenido propio (reciben props)
@@ -84,7 +83,6 @@ dev-landing-astro/
     │   │   ├── SectionHeader.astro  # Eyebrow + título + descripción, reutilizado en cada sección
     │   │   ├── ServiceCard.astro    # Tarjeta de servicio (usa un item de services.ts)
     │   │   ├── ProjectCard.astro    # Tarjeta de proyecto con imagen y hover (usa projects.ts)
-    │   │   ├── TestimonialCard.astro# Tarjeta de testimonio con estrellas (usa testimonials.ts)
     │   │   ├── TechBadge.astro      # Chip de tecnología del marquee (usa tech.ts)
     │   │   └── ProcessStep.astro    # Paso individual de la línea de tiempo (usa process.ts)
     │   │
@@ -97,7 +95,6 @@ dev-landing-astro/
     │       ├── Process.astro        # Línea de tiempo de 5 pasos
     │       ├── Technologies.astro   # Marquee infinito de TechBadge
     │       ├── Projects.astro       # Grilla de ProjectCard
-    │       ├── Testimonials.astro   # Grilla de TestimonialCard
     │       ├── CTA.astro            # CTA final + formulario de contacto (id="contacto")
     │       └── Footer.astro         # Redes sociales, nav, copyright
     │
@@ -110,7 +107,7 @@ dev-landing-astro/
 ### Cómo moverse por el proyecto
 
 - **¿Quiero cambiar un texto, precio o link?** → `src/data/*.ts`. No toques los `.astro` de `components/` para esto.
-- **¿Quiero agregar/quitar un proyecto, servicio o testimonio?** → agregá o borrá un objeto del array correspondiente en `src/data/`; la sección se re-renderiza sola (usan `.map()`).
+- **¿Quiero agregar/quitar un proyecto o servicio?** → agregá o borrá un objeto del array correspondiente en `src/data/`; la sección se re-renderiza sola (usan `.map()`).
 - **¿Quiero cambiar colores, tipografía o espaciados?** → `src/styles/global.css`, bloque `@theme` (son tokens de Tailwind v4, no hay `tailwind.config.js`).
 - **¿Quiero cambiar el orden de las secciones?** → `src/pages/index.astro`, reordená las etiquetas dentro de `<main>`.
 - **¿Quiero editar el layout visual de una sección** (no el contenido)? → el `.astro` correspondiente en `src/components/sections/`.

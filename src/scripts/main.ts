@@ -1,5 +1,6 @@
 import { initSmoothScroll } from "@scripts/smoothScroll";
 import { initAnimations } from "@scripts/animations";
+import { SITE } from "@data/site";
 
 /** Menú móvil: abrir/cerrar + accesibilidad */
 function initMobileMenu(): void {
@@ -36,6 +37,36 @@ function initMobileMenu(): void {
   document.addEventListener("nav:close-mobile-menu", close);
 }
 
+/** Toggle de tema claro/oscuro, persistido en localStorage */
+function initThemeToggle(): void {
+  const toggles = document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]");
+  if (!toggles.length) return;
+
+  const themeColor: Record<"dark" | "light", string> = {
+    dark: "#05070d",
+    light: "#f6f8fb",
+  };
+
+  const applyTheme = (theme: "dark" | "light") => {
+    document.documentElement.setAttribute("data-theme", theme);
+    const meta = document.querySelector<HTMLMetaElement>("#theme-color-meta");
+    if (meta) meta.content = themeColor[theme];
+  };
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+      const next = current === "light" ? "dark" : "light";
+      applyTheme(next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch (e) {
+        /* localStorage no disponible: el cambio no persiste entre visitas */
+      }
+    });
+  });
+}
+
 /** Envío del formulario de contacto */
 function initContactForm(): void {
   const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
@@ -68,7 +99,7 @@ function initContactForm(): void {
         const message = formData.get("message");
         const subject = encodeURIComponent(`Presupuesto — ${name}`);
         const body = encodeURIComponent(`${message}\n\nContacto: ${email}`);
-        window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
       }
 
       status.textContent = "¡Gracias! Te responderé a la brevedad.";
@@ -83,6 +114,7 @@ function initContactForm(): void {
 
 function init(): void {
   initMobileMenu();
+  initThemeToggle();
   initContactForm();
   initSmoothScroll();
   initAnimations();

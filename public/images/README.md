@@ -1,13 +1,13 @@
 # Imágenes del proyecto
 
-Coloca aquí las imágenes reales referenciadas en `src/data/projects.ts` y `src/data/testimonials.ts`:
+Coloca aquí las imágenes reales referenciadas en `src/data/projects.ts`:
 
 - `proyecto-erp.jpg` — Sistema de gestión empresarial
-- `proyecto-landing.jpg` — Landing corporativa
-- `proyecto-stock.jpg` — Sistema de stock
+- `proyecto-landing.png` — Landing corporativa
+- `proyecto-stock.png` — Sistema de stock
 - `proyecto-plataforma.jpg` — Plataforma web
 - `proyecto-drones.jpg` — Software para drones
-- `testimonio-1.jpg`, `testimonio-2.jpg`, `testimonio-3.jpg` — Fotos de clientes (opcional)
+- `proyecto-api.png` — Web API para profesionales
 
 Recomendaciones:
 

@@ -1,5 +1,6 @@
 ---
 import "@styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 
 export interface Props {
   title?: string;
@@ -11,7 +12,7 @@ export interface Props {
 const {
   title = "Desarrollo de Software a Medida | Landing Pages, Apps y Drones",
   description = "Desarrollo landing pages, aplicaciones web, software de escritorio, automatización y soluciones para drones a medida. Software que ahorra tiempo, dinero y reduce tareas repetitivas.",
-  image = "/og-image.svg",
+  image = "/og-image.png",
   noindex = false,
 } = Astro.props;
 
@@ -20,10 +21,27 @@ const ogImageURL = new URL(image, Astro.site);
 ---
 
 <!doctype html>
-<html lang="es" class="js">
+<html lang="es" class="js" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      // Fija el tema antes del primer paint para evitar flash de contenido.
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          /* localStorage no disponible: se mantiene el tema oscuro por defecto */
+        }
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
@@ -41,7 +59,7 @@ const ogImageURL = new URL(image, Astro.site);
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content="Rodrigo — Desarrollo de Software" />
-    <meta name="theme-color" content="#05070d" />
+    <meta name="theme-color" content="#05070d" id="theme-color-meta" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -82,6 +100,7 @@ const ogImageURL = new URL(image, Astro.site);
     />
 
     <meta name="generator" content={Astro.generator} />
+    <Analytics />
   </head>
   <body class="bg-bg antialiased selection:bg-primary">
     <a

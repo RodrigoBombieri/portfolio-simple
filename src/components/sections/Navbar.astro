@@ -34,21 +34,41 @@ import { NAV_LINKS } from "@data/site";
       }
     </ul>
 
-    <div class="hidden md:block">
+    <div class="hidden items-center gap-3 md:flex">
+      <button
+        type="button"
+        class="flex size-10 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:text-ink"
+        aria-label="Cambiar tema"
+        data-theme-toggle
+      >
+        <Icon name="sun" class="size-[18px]" data-theme-icon-sun />
+        <Icon name="moon" class="size-[18px]" data-theme-icon-moon />
+      </button>
       <Button href="#contacto" size="md">Solicitar presupuesto</Button>
     </div>
 
-    <button
-      type="button"
-      class="flex size-10 items-center justify-center rounded-lg border border-border text-ink md:hidden"
-      aria-label="Abrir menú"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      data-menu-toggle
-    >
-      <Icon name="menu" class="size-5" data-menu-icon-open />
-      <Icon name="close" class="hidden size-5" data-menu-icon-close />
-    </button>
+    <div class="flex items-center gap-2 md:hidden">
+      <button
+        type="button"
+        class="flex size-10 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:text-ink"
+        aria-label="Cambiar tema"
+        data-theme-toggle
+      >
+        <Icon name="sun" class="size-[18px]" data-theme-icon-sun />
+        <Icon name="moon" class="size-[18px]" data-theme-icon-moon />
+      </button>
+      <button
+        type="button"
+        class="flex size-10 items-center justify-center rounded-lg border border-border text-ink"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+      >
+        <Icon name="menu" class="size-5" data-menu-icon-open />
+        <Icon name="close" class="hidden size-5" data-menu-icon-close />
+      </button>
+    </div>
   </nav>
 
   <div

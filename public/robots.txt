@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tudominio.dev/sitemap-index.xml
+Sitemap: https://www.bombieridev.com.ar/sitemap-index.xml
