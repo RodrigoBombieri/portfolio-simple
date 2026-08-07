@@ -33,7 +33,7 @@ const linkAttrs = project.url
   <div class="relative aspect-video overflow-hidden bg-bg-soft">
     <img
       src={project.image}
-      alt={`Captura del proyecto ${project.title}`}
+      alt={`Captura del proyecto ${project.title} (${project.category}), desarrollado con ${project.tags.join(", ")}`}
       loading="lazy"
       decoding="async"
       width="640"

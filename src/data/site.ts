@@ -15,10 +15,10 @@ export const WHATSAPP_LINK = `https://wa.me/${SITE.whatsapp}?text=${encodeURICom
 
 export const NAV_LINKS = [
   { label: "Servicios", href: "#servicios" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Drones", href: "#drones" },
   { label: "Por qué elegirme", href: "#por-que-elegirme" },
   { label: "Proceso", href: "#proceso" },
+  { label: "Drones", href: "#drones" },
   { label: "FAQ", href: "#faq" },
   { label: "Contacto", href: "#contacto" },
+  { label: "Portfolio técnico", href: "#portfolio-tecnico" },
 ];

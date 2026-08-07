@@ -1,0 +1,49 @@
+---
+import Icon from "@components/ui/Icon.astro";
+import ProjectCard from "@components/ui/ProjectCard.astro";
+import TechBadge from "@components/ui/TechBadge.astro";
+import { PROJECTS } from "@data/projects";
+import { TECHNOLOGIES } from "@data/tech";
+---
+
+<!--
+  Sección de apéndice: pensada para reclutadores/equipos técnicos, no para el
+  cliente de negocio. Por eso va al final (después del CTA) y con un estilo
+  más discreto que el resto del sitio: sin glow, header chico y alineado a la
+  izquierda.
+-->
+<section id="portfolio-tecnico" class="band-soft relative border-t border-border-soft py-14 lg:py-20">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="flex max-w-2xl flex-col gap-3" data-animate>
+      <span class="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-muted-soft">
+        <Icon name="code" class="size-3.5" />
+        Portfolio técnico
+      </span>
+      <h2 class="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+        Para equipos técnicos y reclutadores
+      </h2>
+      <p class="leading-relaxed text-muted">
+        Soy Rodrigo Bombieri, desarrollador de software Full Stack (C#/.NET,
+        Angular, Node.js). Acá vas a encontrar el repositorio de código y el
+        stack utilizado en cada proyecto.
+      </p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {PROJECTS.map((project, i) => <ProjectCard project={project} index={i} />)}
+    </div>
+  </div>
+
+  <div class="mx-auto mt-12 max-w-7xl px-6 lg:px-8">
+    <p class="text-xs font-medium uppercase tracking-widest text-muted-soft">Stack utilizado</p>
+  </div>
+  <div class="group relative mt-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+    <div class="animate-marquee flex w-max gap-4 group-hover:[animation-play-state:paused]">
+      {
+        [...TECHNOLOGIES, ...TECHNOLOGIES].map((tech) => (
+          <TechBadge tech={tech} />
+        ))
+      }
+    </div>
+  </div>
+</section>
