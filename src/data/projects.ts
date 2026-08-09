@@ -9,11 +9,11 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    title: "Sistema de gestión empresarial",
-    category: "Aplicación Web",
-    description: "ERP interno para gestión de ventas, inventario y reportes en tiempo real.",
-    tags: ["Angular", "ASP.NET Core", "SQL Server"],
-    image: "/images/proyecto-erp.jpg",
+    title: "Sistema de gestión Agraria",
+    category: "Aplicación Mobile y Web",
+    description: "Aplicación para la gestión de operaciones agrícolas.",
+    tags: ["Android", "iOS", "NET Maui"],
+    image: "/images/proyecto-mobile.jpg",
   },
   {
     title: "Landing corporativa",
@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
     title: "Web API para Profesionales",
     category: "Desarrollo Web",
     description: "API RESTful para servicios web de alta disponibilidad y rendimiento.",
-    tags: ["Node.js", "Express", "MongoDB"],
+    tags: [".NET", "API Web", "SQL Server"],
     image: "/images/proyecto-api.png",
     url: "https://github.com/RodrigoBombieri/Profesional.API",
   },
