@@ -1,0 +1,38 @@
+---
+import type { ShowroomItem } from "@data/showroom";
+
+export interface Props {
+  item: ShowroomItem;
+  index?: number;
+}
+
+const { item, index = 0 } = Astro.props;
+---
+
+<article
+  class="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-bg-elevated/60 transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-glow"
+  data-animate
+  style={`transition-delay:${index * 60}ms`}
+>
+  <div class="relative aspect-video overflow-hidden bg-bg-soft">
+    <img
+      src={item.image}
+      alt={`Captura de ${item.title}`}
+      loading="lazy"
+      decoding="async"
+      width="640"
+      height="360"
+      class="h-full w-full scale-100 object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
+      onerror="this.style.display='none'"
+    />
+    <div
+      class="absolute inset-0 bg-linear-to-t from-bg via-bg/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-40"
+    >
+    </div>
+  </div>
+
+  <div class="flex flex-1 flex-col gap-2 p-6">
+    <h3 class="text-lg font-semibold text-ink">{item.title}</h3>
+    <p class="text-sm leading-relaxed text-muted">{item.description}</p>
+  </div>
+</article>

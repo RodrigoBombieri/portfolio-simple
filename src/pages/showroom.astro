@@ -1,0 +1,60 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Navbar from "@components/sections/Navbar.astro";
+import CTA from "@components/sections/CTA.astro";
+import Footer from "@components/sections/Footer.astro";
+import Icon from "@components/ui/Icon.astro";
+import ShowroomCard from "@components/ui/ShowroomCard.astro";
+import { SHOWROOM_CATEGORIES } from "@data/showroom";
+---
+
+<Layout
+  title="Showroom | Ejemplos de proyectos — Rodrigo Bombieri"
+  description="Ejemplos reales de landing pages, aplicaciones web, software de escritorio y apps mobile desarrollados a medida."
+>
+  <Navbar />
+  <main id="main-content" class="pt-24 lg:pt-28">
+    <section class="relative overflow-hidden pb-16 pt-8 lg:pb-20">
+      <div class="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,black,transparent)]"></div>
+      <div class="pointer-events-none absolute left-1/2 top-[-10%] size-[560px] -translate-x-1/2 rounded-full bg-primary/20 blur-[140px]"></div>
+
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center" data-animate>
+          <span class="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-cyan">
+            <span class="size-1.5 rounded-full bg-cyan"></span>
+            Showroom
+          </span>
+          <h1 class="text-3xl font-bold tracking-tight text-ink sm:text-4xl md:text-5xl">
+            Ejemplos reales de cada <span class="text-gradient">tipo de proyecto</span>
+          </h1>
+          <p class="text-balance text-lg leading-relaxed text-muted">
+            Una muestra de lo que puedo construir para vos: aplicaciones web, software de escritorio,
+            apps mobile y landing pages, con capturas de proyectos reales.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {
+      SHOWROOM_CATEGORIES.map((category) => (
+        <section id={category.id} class="relative border-t border-border-soft py-14 lg:py-16">
+          <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mb-8 flex items-center gap-3" data-animate>
+              <span class="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-cyan">
+                <Icon name={category.icon} class="size-5" />
+              </span>
+              <h2 class="text-xl font-bold tracking-tight text-ink sm:text-2xl">{category.label}</h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {category.items.map((item, i) => <ShowroomCard item={item} index={i} />)}
+            </div>
+          </div>
+        </section>
+      ))
+    }
+
+    <CTA />
+  </main>
+  <Footer />
+</Layout>

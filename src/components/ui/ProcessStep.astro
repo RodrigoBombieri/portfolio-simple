@@ -35,8 +35,16 @@ const isLast = index === total - 1;
     </span>
   </div>
 
-  <div class="flex flex-col gap-1.5 px-2">
+  <div class="flex flex-col items-center gap-1.5 px-2">
     <h3 class="font-semibold text-ink">{step.title}</h3>
     <p class="text-sm leading-relaxed text-muted">{step.description}</p>
+    {
+      step.advantage && (
+        <span class="mt-2 inline-flex items-center gap-1.5 rounded-full border border-cyan/30 bg-cyan/5 px-3 py-1 text-xs font-medium text-cyan">
+          <Icon name="check" class="size-3" strokeWidth={2.5} />
+          {step.advantage}
+        </span>
+      )
+    }
   </div>
 </div>

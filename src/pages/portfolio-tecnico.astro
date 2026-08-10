@@ -1,0 +1,17 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Navbar from "@components/sections/Navbar.astro";
+import TechnicalPortfolio from "@components/sections/TechnicalPortfolio.astro";
+import Footer from "@components/sections/Footer.astro";
+---
+
+<Layout
+  title="Portfolio técnico | Rodrigo Bombieri — Desarrollador Full Stack"
+  description="Repositorios, stack y proyectos técnicos de Rodrigo Bombieri: C#/.NET, Angular, Node.js. Portfolio pensado para reclutadores y equipos técnicos."
+>
+  <Navbar />
+  <main id="main-content" class="pt-24 lg:pt-28">
+    <TechnicalPortfolio />
+  </main>
+  <Footer />
+</Layout>

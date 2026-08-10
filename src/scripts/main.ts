@@ -1,4 +1,4 @@
-import { initSmoothScroll } from "@scripts/smoothScroll";
+import { initSmoothScroll, initHashScrollOnLoad } from "@scripts/smoothScroll";
 import { initAnimations } from "@scripts/animations";
 import { SITE } from "@data/site";
 
@@ -120,6 +120,7 @@ function init(): void {
   initThemeToggle();
   initContactForm();
   initSmoothScroll();
+  initHashScrollOnLoad();
   initAnimations();
 }
 

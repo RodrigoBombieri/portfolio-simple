@@ -21,7 +21,7 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(image, Astro.site);
-const portfolioURL = new URL("#portfolio-tecnico", canonicalURL).toString();
+const portfolioURL = new URL("/portfolio-tecnico", Astro.site).toString();
 
 // Datos estructurados pensados para reclutadores/equipos técnicos: no se
 // muestran en pantalla (la sección visual es deliberadamente discreta), pero
