@@ -14,6 +14,7 @@ export const PROJECTS: Project[] = [
     description: "Aplicación para la gestión de operaciones agrícolas.",
     tags: ["Android", "iOS", "NET Maui"],
     image: "/images/proyecto-mobile.jpg",
+    url: "https://github.com/RodrigoBombieri/agronotes"
   },
   {
     title: "Landing corporativa",
