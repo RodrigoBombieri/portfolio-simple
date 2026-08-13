@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#dde6e9;font-family:Figtree,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#0e7c86;text-decoration:none}
+  a:hover{color:#0a5d64}
+  svg.lucide{width:1em;height:1em;stroke-width:1.9}
+  .noscroll::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:44px 20px;background:radial-gradient(600px 400px at 50% 0%,#eaf2f4,#d6e1e5);display:grid;place-items:center">
+
+  <div style="position:relative;width:390px;height:844px;border-radius:52px;background:#0b1517;padding:11px;box-shadow:0 50px 90px -30px rgba(11,21,23,.5),0 0 0 2px rgba(11,21,23,.9),0 0 0 11px #1c282a">
+    <span style="position:absolute;left:-13px;top:150px;width:3px;height:30px;border-radius:3px;background:#334042"></span>
+    <span style="position:absolute;left:-13px;top:200px;width:3px;height:52px;border-radius:3px;background:#334042"></span>
+    <span style="position:absolute;left:-13px;top:266px;width:3px;height:52px;border-radius:3px;background:#334042"></span>
+    <span style="position:absolute;right:-13px;top:220px;width:3px;height:80px;border-radius:3px;background:#334042"></span>
+
+    <div style="position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#f6f9fa;color:#0f1e21;display:flex;flex-direction:column">
+
+      <div style="position:absolute;top:0;left:0;right:0;height:54px;z-index:9;display:flex;align-items:center;padding:0 26px;color:#0f1e21;pointer-events:none">
+        <span style="font-size:14px;font-weight:700;letter-spacing:-.01em">9:41</span>
+        <div style="position:absolute;left:50%;transform:translateX(-50%);top:11px;width:118px;height:32px;border-radius:20px;background:#0b1517"></div>
+        <span style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:14px">
+          <i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i>
+        </span>
+      </div>
+
+      <div class="noscroll" style="flex:1;min-height:0;overflow:auto;padding-top:54px;scrollbar-width:none">
+
+        <div style="padding:10px 20px 16px;display:flex;align-items:center;gap:12px">
+          <div style="min-width:0">
+            <div style="font-size:11.5px;color:#6b8288;font-weight:500">Hola de nuevo</div>
+            <div style="font-size:18px;font-weight:800;letter-spacing:-.025em">Julián Ferreyra</div>
+          </div>
+          <span style="margin-left:auto;position:relative;width:38px;height:38px;border-radius:13px;background:#e8eff1;display:grid;place-items:center;font-size:17px">
+            <i data-lucide="bell"></i>
+            <span style="position:absolute;top:9px;right:10px;width:7px;height:7px;border-radius:50%;background:#e2725b;border:1.5px solid #e8eff1"></span>
+          </span>
+          <span style="width:38px;height:38px;border-radius:50%;background:#0e7c86;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700">JF</span>
+        </div>
+
+        <div style="padding:0 20px 18px">
+          <div style="border-radius:22px;padding:18px;background:linear-gradient(140deg,#0e7c86,#0a5d64);color:#eaf6f7;position:relative;overflow:hidden">
+            <span style="position:absolute;right:-40px;top:-50px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.09)"></span>
+            <div style="display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.1em;opacity:.9">
+              <i data-lucide="calendar-check"></i>PRÓXIMO TURNO
+            </div>
+            <div style="display:flex;gap:13px;align-items:center;margin-top:14px">
+              <span style="width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:15px;font-weight:700">MB</span>
+              <div style="min-width:0">
+                <div style="font-size:15.5px;font-weight:700;letter-spacing:-.01em">Dra. Mariana Brizuela</div>
+                <div style="font-size:12px;opacity:.9;margin-top:2px">Cardiología · Consultorio 304</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;margin-top:15px;font-size:12px;font-weight:600">
+              <span style="display:flex;align-items:center;gap:6px"><i data-lucide="calendar"></i>Vie 21 ago</span>
+              <span style="display:flex;align-items:center;gap:6px"><i data-lucide="clock"></i>10:30 h</span>
+              <span style="margin-left:auto;font-size:11px;background:rgba(255,255,255,.2);border-radius:20px;padding:4px 9px">En 8 días</span>
+            </div>
+            <div style="display:flex;gap:9px;margin-top:15px">
+              <button style="flex:1;border:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:700;padding:11px;border-radius:12px;background:#f6f9fa;color:#0a5d64">Ver detalle</button>
+              <button style="flex:none;border:1px solid rgba(255,255,255,.35);cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;padding:11px 15px;border-radius:12px;background:transparent;color:#eaf6f7">Reprogramar</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:0 20px 16px">
+          <div style="display:flex;align-items:center;gap:10px;background:#e8eff1;border-radius:16px;padding:13px 15px;color:#6b8288;font-size:14px">
+            <i data-lucide="search"></i><span>Buscar especialidad o profesional</span>
+          </div>
+        </div>
+
+        <div class="noscroll" style="display:flex;gap:9px;padding:0 20px 20px;overflow-x:auto;scrollbar-width:none">
+          <sc-for list="{{ specialties }}" as="s" hint-placeholder-count="6">
+            <div onClick="{{ s.select }}" style="{{ s.style }}">
+              <span style="font-size:18px;display:grid;place-items:center"><i data-lucide="{{ s.icon }}"></i></span>
+              <span style="font-size:11px;font-weight:600;white-space:nowrap">{{ s.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:0 20px 12px;display:flex;align-items:center">
+          <span style="font-size:16px;font-weight:800;letter-spacing:-.02em">Agenda disponible</span>
+          <span style="margin-left:auto;font-size:12px;font-weight:600;color:#0e7c86">Agosto 2026</span>
+        </div>
+
+        <div class="noscroll" style="display:flex;gap:8px;padding:0 20px 14px;overflow-x:auto;scrollbar-width:none">
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+            <div onClick="{{ d.select }}" style="{{ d.style }}">
+              <span style="font-size:10.5px;font-weight:600;opacity:.75">{{ d.dow }}</span>
+              <span style="font-size:16px;font-weight:800;letter-spacing:-.02em">{{ d.num }}</span>
+              <span style="{{ d.dotStyle }}"></span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:0 20px 20px">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+            <sc-for list="{{ slots }}" as="sl" hint-placeholder-count="8">
+              <div onClick="{{ sl.select }}" style="{{ sl.style }}">{{ sl.time }}</div>
+            </sc-for>
+          </div>
+          <button style="width:100%;margin-top:13px;border:none;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:700;padding:14px;border-radius:14px;background:#0f1e21;color:#f6f9fa;display:flex;align-items:center;justify-content:center;gap:8px" style-hover="background:#0e7c86">
+            <i data-lucide="check"></i>Confirmar turno {{ chosen }}
+          </button>
+        </div>
+
+        <div style="padding:0 20px 12px;display:flex;align-items:center">
+          <span style="font-size:16px;font-weight:800;letter-spacing:-.02em">Tus recordatorios</span>
+          <span style="margin-left:auto;font-size:12px;font-weight:600;color:#0e7c86">Editar</span>
+        </div>
+
+        <div style="padding:0 20px 130px;display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ reminders }}" as="r" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:12px;padding:13px;border-radius:16px;background:#fff;border:1px solid rgba(15,30,33,.08)">
+              <span style="{{ r.iconStyle }}"><i data-lucide="{{ r.icon }}"></i></span>
+              <div style="min-width:0;flex:1">
+                <div style="font-size:13.5px;font-weight:700;letter-spacing:-.01em">{{ r.title }}</div>
+                <div style="font-size:11.5px;color:#6b8288;margin-top:3px">{{ r.detail }}</div>
+              </div>
+              <span style="{{ r.chipStyle }}">{{ r.chip }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:0;right:0;bottom:0;background:rgba(246,249,250,.96);backdrop-filter:blur(12px);border-top:1px solid rgba(15,30,33,.09);padding:11px 14px 26px;display:flex;justify-content:space-between">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+          <div onClick="{{ t.select }}" style="{{ t.style }}">
+            <span style="font-size:20px;display:grid;place-items:center"><i data-lucide="{{ t.icon }}"></i></span>
+            <span style="font-size:10.5px;font-weight:600">{{ t.label }}</span>
+          </div>
+        </sc-for>
+        <span style="position:absolute;left:50%;transform:translateX(-50%);bottom:9px;width:134px;height:5px;border-radius:5px;background:#0f1e21"></span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:960}}">
+class Component extends DCLogic {
+  state = { spec: "Clínica", day: "21", slot: "10:30", tab: "Inicio" };
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  renderVals() {
+    const specialties = [
+      { label: "Clínica", icon: "stethoscope" },
+      { label: "Cardiología", icon: "heart-pulse" },
+      { label: "Odontología", icon: "smile" },
+      { label: "Pediatría", icon: "baby" },
+      { label: "Kinesiología", icon: "activity" },
+      { label: "Laboratorio", icon: "test-tube" }
+    ].map(s => {
+      const on = this.state.spec === s.label;
+      return {
+        ...s,
+        select: () => this.setState({ spec: s.label }),
+        style: "flex:none;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 14px;border-radius:16px;cursor:pointer;border:1px solid " +
+          (on ? "#0e7c86;background:#0e7c86;color:#f6f9fa" : "rgba(15,30,33,.09);background:#fff;color:#0f1e21")
+      };
+    });
+
+    const days = [
+      { dow: "LUN", num: "17", free: false },
+      { dow: "MAR", num: "18", free: true },
+      { dow: "MIÉ", num: "19", free: true },
+      { dow: "JUE", num: "20", free: false },
+      { dow: "VIE", num: "21", free: true },
+      { dow: "SÁB", num: "22", free: true },
+      { dow: "DOM", num: "23", free: false }
+    ].map(d => {
+      const on = this.state.day === d.num;
+      return {
+        ...d,
+        select: () => d.free && this.setState({ day: d.num }),
+        style: "flex:none;width:52px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:11px 0 9px;border-radius:16px;cursor:" +
+          (d.free ? "pointer;" : "default;") +
+          (on ? "background:#0f1e21;color:#f6f9fa" : d.free ? "background:#fff;border:1px solid rgba(15,30,33,.09);color:#0f1e21" : "background:#eef2f3;color:#a9b8bb"),
+        dotStyle: "width:5px;height:5px;border-radius:50%;background:" +
+          (on ? "#7fdbe0" : d.free ? "#0e7c86" : "transparent")
+      };
+    });
+
+    const slotDefs = [
+      { time: "08:00", free: true }, { time: "08:30", free: false },
+      { time: "09:00", free: true }, { time: "09:30", free: false },
+      { time: "10:00", free: true }, { time: "10:30", free: true },
+      { time: "11:00", free: true }, { time: "11:30", free: false }
+    ];
+    const slots = slotDefs.map(s => {
+      const on = this.state.slot === s.time;
+      return {
+        ...s,
+        select: () => s.free && this.setState({ slot: s.time }),
+        style: "text-align:center;padding:11px 0;border-radius:12px;font-size:12.5px;font-weight:700;cursor:" +
+          (s.free ? "pointer;" : "default;") +
+          (on ? "background:#0e7c86;color:#fff" : s.free ? "background:#fff;border:1px solid rgba(15,30,33,.1);color:#0f1e21" : "background:#eef2f3;color:#b3c1c4;text-decoration:line-through")
+      };
+    });
+
+    const reminders = [
+      { title: "Enalapril 10 mg", detail: "1 comprimido · 08:00 y 20:00", icon: "pill", tone: "#0e7c86", chip: "Hoy" },
+      { title: "Análisis de sangre", detail: "En ayunas · Laboratorio central", icon: "test-tube", tone: "#e2725b", chip: "Mié 19" },
+      { title: "Caminata 30 min", detail: "Indicación de la Dra. Brizuela", icon: "footprints", tone: "#5b7f3f", chip: "Diario" }
+    ].map(r => ({
+      ...r,
+      iconStyle: "width:40px;height:40px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:17px;color:" + r.tone + ";background:" + r.tone + "1f",
+      chipStyle: "font-size:10.5px;font-weight:700;border-radius:20px;padding:4px 9px;white-space:nowrap;flex:none;color:#0f1e21;background:#e8eff1"
+    }));
+
+    const tabs = [
+      { label: "Inicio", icon: "house" },
+      { label: "Turnos", icon: "calendar-days" },
+      { label: "Historia", icon: "file-heart" },
+      { label: "Perfil", icon: "user-round" }
+    ].map(t => {
+      const on = this.state.tab === t.label;
+      return {
+        ...t,
+        select: () => this.setState({ tab: t.label }),
+        style: "display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 14px;cursor:pointer;color:" +
+          (on ? "#0e7c86" : "#93a6a9")
+      };
+    });
+
+    return {
+      specialties, days, slots, reminders, tabs,
+      chosen: this.state.day + " ago · " + this.state.slot
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -29,7 +29,8 @@ import { SHOWROOM_CATEGORIES } from "@data/showroom";
           </h1>
           <p class="text-balance text-lg leading-relaxed text-muted">
             Una muestra de lo que puedo construir para vos: aplicaciones web, software de escritorio,
-            apps mobile y landing pages, con capturas de proyectos reales.
+            apps mobile y landing pages. Los ejemplos marcados "Vivo" son mockups reales e interactivos,
+            no capturas de pantalla.
           </p>
         </div>
       </div>
@@ -57,4 +58,25 @@ import { SHOWROOM_CATEGORIES } from "@data/showroom";
     <CTA />
   </main>
   <Footer />
+
+  <!-- Modal compartido para los mockups embebidos en vivo (ver ShowroomCard + mockupEmbeds.ts) -->
+  <div
+    class="fixed inset-0 z-100 hidden items-center justify-center bg-bg/90 p-4 backdrop-blur-sm sm:p-8"
+    data-mockup-modal
+  >
+    <div class="relative flex h-[88vh] w-full max-w-[1280px] flex-col overflow-hidden rounded-2xl border border-border bg-bg-elevated shadow-glow">
+      <div class="flex items-center justify-between border-b border-border-soft px-4 py-2.5">
+        <span class="text-sm font-semibold text-ink" data-mockup-modal-title></span>
+        <button
+          type="button"
+          class="flex size-8 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:border-primary/40 hover:text-ink"
+          data-mockup-modal-close
+          aria-label="Cerrar vista interactiva"
+        >
+          <Icon name="close" class="size-4" />
+        </button>
+      </div>
+      <iframe data-mockup-modal-frame src="about:blank" title="Mockup interactivo" class="h-full w-full flex-1 border-0 bg-bg"></iframe>
+    </div>
+  </div>
 </Layout>

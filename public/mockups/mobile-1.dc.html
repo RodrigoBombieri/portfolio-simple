@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#efe7de;font-family:Outfit,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#e8452c;text-decoration:none}
+  a:hover{color:#c2361f}
+  svg.lucide{width:1em;height:1em;stroke-width:1.9}
+  .noscroll::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:44px 20px;background:radial-gradient(600px 400px at 50% 0%,#f7efe6,#e9e0d5);display:grid;place-items:center">
+
+  <div style="position:relative;width:390px;height:844px;border-radius:52px;background:#17120f;padding:11px;box-shadow:0 50px 90px -30px rgba(23,18,15,.55),0 0 0 2px rgba(23,18,15,.9),0 0 0 11px #262019">
+    <span style="position:absolute;left:-13px;top:150px;width:3px;height:30px;border-radius:3px;background:#3a332b"></span>
+    <span style="position:absolute;left:-13px;top:200px;width:3px;height:52px;border-radius:3px;background:#3a332b"></span>
+    <span style="position:absolute;left:-13px;top:266px;width:3px;height:52px;border-radius:3px;background:#3a332b"></span>
+    <span style="position:absolute;right:-13px;top:220px;width:3px;height:80px;border-radius:3px;background:#3a332b"></span>
+
+    <div style="position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#fffdfa;display:flex;flex-direction:column">
+
+      <div style="position:absolute;top:0;left:0;right:0;height:54px;z-index:9;display:flex;align-items:center;padding:0 26px;color:#17120f;pointer-events:none">
+        <span style="font-size:14px;font-weight:600;letter-spacing:-.01em">9:41</span>
+        <div style="position:absolute;left:50%;transform:translateX(-50%);top:11px;width:118px;height:32px;border-radius:20px;background:#17120f"></div>
+        <span style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:14px">
+          <i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i>
+        </span>
+      </div>
+
+      <div class="noscroll" style="flex:1;min-height:0;overflow:auto;padding-top:54px;scrollbar-width:none">
+
+        <div style="padding:8px 20px 16px;background:#fffdfa;display:flex;align-items:center;gap:12px">
+          <div style="min-width:0">
+            <div style="font-size:11px;color:#8a7f75;font-weight:500">Entregar en</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:15px;font-weight:600;letter-spacing:-.01em">
+              Gorriti 4520 <span style="font-size:14px;color:#e8452c;display:grid;place-items:center"><i data-lucide="chevron-down"></i></span>
+            </div>
+          </div>
+          <div style="margin-left:auto;display:flex;gap:9px">
+            <span style="width:38px;height:38px;border-radius:14px;background:#f4efe8;display:grid;place-items:center;font-size:17px;color:#17120f"><i data-lucide="bell"></i></span>
+            <span style="width:38px;height:38px;border-radius:14px;background:#f4efe8;display:grid;place-items:center;font-size:17px;color:#17120f"><i data-lucide="heart"></i></span>
+          </div>
+        </div>
+
+        <div style="padding:0 20px 14px">
+          <div style="display:flex;align-items:center;gap:10px;background:#f4efe8;border-radius:16px;padding:13px 15px;color:#8a7f75;font-size:14px">
+            <i data-lucide="search"></i><span>Buscar milanesas, sushi, helado…</span>
+            <span style="margin-left:auto;color:#17120f;font-size:16px;display:grid;place-items:center"><i data-lucide="sliders-horizontal"></i></span>
+          </div>
+        </div>
+
+        <div class="noscroll" style="display:flex;gap:10px;padding:2px 20px 16px;overflow-x:auto;scrollbar-width:none">
+          <sc-for list="{{ categories }}" as="c" hint-placeholder-count="6">
+            <div onClick="{{ c.select }}" style="{{ c.style }}">
+              <span style="font-size:19px;display:grid;place-items:center"><i data-lucide="{{ c.icon }}"></i></span>
+              <span style="font-size:11.5px;font-weight:600;white-space:nowrap">{{ c.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:0 20px 20px">
+          <div style="position:relative;border-radius:22px;overflow:hidden;background:linear-gradient(120deg,#e8452c,#f4813d);padding:20px;color:#fff8f2;min-height:132px;display:flex;flex-direction:column;justify-content:center">
+            <span style="position:absolute;right:-30px;top:-30px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.12)"></span>
+            <span style="position:absolute;right:26px;bottom:-40px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.1)"></span>
+            <span style="font-size:11px;font-weight:600;letter-spacing:.1em;opacity:.9">SOLO HOY</span>
+            <span style="font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-top:6px;max-width:210px">40% off en tu primer pedido</span>
+            <span style="font-size:12px;opacity:.92;margin-top:7px">Con el código SERENO40 · tope $8.000</span>
+          </div>
+          <div style="display:flex;justify-content:center;gap:5px;margin-top:11px">
+            <span style="width:18px;height:5px;border-radius:5px;background:#e8452c"></span>
+            <span style="width:5px;height:5px;border-radius:5px;background:#dcd3c8"></span>
+            <span style="width:5px;height:5px;border-radius:5px;background:#dcd3c8"></span>
+          </div>
+        </div>
+
+        <div style="padding:0 20px 12px;display:flex;align-items:center">
+          <span style="font-size:17px;font-weight:700;letter-spacing:-.02em">Cerca tuyo</span>
+          <span style="margin-left:auto;font-size:12.5px;font-weight:600;color:#e8452c">Ver todo</span>
+        </div>
+
+        <div class="noscroll" style="display:flex;gap:13px;padding:0 20px 22px;overflow-x:auto;scrollbar-width:none">
+          <sc-for list="{{ featured }}" as="f" hint-placeholder-count="3">
+            <div style="flex:none;width:224px;display:flex;flex-direction:column;gap:9px">
+              <div style="position:relative;height:132px;border-radius:18px;overflow:hidden;background:#f4efe8">
+                <image-slot id="{{ f.slotId }}" shape="rect" fit="cover" placeholder="{{ f.name }}"></image-slot>
+                <span style="position:absolute;top:9px;left:9px;font-size:10.5px;font-weight:700;background:rgba(23,18,15,.82);color:#fff8f2;border-radius:20px;padding:4px 9px;pointer-events:none">{{ f.promo }}</span>
+              </div>
+              <div>
+                <div style="display:flex;align-items:center;gap:7px">
+                  <span style="font-size:14.5px;font-weight:600;letter-spacing:-.01em">{{ f.name }}</span>
+                  <span style="margin-left:auto;display:flex;align-items:center;gap:3px;font-size:12px;font-weight:600"><span style="color:#f4a621;font-size:12px;display:grid;place-items:center"><i data-lucide="star"></i></span>{{ f.rating }}</span>
+                </div>
+                <div style="font-size:12px;color:#8a7f75;margin-top:3px">{{ f.meta }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:0 20px 10px;display:flex;align-items:center;gap:10px">
+          <span style="font-size:17px;font-weight:700;letter-spacing:-.02em">Todos los locales</span>
+          <span style="margin-left:auto;font-size:11.5px;font-weight:600;color:#17120f;background:#f4efe8;border-radius:20px;padding:5px 11px">Envío gratis</span>
+        </div>
+
+        <div style="padding:0 20px 120px;display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ places }}" as="p" hint-placeholder-count="4">
+            <div style="display:flex;gap:13px;align-items:center">
+              <div style="width:74px;height:74px;border-radius:18px;overflow:hidden;flex:none;background:#f4efe8">
+                <image-slot id="{{ p.slotId }}" shape="rect" fit="cover" placeholder=" "></image-slot>
+              </div>
+              <div style="min-width:0;flex:1">
+                <div style="display:flex;align-items:center;gap:7px">
+                  <span style="font-size:14.5px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</span>
+                  <span style="{{ p.tagStyle }}">{{ p.tag }}</span>
+                </div>
+                <div style="font-size:12px;color:#8a7f75;margin-top:4px">{{ p.kind }}</div>
+                <div style="display:flex;align-items:center;gap:12px;margin-top:7px;font-size:11.5px;color:#5c5349">
+                  <span style="display:flex;align-items:center;gap:4px"><span style="color:#f4a621;display:grid;place-items:center"><i data-lucide="star"></i></span>{{ p.rating }}</span>
+                  <span style="display:flex;align-items:center;gap:4px"><i data-lucide="clock"></i>{{ p.time }}</span>
+                  <span style="display:flex;align-items:center;gap:4px"><i data-lucide="bike"></i>{{ p.fee }}</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:16px;right:16px;bottom:88px;background:#17120f;color:#fff8f2;border-radius:18px;padding:12px 15px;display:flex;align-items:center;gap:12px;box-shadow:0 16px 30px -12px rgba(23,18,15,.6)">
+        <span style="width:34px;height:34px;border-radius:12px;background:#e8452c;display:grid;place-items:center;font-size:16px"><i data-lucide="shopping-bag"></i></span>
+        <div style="min-width:0">
+          <div style="font-size:13px;font-weight:600">3 ítems · La Rotonda</div>
+          <div style="font-size:11.5px;color:#b3a89d">Llega 19:40 – 19:55</div>
+        </div>
+        <span style="margin-left:auto;font-size:14px;font-weight:700">$14.300</span>
+        <span style="font-size:17px;display:grid;place-items:center"><i data-lucide="chevron-right"></i></span>
+      </div>
+
+      <div style="position:absolute;left:0;right:0;bottom:0;background:rgba(255,253,250,.96);backdrop-filter:blur(12px);border-top:1px solid rgba(23,18,15,.08);padding:11px 14px 26px;display:flex;justify-content:space-between">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+          <div onClick="{{ t.select }}" style="{{ t.style }}">
+            <span style="font-size:20px;display:grid;place-items:center"><i data-lucide="{{ t.icon }}"></i></span>
+            <span style="font-size:10.5px;font-weight:600">{{ t.label }}</span>
+          </div>
+        </sc-for>
+        <span style="position:absolute;left:50%;transform:translateX(-50%);bottom:9px;width:134px;height:5px;border-radius:5px;background:#17120f"></span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:960}}">
+class Component extends DCLogic {
+  state = { cat: "Rápidas", tab: "Inicio" };
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  renderVals() {
+    const categories = [
+      { label: "Rápidas", icon: "hamburger" },
+      { label: "Pizza", icon: "pizza" },
+      { label: "Sushi", icon: "fish" },
+      { label: "Café", icon: "coffee" },
+      { label: "Postres", icon: "ice-cream-cone" },
+      { label: "Mercado", icon: "shopping-basket" },
+      { label: "Farmacia", icon: "pill" }
+    ].map(c => {
+      const on = this.state.cat === c.label;
+      return {
+        ...c,
+        select: () => this.setState({ cat: c.label }),
+        style: "flex:none;display:flex;flex-direction:column;align-items:center;gap:6px;padding:11px 14px;border-radius:16px;cursor:pointer;" +
+          (on ? "background:#e8452c;color:#fff8f2" : "background:#f4efe8;color:#17120f")
+      };
+    });
+
+    const featured = [
+      { name: "La Rotonda", rating: "4.8", meta: "Parrilla · 25-35 min · $900", promo: "2x1 en empanadas", slotId: "mob1-f1" },
+      { name: "Nori Bar", rating: "4.9", meta: "Sushi · 30-40 min · Gratis", promo: "Envío gratis", slotId: "mob1-f2" },
+      { name: "Panadería Cruz", rating: "4.7", meta: "Café · 15-20 min · $600", promo: "-25%", slotId: "mob1-f3" }
+    ];
+
+    const places = [
+      { name: "Verde Almacén", kind: "Ensaladas · Saludable", rating: "4.6", time: "20-30 min", fee: "Gratis", tag: "Nuevo", slotId: "mob1-p1" },
+      { name: "Don Cheto", kind: "Mexicana · Tacos", rating: "4.8", time: "35-45 min", fee: "$700", tag: "", slotId: "mob1-p2" },
+      { name: "Heladería Bruma", kind: "Postres · Helado", rating: "4.9", time: "15-25 min", fee: "Gratis", tag: "Top", slotId: "mob1-p3" },
+      { name: "Wok 24", kind: "Asiática · Woks", rating: "4.4", time: "30-40 min", fee: "$850", tag: "", slotId: "mob1-p4" }
+    ].map(p => ({
+      ...p,
+      tagStyle: p.tag
+        ? "font-size:10px;font-weight:700;border-radius:20px;padding:2px 7px;white-space:nowrap;flex:none;" +
+          (p.tag === "Top" ? "background:#17120f;color:#fff8f2" : "background:#ffe6c9;color:#a35a12")
+        : "display:none"
+    }));
+
+    const tabs = [
+      { label: "Inicio", icon: "house" },
+      { label: "Buscar", icon: "search" },
+      { label: "Pedidos", icon: "receipt-text" },
+      { label: "Perfil", icon: "user-round" }
+    ].map(t => {
+      const on = this.state.tab === t.label;
+      return {
+        ...t,
+        select: () => this.setState({ tab: t.label }),
+        style: "display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 16px;cursor:pointer;color:" +
+          (on ? "#e8452c" : "#a2988d")
+      };
+    });
+
+    return { categories, featured, places, tabs };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 import { initSmoothScroll, initHashScrollOnLoad } from "@scripts/smoothScroll";
 import { initAnimations } from "@scripts/animations";
+import { initMockupEmbeds } from "@scripts/mockupEmbeds";
 import { SITE } from "@data/site";
 
 /** Menú móvil: abrir/cerrar + accesibilidad */
@@ -122,6 +123,7 @@ function init(): void {
   initSmoothScroll();
   initHashScrollOnLoad();
   initAnimations();
+  initMockupEmbeds();
 }
 
 if (document.readyState === "loading") {

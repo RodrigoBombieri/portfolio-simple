@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#e3e5dc;font-family:Sora,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#29513a;text-decoration:none}
+  a:hover{color:#c1682f}
+  svg.lucide{width:1em;height:1em;stroke-width:1.9}
+  .noscroll::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:44px 20px;background:radial-gradient(600px 400px at 50% 0%,#eef0e7,#dcdfd3);display:grid;place-items:center">
+
+  <div style="position:relative;width:390px;height:844px;border-radius:52px;background:#14180f;padding:11px;box-shadow:0 50px 90px -30px rgba(20,24,15,.5),0 0 0 2px rgba(20,24,15,.9),0 0 0 11px #262b1d">
+    <span style="position:absolute;left:-13px;top:150px;width:3px;height:30px;border-radius:3px;background:#3b4231"></span>
+    <span style="position:absolute;left:-13px;top:200px;width:3px;height:52px;border-radius:3px;background:#3b4231"></span>
+    <span style="position:absolute;left:-13px;top:266px;width:3px;height:52px;border-radius:3px;background:#3b4231"></span>
+    <span style="position:absolute;right:-13px;top:220px;width:3px;height:80px;border-radius:3px;background:#3b4231"></span>
+
+    <div style="position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#f4f5f0;color:#1c2118;display:flex;flex-direction:column">
+
+      <div style="position:absolute;top:0;left:0;right:0;height:54px;z-index:9;display:flex;align-items:center;padding:0 26px;color:#f4f5f0;pointer-events:none">
+        <span style="font-size:14px;font-weight:600;letter-spacing:-.01em">9:41</span>
+        <div style="position:absolute;left:50%;transform:translateX(-50%);top:11px;width:118px;height:32px;border-radius:20px;background:#14180f"></div>
+        <span style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:14px">
+          <i data-lucide="signal-low"></i><i data-lucide="wifi-off"></i><i data-lucide="battery-medium"></i>
+        </span>
+      </div>
+
+      <div class="noscroll" style="flex:1;min-height:0;overflow:auto;scrollbar-width:none">
+
+        <div style="background:#29513a;color:#eef2e6;padding:62px 20px 20px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="min-width:0">
+              <div style="font-size:11.5px;color:#a9c1ac;font-weight:500;display:flex;align-items:center;gap:6px">
+                <i data-lucide="map-pin"></i>Establecimiento La Rosada
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:18px;font-weight:700;letter-spacing:-.02em;margin-top:3px">
+                Lote 7 · Norte <span style="font-size:16px;display:grid;place-items:center"><i data-lucide="chevron-down"></i></span>
+              </div>
+            </div>
+            <span style="margin-left:auto;width:38px;height:38px;border-radius:13px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:17px"><i data-lucide="search"></i></span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:8px;margin-top:14px;font-size:11.5px;font-weight:600;background:rgba(193,104,47,.22);color:#f0c39c;border-radius:20px;padding:6px 11px;width:fit-content">
+            <i data-lucide="cloud-off"></i>Sin señal · 4 registros por sincronizar
+          </div>
+
+          <div style="display:flex;gap:9px;margin-top:16px">
+            <sc-for list="{{ weather }}" as="w" hint-placeholder-count="4">
+              <div style="flex:1;background:rgba(255,255,255,.09);border-radius:15px;padding:11px 9px;display:flex;flex-direction:column;align-items:center;gap:5px">
+                <span style="font-size:17px;display:grid;place-items:center;color:#d5e3c9"><i data-lucide="{{ w.icon }}"></i></span>
+                <span style="font-size:14px;font-weight:700;font-family:'Roboto Mono',monospace">{{ w.value }}</span>
+                <span style="font-size:9.5px;color:#a9c1ac;text-align:center">{{ w.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="padding:18px 20px 0">
+          <div style="border-radius:20px;overflow:hidden;border:1px solid rgba(28,33,24,.1);background:#fff">
+            <div style="position:relative;height:158px;background:#dfe6d5">
+              <svg viewBox="0 0 340 158" style="width:100%;height:100%;display:block">
+                <rect x="0" y="0" width="340" height="158" fill="#e6ecdb"></rect>
+                <path d="M0,118 C60,104 120,126 190,112 C250,100 300,110 340,102 L340,158 L0,158 Z" fill="#d6e0c6"></path>
+                <polygon points="18,20 150,14 158,74 26,82" fill="#8fb371" stroke="#f4f5f0" stroke-width="2"></polygon>
+                <polygon points="164,14 316,20 312,68 160,74" fill="#c9a24a" stroke="#f4f5f0" stroke-width="2"></polygon>
+                <polygon points="26,88 158,80 166,140 34,146" fill="#29513a" stroke="#c1682f" stroke-width="2.5"></polygon>
+                <polygon points="172,80 314,74 320,138 178,144" fill="#a9bd8c" stroke="#f4f5f0" stroke-width="2"></polygon>
+                <text x="52" y="52" font-family="Roboto Mono, monospace" font-size="11" fill="#22341c">L5 · 42 ha</text>
+                <text x="206" y="48" font-family="Roboto Mono, monospace" font-size="11" fill="#4a3c12">L6 · 61 ha</text>
+                <text x="62" y="120" font-family="Roboto Mono, monospace" font-size="11" fill="#eef2e6">L7 · 58 ha</text>
+                <text x="216" y="114" font-family="Roboto Mono, monospace" font-size="11" fill="#22341c">L8 · 37 ha</text>
+                <circle cx="96" cy="128" r="6" fill="#c1682f" stroke="#fff" stroke-width="2.5"></circle>
+              </svg>
+              <div style="position:absolute;right:11px;top:11px;display:flex;flex-direction:column;gap:7px">
+                <span style="width:32px;height:32px;border-radius:11px;background:rgba(255,255,255,.94);display:grid;place-items:center;font-size:15px;color:#1c2118"><i data-lucide="layers"></i></span>
+                <span style="width:32px;height:32px;border-radius:11px;background:rgba(255,255,255,.94);display:grid;place-items:center;font-size:15px;color:#1c2118"><i data-lucide="locate-fixed"></i></span>
+              </div>
+            </div>
+            <div style="padding:14px;display:flex;align-items:center;gap:12px;border-top:1px solid rgba(28,33,24,.08)">
+              <div>
+                <div style="font-size:13.5px;font-weight:700;letter-spacing:-.01em">Soja de segunda · DM 4615</div>
+                <div style="font-size:11.5px;color:#6c7563;margin-top:3px">Sembrado 12 dic · R3 · 58 ha</div>
+              </div>
+              <span style="margin-left:auto;font-size:11px;font-weight:700;color:#29513a;background:rgba(41,81,58,.12);border-radius:20px;padding:5px 10px;white-space:nowrap">Buen estado</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:20px 20px 0;display:flex;align-items:center">
+          <span style="font-size:16px;font-weight:700;letter-spacing:-.02em">Tareas de hoy</span>
+          <span style="margin-left:auto;font-size:11.5px;color:#6c7563;font-family:'Roboto Mono',monospace">{{ doneCount }}/4</span>
+        </div>
+
+        <div style="padding:12px 20px 0;display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="4">
+            <div onClick="{{ t.toggle }}" style="{{ t.rowStyle }}">
+              <span style="{{ t.boxStyle }}"><i data-lucide="check"></i></span>
+              <div style="min-width:0;flex:1">
+                <div style="{{ t.titleStyle }}">{{ t.title }}</div>
+                <div style="font-size:11px;color:#6c7563;margin-top:3px;display:flex;align-items:center;gap:9px">
+                  <span style="display:flex;align-items:center;gap:4px"><i data-lucide="map"></i>{{ t.lot }}</span>
+                  <span style="display:flex;align-items:center;gap:4px"><i data-lucide="clock"></i>{{ t.time }}</span>
+                </div>
+              </div>
+              <span style="{{ t.chipStyle }}">{{ t.chip }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:22px 20px 0;display:flex;align-items:center">
+          <span style="font-size:16px;font-weight:700;letter-spacing:-.02em">Últimas labores</span>
+          <span style="margin-left:auto;font-size:12px;font-weight:600;color:#c1682f">Ver bitácora</span>
+        </div>
+
+        <div style="padding:12px 20px 130px;display:flex;flex-direction:column;gap:0">
+          <sc-for list="{{ log }}" as="l" hint-placeholder-count="4">
+            <div style="display:flex;gap:13px">
+              <div style="display:flex;flex-direction:column;align-items:center;flex:none;width:38px">
+                <span style="{{ l.iconStyle }}"><i data-lucide="{{ l.icon }}"></i></span>
+                <span style="flex:1;width:2px;background:rgba(28,33,24,.1);margin:4px 0"></span>
+              </div>
+              <div style="min-width:0;flex:1;padding-bottom:16px">
+                <div style="display:flex;align-items:baseline;gap:8px">
+                  <span style="font-size:13.5px;font-weight:600;letter-spacing:-.01em">{{ l.title }}</span>
+                  <span style="margin-left:auto;font-size:10.5px;color:#6c7563;font-family:'Roboto Mono',monospace;white-space:nowrap">{{ l.date }}</span>
+                </div>
+                <div style="font-size:11.5px;color:#6c7563;margin-top:4px;line-height:1.5">{{ l.detail }}</div>
+                <div style="display:flex;gap:7px;margin-top:8px;flex-wrap:wrap">
+                  <sc-for list="{{ l.tags }}" as="tg" hint-placeholder-count="2">
+                    <span style="font-size:10.5px;font-weight:600;color:#3c4a34;background:rgba(41,81,58,.1);border-radius:7px;padding:3px 8px;font-family:'Roboto Mono',monospace">{{ tg }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="position:absolute;right:20px;bottom:104px;width:56px;height:56px;border-radius:20px;background:#c1682f;color:#fff;display:grid;place-items:center;font-size:24px;box-shadow:0 14px 26px -10px rgba(193,104,47,.9);cursor:pointer">
+        <i data-lucide="plus"></i>
+      </div>
+
+      <div style="position:absolute;left:0;right:0;bottom:0;background:rgba(244,245,240,.96);backdrop-filter:blur(12px);border-top:1px solid rgba(28,33,24,.1);padding:11px 14px 26px;display:flex;justify-content:space-between">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+          <div onClick="{{ t.select }}" style="{{ t.style }}">
+            <span style="font-size:20px;display:grid;place-items:center"><i data-lucide="{{ t.icon }}"></i></span>
+            <span style="font-size:10.5px;font-weight:600">{{ t.label }}</span>
+          </div>
+        </sc-for>
+        <span style="position:absolute;left:50%;transform:translateX(-50%);bottom:9px;width:134px;height:5px;border-radius:5px;background:#1c2118"></span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:960}}">
+class Component extends DCLogic {
+  state = { tab: "Lotes", done: { "Monitoreo de chinches": true } };
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  renderVals() {
+    const weather = [
+      { icon: "sun", value: "27°", label: "Máx. hoy" },
+      { icon: "cloud-rain", value: "18 mm", label: "Últimos 7 d" },
+      { icon: "wind", value: "14 km/h", label: "Viento NE" },
+      { icon: "droplets", value: "62%", label: "Humedad" }
+    ];
+
+    const taskDefs = [
+      { title: "Monitoreo de chinches", lot: "Lote 7", time: "07:30", chip: "Plagas", tone: "#c1682f" },
+      { title: "Aplicación de fungicida", lot: "Lote 6", time: "10:00", chip: "Fitosanitario", tone: "#4a7fb5" },
+      { title: "Control de humedad de suelo", lot: "Lote 5", time: "13:00", chip: "Suelo", tone: "#7a6a3a" },
+      { title: "Revisar alambrado sur", lot: "Lote 8", time: "16:30", chip: "Mantenim.", tone: "#5c6b52" }
+    ];
+    const tasks = taskDefs.map(t => {
+      const done = !!this.state.done[t.title];
+      return {
+        ...t,
+        toggle: () => this.setState(s => ({ done: { ...s.done, [t.title]: !s.done[t.title] } })),
+        rowStyle: "display:flex;align-items:center;gap:12px;padding:13px;border-radius:16px;cursor:pointer;border:1px solid rgba(28,33,24,.09);background:" +
+          (done ? "rgba(41,81,58,.06)" : "#fff"),
+        boxStyle: "width:24px;height:24px;flex:none;border-radius:8px;display:grid;place-items:center;font-size:13px;" +
+          (done ? "background:#29513a;color:#fff" : "background:#eceee6;color:transparent;border:1px solid rgba(28,33,24,.14)"),
+        titleStyle: "font-size:13.5px;font-weight:600;letter-spacing:-.01em;" +
+          (done ? "color:#6c7563;text-decoration:line-through" : "color:#1c2118"),
+        chipStyle: "font-size:10.5px;font-weight:700;border-radius:8px;padding:4px 8px;white-space:nowrap;flex:none;color:" +
+          t.tone + ";background:" + t.tone + "1f"
+      };
+    });
+
+    const doneCount = String(taskDefs.filter(t => this.state.done[t.title]).length);
+
+    const log = [
+      { title: "Siembra finalizada", detail: "Densidad 34 semillas/m² · velocidad 6,5 km/h. Se cambió la placa en la línea 4.", date: "12 dic", icon: "sprout", tone: "#29513a", tags: ["58 ha", "DM 4615", "Op. R. Godoy"] },
+      { title: "Fertilización de base", detail: "Fosfato monoamónico, 90 kg/ha. Aplicación uniforme, sin faltantes.", date: "11 dic", icon: "package", tone: "#7a6a3a", tags: ["90 kg/ha", "MAP"] },
+      { title: "Muestreo de suelo", detail: "6 submuestras a 0-20 cm. Se envió al laboratorio de Pergamino.", date: "28 nov", icon: "flask-conical", tone: "#4a7fb5", tags: ["pH 6,2", "MO 3,1%"] },
+      { title: "Barbecho químico", detail: "Glifosato + 2,4-D. Viento 9 km/h, sin deriva registrada.", date: "14 nov", icon: "spray-can", tone: "#c1682f", tags: ["2 l/ha", "Receta 4471"] }
+    ].map(l => ({
+      ...l,
+      iconStyle: "width:38px;height:38px;border-radius:13px;display:grid;place-items:center;font-size:16px;flex:none;color:#fff;background:" + l.tone
+    }));
+
+    const tabs = [
+      { label: "Lotes", icon: "map" },
+      { label: "Bitácora", icon: "notebook-pen" },
+      { label: "Insumos", icon: "package" },
+      { label: "Informes", icon: "bar-chart-3" }
+    ].map(t => {
+      const on = this.state.tab === t.label;
+      return {
+        ...t,
+        select: () => this.setState({ tab: t.label }),
+        style: "display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 14px;cursor:pointer;color:" +
+          (on ? "#29513a" : "#8d9484")
+      };
+    });
+
+    return { weather, tasks, doneCount, log, tabs };
+  }
+}
+</script>
+</body>
+</html>

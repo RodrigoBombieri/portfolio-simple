@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#111318;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#a78bfa;text-decoration:none}
+  a:hover{color:#c4b5fd}
+  svg.lucide{width:1em;height:1em;stroke-width:1.75}
+  ::-webkit-scrollbar{width:8px;height:8px}
+  ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:8px}
+  @keyframes dashPulse{to{stroke-dashoffset:-24}}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:34px;background:radial-gradient(900px 500px at 20% 0%, rgba(167,139,250,.09), transparent 60%),#111318;display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:#0a0c0f;box-shadow:0 40px 90px -20px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.08)">
+
+  <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:#1b1e25;border-bottom:1px solid rgba(255,255,255,.07)">
+    <div style="display:flex;gap:8px;flex:none">
+      <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></span>
+      <span style="width:12px;height:12px;border-radius:50%;background:#febc2e"></span>
+      <span style="width:12px;height:12px;border-radius:50%;background:#28c840"></span>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:6px;flex:none">
+      <div style="display:flex;align-items:center;gap:8px;background:#0a0c0f;border-radius:9px 9px 0 0;padding:8px 14px;margin-bottom:-11px;max-width:230px;box-shadow:0 -1px 0 rgba(255,255,255,.07) inset">
+        <span style="width:14px;height:14px;border-radius:4px;flex:none;background:linear-gradient(150deg,#a78bfa,#6366f1)"></span>
+        <span style="font-size:12px;color:#e8eaee;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Meridian · Panel general</span>
+        <span style="font-size:13px;color:#6f7784;display:grid;place-items:center"><i data-lucide="x"></i></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;max-width:180px">
+        <span style="width:14px;height:14px;border-radius:4px;flex:none;background:#3b4250"></span>
+        <span style="font-size:12px;color:#8b939e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Documentación API</span>
+      </div>
+      <span style="font-size:14px;color:#8b939e;padding:0 6px 6px;display:grid;place-items:center"><i data-lucide="plus"></i></span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;background:#0a0c0f;border-bottom:1px solid rgba(255,255,255,.07)">
+    <div style="display:flex;gap:4px;color:#6f7784;font-size:15px">
+      <span style="width:26px;height:26px;display:grid;place-items:center;border-radius:7px"><i data-lucide="arrow-left"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center;border-radius:7px;color:#454c57"><i data-lucide="arrow-right"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center;border-radius:7px"><i data-lucide="rotate-cw"></i></span>
+    </div>
+    <div style="flex:1;min-width:0;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:6px 14px">
+      <span style="font-size:12px;color:#34d399;display:grid;place-items:center"><i data-lucide="lock"></i></span>
+      <span style="font-size:12px;color:#9aa2ad;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><span style="color:#5f6773">https://</span>app.meridian.io<span style="color:#5f6773">/analytics/overview</span></span>
+      <span style="margin-left:auto;font-size:13px;color:#6f7784;display:grid;place-items:center"><i data-lucide="star"></i></span>
+    </div>
+    <div style="display:flex;gap:8px;color:#6f7784;font-size:14px;flex:none">
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="puzzle"></i></span>
+      <span style="width:22px;height:22px;border-radius:50%;background:linear-gradient(150deg,#34d399,#0ea5e9)"></span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;overflow:hidden;background:radial-gradient(1200px 600px at 78% -12%, rgba(167,139,250,.16), transparent 60%),#0a0c0f;color:#e8eaee;display:grid;grid-template-columns:248px minmax(0,1fr)">
+
+  <aside style="border-right:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.014);padding:22px 16px;display:flex;flex-direction:column;gap:28px;height:100%;overflow:auto">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 8px">
+      <div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,#a78bfa,#6366f1);display:grid;place-items:center;font-size:14px;color:#0a0c0f"><i data-lucide="waves"></i></div>
+      <div style="display:flex;flex-direction:column;line-height:1.15">
+        <span style="font-size:14px;font-weight:600;letter-spacing:-.01em">Meridian</span>
+        <span style="font-size:10.5px;color:#7c848f;font-weight:500">Revenue OS</span>
+      </div>
+    </div>
+
+    <nav style="display:flex;flex-direction:column;gap:2px">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.09em;color:#5f6773;padding:0 10px 8px">GENERAL</span>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;background:rgba(167,139,250,.13);color:#d7cdfd;font-size:13px;font-weight:500;box-shadow:inset 0 0 0 1px rgba(167,139,250,.18)">
+        <span style="font-size:15px;display:grid;place-items:center"><i data-lucide="layout-dashboard"></i></span>Panel general
+        <span style="margin-left:auto;width:5px;height:5px;border-radius:50%;background:#a78bfa"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#9aa2ad;font-size:13px;font-weight:500" style-hover="background:rgba(255,255,255,.05);color:#e8eaee">
+        <span style="font-size:15px;display:grid;place-items:center"><i data-lucide="trending-up"></i></span>Ingresos
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#9aa2ad;font-size:13px;font-weight:500" style-hover="background:rgba(255,255,255,.05);color:#e8eaee">
+        <span style="font-size:15px;display:grid;place-items:center"><i data-lucide="users"></i></span>Clientes
+        <span style="margin-left:auto;font-size:10.5px;font-weight:600;color:#0a0c0f;background:#34d399;border-radius:20px;padding:2px 6px">12</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#9aa2ad;font-size:13px;font-weight:500" style-hover="background:rgba(255,255,255,.05);color:#e8eaee">
+        <span style="font-size:15px;display:grid;place-items:center"><i data-lucide="receipt"></i></span>Facturación
+      </div>
+      <span style="font-size:10px;font-weight:600;letter-spacing:.09em;color:#5f6773;padding:18px 10px 8px">ANÁLISIS</span>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#9aa2ad;font-size:13px;font-weight:500" style-hover="background:rgba(255,255,255,.05);color:#e8eaee">
+        <span style="font-size:15px;display:grid;place-items:center"><i data-lucide="pie-chart"></i></span>Cohortes
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#9aa2ad;font-size:13px;font-weight:500" style-hover="background:rgba(255,255,255,.05);color:#e8eaee">
+        <span style="font-size:15px;display:grid;place-items:center"><i data-lucide="filter"></i></span>Embudo
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#9aa2ad;font-size:13px;font-weight:500" style-hover="background:rgba(255,255,255,.05);color:#e8eaee">
+        <span style="font-size:15px;display:grid;place-items:center"><i data-lucide="settings"></i></span>Ajustes
+      </div>
+    </nav>
+
+    <div style="margin-top:auto;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px;background:linear-gradient(160deg,rgba(167,139,250,.1),rgba(255,255,255,.02))">
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:#9aa2ad;font-weight:500">Créditos de datos<span style="color:#e8eaee;font-weight:600">72%</span></div>
+      <div style="height:5px;border-radius:4px;background:rgba(255,255,255,.09);margin:9px 0 10px;overflow:hidden"><div style="width:72%;height:100%;background:linear-gradient(90deg,#a78bfa,#34d399)"></div></div>
+      <div style="font-size:11px;color:#7c848f;line-height:1.45">3.6M de 5M eventos sincronizados este mes.</div>
+    </div>
+  </aside>
+
+  <main style="min-width:0;height:100%;overflow:auto;display:flex;flex-direction:column">
+    <header style="position:sticky;top:0;z-index:5;backdrop-filter:blur(14px);background:rgba(10,12,15,.78);border-bottom:1px solid rgba(255,255,255,.07);padding:16px 28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+      <div style="min-width:0">
+        <h1 style="margin:0;font-size:19px;font-weight:600;letter-spacing:-.02em">Panel general</h1>
+        <p style="margin:3px 0 0;font-size:12px;color:#7c848f">Actualizado hace 4 minutos · Cierre de agosto 2026</p>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;min-width:0">
+        <div style="display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.03);border-radius:10px;padding:8px 11px;flex:1 1 150px;min-width:112px;max-width:224px;color:#6f7784;font-size:12.5px;white-space:nowrap;overflow:hidden">
+          <i data-lucide="search"></i><span style="overflow:hidden;text-overflow:ellipsis">Buscar cuenta o factura</span>
+          <span style="margin-left:auto;flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:1px 4px">⌘K</span>
+        </div>
+        <div style="display:flex;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.03);border-radius:10px;padding:3px;gap:2px">
+          <sc-for list="{{ ranges }}" as="r" hint-placeholder-count="4">
+            <button onClick="{{ r.select }}" style="{{ r.style }}">{{ r.label }}</button>
+          </sc-for>
+        </div>
+        <button style="display:flex;align-items:center;gap:7px;border:none;border-radius:10px;padding:9px 13px;background:#a78bfa;color:#14061f;font-size:12.5px;font-weight:600;font-family:inherit;cursor:pointer" style-hover="background:#c4b5fd">
+          <i data-lucide="download"></i>Exportar
+        </button>
+        <div style="width:33px;height:33px;border-radius:50%;background:linear-gradient(150deg,#34d399,#0ea5e9);display:grid;place-items:center;font-size:12px;font-weight:700;color:#062018">VM</div>
+      </div>
+    </header>
+
+    <div style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:18px">
+
+      <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+        <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+          <article style="border:1px solid rgba(255,255,255,.075);border-radius:14px;padding:17px 18px;background:linear-gradient(165deg,rgba(255,255,255,.045),rgba(255,255,255,.014));display:flex;flex-direction:column;gap:12px" style-hover="border-color:rgba(255,255,255,.16)">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="font-size:11.5px;font-weight:500;color:#8b939e;letter-spacing:.01em">{{ k.label }}</span>
+              <span style="margin-left:auto;font-size:13px;color:#6f7784"><i data-lucide="more-horizontal"></i></span>
+            </div>
+            <div style="display:flex;align-items:flex-end;gap:9px">
+              <span style="font-size:27px;font-weight:600;letter-spacing:-.03em;line-height:1">{{ k.value }}</span>
+              <span style="{{ k.deltaStyle }}">{{ k.delta }}</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+              <span style="font-size:11px;color:#6f7784">{{ k.note }}</span>
+              <svg viewBox="0 0 96 26" style="width:96px;height:26px;overflow:visible">
+                <polyline points="{{ k.spark }}" fill="none" stroke="{{ k.color }}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline>
+              </svg>
+            </div>
+          </article>
+        </sc-for>
+      </section>
+
+      <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px">
+        <article style="border:1px solid rgba(255,255,255,.075);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));padding:20px 22px 12px">
+          <div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap">
+            <div>
+              <h2 style="margin:0;font-size:14.5px;font-weight:600;letter-spacing:-.01em">Ingreso recurrente mensual</h2>
+              <p style="margin:5px 0 0;font-size:11.5px;color:#7c848f">Neto de descuentos y reembolsos · USD</p>
+            </div>
+            <div style="margin-left:auto;display:flex;gap:16px">
+              <div style="display:flex;align-items:center;gap:7px;font-size:11.5px;color:#9aa2ad"><span style="width:16px;height:2.5px;border-radius:2px;background:#a78bfa"></span>2026</div>
+              <sc-if value="{{ showComparison }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;align-items:center;gap:7px;font-size:11.5px;color:#9aa2ad"><span style="width:16px;height:2.5px;border-radius:2px;background:#3b4250"></span>2025</div>
+              </sc-if>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:baseline;gap:12px;margin:16px 0 4px">
+            <span style="font-size:31px;font-weight:600;letter-spacing:-.03em">$418,920</span>
+            <span style="font-size:12px;font-weight:600;color:#34d399;background:rgba(52,211,153,.12);border-radius:7px;padding:3px 8px">+18.4% YoY</span>
+          </div>
+
+          <div style="position:relative;margin-top:6px">
+            <svg viewBox="0 0 720 250" preserveAspectRatio="none" style="width:100%;height:252px;display:block">
+              <defs>
+                <linearGradient id="mrrFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#a78bfa" stop-opacity=".38"></stop>
+                  <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"></stop>
+                </linearGradient>
+              </defs>
+              <line x1="0" y1="46" x2="720" y2="46" stroke="rgba(255,255,255,.055)"></line>
+              <line x1="0" y1="107" x2="720" y2="107" stroke="rgba(255,255,255,.055)"></line>
+              <line x1="0" y1="168" x2="720" y2="168" stroke="rgba(255,255,255,.055)"></line>
+              <line x1="0" y1="229" x2="720" y2="229" stroke="rgba(255,255,255,.075)"></line>
+              <path d="M10,169 L74,154 L137,160 L201,131 L265,120 L328,135 L392,105 L456,93 L519,101 L583,70 L646,59 L710,46 L710,229 L10,229 Z" fill="url(#mrrFill)"></path>
+              <sc-if value="{{ showComparison }}" hint-placeholder-val="{{ true }}">
+                <path d="M10,182 L74,173 L137,165 L201,158 L265,146 L328,139 L392,131 L456,125 L519,112 L583,108 L646,97 L710,89" fill="none" stroke="#3b4250" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"></path>
+              </sc-if>
+              <path d="M10,169 L74,154 L137,160 L201,131 L265,120 L328,135 L392,105 L456,93 L519,101 L583,70 L646,59 L710,46" fill="none" stroke="#a78bfa" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              <line x1="583" y1="30" x2="583" y2="229" stroke="rgba(167,139,250,.4)" stroke-dasharray="4 4"></line>
+              <circle cx="583" cy="70" r="5.5" fill="#0a0c0f" stroke="#a78bfa" stroke-width="2.6"></circle>
+            </svg>
+            <div style="position:absolute;left:57%;top:2px;background:#14171d;border:1px solid rgba(255,255,255,.11);border-radius:10px;padding:8px 11px;box-shadow:0 12px 30px rgba(0,0,0,.45)">
+              <div style="font-size:10.5px;color:#8b939e;font-weight:500">Junio 2026</div>
+              <div style="font-size:14px;font-weight:600;margin-top:2px">$371,480</div>
+              <div style="font-size:10.5px;color:#34d399;margin-top:1px">+9.1% vs mayo</div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#6f7784;font-family:'JetBrains Mono',monospace;padding:2px 4px 10px">
+            <span>ENE</span><span>FEB</span><span>MAR</span><span>ABR</span><span>MAY</span><span>JUN</span><span>JUL</span><span>AGO</span><span>SEP</span><span>OCT</span><span>NOV</span><span>DIC</span>
+          </div>
+        </article>
+
+        <article style="border:1px solid rgba(255,255,255,.075);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));padding:20px 22px;display:flex;flex-direction:column;gap:18px">
+          <div>
+            <h2 style="margin:0;font-size:14.5px;font-weight:600;letter-spacing:-.01em">Mezcla de planes</h2>
+            <p style="margin:5px 0 0;font-size:11.5px;color:#7c848f">2,418 suscripciones activas</p>
+          </div>
+          <div style="display:grid;place-items:center;position:relative;padding:4px 0">
+            <svg viewBox="0 0 42 42" style="width:100%;max-width:172px;aspect-ratio:1;transform:rotate(-90deg)">
+              <circle cx="21" cy="21" r="15.9" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="5.4"></circle>
+              <circle cx="21" cy="21" r="15.9" fill="none" stroke="#a78bfa" stroke-width="5.4" stroke-dasharray="46 54" stroke-dashoffset="0" stroke-linecap="round"></circle>
+              <circle cx="21" cy="21" r="15.9" fill="none" stroke="#34d399" stroke-width="5.4" stroke-dasharray="27 73" stroke-dashoffset="-47" stroke-linecap="round"></circle>
+              <circle cx="21" cy="21" r="15.9" fill="none" stroke="#38bdf8" stroke-width="5.4" stroke-dasharray="17 83" stroke-dashoffset="-75" stroke-linecap="round"></circle>
+              <circle cx="21" cy="21" r="15.9" fill="none" stroke="#fbbf24" stroke-width="5.4" stroke-dasharray="8 92" stroke-dashoffset="-93" stroke-linecap="round"></circle>
+            </svg>
+            <div style="position:absolute;text-align:center">
+              <div style="font-size:22px;font-weight:600;letter-spacing:-.02em">$173</div>
+              <div style="font-size:10.5px;color:#7c848f;margin-top:2px">ARPU medio</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ plans }}" as="p" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:8px;font-size:12px;min-width:0">
+                <span style="width:8px;height:8px;border-radius:3px;flex:none;background:{{ p.color }}"></span>
+                <span style="color:#c3c9d2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</span>
+                <span style="margin-left:auto;color:#7c848f;font-family:'JetBrains Mono',monospace;font-size:11px;flex:none">{{ p.mrr }}</span>
+                <span style="font-weight:600;width:34px;text-align:right;flex:none">{{ p.pct }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </article>
+      </section>
+
+      <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px">
+        <article style="border:1px solid rgba(255,255,255,.075);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));padding:20px 22px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center">
+            <div>
+              <h2 style="margin:0;font-size:14.5px;font-weight:600;letter-spacing:-.01em">Embudo de conversión</h2>
+              <p style="margin:5px 0 0;font-size:11.5px;color:#7c848f">Últimos 30 días</p>
+            </div>
+            <span style="margin-left:auto;font-size:11.5px;color:#34d399;font-weight:600;background:rgba(52,211,153,.12);border-radius:7px;padding:4px 8px">3.9% cierre</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:13px">
+            <sc-for list="{{ funnel }}" as="f" hint-placeholder-count="5">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:baseline;gap:8px;font-size:12px">
+                  <span style="color:#c3c9d2">{{ f.stage }}</span>
+                  <span style="margin-left:auto;font-weight:600">{{ f.count }}</span>
+                  <span style="color:#6f7784;font-size:11px;width:40px;text-align:right">{{ f.rate }}</span>
+                </div>
+                <div style="height:9px;border-radius:6px;background:rgba(255,255,255,.055);overflow:hidden">
+                  <div style="{{ f.barStyle }}"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </article>
+
+        <article style="border:1px solid rgba(255,255,255,.075);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));padding:20px 0 8px">
+          <div style="display:flex;align-items:center;padding:0 22px 14px">
+            <div>
+              <h2 style="margin:0;font-size:14.5px;font-weight:600;letter-spacing:-.01em">Movimientos recientes</h2>
+              <p style="margin:5px 0 0;font-size:11.5px;color:#7c848f">Cobros y renovaciones</p>
+            </div>
+            <a href="#" style="margin-left:auto;font-size:12px;font-weight:500;display:flex;align-items:center;gap:5px">Ver todo <i data-lucide="arrow-right"></i></a>
+          </div>
+          <div style="display:grid;grid-template-columns:1.6fr 1fr .9fr .8fr;gap:0;font-size:10.5px;font-weight:600;letter-spacing:.07em;color:#6f7784;padding:0 22px 9px;border-bottom:1px solid rgba(255,255,255,.07)">
+            <span>CUENTA</span><span>PLAN</span><span>ESTADO</span><span style="text-align:right">MONTO</span>
+          </div>
+          <sc-for list="{{ rows }}" as="row" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:1.6fr 1fr .9fr .8fr;align-items:center;gap:0;padding:11px 22px;border-bottom:1px solid rgba(255,255,255,.045)" style-hover="background:rgba(255,255,255,.032)">
+              <div style="display:flex;align-items:center;gap:10px;min-width:0">
+                <span style="{{ row.avatarStyle }}">{{ row.initials }}</span>
+                <div style="min-width:0">
+                  <div style="font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ row.name }}</div>
+                  <div style="font-size:10.5px;color:#6f7784">{{ row.date }}</div>
+                </div>
+              </div>
+              <span style="font-size:12px;color:#9aa2ad">{{ row.plan }}</span>
+              <span style="{{ row.statusStyle }}">{{ row.status }}</span>
+              <span style="font-size:12.5px;font-weight:600;text-align:right;font-family:'JetBrains Mono',monospace">{{ row.amount }}</span>
+            </div>
+          </sc-for>
+        </article>
+      </section>
+    </div>
+  </main>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showComparison&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Datos&quot;},&quot;rowCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:5,&quot;min&quot;:3,&quot;max&quot;:5,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Datos&quot;}}">
+class Component extends DCLogic {
+  state = { range: "12M" };
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  spark(vals) {
+    const max = Math.max(...vals), min = Math.min(...vals);
+    return vals.map((v, i) => {
+      const x = (i * 96) / (vals.length - 1);
+      const y = 24 - ((v - min) / (max - min || 1)) * 22;
+      return x.toFixed(1) + "," + (y + 1).toFixed(1);
+    }).join(" ");
+  }
+
+  renderVals() {
+    const accent = "#a78bfa";
+    const showComparison = this.props.showComparison ?? true;
+    const chip = (up) => "font-size:12px;font-weight:600;padding:2px 7px;border-radius:7px;background:" +
+      (up ? "rgba(52,211,153,.12);color:#34d399" : "rgba(248,113,113,.12);color:#f87171");
+
+    const kpis = [
+      { label: "MRR", value: "$418.9K", delta: "+18.4%", up: true, note: "Meta $400K superada", color: accent, spark: this.spark([32,40,37,52,58,50,66,72,68,84,90,97]) },
+      { label: "Clientes activos", value: "2,418", delta: "+112", up: true, note: "Alta neta mensual", color: "#34d399", spark: this.spark([40,44,43,50,55,58,57,64,70,74,80,86]) },
+      { label: "Churn de ingresos", value: "1.9%", delta: "-0.4pp", up: true, note: "Mejor trimestre del año", color: "#38bdf8", spark: this.spark([70,66,64,60,58,55,50,48,44,40,35,30]) },
+      { label: "LTV / CAC", value: "3.8x", delta: "-0.2x", up: false, note: "CAC subió en paid", color: "#fbbf24", spark: this.spark([50,58,64,60,66,70,64,60,56,54,50,47]) }
+    ].map(k => ({ ...k, deltaStyle: chip(k.up) }));
+
+    const plans = [
+      { name: "Enterprise", mrr: "$192.7K", pct: "46%", color: accent },
+      { name: "Business", mrr: "$113.1K", pct: "27%", color: "#34d399" },
+      { name: "Growth", mrr: "$71.2K", pct: "17%", color: "#38bdf8" },
+      { name: "Starter", mrr: "$41.9K", pct: "10%", color: "#fbbf24" }
+    ];
+
+    const funnel = [
+      { stage: "Visitantes", count: "184,320", rate: "100%", w: 100, c: accent },
+      { stage: "Registros", count: "23,940", rate: "13.0%", w: 62, c: accent },
+      { stage: "Prueba activada", count: "11,180", rate: "6.1%", w: 42, c: "#38bdf8" },
+      { stage: "Demo agendada", count: "4,610", rate: "2.5%", w: 27, c: "#34d399" },
+      { stage: "Suscripción", count: "7,190", rate: "3.9%", w: 18, c: "#34d399" }
+    ].map(f => ({ ...f, barStyle: "width:" + f.w + "%;height:100%;border-radius:6px;background:linear-gradient(90deg," + f.c + "," + f.c + "aa)" }));
+
+    const palette = ["#a78bfa", "#34d399", "#38bdf8", "#fbbf24", "#f472b6"];
+    const rows = [
+      { name: "Northwind Logistics", initials: "NL", date: "13 ago · 09:42", plan: "Enterprise", status: "Cobrado", amount: "$12,400" },
+      { name: "Lumen Health", initials: "LH", date: "13 ago · 08:15", plan: "Business", status: "Cobrado", amount: "$3,980" },
+      { name: "Estudio Kaparte", initials: "EK", date: "12 ago · 23:07", plan: "Growth", status: "Pendiente", amount: "$1,290" },
+      { name: "Fabrica Ríos", initials: "FR", date: "12 ago · 17:33", plan: "Business", status: "Reintento", amount: "$3,980" },
+      { name: "Vantage Labs", initials: "VL", date: "12 ago · 11:20", plan: "Enterprise", status: "Cobrado", amount: "$18,750" }
+    ].map((r, i) => {
+      const tone = r.status === "Cobrado" ? "rgba(52,211,153,.12);color:#34d399"
+        : r.status === "Pendiente" ? "rgba(251,191,36,.12);color:#fbbf24"
+        : "rgba(248,113,113,.12);color:#f87171";
+      return {
+        ...r,
+        statusStyle: "font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;justify-self:start;background:" + tone,
+        avatarStyle: "width:28px;height:28px;border-radius:9px;flex:none;display:grid;place-items:center;font-size:10.5px;font-weight:700;color:#0a0c0f;background:" + palette[i % palette.length]
+      };
+    });
+
+    const ranges = ["7D", "30D", "12M", "MAX"].map(label => ({
+      label,
+      select: () => this.setState({ range: label }),
+      style: "border:none;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:600;padding:6px 11px;border-radius:8px;" +
+        (this.state.range === label
+          ? "background:rgba(167,139,250,.16);color:#d7cdfd"
+          : "background:transparent;color:#8b939e")
+    }));
+
+    const visibleRows = rows.slice(0, this.props.rowCount ?? 5);
+    return { kpis, plans, funnel, rows: visibleRows, ranges, showComparison };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e5dc;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#1f5d4c;text-decoration:none}
+  a:hover{color:#e0654a}
+  svg.lucide{width:1em;height:1em;stroke-width:1.9}
+  ::-webkit-scrollbar{width:9px}
+  ::-webkit-scrollbar-thumb{background:rgba(28,26,23,.16);border-radius:9px}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:34px;background:#e9e5dc;display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:#faf8f4;box-shadow:0 40px 90px -25px rgba(28,26,23,.35),0 0 0 1px rgba(28,26,23,.1)">
+
+  <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:#ded9cf;border-bottom:1px solid rgba(28,26,23,.09)">
+    <div style="display:flex;gap:8px;flex:none">
+      <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></span>
+      <span style="width:12px;height:12px;border-radius:50%;background:#febc2e"></span>
+      <span style="width:12px;height:12px;border-radius:50%;background:#28c840"></span>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:6px;flex:none;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;background:#faf8f4;border-radius:9px 9px 0 0;padding:8px 14px;margin-bottom:-11px;max-width:250px">
+        <span style="width:14px;height:14px;border-radius:4px;flex:none;background:#1f5d4c"></span>
+        <span style="font-size:12px;color:#1c1a17;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Clase 04 · Diseño de sistemas</span>
+        <span style="font-size:13px;color:#8b8578;display:grid;place-items:center"><i data-lucide="x"></i></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;max-width:150px">
+        <span style="width:14px;height:14px;border-radius:4px;flex:none;background:#c9c2b4"></span>
+        <span style="font-size:12px;color:#6f6a5e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Biblioteca</span>
+      </div>
+      <span style="font-size:14px;color:#8b8578;padding:0 6px 6px;display:grid;place-items:center"><i data-lucide="plus"></i></span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;background:#faf8f4;border-bottom:1px solid rgba(28,26,23,.09)">
+    <div style="display:flex;gap:4px;color:#8b8578;font-size:15px">
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="arrow-left"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center;color:#c9c2b4"><i data-lucide="arrow-right"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="rotate-cw"></i></span>
+    </div>
+    <div style="flex:1;min-width:0;display:flex;align-items:center;gap:9px;background:#efece5;border:1px solid rgba(28,26,23,.07);border-radius:20px;padding:6px 14px">
+      <span style="font-size:12px;color:#1f5d4c;display:grid;place-items:center"><i data-lucide="lock"></i></span>
+      <span style="font-size:12px;color:#4a463d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><span style="color:#9b9487">https://</span>aula.trayecto.edu<span style="color:#9b9487">/cursos/sistemas-de-diseno/clase-04</span></span>
+      <span style="margin-left:auto;font-size:13px;color:#9b9487;display:grid;place-items:center"><i data-lucide="star"></i></span>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;color:#8b8578;font-size:14px;flex:none">
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="puzzle"></i></span>
+      <span style="width:22px;height:22px;border-radius:50%;background:#e0654a"></span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;overflow:hidden;display:grid;grid-template-columns:76px minmax(0,1fr);background:#faf8f4;color:#1c1a17">
+
+    <aside style="border-right:1px solid rgba(28,26,23,.09);background:#f2efe8;display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 0;height:100%">
+      <div style="width:38px;height:38px;border-radius:12px;background:#1f5d4c;color:#faf8f4;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;margin-bottom:12px">T</div>
+      <sc-for list="{{ rail }}" as="r" hint-placeholder-count="5">
+        <div style="{{ r.style }}" title="{{ r.label }}">
+          <i data-lucide="{{ r.icon }}"></i>
+        </div>
+      </sc-for>
+      <div style="margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:12px">
+        <span style="font-size:18px;color:#8b8578;display:grid;place-items:center"><i data-lucide="life-buoy"></i></span>
+        <div style="width:34px;height:34px;border-radius:50%;background:#e0654a;color:#faf8f4;display:grid;place-items:center;font-size:12px;font-weight:600">MC</div>
+      </div>
+    </aside>
+
+    <div style="min-width:0;height:100%;overflow:auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:0;align-items:start">
+
+        <main style="min-width:0;padding:26px 28px 34px;display:flex;flex-direction:column;gap:22px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#8b8578">
+            <span>Mis cursos</span><span style="font-size:11px"><i data-lucide="chevron-right"></i></span>
+            <span>Sistemas de diseño</span><span style="font-size:11px"><i data-lucide="chevron-right"></i></span>
+            <span style="color:#1c1a17;font-weight:500">Módulo 2 · Clase 04</span>
+          </div>
+
+          <div style="position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(150deg,#20302c,#101a18);aspect-ratio:16/9;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 22px 40px -20px rgba(28,26,23,.5)">
+            <div style="position:absolute;inset:0;background:radial-gradient(700px 320px at 30% 20%, rgba(224,101,74,.28), transparent 60%),radial-gradient(500px 300px at 80% 80%, rgba(31,93,76,.55), transparent 60%)"></div>
+            <div style="position:absolute;inset:0;display:grid;place-items:center">
+              <button onClick="{{ togglePlay }}" style="width:74px;height:74px;border-radius:50%;border:none;cursor:pointer;background:rgba(250,248,244,.94);color:#1c1a17;display:grid;place-items:center;font-size:28px;box-shadow:0 12px 30px rgba(0,0,0,.35)" style-hover="background:#fff">
+                <i data-lucide="{{ playIcon }}"></i>
+              </button>
+            </div>
+            <div style="position:absolute;top:16px;left:18px;display:flex;gap:8px">
+              <span style="font-size:11px;font-weight:600;letter-spacing:.04em;background:rgba(224,101,74,.92);color:#fff;padding:4px 9px;border-radius:20px">EN VIVO EL JUE 18:00</span>
+              <span style="font-size:11px;font-weight:500;background:rgba(16,26,24,.6);color:#e6e1d6;padding:4px 9px;border-radius:20px;backdrop-filter:blur(6px)">HD · Subtítulos ES</span>
+            </div>
+            <div style="position:relative;padding:16px 18px;background:linear-gradient(to top,rgba(10,16,15,.92),transparent);display:flex;flex-direction:column;gap:10px">
+              <div style="height:4px;border-radius:4px;background:rgba(250,248,244,.25);position:relative">
+                <div style="width:38%;height:100%;border-radius:4px;background:#e0654a"></div>
+                <span style="position:absolute;left:38%;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:#faf8f4"></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px;color:#e6e1d6;font-size:16px">
+                <span style="display:grid;place-items:center"><i data-lucide="skip-back"></i></span>
+                <span style="display:grid;place-items:center"><i data-lucide="{{ playIcon }}"></i></span>
+                <span style="display:grid;place-items:center"><i data-lucide="skip-forward"></i></span>
+                <span style="display:grid;place-items:center;font-size:15px"><i data-lucide="volume-2"></i></span>
+                <span style="font-size:12px;font-variant-numeric:tabular-nums;color:#c8c2b6">14:12 / 37:05</span>
+                <span style="margin-left:auto;font-size:11.5px;font-weight:600;border:1px solid rgba(250,248,244,.3);border-radius:6px;padding:2px 7px">1.25×</span>
+                <span style="display:grid;place-items:center;font-size:15px"><i data-lucide="subtitles"></i></span>
+                <span style="display:grid;place-items:center;font-size:15px"><i data-lucide="maximize"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap">
+            <div style="min-width:240px;flex:1">
+              <h1 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.2">Tokens, temas y la deuda del color</h1>
+              <p style="margin:8px 0 0;font-size:13.5px;color:#6f6a5e;line-height:1.55;max-width:56ch;text-wrap:pretty">Cómo nombrar variables que sobrevivan tres rediseños, y por qué la mayoría de los sistemas se rompen en el segundo tema oscuro.</p>
+            </div>
+            <div style="display:flex;gap:9px;flex-wrap:wrap">
+              <button style="display:flex;align-items:center;gap:7px;border:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;padding:10px 15px;border-radius:10px;background:#1f5d4c;color:#faf8f4" style-hover="background:#174639">
+                <i data-lucide="check"></i>Marcar completada
+              </button>
+              <button style="display:flex;align-items:center;gap:7px;border:1px solid rgba(28,26,23,.16);cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;padding:10px 15px;border-radius:10px;background:transparent;color:#1c1a17" style-hover="background:#f0ede6">
+                <i data-lucide="bookmark"></i>Guardar
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:4px;border-bottom:1px solid rgba(28,26,23,.11);overflow-x:auto">
+            <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+              <button onClick="{{ t.select }}" style="{{ t.style }}">{{ t.label }}</button>
+            </sc-for>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px">
+            <sc-for list="{{ resources }}" as="res" hint-placeholder-count="3">
+              <div style="border:1px solid rgba(28,26,23,.11);border-radius:13px;padding:15px;display:flex;gap:12px;align-items:flex-start;background:#fefdfb" style-hover="border-color:#1f5d4c;background:#f6f9f7">
+                <span style="{{ res.iconStyle }}"><i data-lucide="{{ res.icon }}"></i></span>
+                <div style="min-width:0">
+                  <div style="font-size:13px;font-weight:600;letter-spacing:-.01em">{{ res.title }}</div>
+                  <div style="font-size:11.5px;color:#8b8578;margin-top:3px">{{ res.meta }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="border:1px solid rgba(28,26,23,.11);border-radius:14px;padding:18px;background:#f4f1ea;display:flex;gap:14px;align-items:flex-start">
+            <div style="width:40px;height:40px;flex:none;border-radius:50%;background:#1f5d4c;color:#faf8f4;display:grid;place-items:center;font-size:13px;font-weight:600">LB</div>
+            <div style="min-width:0">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <span style="font-size:13px;font-weight:600">Lucía Barrios</span>
+                <span style="font-size:10.5px;font-weight:600;color:#1f5d4c;background:rgba(31,93,76,.12);border-radius:20px;padding:2px 7px">Docente</span>
+                <span style="font-size:11.5px;color:#8b8578">hace 2 h</span>
+              </div>
+              <p style="margin:7px 0 0;font-size:13px;color:#4a463d;line-height:1.55;text-wrap:pretty">Para la entrega del viernes: elijan un componente propio y documenten sus estados. No hace falta que sea grande, sí que esté completo.</p>
+              <div style="display:flex;gap:16px;margin-top:11px;font-size:12px;color:#6f6a5e">
+                <span style="display:flex;align-items:center;gap:6px"><i data-lucide="message-circle"></i>18 respuestas</span>
+                <span style="display:flex;align-items:center;gap:6px"><i data-lucide="heart"></i>42</span>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <aside style="min-width:0;border-left:1px solid rgba(28,26,23,.09);background:#f4f1ea;padding:26px 22px 34px;display:flex;flex-direction:column;gap:20px">
+          <div style="border:1px solid rgba(28,26,23,.1);border-radius:14px;padding:17px;background:#fefdfb">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="position:relative;width:66px;height:66px;flex:none;display:grid;place-items:center">
+                <svg viewBox="0 0 42 42" style="width:66px;height:66px;transform:rotate(-90deg)">
+                  <circle cx="21" cy="21" r="17.5" fill="none" stroke="rgba(28,26,23,.1)" stroke-width="4.4"></circle>
+                  <circle cx="21" cy="21" r="17.5" fill="none" stroke="#1f5d4c" stroke-width="4.4" stroke-dasharray="68 110" stroke-linecap="round"></circle>
+                </svg>
+                <span style="position:absolute;font-size:15px;font-weight:700;font-family:'Bricolage Grotesque',sans-serif">62%</span>
+              </div>
+              <div style="min-width:0">
+                <div style="font-size:13.5px;font-weight:600;letter-spacing:-.01em">Sistemas de diseño</div>
+                <div style="font-size:12px;color:#6f6a5e;margin-top:4px">18 de 29 clases · 11 h restantes</div>
+                <div style="font-size:11.5px;color:#e0654a;font-weight:600;margin-top:6px">Entrega en 3 días</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div style="display:flex;align-items:center">
+              <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:600">Temario</h2>
+              <span style="margin-left:auto;font-size:11.5px;color:#8b8578">Módulo 2 de 5</span>
+            </div>
+            <sc-for list="{{ lessons }}" as="l" hint-placeholder-count="6">
+              <div style="{{ l.rowStyle }}">
+                <span style="{{ l.markStyle }}"><i data-lucide="{{ l.icon }}"></i></span>
+                <div style="min-width:0;flex:1">
+                  <div style="{{ l.titleStyle }}">{{ l.title }}</div>
+                  <div style="font-size:11px;color:#8b8578;margin-top:2px">{{ l.meta }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{ showUpNext }}" hint-placeholder-val="{{ true }}">
+          <div style="border-top:1px solid rgba(28,26,23,.11);padding-top:18px;display:flex;flex-direction:column;gap:11px">
+            <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:600">Seguir con</h2>
+            <sc-for list="{{ courses }}" as="c" hint-placeholder-count="2">
+              <div style="display:flex;gap:11px;align-items:center;border-radius:12px;padding:9px;background:#fefdfb;border:1px solid rgba(28,26,23,.09)" style-hover="border-color:#1f5d4c">
+                <span style="{{ c.thumbStyle }}"><i data-lucide="{{ c.icon }}"></i></span>
+                <div style="min-width:0;flex:1">
+                  <div style="font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.name }}</div>
+                  <div style="height:4px;border-radius:4px;background:rgba(28,26,23,.1);margin-top:7px;overflow:hidden"><div style="{{ c.barStyle }}"></div></div>
+                </div>
+                <span style="font-size:11.5px;font-weight:600;color:#6f6a5e">{{ c.pct }}</span>
+              </div>
+            </sc-for>
+          </div>
+          </sc-if>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showUpNext&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenido&quot;}}">
+class Component extends DCLogic {
+  state = { playing: false, tab: "Contenido" };
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  renderVals() {
+    const rail = [
+      { icon: "graduation-cap", label: "Mis cursos", on: true },
+      { icon: "calendar-days", label: "Agenda" },
+      { icon: "file-text", label: "Entregas" },
+      { icon: "messages-square", label: "Foro" },
+      { icon: "award", label: "Certificados" }
+    ].map(r => ({
+      ...r,
+      style: "width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:19px;cursor:pointer;" +
+        (r.on ? "background:#1f5d4c1f;color:#1f5d4c" : "color:#8b8578")
+    }));
+
+    const tabs = ["Contenido", "Recursos", "Notas", "Preguntas"].map(label => ({
+      label,
+      select: () => this.setState({ tab: label }),
+      style: "border:none;background:transparent;cursor:pointer;font-family:inherit;font-size:13px;padding:10px 12px;margin-bottom:-1px;flex:none;white-space:nowrap;" +
+        (this.state.tab === label
+          ? "font-weight:600;color:#1c1a17;border-bottom:2px solid #1f5d4c"
+          : "font-weight:500;color:#8b8578;border-bottom:2px solid transparent")
+    }));
+
+    const resources = [
+      { icon: "file-down", title: "Guía de nomenclatura", meta: "PDF · 1.4 MB", tone: "#1f5d4c" },
+      { icon: "shapes", title: "Archivo base de tokens", meta: "Figma · actualizado ayer", tone: "#e0654a" },
+      { icon: "code-2", title: "Repositorio de la clase", meta: "GitHub · 8 commits", tone: "#3f6ea8" }
+    ].map(r => ({
+      ...r,
+      iconStyle: "width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center;font-size:16px;color:" + r.tone + ";background:" + r.tone + "1a"
+    }));
+
+    const lessons = [
+      { title: "Auditoría de interfaz", meta: "Clase 01 · 24 min", state: "done" },
+      { title: "Escalas y ritmo tipográfico", meta: "Clase 02 · 31 min", state: "done" },
+      { title: "Color accesible en la práctica", meta: "Clase 03 · 28 min", state: "done" },
+      { title: "Tokens, temas y la deuda del color", meta: "Clase 04 · 37 min · viendo", state: "current" },
+      { title: "Componentes y sus estados", meta: "Clase 05 · 42 min", state: "next" },
+      { title: "Taller: documentar un botón", meta: "Entrega · vence el viernes", state: "task" },
+      { title: "Versionado del sistema", meta: "Clase 06 · 33 min", state: "locked" }
+    ].map(l => {
+      const cur = l.state === "current";
+      const done = l.state === "done";
+      const locked = l.state === "locked";
+      const icon = done ? "check" : cur ? "play" : l.state === "task" ? "pencil-line" : locked ? "lock" : "circle";
+      const mark = done
+        ? "background:#1f5d4c;color:#faf8f4"
+        : cur ? "background:#e0654a;color:#fff"
+        : l.state === "task" ? "background:#f0d9c9;color:#b7502f"
+        : "background:rgba(28,26,23,.07);color:#8b8578";
+      return {
+        ...l,
+        icon,
+        rowStyle: "display:flex;gap:11px;align-items:flex-start;padding:10px 11px;border-radius:11px;cursor:pointer;" +
+          (cur ? "background:#fefdfb;box-shadow:0 0 0 1px rgba(31,93,76,.3),0 6px 14px -8px rgba(28,26,23,.3)" : ""),
+        markStyle: "width:22px;height:22px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:11px;" + mark,
+        titleStyle: "font-size:12.5px;line-height:1.35;" +
+          (cur ? "font-weight:600;color:#1c1a17" : locked ? "color:#a09a8d" : "color:#4a463d")
+      };
+    });
+
+    const courses = [
+      { name: "Investigación con usuarios", icon: "search", pct: "40%", w: 40, tone: "#3f6ea8" },
+      { name: "Motion para producto", icon: "wand-2", pct: "12%", w: 12, tone: "#e0654a" }
+    ].map(c => ({
+      ...c,
+      thumbStyle: "width:34px;height:34px;flex:none;border-radius:9px;display:grid;place-items:center;font-size:15px;color:#faf8f4;background:" + c.tone,
+      barStyle: "width:" + c.w + "%;height:100%;border-radius:4px;background:" + c.tone
+    }));
+
+    return {
+      rail, tabs, resources, lessons, courses,
+      showUpNext: this.props.showUpNext ?? true,
+      playIcon: this.state.playing ? "pause" : "play",
+      togglePlay: () => this.setState(s => ({ playing: !s.playing }))
+    };
+  }
+}
+</script>
+</body>
+</html>
