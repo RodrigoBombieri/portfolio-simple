@@ -76,7 +76,9 @@ import { SHOWROOM_CATEGORIES } from "@data/showroom";
           <Icon name="close" class="size-4" />
         </button>
       </div>
-      <iframe data-mockup-modal-frame src="about:blank" title="Mockup interactivo" class="h-full w-full flex-1 border-0 bg-bg"></iframe>
+      <div class="relative flex-1 overflow-hidden bg-bg" data-mockup-modal-viewport>
+        <iframe data-mockup-modal-frame src="about:blank" title="Mockup interactivo" class="border-0 bg-bg"></iframe>
+      </div>
     </div>
   </div>
 </Layout>

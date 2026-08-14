@@ -19,10 +19,13 @@ const isEmbed = Boolean(item.embed);
     isEmbed ? (
       <button
         type="button"
-        class="relative aspect-video w-full cursor-pointer overflow-hidden bg-bg-soft text-left"
+        class="relative w-full cursor-pointer overflow-hidden bg-bg-soft text-left"
+        style={`aspect-ratio:${item.embed!.width} / ${item.embed!.height}`}
         data-mockup-open
         data-src={item.embed!.src}
         data-title={item.title}
+        data-w={item.embed!.width}
+        data-h={item.embed!.height}
         aria-label={`Abrir vista interactiva de ${item.title}`}
       >
         <div
