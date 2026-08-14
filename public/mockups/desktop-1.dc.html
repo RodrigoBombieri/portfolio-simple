@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#c8ccd6;font-family:'Public Sans','Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#4f46b8;text-decoration:none}
+  a:hover{color:#3b3494}
+  svg.lucide{width:1em;height:1em;stroke-width:1.9}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-thumb{background:#c2c7d2;border-radius:10px}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:32px;background:linear-gradient(160deg,#e2e5ec,#c3c8d3);display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;border-radius:9px;overflow:hidden;background:#f3f4f8;box-shadow:0 40px 80px -24px rgba(24,26,38,.45),0 0 0 1px rgba(24,26,38,.16)">
+
+  <div style="display:flex;align-items:stretch;height:38px;background:#e7e9ef;border-bottom:1px solid #ced3dd;flex:none">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 14px;min-width:0">
+      <span style="width:18px;height:18px;border-radius:4px;background:#4f46b8;color:#fff;display:grid;place-items:center;font-size:11px"><i data-lucide="list-checks"></i></span>
+      <span style="font-size:12.5px;font-weight:600;color:#1e2233;white-space:nowrap">Vértice Tareas — Rediseño de la app</span>
+      <span style="font-size:11.5px;color:#6b7382;white-space:nowrap">Espacio: Estudio Vértice · Sprint 14</span>
+    </div>
+    <div style="margin-left:auto;display:flex;flex:none">
+      <span style="width:44px;display:grid;place-items:center;font-size:13px;color:#3f465a" style-hover="background:#d6dae2"><i data-lucide="minus"></i></span>
+      <span style="width:44px;display:grid;place-items:center;font-size:12px;color:#3f465a" style-hover="background:#d6dae2"><i data-lucide="square"></i></span>
+      <span style="width:44px;display:grid;place-items:center;font-size:14px;color:#3f465a" style-hover="background:#c42b1c;color:#fff"><i data-lucide="x"></i></span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:18px;min-height:30px;padding:0 14px;background:#eef0f5;border-bottom:1px solid #dde0e8;flex:none;flex-wrap:wrap">
+    <sc-for list="{{ menu }}" as="m" hint-placeholder-count="6">
+      <span style="font-size:12px;color:#4b5364;cursor:default">{{ m }}</span>
+    </sc-for>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:8px;min-height:42px;padding:6px 12px;background:#f3f4f8;border-bottom:1px solid #dde0e8;flex:none;flex-wrap:wrap">
+    <sc-for list="{{ toolbar }}" as="b" hint-placeholder-count="5">
+      <div style="{{ b.style }}">
+        <span style="font-size:14px;display:grid;place-items:center"><i data-lucide="{{ b.icon }}"></i></span>{{ b.label }}
+        <span style="{{ b.keyStyle }}">{{ b.key }}</span>
+      </div>
+    </sc-for>
+    <span style="width:1px;height:22px;background:#d6dae2"></span>
+    <div style="display:flex;align-items:center;gap:7px;border:1px solid #dde0e8;background:#fff;border-radius:6px;padding:7px 11px;font-size:12px;color:#7a8291">
+      <i data-lucide="search"></i>Buscar tareas
+      <span style="font-size:9.5px;font-weight:700;border:1px solid #ced3dd;border-radius:3px;padding:0 4px;color:#5a6273">Ctrl+K</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(148px,224px) minmax(0,1fr) minmax(0,272px);background:#f3f4f8;color:#1e2233">
+
+    <aside style="border-right:1px solid #dde0e8;background:#eaecf2;padding:14px 10px;display:flex;flex-direction:column;gap:18px;overflow:auto">
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8a919f;padding:0 8px 6px">VISTAS</span>
+        <sc-for list="{{ views }}" as="v" hint-placeholder-count="4">
+          <div onClick="{{ v.select }}" style="{{ v.style }}">
+            <span style="{{ v.barStyle }}"></span>
+            <span style="font-size:14px;display:grid;place-items:center"><i data-lucide="{{ v.icon }}"></i></span>{{ v.label }}
+            <span style="{{ v.countStyle }}">{{ v.count }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8a919f;padding:0 8px 6px">PROYECTOS</span>
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+          <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:5px;font-size:12.5px;font-weight:500;color:#4b5364;cursor:pointer" style-hover="background:#e0e3ec">
+            <span style="{{ p.dotStyle }}"></span>{{ p.name }}
+            <span style="margin-left:auto;font-size:10.5px;color:#8a919f;font-family:'IBM Plex Mono',monospace">{{ p.count }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="margin-top:auto;border:1px solid #dcdff0;border-radius:8px;padding:12px;background:#f0f0fb">
+        <div style="font-size:11.5px;font-weight:600;color:#3b3494">Sprint 14 cierra el viernes</div>
+        <div style="height:6px;border-radius:3px;background:#e0e0ef;margin:9px 0 7px;overflow:hidden"><div style="width:64%;height:100%;background:#4f46b8"></div></div>
+        <div style="font-size:10.5px;color:#6b7382">16 de 25 tareas cerradas</div>
+      </div>
+    </aside>
+
+    <main style="min-width:0;display:flex;flex-direction:column;overflow:hidden;background:#fff">
+      <div style="padding:14px 20px 12px;border-bottom:1px solid #e6e8ef;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <h1 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-.02em">Hoy · jueves 13 de agosto</h1>
+          <p style="margin:4px 0 0;font-size:11.5px;color:#6b7382">{{ openCount }} tareas abiertas · 3 vencen hoy</p>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:7px">
+          <div style="display:flex;border:1px solid #dde0e8;border-radius:6px;overflow:hidden;background:#fff">
+            <sc-for list="{{ modes }}" as="md" hint-placeholder-count="3">
+              <div onClick="{{ md.select }}" style="{{ md.style }}">
+                <span style="font-size:13px;display:grid;place-items:center"><i data-lucide="{{ md.icon }}"></i></span>{{ md.label }}
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:7px;border:1px solid #dde0e8;border-radius:6px;padding:7px 11px;font-size:12px;font-weight:500;color:#4b5364;background:#fff;cursor:pointer" style-hover="background:#f3f4f8">
+            <i data-lucide="arrow-up-down"></i>Prioridad
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;overflow:auto;padding-bottom:20px">
+      <div style="min-width:430px">
+      <div style="display:grid;grid-template-columns:24px minmax(120px,1fr) 116px 92px 80px 34px;gap:0;padding:0 16px;height:30px;align-items:center;background:#f7f8fb;border-bottom:1px solid #e6e8ef;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#8a919f;position:sticky;top:0;z-index:2">
+        <span></span><span>TAREA</span><span>PROYECTO</span><span>VENCE</span><span>PRIORIDAD</span><span style="text-align:right">RESP.</span>
+      </div>
+        <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+          <div style="{{ g.headerStyle }}">
+            <span style="font-size:12px;display:grid;place-items:center;color:#6b7382"><i data-lucide="chevron-down"></i></span>
+            <span style="{{ g.dotStyle }}"></span>
+            <span style="font-size:11.5px;font-weight:700;letter-spacing:.03em;color:#3f465a">{{ g.title }}</span>
+            <span style="font-size:10.5px;color:#8a919f;font-family:'IBM Plex Mono',monospace">{{ g.count }}</span>
+          </div>
+          <sc-for list="{{ g.tasks }}" as="t" hint-placeholder-count="4">
+            <div onClick="{{ t.toggle }}" style="{{ t.rowStyle }}">
+              <span style="{{ t.boxStyle }}"><i data-lucide="check"></i></span>
+              <div style="min-width:0;display:flex;flex-direction:column;gap:3px">
+                <span style="{{ t.titleStyle }}">{{ t.title }}</span>
+                <span style="display:flex;align-items:center;gap:11px;font-size:10.5px;color:#8a919f">
+                  <span style="display:flex;align-items:center;gap:4px"><i data-lucide="message-square"></i>{{ t.comments }}</span>
+                  <span style="display:flex;align-items:center;gap:4px"><i data-lucide="paperclip"></i>{{ t.files }}</span>
+                  <span style="display:flex;align-items:center;gap:4px"><i data-lucide="git-branch"></i>{{ t.branch }}</span>
+                </span>
+              </div>
+              <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#4b5364;min-width:0">
+                <span style="{{ t.projDot }}"></span><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.project }}</span>
+              </span>
+              <span style="{{ t.dueStyle }}">{{ t.due }}</span>
+              <span><span style="{{ t.prioStyle }}">{{ t.prio }}</span></span>
+              <span style="display:flex;justify-content:flex-end"><span style="{{ t.avatarStyle }}">{{ t.owner }}</span></span>
+            </div>
+          </sc-for>
+        </sc-for>
+      </div>
+      </div>
+    </main>
+
+    <aside style="border-left:1px solid #dde0e8;background:#eaecf2;display:flex;flex-direction:column;overflow:hidden">
+      <div style="display:flex;border-bottom:1px solid #dde0e8;background:#f3f4f8;flex:none">
+        <sc-for list="{{ panelTabs }}" as="pt" hint-placeholder-count="3">
+          <div onClick="{{ pt.select }}" style="{{ pt.style }}">{{ pt.label }}</div>
+        </sc-for>
+      </div>
+
+      <div style="flex:1;min-height:0;overflow:auto;padding:16px 14px;display:flex;flex-direction:column;gap:18px">
+        <div>
+          <h2 style="margin:0;font-size:15px;font-weight:700;letter-spacing:-.015em;line-height:1.35">Rediseñar el flujo de alta de cuenta</h2>
+          <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">
+            <span style="font-size:10.5px;font-weight:600;color:#b45309;background:#fdf0dc;border:1px solid #f2dcb4;border-radius:4px;padding:2px 7px">Alta</span>
+            <span style="font-size:10.5px;font-weight:600;color:#4f46b8;background:#eeeefb;border:1px solid #dcdcf3;border-radius:4px;padding:2px 7px">Producto</span>
+            <span style="font-size:10.5px;font-weight:600;color:#15803d;background:#e8f5ec;border:1px solid #cbe7d5;border-radius:4px;padding:2px 7px">Sprint 14</span>
+          </div>
+        </div>
+
+        <div style="border:1px solid #dde0e8;border-radius:8px;background:#fff;overflow:hidden">
+          <sc-for list="{{ meta }}" as="m" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 11px;border-bottom:1px solid #eef0f5;font-size:11.5px">
+              <span style="color:#7a8291;width:72px;flex:none;display:flex;align-items:center;gap:6px"><i data-lucide="{{ m.icon }}"></i>{{ m.label }}</span>
+              <span style="{{ m.valueStyle }}">{{ m.value }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div>
+          <div style="display:flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.09em;color:#8a919f;margin-bottom:9px">
+            SUBTAREAS<span style="margin-left:auto;font-family:'IBM Plex Mono',monospace;color:#6b7382">{{ subDone }}/4</span>
+          </div>
+          <div style="border:1px solid #dde0e8;border-radius:8px;background:#fff;overflow:hidden">
+            <sc-for list="{{ subtasks }}" as="s" hint-placeholder-count="4">
+              <div onClick="{{ s.toggle }}" style="display:flex;align-items:center;gap:9px;padding:9px 11px;border-bottom:1px solid #eef0f5;cursor:pointer" style-hover="background:#f7f8fb">
+                <span style="{{ s.boxStyle }}"><i data-lucide="check"></i></span>
+                <span style="{{ s.textStyle }}">{{ s.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8a919f;margin-bottom:10px">ACTIVIDAD</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ activity }}" as="a" hint-placeholder-count="3">
+              <div style="display:flex;gap:9px">
+                <span style="{{ a.avatarStyle }}">{{ a.initials }}</span>
+                <div style="min-width:0">
+                  <div style="font-size:11.5px;line-height:1.45;color:#4b5364"><span style="font-weight:600;color:#1e2233">{{ a.who }}</span> {{ a.what }}</div>
+                  <div style="font-size:10.5px;color:#8a919f;margin-top:3px">{{ a.when }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid #dde0e8;padding:10px 12px;background:#f3f4f8;flex:none;display:flex;align-items:center;gap:9px">
+        <span style="font-size:14px;color:#7a8291;display:grid;place-items:center"><i data-lucide="message-square-plus"></i></span>
+        <span style="font-size:11.5px;color:#7a8291">Escribir un comentario…</span>
+        <span style="margin-left:auto;font-size:9.5px;font-weight:700;border:1px solid #ced3dd;border-radius:3px;padding:1px 5px;color:#5a6273">Ctrl+↵</span>
+      </div>
+    </aside>
+  </div>
+
+  <div style="height:28px;flex:none;background:#e7e9ef;border-top:1px solid #ced3dd;display:flex;align-items:center;gap:18px;padding:0 14px;font-size:11px;color:#5a6273">
+    <span>Espacio sincronizado</span>
+    <span>Cerradas hoy: <strong style="color:#1e2233">6</strong></span>
+    <span>Tiempo registrado: <strong style="color:#1e2233">4 h 20 m</strong></span>
+    <span style="margin-left:auto;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>Conectado</span>
+    <span>Última sincronización 13/08/2026 14:26</span>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = {
+    view: "Hoy",
+    mode: "Lista",
+    panel: "Detalle",
+    done: { "Definir métricas de activación": true },
+    subs: { "Auditar los 6 pasos actuales": true, "Bocetar variantes de formulario": true }
+  };
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  renderVals() {
+    const menu = ["Archivo", "Editar", "Ver", "Proyecto", "Equipo", "Ventana", "Ayuda"];
+
+    const toolbar = [
+      { label: "Nueva tarea", icon: "plus", key: "Ctrl+N", on: true },
+      { label: "Asignar", icon: "user-round-plus", key: "Ctrl+U" },
+      { label: "Programar", icon: "calendar-clock", key: "Ctrl+D" },
+      { label: "Etiquetas", icon: "tag", key: "Ctrl+L" },
+      { label: "Archivar", icon: "archive", key: "Ctrl+E" }
+    ].map(b => ({
+      ...b,
+      keyStyle: "font-size:9.5px;font-weight:700;border:1px solid " + (b.on ? "rgba(255,255,255,.4)" : "#ced3dd") +
+        ";border-radius:3px;padding:0 4px;opacity:.85",
+      style: "display:flex;align-items:center;gap:7px;padding:7px 11px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;" +
+        (b.on ? "background:#4f46b8;color:#fff" : "color:#3f465a;border:1px solid #dde0e8;background:#fff")
+    }));
+
+    const views = [
+      { label: "Hoy", icon: "sun", count: "9" },
+      { label: "Próximas", icon: "calendar-days", count: "23" },
+      { label: "Asignadas a mí", icon: "user-round", count: "7" },
+      { label: "Archivadas", icon: "archive", count: "" }
+    ].map(v => {
+      const on = this.state.view === v.label;
+      return {
+        ...v,
+        select: () => this.setState({ view: v.label }),
+        barStyle: "width:3px;height:16px;border-radius:2px;flex:none;background:" + (on ? "#4f46b8" : "transparent"),
+        countStyle: v.count
+          ? "margin-left:auto;font-size:10.5px;color:#6b7382;font-family:'IBM Plex Mono',monospace"
+          : "display:none",
+        style: "display:flex;align-items:center;gap:8px;padding:8px 8px;border-radius:5px;font-size:12.5px;cursor:pointer;" +
+          (on ? "background:#e0e0f5;color:#3b3494;font-weight:600" : "color:#4b5364;font-weight:500")
+      };
+    });
+
+    const projTones = { "App móvil": "#4f46b8", "Sitio público": "#b45309", "Design system": "#15803d", "Investigación": "#0369a1" };
+    const projects = [
+      { name: "App móvil", count: "12" },
+      { name: "Sitio público", count: "8" },
+      { name: "Design system", count: "5" },
+      { name: "Investigación", count: "3" }
+    ].map(p => ({
+      ...p,
+      dotStyle: "width:8px;height:8px;border-radius:2px;flex:none;background:" + projTones[p.name]
+    }));
+
+    const modes = [
+      { label: "Lista", icon: "list" },
+      { label: "Tablero", icon: "columns-3" },
+      { label: "Calendario", icon: "calendar" }
+    ].map(md => {
+      const on = this.state.mode === md.label;
+      return {
+        ...md,
+        select: () => this.setState({ mode: md.label }),
+        style: "display:flex;align-items:center;gap:6px;padding:7px 11px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;" +
+          (on ? "background:#4f46b8;color:#fff" : "color:#4b5364;background:#fff")
+      };
+    });
+
+    const mk = (t, urgent) => {
+      const done = !!this.state.done[t.title];
+      const prio = t.prio === "Alta" ? { c: "#b91c1c", b: "#fdecec", br: "#f5cfcf" }
+        : t.prio === "Media" ? { c: "#b45309", b: "#fdf0dc", br: "#f2dcb4" }
+        : { c: "#5a6273", b: "#eef0f5", br: "#dde0e8" };
+      return {
+        ...t,
+        toggle: () => this.setState(s => ({ done: { ...s.done, [t.title]: !s.done[t.title] } })),
+        rowStyle: "display:grid;grid-template-columns:24px minmax(120px,1fr) 116px 92px 80px 34px;align-items:center;gap:0;padding:9px 16px;cursor:pointer;border-bottom:1px solid #f0f1f6;background:" +
+          (done ? "#fbfbfd" : "#fff"),
+        boxStyle: "width:18px;height:18px;flex:none;border-radius:4px;display:grid;place-items:center;font-size:11px;" +
+          (done ? "background:#15803d;color:#fff" : "border:1.5px solid #c2c7d2;background:#fff;color:transparent"),
+        titleStyle: "font-size:13px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" +
+          (done ? "color:#8a919f;text-decoration:line-through" : "color:#1e2233"),
+        projDot: "width:8px;height:8px;border-radius:2px;flex:none;background:" + (projTones[t.project] || "#8a919f"),
+        dueStyle: "font-size:11.5px;font-weight:" + (urgent ? "600" : "400") + ";color:" + (urgent && !done ? "#b91c1c" : "#4b5364"),
+        prioStyle: "font-size:10.5px;font-weight:600;border-radius:4px;padding:2px 7px;color:" + prio.c + ";background:" + prio.b + ";border:1px solid " + prio.br,
+        avatarStyle: "width:24px;height:24px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:9.5px;font-weight:700;color:#fff;background:" + t.tone
+      };
+    };
+
+    const groups = [
+      {
+        title: "VENCEN HOY", count: "3", dot: "#b91c1c",
+        tasks: [
+          { title: "Rediseñar el flujo de alta de cuenta", project: "App móvil", due: "Hoy 18:00", comments: "6", files: "3", branch: "feat/alta-v3", prio: "Alta", owner: "JF", tone: "#4f46b8" },
+          { title: "Revisar copys del onboarding", project: "Sitio público", due: "Hoy 15:00", comments: "2", files: "1", branch: "content/onb", prio: "Media", owner: "MC", tone: "#b45309" },
+          { title: "Cerrar tickets de QA del sprint", project: "App móvil", due: "Hoy 20:00", comments: "11", files: "0", branch: "qa/sprint-14", prio: "Alta", owner: "RB", tone: "#0369a1" }
+        ].map(t => mk(t, true))
+      },
+      {
+        title: "ESTA SEMANA", count: "4", dot: "#4f46b8",
+        tasks: [
+          { title: "Documentar tokens de color", project: "Design system", due: "Vie 15 ago", comments: "1", files: "2", branch: "ds/tokens", prio: "Media", owner: "LP", tone: "#15803d" },
+          { title: "Entrevistas con 5 usuarios nuevos", project: "Investigación", due: "Sáb 16 ago", comments: "4", files: "7", branch: "—", prio: "Alta", owner: "MC", tone: "#b45309" },
+          { title: "Prototipo de checkout en Figma", project: "App móvil", due: "Dom 17 ago", comments: "0", files: "1", branch: "—", prio: "Baja", owner: "JF", tone: "#4f46b8" },
+          { title: "Ajustar estados de botón secundario", project: "Design system", due: "Dom 17 ago", comments: "3", files: "0", branch: "ds/buttons", prio: "Baja", owner: "LP", tone: "#15803d" }
+        ].map(t => mk(t, false))
+      },
+      {
+        title: "COMPLETADAS", count: "2", dot: "#15803d",
+        tasks: [
+          { title: "Definir métricas de activación", project: "Investigación", due: "12 ago", comments: "5", files: "2", branch: "—", prio: "Media", owner: "RB", tone: "#0369a1" },
+          { title: "Migrar iconografía a SVG", project: "Design system", due: "11 ago", comments: "2", files: "4", branch: "ds/icons", prio: "Baja", owner: "LP", tone: "#15803d" }
+        ].map(t => mk(t, false))
+      }
+    ].map(g => ({
+      ...g,
+      dotStyle: "width:8px;height:8px;border-radius:2px;background:" + g.dot,
+      headerStyle: "display:flex;align-items:center;gap:8px;padding:9px 16px;background:#f7f8fb;border-bottom:1px solid #e6e8ef;border-top:1px solid #e6e8ef"
+    }));
+
+    const openCount = String(
+      groups.reduce((a, g) => a + g.tasks.filter(t => !this.state.done[t.title]).length, 0)
+    );
+
+    const panelTabs = ["Detalle", "Archivos", "Historial"].map(label => {
+      const on = this.state.panel === label;
+      return {
+        label,
+        select: () => this.setState({ panel: label }),
+        style: "flex:1;text-align:center;padding:9px 6px;font-size:12px;cursor:pointer;border-bottom:2px solid " +
+          (on ? "#4f46b8;color:#3b3494;font-weight:600;background:#eaecf2" : "transparent;color:#6b7382;font-weight:500")
+      };
+    });
+
+    const meta = [
+      { icon: "user-round", label: "Asignada", value: "Julián Ferreyra", tone: "#1e2233" },
+      { icon: "calendar", label: "Vence", value: "Hoy · 18:00", tone: "#b91c1c" },
+      { icon: "flag", label: "Estado", value: "En progreso", tone: "#1e2233" },
+      { icon: "timer", label: "Estimado", value: "6 h · 4 h 20 m usadas", tone: "#4b5364" }
+    ].map(m => ({ ...m, valueStyle: "font-weight:500;color:" + m.tone }));
+
+    const subLabels = [
+      "Auditar los 6 pasos actuales",
+      "Bocetar variantes de formulario",
+      "Validar con soporte los errores frecuentes",
+      "Pasar a desarrollo con specs"
+    ];
+    const subtasks = subLabels.map(label => {
+      const done = !!this.state.subs[label];
+      return {
+        label,
+        toggle: () => this.setState(s => ({ subs: { ...s.subs, [label]: !s.subs[label] } })),
+        boxStyle: "width:17px;height:17px;flex:none;border-radius:4px;display:grid;place-items:center;font-size:10px;" +
+          (done ? "background:#15803d;color:#fff" : "border:1.5px solid #c2c7d2;background:#fff;color:transparent"),
+        textStyle: "font-size:11.5px;" + (done ? "color:#8a919f;text-decoration:line-through" : "color:#4b5364")
+      };
+    });
+
+    const activity = [
+      { initials: "MC", who: "Malena Costa", what: "adjuntó el flujo v3 en Figma.", when: "hace 22 min", tone: "#b45309" },
+      { initials: "RB", who: "Rocío Bento", what: "cambió la prioridad a Alta.", when: "hace 1 h", tone: "#0369a1" },
+      { initials: "JF", who: "Julián Ferreyra", what: "movió la tarea a En progreso.", when: "ayer 17:40", tone: "#4f46b8" }
+    ].map(a => ({
+      ...a,
+      avatarStyle: "width:24px;height:24px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:9.5px;font-weight:700;color:#fff;background:" + a.tone
+    }));
+
+    return {
+      menu, toolbar, views, projects, modes, groups, openCount,
+      panelTabs, meta, subtasks, activity,
+      subDone: String(subLabels.filter(l => this.state.subs[l]).length)
+    };
+  }
+}
+</script>
+</body>
+</html>

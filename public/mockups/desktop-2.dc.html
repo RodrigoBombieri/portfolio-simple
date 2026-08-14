@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#c9ced6;font-family:Barlow,'Segoe UI',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#0f6d5c;text-decoration:none}
+  a:hover{color:#0a5245}
+  svg.lucide{width:1em;height:1em;stroke-width:2}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-thumb{background:#b9c0ca;border-radius:10px}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:32px;background:linear-gradient(160deg,#dfe3e9,#c2c8d1);display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;border-radius:9px;overflow:hidden;background:#f2f4f7;box-shadow:0 40px 80px -24px rgba(20,28,38,.45),0 0 0 1px rgba(20,28,38,.16)">
+
+  <div style="display:flex;align-items:stretch;height:38px;background:#e6e9ee;border-bottom:1px solid #cdd3db;flex:none">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 14px;min-width:0">
+      <span style="width:18px;height:18px;border-radius:4px;background:#0f6d5c;color:#fff;display:grid;place-items:center;font-size:11px"><i data-lucide="store"></i></span>
+      <span style="font-size:12.5px;font-weight:600;color:#1d2530;white-space:nowrap">Cajero POS · Sucursal Centro — Caja 2</span>
+      <span style="font-size:11.5px;color:#6a7382;white-space:nowrap;font-family:'Barlow Semi Condensed',sans-serif">Turno abierto 08:02 · Usuario: G. Alcaraz</span>
+    </div>
+    <div style="margin-left:auto;display:flex;flex:none">
+      <span style="width:44px;display:grid;place-items:center;font-size:13px;color:#3d4654" style-hover="background:#d5dae1"><i data-lucide="minus"></i></span>
+      <span style="width:44px;display:grid;place-items:center;font-size:12px;color:#3d4654" style-hover="background:#d5dae1"><i data-lucide="square"></i></span>
+      <span style="width:44px;display:grid;place-items:center;font-size:14px;color:#3d4654" style-hover="background:#c42b1c;color:#fff"><i data-lucide="x"></i></span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:8px;min-height:40px;padding:5px 12px;background:#f2f4f7;border-bottom:1px solid #dde1e8;flex:none;flex-wrap:wrap">
+    <sc-for list="{{ toolbar }}" as="b" hint-placeholder-count="5">
+      <div style="{{ b.style }}">
+        <span style="font-size:14px;display:grid;place-items:center"><i data-lucide="{{ b.icon }}"></i></span>{{ b.label }}
+        <span style="{{ b.keyStyle }}">{{ b.key }}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.15fr) 372px;background:#f2f4f7;color:#1d2530">
+
+    <section style="min-width:0;display:flex;flex-direction:column;border-right:1px solid #dde1e8;overflow:hidden">
+      <div style="padding:14px 16px 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px;display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #ccd2da;border-radius:7px;padding:10px 12px">
+          <span style="font-size:16px;color:#0f6d5c;display:grid;place-items:center"><i data-lucide="scan-barcode"></i></span>
+          <span style="font-size:13.5px;color:#8a929e">Escaneá o escribí un código…</span>
+          <span style="margin-left:auto;font-size:10.5px;font-weight:700;color:#5a6472;border:1px solid #ccd2da;border-radius:4px;padding:1px 6px">F2</span>
+        </div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+            <button onClick="{{ c.select }}" style="{{ c.style }}">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;overflow:auto;padding:2px 16px 18px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:11px">
+          <sc-for list="{{ products }}" as="p" hint-placeholder-count="12">
+            <button onClick="{{ p.add }}" style="{{ p.style }}">
+              <span style="{{ p.iconStyle }}"><i data-lucide="{{ p.icon }}"></i></span>
+              <span style="font-size:12.5px;font-weight:600;line-height:1.25;text-align:left;letter-spacing:-.01em">{{ p.name }}</span>
+              <span style="font-size:10.5px;color:#7a8290;text-align:left;font-family:'Barlow Semi Condensed',sans-serif">{{ p.unit }}</span>
+              <span style="display:flex;align-items:baseline;gap:6px;width:100%;margin-top:auto">
+                <span style="font-size:15px;font-weight:700;letter-spacing:-.02em">{{ p.price }}</span>
+                <span style="{{ p.stockStyle }}">{{ p.stock }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <aside style="display:flex;flex-direction:column;background:#fff;overflow:hidden">
+      <div style="padding:14px 16px 12px;border-bottom:1px solid #e4e8ee;display:flex;align-items:center;gap:10px">
+        <div>
+          <div style="font-size:14.5px;font-weight:700;letter-spacing:-.02em">Ticket 000148</div>
+          <div style="font-size:11.5px;color:#6a7382;margin-top:2px">{{ itemCount }} ítems · {{ unitCount }} unidades</div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:7px">
+          <span style="width:32px;height:32px;border-radius:7px;border:1px solid #ccd2da;display:grid;place-items:center;font-size:14px;color:#3d4654;cursor:pointer" style-hover="background:#f2f4f7"><i data-lucide="user-round-plus"></i></span>
+          <span onClick="{{ clear }}" style="width:32px;height:32px;border-radius:7px;border:1px solid #ccd2da;display:grid;place-items:center;font-size:14px;color:#c42b1c;cursor:pointer" style-hover="background:#fdeceb"><i data-lucide="trash-2"></i></span>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;overflow:auto">
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:52px 24px;text-align:center;color:#8a929e">
+            <span style="font-size:30px;display:grid;place-items:center;margin:0 auto 12px"><i data-lucide="shopping-cart"></i></span>
+            <div style="font-size:13px;font-weight:600;color:#5a6472">Ticket vacío</div>
+            <div style="font-size:11.5px;margin-top:5px">Escaneá un producto o tocá la grilla.</div>
+          </div>
+        </sc-if>
+        <sc-for list="{{ lines }}" as="l" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 10px;padding:11px 16px;border-bottom:1px solid #eef1f5">
+            <div style="min-width:0">
+              <div style="font-size:13px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ l.name }}</div>
+              <div style="font-size:11px;color:#7a8290;margin-top:2px;font-family:'Barlow Semi Condensed',sans-serif">{{ l.unitLabel }}</div>
+            </div>
+            <div style="font-size:13.5px;font-weight:700;text-align:right;white-space:nowrap">{{ l.total }}</div>
+            <div style="display:flex;align-items:center;gap:8px;grid-column:1 / -1">
+              <div style="display:flex;align-items:center;border:1px solid #ccd2da;border-radius:6px;overflow:hidden">
+                <span onClick="{{ l.dec }}" style="padding:3px 10px;font-size:14px;color:#3d4654;cursor:pointer;line-height:1.4" style-hover="background:#f2f4f7">−</span>
+                <span style="padding:3px 10px;font-size:12.5px;font-weight:700;min-width:34px;text-align:center">{{ l.qty }}</span>
+                <span onClick="{{ l.inc }}" style="padding:3px 10px;font-size:14px;color:#3d4654;cursor:pointer;line-height:1.4" style-hover="background:#f2f4f7">+</span>
+              </div>
+              <span style="font-size:11px;color:#8a929e">{{ l.each }}</span>
+              <span onClick="{{ l.remove }}" style="margin-left:auto;font-size:13px;color:#a2aab6;cursor:pointer;display:grid;place-items:center"><i data-lucide="x"></i></span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="border-top:1px solid #e4e8ee;padding:14px 16px;display:flex;flex-direction:column;gap:8px;background:#fafbfc">
+        <div style="display:flex;font-size:12.5px;color:#5a6472"><span>Subtotal</span><span style="margin-left:auto;font-weight:600;color:#1d2530">{{ subtotal }}</span></div>
+        <div style="display:flex;font-size:12.5px;color:#5a6472"><span>Descuento (5%)</span><span style="margin-left:auto;font-weight:600;color:#c42b1c">{{ discount }}</span></div>
+        <div style="display:flex;font-size:12.5px;color:#5a6472"><span>IVA 21% incluido</span><span style="margin-left:auto;font-weight:600;color:#1d2530">{{ vat }}</span></div>
+        <div style="display:flex;align-items:baseline;border-top:1px dashed #ccd2da;padding-top:10px;margin-top:2px">
+          <span style="font-size:14px;font-weight:700">TOTAL</span>
+          <span style="margin-left:auto;font-size:28px;font-weight:700;letter-spacing:-.03em">{{ total }}</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:6px">
+          <sc-for list="{{ payments }}" as="pm" hint-placeholder-count="4">
+            <div onClick="{{ pm.select }}" style="{{ pm.style }}">
+              <span style="font-size:16px;display:grid;place-items:center"><i data-lucide="{{ pm.icon }}"></i></span>
+              <span style="font-size:10.5px;font-weight:600">{{ pm.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <button style="margin-top:6px;border:none;cursor:pointer;font-family:inherit;font-size:15px;font-weight:700;padding:15px;border-radius:8px;background:#0f6d5c;color:#fff;display:flex;align-items:center;justify-content:center;gap:9px;letter-spacing:-.01em" style-hover="background:#0a5245">
+          <i data-lucide="check-check"></i>Cobrar {{ total }}
+          <span style="font-size:10.5px;font-weight:700;background:rgba(255,255,255,.22);border-radius:4px;padding:2px 6px">F12</span>
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <div style="height:28px;flex:none;background:#e6e9ee;border-top:1px solid #cdd3db;display:flex;align-items:center;gap:18px;padding:0 14px;font-size:11px;color:#5a6472;font-family:'Barlow Semi Condensed',sans-serif">
+    <span>Ventas del turno: <strong style="color:#1d2530">$1.284.350</strong></span>
+    <span>Tickets: <strong style="color:#1d2530">48</strong></span>
+    <span>Ticket promedio: <strong style="color:#1d2530">$26.757</strong></span>
+    <span style="margin-left:auto;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>Fiscal conectada</span>
+    <span style="display:flex;align-items:center;gap:6px"><i data-lucide="wifi"></i>AFIP en línea</span>
+    <span>Última sincronización 13/08/2026 14:26</span>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.catalog = [
+      { name: "Pan francés", unit: "por kg", price: 2400, icon: "croissant", cat: "Panadería", stock: 18 },
+      { name: "Medialunas x6", unit: "bandeja", price: 3900, icon: "cookie", cat: "Panadería", stock: 24 },
+      { name: "Leche entera 1 L", unit: "sachet", price: 1650, icon: "milk", cat: "Almacén", stock: 62 },
+      { name: "Café molido 500 g", unit: "paquete", price: 8900, icon: "coffee", cat: "Almacén", stock: 9 },
+      { name: "Queso cremoso", unit: "por kg", price: 12400, icon: "cake-slice", cat: "Fiambrería", stock: 6 },
+      { name: "Jamón cocido", unit: "por kg", price: 15800, icon: "ham", cat: "Fiambrería", stock: 4 },
+      { name: "Gaseosa 2,25 L", unit: "botella", price: 3200, icon: "cup-soda", cat: "Bebidas", stock: 40 },
+      { name: "Agua mineral 1,5 L", unit: "botella", price: 1400, icon: "droplet", cat: "Bebidas", stock: 55 },
+      { name: "Cerveza lata 473", unit: "unidad", price: 2600, icon: "beer", cat: "Bebidas", stock: 31 },
+      { name: "Manzana roja", unit: "por kg", price: 3100, icon: "apple", cat: "Frescos", stock: 22 },
+      { name: "Banana", unit: "por kg", price: 2200, icon: "banana", cat: "Frescos", stock: 27 },
+      { name: "Huevos x12", unit: "maple", price: 4700, icon: "egg", cat: "Frescos", stock: 3 },
+      { name: "Fideos 500 g", unit: "paquete", price: 1900, icon: "wheat", cat: "Almacén", stock: 48 },
+      { name: "Arroz 1 kg", unit: "paquete", price: 2350, icon: "package", cat: "Almacén", stock: 36 },
+      { name: "Yerba 1 kg", unit: "paquete", price: 7400, icon: "leaf", cat: "Almacén", stock: 14 },
+      { name: "Helado 1 L", unit: "pote", price: 9800, icon: "ice-cream-cone", cat: "Frescos", stock: 7 }
+    ];
+    this.state = {
+      cat: "Todos",
+      payment: "Débito",
+      lines: [
+        { name: "Pan francés", qty: 2, price: 2400, unit: "por kg" },
+        { name: "Café molido 500 g", qty: 1, price: 8900, unit: "paquete" },
+        { name: "Queso cremoso", qty: 1, price: 12400, unit: "por kg" },
+        { name: "Gaseosa 2,25 L", qty: 3, price: 3200, unit: "botella" }
+      ]
+    };
+  }
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  money(n) { return "$" + n.toLocaleString("es-AR"); }
+
+  add(p) {
+    this.setState(s => {
+      const lines = s.lines.slice();
+      const i = lines.findIndex(l => l.name === p.name);
+      if (i > -1) lines[i] = { ...lines[i], qty: lines[i].qty + 1 };
+      else lines.push({ name: p.name, qty: 1, price: p.price, unit: p.unit });
+      return { lines };
+    });
+  }
+
+  setQty(name, d) {
+    this.setState(s => ({
+      lines: s.lines.map(l => (l.name === name ? { ...l, qty: l.qty + d } : l)).filter(l => l.qty > 0)
+    }));
+  }
+
+  renderVals() {
+    const toolbar = [
+      { label: "Nueva venta", icon: "file-plus-2", key: "F1", on: true },
+      { label: "Buscar producto", icon: "search", key: "F2" },
+      { label: "Cliente", icon: "user-round", key: "F4" },
+      { label: "Descuento", icon: "percent", key: "F7" },
+      { label: "Retiro de caja", icon: "banknote-arrow-down", key: "F9" },
+      { label: "Cierre de turno", icon: "lock", key: "F10" }
+    ].map(b => ({
+      ...b,
+      keyStyle: "font-size:9.5px;font-weight:700;border:1px solid " + (b.on ? "rgba(255,255,255,.4)" : "#ccd2da") +
+        ";border-radius:3px;padding:0 4px;opacity:.85",
+      style: "display:flex;align-items:center;gap:7px;padding:7px 11px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;" +
+        (b.on ? "background:#0f6d5c;color:#fff" : "color:#3d4654;border:1px solid #dde1e8;background:#fff")
+    }));
+
+    const catNames = ["Todos", "Panadería", "Almacén", "Fiambrería", "Bebidas", "Frescos"];
+    const cats = catNames.map(label => ({
+      label,
+      select: () => this.setState({ cat: label }),
+      style: "border:1px solid;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:8px 12px;border-radius:6px;white-space:nowrap;" +
+        (this.state.cat === label
+          ? "background:#1d2530;color:#fff;border-color:#1d2530"
+          : "background:#fff;color:#3d4654;border-color:#ccd2da")
+    }));
+
+    const tones = { "Panadería": "#b45309", "Almacén": "#0f6d5c", "Fiambrería": "#be185d", "Bebidas": "#1d4ed8", "Frescos": "#15803d" };
+    const products = this.catalog
+      .filter(p => this.state.cat === "Todos" || p.cat === this.state.cat)
+      .map(p => ({
+        ...p,
+        price: this.money(p.price),
+        stock: p.stock <= 5 ? "Stock " + p.stock : "Stock " + p.stock,
+        stockStyle: "margin-left:auto;font-size:10px;font-weight:700;border-radius:4px;padding:2px 6px;" +
+          (p.stock <= 5 ? "background:#fdeceb;color:#c42b1c" : "background:#eef1f5;color:#6a7382"),
+        iconStyle: "width:30px;height:30px;border-radius:7px;display:grid;place-items:center;font-size:15px;color:#fff;background:" + tones[p.cat],
+        style: "display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-height:132px;padding:12px;border-radius:9px;border:1px solid #d7dce3;background:#fff;cursor:pointer;font-family:inherit;color:#1d2530;text-align:left",
+        add: () => this.add(p)
+      }));
+
+    const lines = this.state.lines.map(l => ({
+      ...l,
+      qty: String(l.qty),
+      unitLabel: l.unit,
+      each: this.money(l.price) + " c/u",
+      total: this.money(l.price * l.qty),
+      inc: () => this.setQty(l.name, 1),
+      dec: () => this.setQty(l.name, -1),
+      remove: () => this.setQty(l.name, -l.qty)
+    }));
+
+    const sub = this.state.lines.reduce((a, l) => a + l.price * l.qty, 0);
+    const disc = Math.round(sub * 0.05);
+    const tot = sub - disc;
+
+    const payments = [
+      { label: "Efectivo", icon: "banknote" },
+      { label: "Débito", icon: "credit-card" },
+      { label: "QR", icon: "qr-code" },
+      { label: "Cta. Cte.", icon: "notebook-tabs" }
+    ].map(pm => {
+      const on = this.state.payment === pm.label;
+      return {
+        ...pm,
+        select: () => this.setState({ payment: pm.label }),
+        style: "display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 4px;border-radius:7px;cursor:pointer;border:1px solid " +
+          (on ? "#0f6d5c;background:#e7f2ef;color:#0a5245" : "#ccd2da;background:#fff;color:#3d4654")
+      };
+    });
+
+    return {
+      toolbar, cats, products, lines, payments,
+      isEmpty: lines.length === 0,
+      itemCount: String(this.state.lines.length),
+      unitCount: String(this.state.lines.reduce((a, l) => a + l.qty, 0)),
+      subtotal: this.money(sub),
+      discount: "−" + this.money(disc),
+      vat: this.money(Math.round(tot - tot / 1.21)),
+      total: this.money(tot),
+      clear: () => this.setState({ lines: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

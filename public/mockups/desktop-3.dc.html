@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#cdd0cb;font-family:Archivo,'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#1a5f7a;text-decoration:none}
+  a:hover{color:#134557}
+  svg.lucide{width:1em;height:1em;stroke-width:1.9}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:#c0c4be;border-radius:10px}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:32px;background:linear-gradient(160deg,#e4e6e1,#c6cac4);display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;border-radius:9px;overflow:hidden;background:#f4f5f3;box-shadow:0 40px 80px -24px rgba(26,32,30,.45),0 0 0 1px rgba(26,32,30,.16)">
+
+  <div style="display:flex;align-items:stretch;height:38px;background:#e8eae6;border-bottom:1px solid #d1d5cf;flex:none">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 14px;min-width:0">
+      <span style="width:18px;height:18px;border-radius:4px;background:#1a5f7a;color:#fff;display:grid;place-items:center;font-size:11px"><i data-lucide="boxes"></i></span>
+      <span style="font-size:12.5px;font-weight:600;color:#1e2422;white-space:nowrap">Depósito — Distribuidora Andes S.A.</span>
+      <span style="font-size:11.5px;color:#6a7370;white-space:nowrap">Sucursal Sur · Depósito 1 · Usuario: M. Quiroga</span>
+    </div>
+    <div style="margin-left:auto;display:flex;flex:none">
+      <span style="width:44px;display:grid;place-items:center;font-size:13px;color:#3f4744" style-hover="background:#d8dbd6"><i data-lucide="minus"></i></span>
+      <span style="width:44px;display:grid;place-items:center;font-size:12px;color:#3f4744" style-hover="background:#d8dbd6"><i data-lucide="square"></i></span>
+      <span style="width:44px;display:grid;place-items:center;font-size:14px;color:#3f4744" style-hover="background:#c42b1c;color:#fff"><i data-lucide="x"></i></span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:18px;min-height:30px;padding:0 14px;background:#eff1ed;border-bottom:1px solid #dfe2dd;flex:none;flex-wrap:wrap">
+    <sc-for list="{{ menu }}" as="m" hint-placeholder-count="6">
+      <span style="font-size:12px;color:#4b5350;cursor:default">{{ m }}</span>
+    </sc-for>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:8px;min-height:42px;padding:6px 12px;background:#f4f5f3;border-bottom:1px solid #dfe2dd;flex:none;flex-wrap:wrap">
+    <sc-for list="{{ toolbar }}" as="b" hint-placeholder-count="5">
+      <div style="{{ b.style }}">
+        <span style="font-size:14px;display:grid;place-items:center"><i data-lucide="{{ b.icon }}"></i></span>{{ b.label }}
+        <span style="{{ b.keyStyle }}">{{ b.key }}</span>
+      </div>
+    </sc-for>
+    <span style="width:1px;height:22px;background:#d8dbd6"></span>
+    <div style="display:flex;align-items:center;gap:7px;border:1px solid #dfe2dd;background:#fff;border-radius:6px;padding:7px 11px;font-size:12px;color:#7a827f">
+      <i data-lucide="scan-barcode"></i>SKU o código de barras
+      <span style="font-size:9.5px;font-weight:700;border:1px solid #d1d5cf;border-radius:3px;padding:0 4px;color:#5a6360">F3</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(148px,214px) minmax(0,1fr) minmax(0,280px);background:#f4f5f3;color:#1e2422">
+
+    <aside style="border-right:1px solid #dfe2dd;background:#ebedea;padding:14px 10px;display:flex;flex-direction:column;gap:18px;overflow:auto">
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8a928f;padding:0 8px 6px">DEPÓSITOS</span>
+        <sc-for list="{{ warehouses }}" as="w" hint-placeholder-count="4">
+          <div onClick="{{ w.select }}" style="{{ w.style }}">
+            <span style="{{ w.barStyle }}"></span>
+            <span style="font-size:14px;display:grid;place-items:center"><i data-lucide="{{ w.icon }}"></i></span>
+            <span style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ w.label }}</span>
+            <span style="margin-left:auto;font-size:10.5px;color:#6a7370;font-family:'Roboto Mono',monospace">{{ w.count }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8a928f;padding:0 8px 6px">FILTROS</span>
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+          <div onClick="{{ f.select }}" style="{{ f.style }}">
+            <span style="{{ f.dotStyle }}"></span>
+            <span style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ f.label }}</span>
+            <span style="margin-left:auto;font-size:10.5px;color:#6a7370;font-family:'Roboto Mono',monospace">{{ f.count }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="margin-top:auto;border:1px solid #f0d8b8;border-radius:8px;padding:12px;background:#fdf5e8">
+        <div style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:#9a5b0c">
+          <i data-lucide="triangle-alert"></i>3 artículos bajo mínimo
+        </div>
+        <div style="font-size:10.5px;color:#6a7370;margin-top:6px;line-height:1.5">Generar orden de compra sugerida por $412.800.</div>
+      </div>
+    </aside>
+
+    <main style="min-width:0;display:flex;flex-direction:column;overflow:hidden;background:#fff">
+      <div style="padding:13px 18px 12px;border-bottom:1px solid #e6e8e4;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <div>
+          <h1 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-.02em">Existencias · {{ filterLabel }}</h1>
+          <p style="margin:4px 0 0;font-size:11.5px;color:#6a7370">{{ rowCount }} artículos · valorizado {{ stockValue }}</p>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:7px">
+          <div style="display:flex;align-items:center;gap:7px;border:1px solid #dfe2dd;border-radius:6px;padding:7px 11px;font-size:12px;font-weight:500;color:#4b5350;background:#fff;cursor:pointer" style-hover="background:#f4f5f3">
+            <i data-lucide="filter"></i>Columnas
+          </div>
+          <div style="display:flex;align-items:center;gap:7px;border:1px solid #dfe2dd;border-radius:6px;padding:7px 11px;font-size:12px;font-weight:500;color:#4b5350;background:#fff;cursor:pointer" style-hover="background:#f4f5f3">
+            <i data-lucide="file-spreadsheet"></i>Exportar
+          </div>
+          <button style="display:flex;align-items:center;gap:6px;border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:8px 13px;border-radius:6px;background:#1a5f7a;color:#fff" style-hover="background:#134557">
+            <i data-lucide="package-plus"></i>Ingresar mercadería
+          </button>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;overflow:auto">
+        <div style="min-width:640px">
+          <div style="display:grid;grid-template-columns:96px minmax(140px,1fr) 78px 74px 96px 100px 78px;padding:0 16px;height:30px;align-items:center;background:#f7f8f6;border-bottom:1px solid #e6e8e4;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#8a928f;position:sticky;top:0;z-index:2">
+            <span>SKU</span><span>ARTÍCULO</span><span style="text-align:right">STOCK</span><span style="text-align:right">MÍN.</span><span style="text-align:right">COSTO</span><span>UBICACIÓN</span><span style="text-align:right">ESTADO</span>
+          </div>
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+            <div onClick="{{ r.select }}" style="{{ r.rowStyle }}">
+              <span style="font-size:11px;font-family:'Roboto Mono',monospace;color:#5a6360;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.sku }}</span>
+              <div style="min-width:0;display:flex;flex-direction:column;gap:2px">
+                <span style="font-size:12.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.name }}</span>
+                <span style="font-size:10.5px;color:#8a928f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.brand }}</span>
+              </div>
+              <span style="{{ r.stockStyle }}">{{ r.stock }}</span>
+              <span style="font-size:11.5px;text-align:right;color:#8a928f;font-family:'Roboto Mono',monospace">{{ r.min }}</span>
+              <span style="font-size:11.5px;text-align:right;font-family:'Roboto Mono',monospace;color:#3f4744">{{ r.cost }}</span>
+              <span style="font-size:11px;font-family:'Roboto Mono',monospace;color:#5a6360;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.bin }}</span>
+              <span style="display:flex;justify-content:flex-end"><span style="{{ r.tagStyle }}">{{ r.tag }}</span></span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </main>
+
+    <aside style="border-left:1px solid #dfe2dd;background:#ebedea;display:flex;flex-direction:column;overflow:hidden">
+      <div style="display:flex;border-bottom:1px solid #dfe2dd;background:#f4f5f3;flex:none">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+          <div onClick="{{ t.select }}" style="{{ t.style }}">{{ t.label }}</div>
+        </sc-for>
+      </div>
+
+      <div style="flex:1;min-height:0;overflow:auto;padding:16px 14px;display:flex;flex-direction:column;gap:18px">
+        <div>
+          <div style="font-size:10.5px;font-family:'Roboto Mono',monospace;color:#8a928f">{{ sel.sku }}</div>
+          <h2 style="margin:5px 0 0;font-size:15px;font-weight:700;letter-spacing:-.015em;line-height:1.35">{{ sel.name }}</h2>
+          <div style="font-size:11.5px;color:#6a7370;margin-top:4px">{{ sel.brand }}</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+            <div style="border:1px solid #dfe2dd;border-radius:7px;padding:10px;background:#fff">
+              <div style="font-size:10px;font-weight:600;letter-spacing:.05em;color:#8a928f">{{ k.label }}</div>
+              <div style="{{ k.valueStyle }}">{{ k.value }}</div>
+              <div style="font-size:10px;color:#8a928f;margin-top:2px">{{ k.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8a928f;margin-bottom:9px">NIVEL DE STOCK · 12 SEMANAS</div>
+          <div style="border:1px solid #dfe2dd;border-radius:7px;background:#fff;padding:11px">
+            <svg viewBox="0 0 240 74" style="width:100%;height:74px;display:block">
+              <line x1="0" y1="52" x2="240" y2="52" stroke="#e8b04a" stroke-width="1" stroke-dasharray="4 3"></line>
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="12">
+                <rect x="{{ b.x }}" y="{{ b.y }}" width="14" height="{{ b.h }}" fill="{{ b.fill }}" rx="1.5"></rect>
+              </sc-for>
+            </svg>
+            <div style="display:flex;justify-content:space-between;font-size:9.5px;color:#8a928f;font-family:'Roboto Mono',monospace;margin-top:6px">
+              <span>S22</span><span>S26</span><span>S30</span><span>S33</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:10.5px;color:#9a5b0c;margin-top:8px">
+              <span style="width:12px;height:0;border-top:1.5px dashed #e8b04a"></span>Punto de reposición: 40 u.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8a928f;margin-bottom:9px">ÚLTIMOS MOVIMIENTOS</div>
+          <div style="border:1px solid #dfe2dd;border-radius:7px;background:#fff;overflow:hidden">
+            <sc-for list="{{ moves }}" as="mv" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:9px;padding:9px 10px;border-bottom:1px solid #eff1ed">
+                <span style="{{ mv.iconStyle }}"><i data-lucide="{{ mv.icon }}"></i></span>
+                <div style="min-width:0;flex:1">
+                  <div style="font-size:11.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ mv.doc }}</div>
+                  <div style="font-size:10px;color:#8a928f;margin-top:2px">{{ mv.who }}</div>
+                </div>
+                <div style="text-align:right;flex:none">
+                  <div style="{{ mv.qtyStyle }}">{{ mv.qty }}</div>
+                  <div style="font-size:9.5px;color:#8a928f;font-family:'Roboto Mono',monospace;margin-top:2px">{{ mv.date }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid #dfe2dd;padding:10px 12px;background:#f4f5f3;flex:none;display:flex;gap:7px">
+        <button style="flex:1;border:1px solid #dfe2dd;background:#fff;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:600;padding:9px;border-radius:6px;color:#3f4744" style-hover="background:#eff1ed">Ajustar stock</button>
+        <button style="flex:1;border:none;background:#1a5f7a;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:600;padding:9px;border-radius:6px;color:#fff" style-hover="background:#134557">Reponer</button>
+      </div>
+    </aside>
+  </div>
+
+  <div style="height:28px;flex:none;background:#e8eae6;border-top:1px solid #d1d5cf;display:flex;align-items:center;gap:18px;padding:0 14px;font-size:11px;color:#5a6360;flex-wrap:wrap">
+    <span>Artículos activos: <strong style="color:#1e2422">1.284</strong></span>
+    <span>Valorizado total: <strong style="color:#1e2422">$48.912.400</strong></span>
+    <span>Órdenes pendientes: <strong style="color:#1e2422">7</strong></span>
+    <span style="margin-left:auto;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>Base sincronizada</span>
+    <span>13/08/2026 14:26</span>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.data = [
+      { sku: "ALM-01042", name: "Aceite de girasol 900 ml", brand: "Cañuelas · caja x12", stock: 148, min: 60, cost: 1980, bin: "A-03-2", cat: "Almacén" },
+      { sku: "ALM-01088", name: "Harina 000 · 1 kg", brand: "Molino Río · bolsa x10", stock: 34, min: 40, cost: 1240, bin: "A-01-4", cat: "Almacén" },
+      { sku: "BEB-02310", name: "Gaseosa cola 2,25 L", brand: "Refrescos SA · pack x6", stock: 312, min: 120, cost: 2450, bin: "B-05-1", cat: "Bebidas" },
+      { sku: "BEB-02377", name: "Agua mineral 1,5 L", brand: "Sierra Azul · pack x6", stock: 96, min: 80, cost: 890, bin: "B-05-3", cat: "Bebidas" },
+      { sku: "LIM-04120", name: "Detergente 750 ml", brand: "Brillo · caja x12", stock: 12, min: 45, cost: 1670, bin: "C-02-2", cat: "Limpieza" },
+      { sku: "LIM-04155", name: "Lavandina 1 L", brand: "Clarex · caja x12", stock: 74, min: 50, cost: 940, bin: "C-02-5", cat: "Limpieza" },
+      { sku: "PER-05003", name: "Jabón de tocador x3", brand: "Aura · caja x24", stock: 0, min: 30, cost: 2190, bin: "D-01-1", cat: "Perfumería" },
+      { sku: "PER-05061", name: "Shampoo 400 ml", brand: "Nevada · caja x12", stock: 58, min: 35, cost: 3480, bin: "D-01-4", cat: "Perfumería" },
+      { sku: "ALM-01130", name: "Arroz largo fino 1 kg", brand: "Dos Hermanos · x10", stock: 210, min: 90, cost: 1520, bin: "A-02-1", cat: "Almacén" },
+      { sku: "ALM-01166", name: "Fideos guiseros 500 g", brand: "Trigal · caja x20", stock: 27, min: 60, cost: 1180, bin: "A-02-3", cat: "Almacén" },
+      { sku: "BEB-02401", name: "Cerveza lata 473 ml", brand: "Patagonia · pack x6", stock: 168, min: 100, cost: 1740, bin: "B-06-2", cat: "Bebidas" },
+      { sku: "LIM-04201", name: "Esponja multiuso x2", brand: "Brillo · caja x24", stock: 92, min: 40, cost: 640, bin: "C-03-1", cat: "Limpieza" }
+    ];
+    this.state = { wh: "Depósito 1", filter: "Todos", tab: "Ficha", sel: "ALM-01088" };
+  }
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  money(n) { return "$" + n.toLocaleString("es-AR"); }
+
+  statusOf(r) {
+    if (r.stock === 0) return "Sin stock";
+    if (r.stock < r.min) return "Bajo mínimo";
+    if (r.stock < r.min * 1.3) return "Al límite";
+    return "Normal";
+  }
+
+  renderVals() {
+    const menu = ["Archivo", "Editar", "Ver", "Movimientos", "Compras", "Informes", "Ayuda"];
+
+    const toolbar = [
+      { label: "Ingreso", icon: "package-plus", key: "F5", on: true },
+      { label: "Egreso", icon: "package-minus", key: "F6" },
+      { label: "Transferencia", icon: "arrow-left-right", key: "F7" },
+      { label: "Recuento", icon: "clipboard-list", key: "F8" },
+      { label: "Etiquetas", icon: "printer", key: "F9" }
+    ].map(b => ({
+      ...b,
+      keyStyle: "font-size:9.5px;font-weight:700;border:1px solid " + (b.on ? "rgba(255,255,255,.4)" : "#d1d5cf") +
+        ";border-radius:3px;padding:0 4px;opacity:.85",
+      style: "display:flex;align-items:center;gap:7px;padding:7px 11px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;" +
+        (b.on ? "background:#1a5f7a;color:#fff" : "color:#3f4744;border:1px solid #dfe2dd;background:#fff")
+    }));
+
+    const warehouses = [
+      { label: "Depósito 1", icon: "warehouse", count: "1.284" },
+      { label: "Depósito 2", icon: "warehouse", count: "612" },
+      { label: "Salón Sur", icon: "store", count: "348" },
+      { label: "En tránsito", icon: "truck", count: "42" }
+    ].map(w => {
+      const on = this.state.wh === w.label;
+      return {
+        ...w,
+        select: () => this.setState({ wh: w.label }),
+        barStyle: "width:3px;height:16px;border-radius:2px;flex:none;background:" + (on ? "#1a5f7a" : "transparent"),
+        style: "display:flex;align-items:center;gap:8px;padding:8px 8px;border-radius:5px;font-size:12.5px;cursor:pointer;" +
+          (on ? "background:#dceaef;color:#134557;font-weight:600" : "color:#4b5350;font-weight:500")
+      };
+    });
+
+    const counts = {
+      "Todos": this.data.length,
+      "Bajo mínimo": this.data.filter(r => r.stock > 0 && r.stock < r.min).length,
+      "Sin stock": this.data.filter(r => r.stock === 0).length,
+      "Sobrestock": this.data.filter(r => r.stock > r.min * 2.5).length
+    };
+    const filterTones = { "Todos": "#8a928f", "Bajo mínimo": "#c98a1e", "Sin stock": "#c42b1c", "Sobrestock": "#1a5f7a" };
+    const filters = Object.keys(counts).map(label => {
+      const on = this.state.filter === label;
+      return {
+        label,
+        count: String(counts[label]),
+        select: () => this.setState({ filter: label }),
+        dotStyle: "width:8px;height:8px;border-radius:2px;flex:none;background:" + filterTones[label],
+        style: "display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:5px;font-size:12.5px;cursor:pointer;" +
+          (on ? "background:#dceaef;color:#134557;font-weight:600" : "color:#4b5350;font-weight:500")
+      };
+    });
+
+    const visible = this.data.filter(r => {
+      const st = this.statusOf(r);
+      if (this.state.filter === "Bajo mínimo") return st === "Bajo mínimo";
+      if (this.state.filter === "Sin stock") return st === "Sin stock";
+      if (this.state.filter === "Sobrestock") return r.stock > r.min * 2.5;
+      return true;
+    });
+
+    const tagTone = {
+      "Normal": { c: "#15803d", b: "#e8f5ec", br: "#cbe7d5" },
+      "Al límite": { c: "#9a5b0c", b: "#fdf5e8", br: "#f0d8b8" },
+      "Bajo mínimo": { c: "#b45309", b: "#fdf0dc", br: "#f2dcb4" },
+      "Sin stock": { c: "#b91c1c", b: "#fdecec", br: "#f5cfcf" }
+    };
+
+    const rows = visible.map(r => {
+      const st = this.statusOf(r);
+      const t = tagTone[st];
+      const on = this.state.sel === r.sku;
+      return {
+        ...r,
+        stock: String(r.stock),
+        min: String(r.min),
+        cost: this.money(r.cost),
+        tag: st,
+        select: () => this.setState({ sel: r.sku }),
+        rowStyle: "display:grid;grid-template-columns:96px minmax(140px,1fr) 78px 74px 96px 100px 78px;align-items:center;padding:9px 16px;cursor:pointer;border-bottom:1px solid #f0f1ef;background:" +
+          (on ? "#eef6f8" : "#fff"),
+        stockStyle: "font-size:12.5px;font-weight:700;text-align:right;font-family:'Roboto Mono',monospace;color:" +
+          (st === "Normal" ? "#1e2422" : t.c),
+        tagStyle: "font-size:10px;font-weight:600;border-radius:4px;padding:2px 6px;white-space:nowrap;color:" +
+          t.c + ";background:" + t.b + ";border:1px solid " + t.br
+      };
+    });
+
+    const sel = this.data.find(r => r.sku === this.state.sel) || this.data[0];
+    const stockValue = this.money(visible.reduce((a, r) => a + r.stock * r.cost, 0));
+
+    const kpis = [
+      { label: "STOCK ACTUAL", value: String(sel.stock) + " u.", note: "mín. " + sel.min + " u.", tone: sel.stock < sel.min ? "#b45309" : "#1e2422" },
+      { label: "VALORIZADO", value: this.money(sel.stock * sel.cost), note: "costo " + this.money(sel.cost), tone: "#1e2422" },
+      { label: "ROTACIÓN", value: "3,4×", note: "últimos 90 días", tone: "#1e2422" },
+      { label: "COBERTURA", value: "11 días", note: "al ritmo actual", tone: sel.stock < sel.min ? "#b45309" : "#1e2422" }
+    ].map(k => ({
+      ...k,
+      valueStyle: "font-size:15.5px;font-weight:700;letter-spacing:-.02em;margin-top:4px;font-family:'Roboto Mono',monospace;color:" + k.tone
+    }));
+
+    const series = [72, 68, 61, 58, 64, 52, 47, 44, 51, 39, 36, 34];
+    const bars = series.map((v, i) => {
+      const h = Math.max(3, Math.round((v / 80) * 60));
+      return {
+        x: String(3 + i * 19.6),
+        y: String(66 - h),
+        h: String(h),
+        fill: v < 40 ? "#d98324" : "#4b8fa5"
+      };
+    });
+
+    const moves = [
+      { doc: "Remito 0004-18922", who: "Ingreso · Molino Río", qty: "+120", icon: "package-plus", date: "12/08", pos: true },
+      { doc: "Pedido 0002-30411", who: "Egreso · Salón Sur", qty: "−60", icon: "package-minus", date: "12/08", pos: false },
+      { doc: "Transferencia T-882", who: "A Depósito 2", qty: "−48", icon: "arrow-left-right", date: "11/08", pos: false },
+      { doc: "Ajuste AJ-1204", who: "Recuento · M. Quiroga", qty: "−2", icon: "clipboard-list", date: "09/08", pos: false },
+      { doc: "Remito 0004-18877", who: "Ingreso · Molino Río", qty: "+96", icon: "package-plus", date: "05/08", pos: true }
+    ].map(mv => ({
+      ...mv,
+      iconStyle: "width:26px;height:26px;flex:none;border-radius:6px;display:grid;place-items:center;font-size:13px;color:#fff;background:" +
+        (mv.pos ? "#15803d" : "#7a827f"),
+      qtyStyle: "font-size:12px;font-weight:700;font-family:'Roboto Mono',monospace;color:" + (mv.pos ? "#15803d" : "#b45309")
+    }));
+
+    const tabs = ["Ficha", "Proveedores", "Lotes"].map(label => {
+      const on = this.state.tab === label;
+      return {
+        label,
+        select: () => this.setState({ tab: label }),
+        style: "flex:1;text-align:center;padding:9px 6px;font-size:12px;cursor:pointer;border-bottom:2px solid " +
+          (on ? "#1a5f7a;color:#134557;font-weight:600;background:#ebedea" : "transparent;color:#6a7370;font-weight:500")
+      };
+    });
+
+    return {
+      menu, toolbar, warehouses, filters, rows, tabs, kpis, bars, moves,
+      sel: { sku: sel.sku, name: sel.name, brand: sel.brand },
+      filterLabel: this.state.filter === "Todos" ? this.state.wh : this.state.filter,
+      rowCount: String(rows.length),
+      stockValue
+    };
+  }
+}
+</script>
+</body>
+</html>

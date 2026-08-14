@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#d2cfc8;font-family:'Libre Franklin','Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#23395b;text-decoration:none}
+  a:hover{color:#16263f}
+  svg.lucide{width:1em;height:1em;stroke-width:1.9}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:#c6c2ba;border-radius:10px}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:32px;background:linear-gradient(160deg,#e8e5df,#cbc7bf);display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;border-radius:9px;overflow:hidden;background:#f5f4f1;box-shadow:0 40px 80px -24px rgba(28,28,26,.45),0 0 0 1px rgba(28,28,26,.16)">
+
+  <div style="display:flex;align-items:stretch;height:38px;background:#e9e7e2;border-bottom:1px solid #d3d0c9;flex:none">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 14px;min-width:0">
+      <span style="width:18px;height:18px;border-radius:4px;background:#23395b;color:#fff;display:grid;place-items:center;font-size:11px"><i data-lucide="scale"></i></span>
+      <span style="font-size:12.5px;font-weight:600;color:#1f1f1d;white-space:nowrap">Expedientes — Beltrán, Sosa &amp; Asociados</span>
+      <span style="font-size:11.5px;color:#6d6a63;white-space:nowrap">Estudio Rosario · Usuario: Dra. V. Sosa (socia)</span>
+    </div>
+    <div style="margin-left:auto;display:flex;flex:none">
+      <span style="width:44px;display:grid;place-items:center;font-size:13px;color:#42413d" style-hover="background:#d9d6cf"><i data-lucide="minus"></i></span>
+      <span style="width:44px;display:grid;place-items:center;font-size:12px;color:#42413d" style-hover="background:#d9d6cf"><i data-lucide="square"></i></span>
+      <span style="width:44px;display:grid;place-items:center;font-size:14px;color:#42413d" style-hover="background:#c42b1c;color:#fff"><i data-lucide="x"></i></span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:18px;min-height:30px;padding:0 14px;background:#f0eeea;border-bottom:1px solid #e1dfd9;flex:none;flex-wrap:wrap">
+    <sc-for list="{{ menu }}" as="m" hint-placeholder-count="6">
+      <span style="font-size:12px;color:#4d4b46;cursor:default">{{ m }}</span>
+    </sc-for>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:8px;min-height:42px;padding:6px 12px;background:#f5f4f1;border-bottom:1px solid #e1dfd9;flex:none;flex-wrap:wrap">
+    <sc-for list="{{ toolbar }}" as="b" hint-placeholder-count="6">
+      <div style="{{ b.style }}">
+        <span style="font-size:14px;display:grid;place-items:center"><i data-lucide="{{ b.icon }}"></i></span>{{ b.label }}
+        <span style="{{ b.keyStyle }}">{{ b.key }}</span>
+      </div>
+    </sc-for>
+    <span style="width:1px;height:22px;background:#dcd9d2"></span>
+    <div style="display:flex;align-items:center;gap:7px;border:1px solid #e1dfd9;background:#fff;border-radius:6px;padding:7px 11px;font-size:12px;color:#7d7a72">
+      <i data-lucide="search"></i>Buscar por carátula, CUIT o expediente
+      <span style="font-size:9.5px;font-weight:700;border:1px solid #d3d0c9;border-radius:3px;padding:0 4px;color:#5c5a54">Ctrl+B</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(150px,216px) minmax(0,1fr) minmax(0,296px);background:#f5f4f1;color:#1f1f1d">
+
+    <aside style="border-right:1px solid #e1dfd9;background:#eceae5;padding:14px 10px;display:flex;flex-direction:column;gap:18px;overflow:auto">
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8b887f;padding:0 8px 6px">BANDEJAS</span>
+        <sc-for list="{{ trays }}" as="t" hint-placeholder-count="5">
+          <div onClick="{{ t.select }}" style="{{ t.style }}">
+            <span style="{{ t.barStyle }}"></span>
+            <span style="font-size:14px;display:grid;place-items:center"><i data-lucide="{{ t.icon }}"></i></span>
+            <span style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.label }}</span>
+            <span style="{{ t.countStyle }}">{{ t.count }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8b887f;padding:0 8px 6px">ORGANISMOS</span>
+        <sc-for list="{{ agencies }}" as="a" hint-placeholder-count="5">
+          <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:5px;font-size:12.5px;font-weight:500;color:#4d4b46;cursor:pointer" style-hover="background:#e2dfd9">
+            <span style="{{ a.dotStyle }}"></span>
+            <span style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.name }}</span>
+            <span style="margin-left:auto;font-size:10.5px;color:#8b887f;font-family:'JetBrains Mono',monospace">{{ a.count }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="margin-top:auto;border:1px solid #e8d5b8;border-radius:8px;padding:12px;background:#fdf6e9">
+        <div style="display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:#8a5a12">
+          <i data-lucide="alarm-clock"></i>2 plazos vencen mañana
+        </div>
+        <div style="font-size:10.5px;color:#6d6a63;margin-top:6px;line-height:1.5">Contestación de vista en AFIP y descargo ante Municipalidad.</div>
+      </div>
+    </aside>
+
+    <main style="min-width:0;display:flex;flex-direction:column;overflow:hidden;background:#fff">
+      <div style="padding:13px 18px 12px;border-bottom:1px solid #eae8e3;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <div>
+          <h1 style="margin:0;font-size:18px;font-weight:700;letter-spacing:-.02em">{{ trayLabel }}</h1>
+          <p style="margin:4px 0 0;font-size:11.5px;color:#6d6a63">{{ rowCount }} trámites · {{ urgentCount }} con plazo en 72 h</p>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:7px">
+          <div style="display:flex;align-items:center;gap:7px;border:1px solid #e1dfd9;border-radius:6px;padding:7px 11px;font-size:12px;font-weight:500;color:#4d4b46;background:#fff;cursor:pointer" style-hover="background:#f5f4f1">
+            <i data-lucide="filter"></i>Estado
+          </div>
+          <div style="display:flex;align-items:center;gap:7px;border:1px solid #e1dfd9;border-radius:6px;padding:7px 11px;font-size:12px;font-weight:500;color:#4d4b46;background:#fff;cursor:pointer" style-hover="background:#f5f4f1">
+            <i data-lucide="file-spreadsheet"></i>Exportar
+          </div>
+          <button style="display:flex;align-items:center;gap:6px;border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:8px 13px;border-radius:6px;background:#23395b;color:#fff" style-hover="background:#16263f">
+            <i data-lucide="folder-plus"></i>Nuevo trámite
+          </button>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;overflow:auto">
+        <div style="min-width:660px">
+          <div style="display:grid;grid-template-columns:112px minmax(150px,1fr) 120px 108px 96px 84px;padding:0 16px;height:30px;align-items:center;background:#faf9f7;border-bottom:1px solid #eae8e3;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#8b887f;position:sticky;top:0;z-index:2">
+            <span>EXPEDIENTE</span><span>CARÁTULA / TRÁMITE</span><span>ORGANISMO</span><span>RESPONSABLE</span><span>PLAZO</span><span style="text-align:right">ESTADO</span>
+          </div>
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+            <div onClick="{{ r.select }}" style="{{ r.rowStyle }}">
+              <span style="font-size:11px;font-family:'JetBrains Mono',monospace;color:#5c5a54;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.file }}</span>
+              <div style="min-width:0;display:flex;flex-direction:column;gap:2px">
+                <span style="font-size:12.5px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.caption }}</span>
+                <span style="font-size:10.5px;color:#8b887f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.kind }}</span>
+              </div>
+              <span style="font-size:11.5px;color:#4d4b46;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.agency }}</span>
+              <span style="display:flex;align-items:center;gap:7px;min-width:0">
+                <span style="{{ r.avatarStyle }}">{{ r.initials }}</span>
+                <span style="font-size:11.5px;color:#4d4b46;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.owner }}</span>
+              </span>
+              <span style="{{ r.dueStyle }}">{{ r.due }}</span>
+              <span style="display:flex;justify-content:flex-end"><span style="{{ r.tagStyle }}">{{ r.status }}</span></span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </main>
+
+    <aside style="border-left:1px solid #e1dfd9;background:#eceae5;display:flex;flex-direction:column;overflow:hidden">
+      <div style="display:flex;border-bottom:1px solid #e1dfd9;background:#f5f4f1;flex:none">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+          <div onClick="{{ t.select }}" style="{{ t.style }}">{{ t.label }}</div>
+        </sc-for>
+      </div>
+
+      <div style="flex:1;min-height:0;overflow:auto;padding:16px 14px;display:flex;flex-direction:column;gap:18px">
+        <div>
+          <div style="font-size:10.5px;font-family:'JetBrains Mono',monospace;color:#8b887f">{{ sel.file }}</div>
+          <h2 style="margin:5px 0 0;font-size:15px;font-weight:700;letter-spacing:-.015em;line-height:1.35">{{ sel.caption }}</h2>
+          <div style="font-size:11.5px;color:#6d6a63;margin-top:4px">{{ sel.kind }} · {{ sel.agency }}</div>
+        </div>
+
+        <div style="border:1px solid #e1dfd9;border-radius:8px;background:#fff;overflow:hidden">
+          <sc-for list="{{ meta }}" as="m" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 11px;border-bottom:1px solid #f2f0ec;font-size:11.5px">
+              <span style="color:#7d7a72;width:80px;flex:none;display:flex;align-items:center;gap:6px"><i data-lucide="{{ m.icon }}"></i>{{ m.label }}</span>
+              <span style="{{ m.valueStyle }}">{{ m.value }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div>
+          <div style="display:flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.09em;color:#8b887f;margin-bottom:9px">
+            PLAZOS PROCESALES<span style="margin-left:auto;font-family:'JetBrains Mono',monospace;color:#6d6a63">{{ sel.dueShort }}</span>
+          </div>
+          <div style="border:1px solid #e1dfd9;border-radius:8px;background:#fff;padding:12px">
+            <div style="display:flex;align-items:baseline;gap:8px">
+              <span style="{{ sel.countdownStyle }}">{{ sel.countdown }}</span>
+              <span style="font-size:11px;color:#8b887f">hábiles restantes</span>
+            </div>
+            <div style="height:6px;border-radius:3px;background:#eeece7;margin:11px 0 8px;overflow:hidden"><div style="{{ sel.barStyle }}"></div></div>
+            <div style="font-size:10.5px;color:#6d6a63;line-height:1.5">{{ sel.dueNote }}</div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8b887f;margin-bottom:9px">DOCUMENTACIÓN</div>
+          <div style="border:1px solid #e1dfd9;border-radius:8px;background:#fff;overflow:hidden">
+            <sc-for list="{{ docs }}" as="d" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:9px;padding:9px 11px;border-bottom:1px solid #f2f0ec">
+                <span style="{{ d.iconStyle }}"><i data-lucide="{{ d.icon }}"></i></span>
+                <div style="min-width:0;flex:1">
+                  <div style="font-size:11.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.name }}</div>
+                  <div style="font-size:10px;color:#8b887f;margin-top:2px">{{ d.meta }}</div>
+                </div>
+                <span style="{{ d.stateStyle }}">{{ d.state }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.09em;color:#8b887f;margin-bottom:10px">ACTUACIONES</div>
+          <div style="display:flex;flex-direction:column;gap:0">
+            <sc-for list="{{ acts }}" as="ac" hint-placeholder-count="4">
+              <div style="display:flex;gap:10px">
+                <div style="display:flex;flex-direction:column;align-items:center;flex:none;width:24px">
+                  <span style="{{ ac.dotStyle }}"></span>
+                  <span style="flex:1;width:2px;background:#e1dfd9;margin:3px 0"></span>
+                </div>
+                <div style="min-width:0;flex:1;padding-bottom:14px">
+                  <div style="display:flex;align-items:baseline;gap:8px">
+                    <span style="font-size:11.5px;font-weight:600">{{ ac.title }}</span>
+                    <span style="margin-left:auto;font-size:10px;color:#8b887f;font-family:'JetBrains Mono',monospace;flex:none">{{ ac.date }}</span>
+                  </div>
+                  <div style="font-size:10.5px;color:#6d6a63;margin-top:3px;line-height:1.5">{{ ac.detail }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid #e1dfd9;padding:10px 12px;background:#f5f4f1;flex:none;display:flex;gap:7px">
+        <button style="flex:1;border:1px solid #e1dfd9;background:#fff;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:600;padding:9px;border-radius:6px;color:#42413d" style-hover="background:#f0eeea">Cargar actuación</button>
+        <button style="flex:1;border:none;background:#23395b;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:600;padding:9px;border-radius:6px;color:#fff" style-hover="background:#16263f">Presentar escrito</button>
+      </div>
+    </aside>
+  </div>
+
+  <div style="height:28px;flex:none;background:#e9e7e2;border-top:1px solid #d3d0c9;display:flex;align-items:center;gap:18px;padding:0 14px;font-size:11px;color:#5c5a54;flex-wrap:wrap">
+    <span>Trámites activos: <strong style="color:#1f1f1d">{{ activeTotal }}</strong></span>
+    <span>Vencidos: <strong style="color:#b91c1c">2</strong></span>
+    <span>Honorarios por facturar: <strong style="color:#1f1f1d">$4.860.000</strong></span>
+    <span style="margin-left:auto;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#16a34a"></span>Portal de notificaciones en línea</span>
+    <span>Consulta automática 14:26</span>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.files = [
+      {
+        id: "e1", file: "EXP-2026/0412", caption: "Andes Distribuidora S.A. c/ AFIP",
+        kind: "Recurso de reconsideración", agency: "AFIP", owner: "V. Sosa", initials: "VS", tone: "#23395b",
+        due: "Mañana", days: 1, total: 15, status: "Con plazo", client: "Andes Distribuidora S.A.",
+        cuit: "30-71042318-9", stage: "Vista contestada", fee: "$1.240.000",
+        dueNote: "Contestación de vista — art. 17 Ley 11.683. Vence 14/08/2026 a las 12:00.",
+        acts: [
+          { title: "Vista notificada por el organismo", detail: "Se corre vista por diferencias en IVA períodos 03 a 08/2025.", date: "31/07", tone: "#23395b" },
+          { title: "Pedido de prórroga concedido", detail: "Se otorgan 10 días hábiles adicionales.", date: "05/08", tone: "#8a5a12" },
+          { title: "Borrador de descargo revisado", detail: "Revisión de la Dra. Sosa. Falta anexo contable.", date: "12/08", tone: "#15803d" }
+        ],
+        docs: [
+          { name: "Descargo-AFIP-v4.docx", meta: "Borrador · 218 KB", state: "En revisión", icon: "file-text", tone: "#23395b" },
+          { name: "Anexo-contable-2025.xlsx", meta: "Contador externo · 1,2 MB", state: "Recibido", icon: "file-spreadsheet", tone: "#15803d" },
+          { name: "Poder-general-Andes.pdf", meta: "Escritura 1442 · 640 KB", state: "Vigente", icon: "file-check", tone: "#6d6a63" },
+          { name: "Cédula-de-notificación.pdf", meta: "31/07/2026 · 92 KB", state: "Archivado", icon: "file", tone: "#8b887f" }
+        ]
+      },
+      {
+        id: "e2", file: "EXP-2026/0388", caption: "Molino Río S.A. — Habilitación",
+        kind: "Habilitación comercial", agency: "Municipalidad", owner: "F. Beltrán", initials: "FB", tone: "#8a5a12",
+        due: "Mañana", days: 1, total: 10, status: "Con plazo", client: "Molino Río S.A.",
+        cuit: "30-52788411-4", stage: "Descargo pendiente", fee: "$680.000",
+        dueNote: "Descargo por acta de infracción N° 118.442. Vence 14/08/2026.",
+        acts: [
+          { title: "Acta de infracción labrada", detail: "Inspección de bromatología en planta de Pergamino.", date: "04/08", tone: "#b91c1c" },
+          { title: "Reunión con el cliente", detail: "Se definió estrategia y se pidió documentación de higiene.", date: "07/08", tone: "#23395b" }
+        ],
+        docs: [
+          { name: "Acta-118442.pdf", meta: "Municipalidad · 310 KB", state: "Recibido", icon: "file", tone: "#8b887f" },
+          { name: "Descargo-municipal.docx", meta: "Borrador · 96 KB", state: "En redacción", icon: "file-text", tone: "#23395b" },
+          { name: "Protocolo-higiene.pdf", meta: "Cliente · 2,4 MB", state: "Recibido", icon: "file-check", tone: "#15803d" }
+        ]
+      },
+      {
+        id: "e3", file: "EXP-2026/0355", caption: "Sucesión Iriarte, Hugo Alberto",
+        kind: "Sucesión ab intestato", agency: "Juzgado Civil 4", owner: "V. Sosa", initials: "VS", tone: "#23395b",
+        due: "18/08", days: 3, total: 20, status: "En trámite", client: "Herederos Iriarte",
+        cuit: "20-14208877-2", stage: "Declaratoria de herederos", fee: "$2.150.000",
+        dueNote: "Acreditar publicación de edictos por tres días. Vence 18/08/2026.",
+        acts: [
+          { title: "Inicio de sucesión", detail: "Se acompaña partida de defunción y libreta de matrimonio.", date: "22/06", tone: "#23395b" },
+          { title: "Denuncia de bienes", detail: "Dos inmuebles en Rosario y un rodado.", date: "14/07", tone: "#15803d" },
+          { title: "Edictos ordenados", detail: "El juzgado ordena publicación por tres días en el Boletín.", date: "05/08", tone: "#8a5a12" }
+        ],
+        docs: [
+          { name: "Escrito-inicio.pdf", meta: "Presentado · 480 KB", state: "Presentado", icon: "file-check", tone: "#15803d" },
+          { name: "Edictos-boletin.pdf", meta: "Borrador · 74 KB", state: "En revisión", icon: "file-text", tone: "#23395b" },
+          { name: "Informe-dominial.pdf", meta: "Registro · 1,1 MB", state: "Recibido", icon: "file", tone: "#8b887f" }
+        ]
+      },
+      {
+        id: "e4", file: "EXP-2026/0341", caption: "Textil Rivera S.R.L. — Marca «Rivera»",
+        kind: "Registro de marca clase 25", agency: "INPI", owner: "M. Lastra", initials: "ML", tone: "#7c3aed",
+        due: "26/08", days: 9, total: 30, status: "En trámite", client: "Textil Rivera S.R.L.",
+        cuit: "33-70918442-5", stage: "Oposición a contestar", fee: "$540.000",
+        dueNote: "Contestación de oposición de tercero. Vence 26/08/2026.",
+        acts: [
+          { title: "Solicitud presentada", detail: "Acta 4.882.110, clase 25.", date: "12/03", tone: "#23395b" },
+          { title: "Oposición de tercero", detail: "Marca «Riviera» invoca similitud fonética.", date: "28/07", tone: "#b91c1c" }
+        ],
+        docs: [
+          { name: "Acta-4882110.pdf", meta: "INPI · 220 KB", state: "Vigente", icon: "file-check", tone: "#15803d" },
+          { name: "Cotejo-marcario.docx", meta: "Borrador · 88 KB", state: "En redacción", icon: "file-text", tone: "#23395b" }
+        ]
+      },
+      {
+        id: "e5", file: "EXP-2026/0298", caption: "Clínica Bahía S.A. — Convenio colectivo",
+        kind: "Homologación de acuerdo", agency: "Min. Trabajo", owner: "F. Beltrán", initials: "FB", tone: "#8a5a12",
+        due: "02/09", days: 14, total: 30, status: "A la firma", client: "Clínica Bahía S.A.",
+        cuit: "30-68114029-7", stage: "Acuerdo redactado", fee: "$390.000",
+        dueNote: "Presentación del acuerdo para homologación. Vence 02/09/2026.",
+        acts: [
+          { title: "Audiencia celebrada", detail: "Se acordó incremento en tres tramos.", date: "29/07", tone: "#23395b" },
+          { title: "Acta acuerdo redactada", detail: "Pendiente de firma del representante sindical.", date: "08/08", tone: "#15803d" }
+        ],
+        docs: [
+          { name: "Acta-acuerdo.docx", meta: "Borrador final · 132 KB", state: "A la firma", icon: "file-text", tone: "#23395b" },
+          { name: "Padrón-personal.xlsx", meta: "RRHH cliente · 340 KB", state: "Recibido", icon: "file-spreadsheet", tone: "#15803d" }
+        ]
+      },
+      {
+        id: "e6", file: "EXP-2026/0277", caption: "Ferretera Pampa S.A. — Rectificación",
+        kind: "Rectificación registral", agency: "Registro Público", owner: "M. Lastra", initials: "ML", tone: "#7c3aed",
+        due: "11/08", days: -2, total: 15, status: "Vencido", client: "Ferretera Pampa S.A.",
+        cuit: "30-70448122-1", stage: "Observado", fee: "$210.000",
+        dueNote: "Subsanar observación del Registro. Vencido el 11/08/2026.",
+        acts: [
+          { title: "Observación del Registro", detail: "Falta certificación de firma del presidente.", date: "24/07", tone: "#b91c1c" },
+          { title: "Se solicitó al cliente", detail: "Sin respuesta a la fecha. Reiterado dos veces.", date: "01/08", tone: "#8a5a12" }
+        ],
+        docs: [
+          { name: "Cédula-observación.pdf", meta: "Registro · 180 KB", state: "Recibido", icon: "file", tone: "#8b887f" },
+          { name: "Acta-asamblea.pdf", meta: "Cliente · 620 KB", state: "Incompleto", icon: "file-warning", tone: "#b91c1c" }
+        ]
+      },
+      {
+        id: "e7", file: "EXP-2026/0241", caption: "Nodo Educativo S.A.S. — Rescisión",
+        kind: "Intimación contractual", agency: "Privado", owner: "V. Sosa", initials: "VS", tone: "#23395b",
+        due: "09/08", days: -4, total: 10, status: "Vencido", client: "Nodo Educativo S.A.S.",
+        cuit: "30-71755320-8", stage: "Carta documento enviada",
+        fee: "$150.000",
+        dueNote: "Plazo de la intimación vencido el 09/08/2026. Corresponde iniciar demanda.",
+        acts: [
+          { title: "Carta documento enviada", detail: "Se intima al pago de tres facturas vencidas.", date: "28/07", tone: "#23395b" },
+          { title: "Plazo vencido sin respuesta", detail: "Corresponde evaluar acción ejecutiva.", date: "09/08", tone: "#b91c1c" }
+        ],
+        docs: [
+          { name: "CD-882441.pdf", meta: "Correo Argentino · 88 KB", state: "Notificado", icon: "file-check", tone: "#15803d" },
+          { name: "Facturas-impagas.pdf", meta: "Cliente · 410 KB", state: "Recibido", icon: "file", tone: "#8b887f" }
+        ]
+      },
+      {
+        id: "e8", file: "EXP-2026/0195", caption: "Puerto Digital S.R.L. — Constitución",
+        kind: "Inscripción societaria", agency: "Registro Público", owner: "M. Lastra", initials: "ML", tone: "#7c3aed",
+        due: "—", days: 99, total: 30, status: "Concluido", client: "Puerto Digital S.R.L.",
+        cuit: "30-71980114-3", stage: "Inscripta", fee: "$480.000",
+        dueNote: "Trámite concluido. Inscripción del 22/07/2026, legajo 44.812.",
+        acts: [
+          { title: "Contrato constitutivo", detail: "Otorgado por escritura 882 del 12/06.", date: "12/06", tone: "#23395b" },
+          { title: "Inscripción registrada", detail: "Legajo 44.812. Se entregó copia al cliente.", date: "22/07", tone: "#15803d" }
+        ],
+        docs: [
+          { name: "Contrato-inscripto.pdf", meta: "Registro · 1,4 MB", state: "Inscripto", icon: "file-check", tone: "#15803d" },
+          { name: "Constancia-CUIT.pdf", meta: "AFIP · 120 KB", state: "Vigente", icon: "file", tone: "#8b887f" }
+        ]
+      }
+    ];
+    this.state = { tray: "Todos los trámites", tab: "Ficha", sel: "e1" };
+  }
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  visible() {
+    const t = this.state.tray;
+    return this.files.filter(f => {
+      if (t === "Mis trámites") return f.owner === "V. Sosa";
+      if (t === "Plazos esta semana") return f.days >= 0 && f.days <= 7;
+      if (t === "Vencidos") return f.days < 0;
+      if (t === "Concluidos") return f.status === "Concluido";
+      return f.status !== "Concluido";
+    });
+  }
+
+  renderVals() {
+    const menu = ["Archivo", "Expediente", "Escritos", "Plazos", "Clientes", "Informes", "Ayuda"];
+
+    const toolbar = [
+      { label: "Nuevo trámite", icon: "folder-plus", key: "Ctrl+N", on: true },
+      { label: "Cargar actuación", icon: "file-plus-2", key: "Ctrl+A" },
+      { label: "Agendar plazo", icon: "calendar-clock", key: "Ctrl+P" },
+      { label: "Presentar escrito", icon: "send", key: "Ctrl+↵" },
+      { label: "Honorarios", icon: "receipt", key: "Ctrl+H" },
+      { label: "Archivar", icon: "archive", key: "Ctrl+E" }
+    ].map(b => ({
+      ...b,
+      keyStyle: "font-size:9.5px;font-weight:700;border:1px solid " + (b.on ? "rgba(255,255,255,.4)" : "#d3d0c9") +
+        ";border-radius:3px;padding:0 4px;opacity:.85",
+      style: "display:flex;align-items:center;gap:7px;padding:7px 11px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;" +
+        (b.on ? "background:#23395b;color:#fff" : "color:#42413d;border:1px solid #e1dfd9;background:#fff")
+    }));
+
+    const counts = {
+      "Todos los trámites": this.files.filter(f => f.status !== "Concluido").length,
+      "Mis trámites": this.files.filter(f => f.owner === "V. Sosa").length,
+      "Plazos esta semana": this.files.filter(f => f.days >= 0 && f.days <= 7).length,
+      "Vencidos": this.files.filter(f => f.days < 0).length,
+      "Concluidos": this.files.filter(f => f.status === "Concluido").length
+    };
+    const trayIcons = {
+      "Todos los trámites": "folders", "Mis trámites": "user-round", "Plazos esta semana": "calendar-clock",
+      "Vencidos": "triangle-alert", "Concluidos": "archive"
+    };
+    const trays = Object.keys(counts).map(label => {
+      const on = this.state.tray === label;
+      return {
+        label,
+        icon: trayIcons[label],
+        count: String(counts[label]),
+        select: () => this.setState({ tray: label }),
+        barStyle: "width:3px;height:16px;border-radius:2px;flex:none;background:" + (on ? "#23395b" : "transparent"),
+        countStyle: "margin-left:auto;font-size:10.5px;font-weight:700;font-family:'JetBrains Mono',monospace;color:" +
+          (label === "Vencidos" ? "#b91c1c" : "#6d6a63"),
+        style: "display:flex;align-items:center;gap:8px;padding:8px 8px;border-radius:5px;font-size:12.5px;cursor:pointer;" +
+          (on ? "background:#dfe4ee;color:#16263f;font-weight:600" : "color:#4d4b46;font-weight:500")
+      };
+    });
+
+    const agencyTones = { "AFIP": "#23395b", "Municipalidad": "#8a5a12", "Juzgado Civil 4": "#7c3aed", "INPI": "#0f6d5c", "Registro Público": "#0369a1", "Min. Trabajo": "#be185d", "Privado": "#6d6a63" };
+    const agencies = Object.keys(agencyTones).map(name => ({
+      name,
+      count: String(this.files.filter(f => f.agency === name).length),
+      dotStyle: "width:8px;height:8px;border-radius:2px;flex:none;background:" + agencyTones[name]
+    }));
+
+    const statusTone = {
+      "Con plazo": { c: "#8a5a12", b: "#fdf6e9", br: "#e8d5b8" },
+      "En trámite": { c: "#23395b", b: "#eef1f7", br: "#d5dce9" },
+      "A la firma": { c: "#0f6d5c", b: "#e8f4f1", br: "#c8e2db" },
+      "Vencido": { c: "#b91c1c", b: "#fdecec", br: "#f5cfcf" },
+      "Concluido": { c: "#5c5a54", b: "#f1f0ed", br: "#e1dfd9" }
+    };
+
+    const vis = this.visible();
+    const rows = vis.map(f => {
+      const on = this.state.sel === f.id;
+      const t = statusTone[f.status];
+      const urgent = f.days >= 0 && f.days <= 2;
+      return {
+        ...f,
+        select: () => this.setState({ sel: f.id }),
+        rowStyle: "display:grid;grid-template-columns:112px minmax(150px,1fr) 120px 108px 96px 84px;align-items:center;padding:9px 16px;cursor:pointer;border-bottom:1px solid #f2f0ec;background:" +
+          (on ? "#f2f5fa" : "#fff"),
+        avatarStyle: "width:22px;height:22px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:700;color:#fff;background:" + f.tone,
+        dueStyle: "font-size:11.5px;font-family:'JetBrains Mono',monospace;font-weight:" + (urgent || f.days < 0 ? "700" : "400") +
+          ";color:" + (f.days < 0 ? "#b91c1c" : urgent ? "#8a5a12" : "#4d4b46"),
+        tagStyle: "font-size:10px;font-weight:600;border-radius:4px;padding:2px 6px;white-space:nowrap;color:" +
+          t.c + ";background:" + t.b + ";border:1px solid " + t.br
+      };
+    });
+
+    const s = this.files.find(f => f.id === this.state.sel) || this.files[0];
+    const overdue = s.days < 0;
+    const pct = s.days >= 99 ? 100 : Math.max(4, Math.min(100, Math.round(((s.total - Math.max(s.days, 0)) / s.total) * 100)));
+    const barColor = overdue ? "#b91c1c" : s.days <= 2 ? "#c98a1e" : "#23395b";
+
+    const sel = {
+      file: s.file, caption: s.caption, kind: s.kind, agency: s.agency,
+      dueShort: s.days >= 99 ? "concluido" : s.due,
+      countdown: s.days >= 99 ? "—" : overdue ? String(Math.abs(s.days)) + " días vencido" : String(s.days) + " días",
+      countdownStyle: "font-size:" + (overdue ? "17px" : "24px") + ";font-weight:700;letter-spacing:-.02em;font-family:'JetBrains Mono',monospace;color:" + barColor,
+      barStyle: "width:" + pct + "%;height:100%;background:" + barColor,
+      dueNote: s.dueNote
+    };
+
+    const meta = [
+      { icon: "building-2", label: "Cliente", value: s.client, tone: "#1f1f1d" },
+      { icon: "hash", label: "CUIT", value: s.cuit, tone: "#4d4b46", mono: true },
+      { icon: "user-round", label: "Responsable", value: s.owner, tone: "#1f1f1d" },
+      { icon: "milestone", label: "Etapa", value: s.stage, tone: "#1f1f1d" },
+      { icon: "receipt", label: "Honorarios", value: s.fee, tone: "#0f6d5c", mono: true }
+    ].map(m => ({
+      ...m,
+      valueStyle: "font-weight:500;color:" + m.tone + (m.mono ? ";font-family:'JetBrains Mono',monospace;font-size:11px" : "")
+    }));
+
+    const docStateTone = {
+      "En revisión": "#8a5a12", "En redacción": "#8a5a12", "Recibido": "#15803d", "Vigente": "#15803d",
+      "Presentado": "#15803d", "Notificado": "#15803d", "Inscripto": "#15803d", "A la firma": "#0f6d5c",
+      "Archivado": "#8b887f", "Incompleto": "#b91c1c"
+    };
+    const docs = s.docs.map(d => ({
+      ...d,
+      iconStyle: "width:26px;height:26px;flex:none;border-radius:6px;display:grid;place-items:center;font-size:13px;color:#fff;background:" + d.tone,
+      stateStyle: "font-size:9.5px;font-weight:600;border-radius:4px;padding:2px 6px;white-space:nowrap;flex:none;color:" +
+        (docStateTone[d.state] || "#6d6a63") + ";background:" + (docStateTone[d.state] || "#6d6a63") + "14"
+    }));
+
+    const acts = s.acts.slice().reverse().map(a => ({
+      ...a,
+      dotStyle: "width:10px;height:10px;border-radius:50%;flex:none;margin-top:3px;background:" + a.tone
+    }));
+
+    const tabs = ["Ficha", "Escritos", "Honorarios"].map(label => {
+      const on = this.state.tab === label;
+      return {
+        label,
+        select: () => this.setState({ tab: label }),
+        style: "flex:1;text-align:center;padding:9px 6px;font-size:12px;cursor:pointer;border-bottom:2px solid " +
+          (on ? "#23395b;color:#16263f;font-weight:600;background:#eceae5" : "transparent;color:#6d6a63;font-weight:500")
+      };
+    });
+
+    return {
+      menu, toolbar, trays, agencies, rows, tabs, meta, docs, acts, sel,
+      trayLabel: this.state.tray,
+      rowCount: String(rows.length),
+      urgentCount: String(vis.filter(f => f.days >= 0 && f.days <= 3).length),
+      activeTotal: String(this.files.filter(f => f.status !== "Concluido").length)
+    };
+  }
+}
+</script>
+</body>
+</html>

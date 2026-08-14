@@ -62,10 +62,26 @@ export const SHOWROOM_CATEGORIES: ShowroomCategory[] = [
     label: "Aplicaciones de Escritorio",
     icon: "monitor",
     items: [
-      { title: "Ejemplo escritorio 1", description: "Pendiente de carga.", image: "/images/showroom/escritorio-1.png" },
-      { title: "Ejemplo escritorio 2", description: "Pendiente de carga.", image: "/images/showroom/escritorio-2.png" },
-      { title: "Ejemplo escritorio 3", description: "Pendiente de carga.", image: "/images/showroom/escritorio-3.png" },
-      { title: "Ejemplo escritorio 4", description: "Pendiente de carga.", image: "/images/showroom/escritorio-4.png" },
+      {
+        title: "Gestor de Tareas",
+        description: "Tablero kanban de tareas por proyecto, con ventanas y arrastre entre columnas.",
+        embed: { src: "/mockups/desktop-1.dc.html", width: 1440, height: 980 },
+      },
+      {
+        title: "Punto de Venta",
+        description: "Caja registradora con cobro rápido, catálogo de productos y ventas del turno.",
+        embed: { src: "/mockups/desktop-2.dc.html", width: 1440, height: 980 },
+      },
+      {
+        title: "Gestor de Inventario / Stock",
+        description: "Control de depósito, stock por producto y movimientos de entrada y salida.",
+        embed: { src: "/mockups/desktop-3.dc.html", width: 1440, height: 1000 },
+      },
+      {
+        title: "Gestión de Trámites Legales",
+        description: "Software para estudios jurídicos: expedientes, clientes y audiencias del staff.",
+        embed: { src: "/mockups/desktop-4.dc.html", width: 1440, height: 1000 },
+      },
     ],
   },
   {
