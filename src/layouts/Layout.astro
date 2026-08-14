@@ -13,8 +13,8 @@ export interface Props {
 }
 
 const {
-  title = "Desarrollo de Software a Medida | Landing Pages, Apps y Drones",
-  description = "Desarrollo landing pages, aplicaciones web, software de escritorio y soluciones para drones a medida en Argentina y Latinoamérica. Software que ahorra tiempo, dinero y reduce tareas repetitivas.",
+  title = "Desarrollo de Software a Medida en Argentina | Rodrigo Bombieri",
+  description = "Rodrigo Bombieri, desarrollador Full Stack: landing pages, apps web y software a medida en Argentina y Latinoamérica. Trato directo, sin intermediarios.",
   image = "/og-image.png",
   noindex = false,
 } = Astro.props;
@@ -22,6 +22,15 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(image, Astro.site);
 const portfolioURL = new URL("/portfolio-tecnico", Astro.site).toString();
+const avatarURL = new URL("/images/rodrigo.jpg", Astro.site);
+const isHome = Astro.url.pathname === "/";
+
+// Ancla estable de la entidad (persona/negocio) en el dominio raíz: se usa en
+// los @id del JSON-LD para que Google enlace siempre el mismo perfil sin
+// importar desde qué página se sirve el schema (home, showroom, etc.).
+const siteRootURL = new URL("/", Astro.site).toString();
+const personId = `${siteRootURL}#person`;
+const businessId = `${siteRootURL}#business`;
 
 // Datos estructurados pensados para reclutadores/equipos técnicos: no se
 // muestran en pantalla (la sección visual es deliberadamente discreta), pero
@@ -32,10 +41,15 @@ const projectsWithRepo = PROJECTS.filter((p) => p.url);
 ---
 
 <!doctype html>
-<html lang="es" class="js" data-theme="dark">
+<html lang="es-AR" class="js" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {
+      isHome && (
+        <link rel="preload" as="image" href="/images/rodrigo.jpg" fetchpriority="high" />
+      )
+    }
     <script is:inline>
       // Fija el tema antes del primer paint para evitar flash de contenido.
       (function () {
@@ -54,10 +68,20 @@ const projectsWithRepo = PROJECTS.filter((p) => p.url);
       })();
     </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="mask-icon" href="/favicon.svg" color="#22d3ee" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="me" href={SITE.github} />
     <link rel="me" href={SITE.linkedin} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+      )
+    }
 
     <!-- Preconnect fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -80,8 +104,12 @@ const projectsWithRepo = PROJECTS.filter((p) => p.url);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="Software a Medida" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Rodrigo Bombieri — Software a Medida" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -96,11 +124,22 @@ const projectsWithRepo = PROJECTS.filter((p) => p.url);
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
-        name: "Software a Medida — Rodrigo",
+        "@id": businessId,
+        name: "Software a Medida — Rodrigo Bombieri",
         description,
-        url: canonicalURL.toString(),
+        url: siteRootURL,
+        image: avatarURL.toString(),
+        logo: avatarURL.toString(),
+        telephone: `+${SITE.whatsapp}`,
+        email: SITE.email,
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "AR",
+        },
         areaServed: ["Argentina", "Latinoamérica"],
         priceRange: "$$",
+        sameAs: [SITE.github, SITE.linkedin],
+        founder: { "@id": personId },
         serviceType: [
           "Desarrollo de Landing Pages",
           "Aplicaciones Web",
@@ -118,13 +157,15 @@ const projectsWithRepo = PROJECTS.filter((p) => p.url);
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": personId,
         name: "Rodrigo Bombieri",
         jobTitle: "Desarrollador de Software Full Stack",
-        url: canonicalURL.toString(),
-        image: ogImageURL.toString(),
+        url: siteRootURL,
+        image: avatarURL.toString(),
         email: SITE.email,
         sameAs: [SITE.github, SITE.linkedin],
         knowsAbout: TECHNOLOGIES.map((tech) => tech.name),
+        worksFor: { "@id": businessId },
         mainEntityOfPage: portfolioURL,
       })}
     />
