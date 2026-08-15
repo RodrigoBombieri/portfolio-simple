@@ -8,6 +8,22 @@ export interface Props {
 
 const { item, index = 0 } = Astro.props;
 const isEmbed = Boolean(item.embed);
+
+// La card en la grilla usa el aspect-ratio real del mockup (item.embed.width/height)
+// para que las piezas mobile (retrato) se vean bien altas y angostas. Pero dentro de
+// una misma categoría "ancha" (web/escritorio/landing, todas con diseños >=1000px de
+// ancho) algunos mockups son mucho más largos que otros (ej. un ecommerce con grilla
+// de productos vs. un dashboard corto), y eso desparejaba la altura de las cards en
+// la misma fila. Para esas categorías se limita el aspect-ratio a un mínimo (nunca
+// más "cuadrado/alto" que MIN_WIDE_RATIO) — el mockup real no se deforma ni se
+// recorta contenido importante: el iframe del thumbnail se monta a su tamaño real
+// (mockupEmbeds.ts) y el overflow-hidden de la card recorta visualmente el resto
+// del preview. Al abrir el modal se ve el mockup completo con su proporción real
+// (data-w/data-h siguen siendo los valores verdaderos, sin clamping).
+const MIN_WIDE_RATIO = 1.3;
+const rawRatio = isEmbed ? item.embed!.width / item.embed!.height : 1;
+const isWide = isEmbed && item.embed!.width >= 1000;
+const cardRatio = isWide ? Math.max(rawRatio, MIN_WIDE_RATIO) : rawRatio;
 ---
 
 <article
@@ -20,7 +36,7 @@ const isEmbed = Boolean(item.embed);
       <button
         type="button"
         class="relative w-full cursor-pointer overflow-hidden bg-bg-soft text-left"
-        style={`aspect-ratio:${item.embed!.width} / ${item.embed!.height}`}
+        style={`aspect-ratio:${cardRatio}`}
         data-mockup-open
         data-src={item.embed!.src}
         data-title={item.title}

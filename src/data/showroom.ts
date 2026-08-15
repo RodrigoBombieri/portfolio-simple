@@ -53,11 +53,7 @@ export const SHOWROOM_CATEGORIES: ShowroomCategory[] = [
       {
         title: "Ecommerce",
         description: "Tienda online de producto artesanal, catálogo y ficha de producto con checkout.",
-        // El diseño real mide ~1500px de alto (catálogo + ficha + checkout), pero se
-        // recorta a 1060 —igual que sus hermanas de esta fila— para que las 4 cards
-        // del showroom queden del mismo tamaño. El mockup completo se sigue viendo
-        // entero (con scroll) al abrir "Ver interactivo".
-        embed: { src: "/mockups/web-4.dc.html", width: 1440, height: 1060 },
+        embed: { src: "/mockups/web-4.dc.html", width: 1440, height: 1500 },
       },
     ],
   },
@@ -120,10 +116,26 @@ export const SHOWROOM_CATEGORIES: ShowroomCategory[] = [
     label: "Landing Pages",
     icon: "layout",
     items: [
-      { title: "Ejemplo landing 1", description: "Pendiente de carga.", image: "/images/showroom/landing-1.png" },
-      { title: "Ejemplo landing 2", description: "Pendiente de carga.", image: "/images/showroom/landing-2.png" },
-      { title: "Ejemplo landing 3", description: "Pendiente de carga.", image: "/images/showroom/landing-3.png" },
-      { title: "Ejemplo landing 4", description: "Pendiente de carga.", image: "/images/showroom/landing-4.png" },
+      {
+        title: "Producto Tecnológico",
+        description: "Landing de ecommerce para el lanzamiento de un producto, con ficha técnica, reseñas y más vendidos.",
+        embed: { src: "/mockups/landing-1.dc.html", width: 1440, height: 980 },
+      },
+      {
+        title: "Agencia Creativa",
+        description: "Portfolio de una agencia de diseño con casos de éxito, servicios y proceso de trabajo.",
+        embed: { src: "/mockups/landing-2.dc.html", width: 1440, height: 980 },
+      },
+      {
+        title: "Curso Online / Infoproducto",
+        description: "Landing de venta para un curso online, con temario, testimonios y llamada a la inscripción.",
+        embed: { src: "/mockups/landing-3.dc.html", width: 1440, height: 980 },
+      },
+      {
+        title: "Servicio Local / Consultoría",
+        description: "Landing de presentación para un estudio de consultoría, con servicios, equipo y ubicación.",
+        embed: { src: "/mockups/landing-4.dc.html", width: 1440, height: 980 },
+      },
     ],
   },
 ];

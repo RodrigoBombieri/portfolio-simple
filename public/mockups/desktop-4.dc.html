@@ -466,7 +466,11 @@ class Component extends DCLogic {
     const sel = {
       file: s.file, caption: s.caption, kind: s.kind, agency: s.agency,
       dueShort: s.days >= 99 ? "concluido" : s.due,
-      countdown: s.days >= 99 ? "—" : overdue ? String(Math.abs(s.days)) + " días vencido" : String(s.days) + " días",
+      countdown: s.days >= 99
+        ? "—"
+        : overdue
+          ? Math.abs(s.days) === 1 ? "1 día vencido" : Math.abs(s.days) + " días vencidos"
+          : s.days === 1 ? "1 día" : s.days + " días",
       countdownStyle: "font-size:" + (overdue ? "17px" : "24px") + ";font-weight:700;letter-spacing:-.02em;font-family:'JetBrains Mono',monospace;color:" + barColor,
       barStyle: "width:" + pct + "%;height:100%;background:" + barColor,
       dueNote: s.dueNote

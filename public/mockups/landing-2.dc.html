@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#1b1917;font-family:'Bricolage Grotesque',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#ff4d19;text-decoration:none}
+  a:hover{color:#ff7a52}
+  svg.lucide{width:1em;height:1em;stroke-width:1.7}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#e9e4d9}
+  ::-webkit-scrollbar-thumb{background:#c3bbaa;border-radius:10px}
+</style>
+</helmet>
+<div style="height:100vh;padding:30px;background:#1b1917;display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;background:#f4f1ea;box-shadow:0 40px 90px -25px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.3)">
+
+  <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:#2a2724;border-bottom:1px solid rgba(255,255,255,.06);flex:none">
+    <div style="display:flex;gap:8px;flex:none">
+      <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#febc2e"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#28c840"></span>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:4px;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;background:#f4f1ea;border-radius:8px 8px 0 0;padding:8px 14px;margin-bottom:-11px;max-width:250px">
+        <span style="width:13px;height:13px;border-radius:3px;flex:none;background:#ff4d19"></span>
+        <span style="font-size:12px;color:#1b1917;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Cardumen — Estudio creativo</span>
+        <span style="font-size:12px;color:#8a8378;display:grid;place-items:center"><i data-lucide="x"></i></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;max-width:120px">
+        <span style="width:13px;height:13px;border-radius:3px;flex:none;background:#4b453e"></span>
+        <span style="font-size:12px;color:#a39c91;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Behance</span>
+      </div>
+      <span style="font-size:13px;color:#8a8378;padding:0 6px 6px"><i data-lucide="plus"></i></span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;background:#f4f1ea;border-bottom:1px solid rgba(27,25,23,.1);flex:none">
+    <div style="display:flex;gap:3px;color:#6e675d;font-size:15px">
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="arrow-left"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center;color:#bab2a2"><i data-lucide="arrow-right"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="rotate-cw"></i></span>
+    </div>
+    <div style="flex:1;min-width:0;display:flex;align-items:center;gap:9px;background:#e9e4d9;border:1px solid rgba(27,25,23,.07);border-radius:18px;padding:6px 14px">
+      <span style="font-size:12px;color:#3f7d4e;display:grid;place-items:center"><i data-lucide="lock"></i></span>
+      <span style="font-size:12px;color:#3d3830;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><span style="color:#9a9287">https://</span>cardumen.studio</span>
+      <span style="margin-left:auto;font-size:13px;color:#9a9287"><i data-lucide="star"></i></span>
+    </div>
+    <div style="display:flex;gap:8px;color:#6e675d;font-size:14px;flex:none">
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="puzzle"></i></span>
+      <span style="width:24px;height:24px;border-radius:50%;background:#1b1917;color:#f4f1ea;display:grid;place-items:center;font-size:10.5px;font-weight:600">MG</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;overflow-y:auto;background:#f4f1ea;color:#1b1917">
+
+    <div style="position:sticky;top:0;z-index:20;display:flex;align-items:center;padding:18px 52px;background:rgba(244,241,234,.94);border-bottom:1px solid rgba(27,25,23,.09)">
+      <span style="font-size:19px;font-weight:800;letter-spacing:-.04em">cardumen<span style="color:#ff4d19">.</span></span>
+      <div style="margin-left:44px;display:flex;gap:26px">
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="4">
+          <span style="{{ n.style }}">{{ n.label }}</span>
+        </sc-for>
+      </div>
+      <span style="margin-left:auto;font-size:13.5px;font-weight:600;background:#1b1917;color:#f4f1ea;padding:10px 18px;border-radius:40px;cursor:pointer;display:flex;align-items:center;gap:8px">Contanos tu proyecto <i data-lucide="arrow-up-right"></i></span>
+    </div>
+
+    <div style="padding:60px 52px 44px">
+      <div style="display:flex;align-items:center;gap:14px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#7a7367">
+        <span style="width:44px;height:1px;background:#c3bbaa"></span>Estudio de marca e interacción · Rosario
+      </div>
+      <h1 style="margin:26px 0 0;font-size:82px;line-height:.94;letter-spacing:-.05em;font-weight:800;max-width:980px">Marcas que la gente <span style="font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.02em;color:#ff4d19">reconoce</span> antes de leer el nombre.</h1>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:end;margin-top:32px">
+        <p style="margin:0;font-size:18px;line-height:1.55;color:#4a443b;max-width:560px;text-wrap:pretty">Trabajamos con equipos que ya tienen algo bueno entre manos y necesitan que se vea. Identidad, dirección de arte y producto digital, del posicionamiento al último detalle de la interfaz.</p>
+        <div style="display:flex;gap:36px;flex:none">
+          <sc-for list="{{ heroStats }}" as="s" hint-placeholder-count="3">
+            <div>
+              <div style="font-size:34px;font-weight:800;letter-spacing:-.04em">{{ s.value }}</div>
+              <div style="margin-top:2px;font-size:12.5px;color:#7a7367">{{ s.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:0 52px;display:grid;grid-template-columns:1.6fr 1fr;gap:12px;height:390px">
+      <div style="border-radius:8px;overflow:hidden;background:#ded8cb;position:relative">
+        <image-slot id="cardumen-hero-a" placeholder="Pieza principal del portfolio — packaging o mockup de marca" src="https://images.unsplash.com/photo-1617050318658-a9a3175e34cb?q=80&amp;w=2000&amp;auto=format&amp;fit=crop" credit="Photo by Brands&amp;People on Unsplash" credit-href="https://unsplash.com/@brandsandpeople" style="width:100%;height:100%"></image-slot>
+        <span style="position:absolute;bottom:16px;left:16px;background:#f4f1ea;font-size:12px;font-weight:600;padding:7px 13px;border-radius:30px">Ferment — identidad + packaging</span>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:12px">
+        <div style="border-radius:8px;overflow:hidden;background:#d3ccbe">
+          <image-slot id="cardumen-hero-b" placeholder="Detalle tipográfico o pieza editorial" src="https://images.unsplash.com/photo-1446688568582-55ddb4b37cad?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" credit="Photo by Marcus dePaula on Unsplash" credit-href="https://unsplash.com/@marcusdepaula" style="width:100%;height:100%"></image-slot>
+        </div>
+        <div style="border-radius:8px;background:#ff4d19;color:#fff5f0;padding:24px;display:flex;flex-direction:column;justify-content:space-between">
+          <span style="font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.02em">Premio Diente 2025, categoría rebranding.</span>
+          <span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.85">Círculo de Creativos</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:40px;padding:26px 52px;margin-top:44px;border-top:1px solid rgba(27,25,23,.1);border-bottom:1px solid rgba(27,25,23,.1);background:#efebe1">
+      <span style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#7a7367;flex:none">Clientes</span>
+      <sc-for list="{{ clients }}" as="c" hint-placeholder-count="6">
+        <span style="font-size:17px;font-weight:600;letter-spacing:-.025em;color:#a49b8c">{{ c.name }}</span>
+      </sc-for>
+    </div>
+
+    <div style="padding:60px 52px 0">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:28px">
+        <h2 style="margin:0;font-size:44px;letter-spacing:-.04em;font-weight:800">Trabajo seleccionado</h2>
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+            <span style="{{ f.style }}" onClick="{{ f.select }}">{{ f.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px">
+        <sc-for list="{{ works }}" as="w" hint-placeholder-count="6">
+          <div style="cursor:pointer">
+            <div style="height:230px;border-radius:8px;overflow:hidden;background:{{ w.tone }}">
+              <image-slot id="{{ w.slotId }}" placeholder="{{ w.slotHint }}" src="{{ w.slotSrc }}" credit="{{ w.slotCredit }}" credit-href="{{ w.slotCreditHref }}" style="width:100%;height:100%"></image-slot>
+            </div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:12px">
+              <span style="font-size:17px;font-weight:600;letter-spacing:-.02em">{{ w.name }}</span>
+              <span style="font-size:12px;color:#7a7367">{{ w.year }}</span>
+            </div>
+            <div style="margin-top:3px;font-size:13px;color:#6e675d">{{ w.tags }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="margin-top:66px;padding:60px 52px;background:#1b1917;color:#f4f1ea">
+      <div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:56px">
+        <div>
+          <h2 style="margin:0;font-size:40px;letter-spacing:-.04em;font-weight:800;line-height:1.05">Cómo trabajamos</h2>
+          <p style="margin:16px 0 0;font-size:15.5px;line-height:1.6;color:#a9a29a;max-width:380px">Cuatro capacidades, un mismo equipo. Elegí lo que necesitás o vamos de punta a punta.</p>
+          <div style="margin-top:28px;padding:20px;border:1px solid rgba(244,241,234,.15);border-radius:8px">
+            <div style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#7f786f">Disponibilidad</div>
+            <div style="margin-top:8px;font-size:15.5px;line-height:1.5">Tomamos dos proyectos nuevos por trimestre. Agenda abierta desde octubre.</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+            <div style="{{ s.rowStyle }}" onClick="{{ s.toggle }}">
+              <div style="display:flex;align-items:center;gap:18px">
+                <span style="font-size:12px;color:#7f786f;width:22px">{{ s.num }}</span>
+                <span style="font-size:24px;font-weight:600;letter-spacing:-.025em;flex:1">{{ s.title }}</span>
+                <span style="font-size:17px;color:#ff4d19"><i data-lucide="{{ s.icon }}"></i></span>
+              </div>
+              <div style="{{ s.bodyStyle }}">{{ s.text }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:60px 52px">
+      <h2 style="margin:0;font-size:40px;letter-spacing:-.04em;font-weight:800">El proceso, sin misterio</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <div style="padding:24px;border-radius:8px;background:#efebe1;border:1px solid rgba(27,25,23,.1)">
+            <div style="font-family:'Instrument Serif',serif;font-size:38px;line-height:1;color:#ff4d19">{{ s.num }}</div>
+            <div style="margin-top:14px;font-size:16.5px;font-weight:600;letter-spacing:-.02em">{{ s.title }}</div>
+            <div style="margin-top:7px;font-size:13.5px;line-height:1.55;color:#5a544a;text-wrap:pretty">{{ s.text }}</div>
+            <div style="margin-top:14px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#8a8378">{{ s.weeks }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding:0 52px 60px">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px">
+        <sc-for list="{{ quotes }}" as="q" hint-placeholder-count="2">
+          <div style="padding:32px;border:1px solid rgba(27,25,23,.12);border-radius:8px;background:#efebe1">
+            <div style="font-family:'Instrument Serif',serif;font-size:25px;line-height:1.32;letter-spacing:-.01em;text-wrap:pretty">“{{ q.text }}”</div>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:22px">
+              <span style="width:36px;height:36px;border-radius:50%;background:{{ q.tone }}"></span>
+              <div>
+                <div style="font-size:13.5px;font-weight:600">{{ q.name }}</div>
+                <div style="font-size:12.5px;color:#7a7367">{{ q.role }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding:0 52px 60px">
+      <div style="background:#ff4d19;color:#fff5f0;border-radius:10px;padding:52px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center">
+        <div>
+          <h2 style="margin:0;font-size:50px;line-height:1;letter-spacing:-.045em;font-weight:800">¿Arrancamos?</h2>
+          <p style="margin:18px 0 0;font-size:16.5px;line-height:1.55;max-width:420px;opacity:.92">Contanos en dos párrafos qué estás construyendo. Respondemos en 48 horas con una propuesta de alcance y presupuesto.</p>
+          <div style="display:flex;gap:26px;margin-top:26px;font-size:13px;opacity:.9">
+            <span style="display:flex;align-items:center;gap:8px"><i data-lucide="mail"></i> hola@cardumen.studio</span>
+            <span style="display:flex;align-items:center;gap:8px"><i data-lucide="phone"></i> +54 341 481 2290</span>
+          </div>
+        </div>
+        <div style="background:#fff5f0;border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="font-size:13px;color:#8a8378;background:#f4f1ea;border:1px solid rgba(27,25,23,.12);border-radius:6px;padding:12px 13px">Nombre</div>
+            <div style="font-size:13px;color:#8a8378;background:#f4f1ea;border:1px solid rgba(27,25,23,.12);border-radius:6px;padding:12px 13px">Email</div>
+          </div>
+          <div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7a7367;margin-top:2px">Qué necesitás</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ chips }}" as="c" hint-placeholder-count="4">
+              <span style="{{ c.style }}" onClick="{{ c.toggle }}">{{ c.label }}</span>
+            </sc-for>
+          </div>
+          <div style="font-size:13px;color:#8a8378;background:#f4f1ea;border:1px solid rgba(27,25,23,.12);border-radius:6px;padding:12px 13px;height:74px">Contanos del proyecto…</div>
+          <div style="text-align:center;font-size:14px;font-weight:600;background:#1b1917;color:#f4f1ea;padding:13px;border-radius:40px;cursor:pointer">Enviar mensaje</div>
+          <div style="font-size:11.5px;color:#8a8378;text-align:center">{{ chipSummary }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:36px 52px;border-top:1px solid rgba(27,25,23,.12);display:flex;align-items:center;justify-content:space-between;background:#efebe1">
+      <span style="font-size:16px;font-weight:800;letter-spacing:-.04em">cardumen<span style="color:#ff4d19">.</span></span>
+      <div style="display:flex;gap:22px">
+        <sc-for list="{{ social }}" as="s" hint-placeholder-count="4">
+          <span style="font-size:13px;color:#5a544a;cursor:pointer">{{ s.name }}</span>
+        </sc-for>
+      </div>
+      <span style="font-size:12px;color:#8a8378">© 2026 Cardumen Estudio · Rosario, AR</span>
+    </div>
+
+  </div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ff4d19&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ff4d19&quot;,&quot;#1f6feb&quot;,&quot;#0e7a5f&quot;,&quot;#c11a5b&quot;]}}">
+class Component extends DCLogic {
+  state = { filter: "Todo", open: 0, chips: ["Identidad"] };
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? "#ff4d19";
+
+    const nav = ["Trabajo", "Estudio", "Servicios", "Notas"].map((label, i) => ({
+      label,
+      style: "font-size:13.5px;cursor:pointer;" + (i === 0 ? "color:#1b1917;font-weight:600" : "color:#5a544a")
+    }));
+
+    const heroStats = [
+      { value: "42", label: "Marcas construidas" },
+      { value: "11", label: "Años de estudio" },
+      { value: "6", label: "Personas en el equipo" }
+    ];
+
+    const clients = ["Ferment", "Aula Viva", "Puerto Norte", "Bodega Lastre", "Kali Fintech", "Museo MACRO"].map(name => ({ name }));
+
+    const cats = ["Todo", "Identidad", "Digital", "Editorial"];
+    const filters = cats.map(label => ({
+      label,
+      select: () => this.setState({ filter: label }),
+      style: "font-size:12.5px;font-weight:500;padding:8px 15px;border-radius:30px;cursor:pointer;border:1px solid " +
+        (this.state.filter === label ? "#1b1917;background:#1b1917;color:#f4f1ea" : "rgba(27,25,23,.18);color:#4a443b")
+    }));
+
+    const allWorks = [
+      { name: "Ferment", year: "2025", tags: "Identidad · Packaging", cat: "Identidad", tone: "#d8d1c2", slotHint: "Latas de cerveza con etiquetas", slotSrc: "https://images.unsplash.com/photo-1650122597661-ceccf6d50692?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by Studio Blackthorns on Unsplash", slotCreditHref: "https://unsplash.com/@studioblackthorns" },
+      { name: "Kali Fintech", year: "2025", tags: "Marca · Producto digital", cat: "Digital", tone: "#c9d2cd", slotHint: "App fintech en pantalla de celular", slotSrc: "https://images.unsplash.com/photo-1671459922221-be8beec5c9fa?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by Denise Chan on Unsplash", slotCreditHref: "https://unsplash.com/@elchan" },
+      { name: "Museo MACRO", year: "2024", tags: "Señalética · Editorial", cat: "Editorial", tone: "#e0d6c6", slotHint: "Señalética del museo o afiche", slotSrc: "https://images.unsplash.com/photo-1577745132636-af661b04b8b0?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by Nick Fewings on Unsplash", slotCreditHref: "https://unsplash.com/@jannerboy62" },
+      { name: "Bodega Lastre", year: "2024", tags: "Etiquetas · Dirección de arte", cat: "Identidad", tone: "#cfc4b4", slotHint: "Botellas de vino con etiqueta", slotSrc: "https://images.unsplash.com/photo-1611253943614-9658148e4f50?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by AESOP. Wines© on Unsplash", slotCreditHref: "https://unsplash.com/@aesopwines" },
+      { name: "Aula Viva", year: "2023", tags: "Sitio · Sistema de diseño", cat: "Digital", tone: "#d5cdbf", slotHint: "Sitio web en notebook", slotSrc: "https://images.unsplash.com/photo-1530435460869-d13625c69bbf?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by Pankaj Patel on Unsplash", slotCreditHref: "https://unsplash.com/@pankajpatel" },
+      { name: "Puerto Norte", year: "2023", tags: "Libro · Fotografía", cat: "Editorial", tone: "#dcd4c4", slotHint: "Libro abierto, doble página", slotSrc: "https://images.unsplash.com/photo-1532348374062-fee19177e98f?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by Annie Spratt on Unsplash", slotCreditHref: "https://unsplash.com/@anniespratt" }
+    ];
+    const works = allWorks
+      .filter(w => this.state.filter === "Todo" || w.cat === this.state.filter)
+      .map((w, i) => ({ ...w, slotId: "cardumen-w-" + w.name.toLowerCase().replace(/\s+/g, "-") }));
+
+    const rawServices = [
+      { title: "Identidad de marca", icon: "shapes", text: "Naming, sistema visual, tipografía a medida y manual de uso. Entregamos los archivos y también la capacidad de tu equipo para usarlos." },
+      { title: "Dirección de arte", icon: "camera", text: "Producción fotográfica, casting, estilismo y guías de retoque para que cada campaña se vea parte de la misma marca." },
+      { title: "Producto digital", icon: "layout-dashboard", text: "Sitios, e-commerce y sistemas de diseño en Figma, con handoff a desarrollo y componentes documentados." },
+      { title: "Campañas", icon: "megaphone", text: "Concepto, piezas y calendario para lanzamientos. Trabajamos junto a tu equipo de medios o al que te recomendamos." }
+    ];
+    const services = rawServices.map((s, i) => {
+      const open = this.state.open === i;
+      return {
+        ...s,
+        num: "0" + (i + 1),
+        icon: open ? "minus" : "plus",
+        toggle: () => this.setState({ open: open ? -1 : i }),
+        rowStyle: "padding:22px 0;border-top:1px solid rgba(244,241,234,.16);cursor:pointer" + (i === rawServices.length - 1 ? ";border-bottom:1px solid rgba(244,241,234,.16)" : ""),
+        bodyStyle: open
+          ? "margin:12px 0 0 40px;font-size:14.5px;line-height:1.6;color:#a9a29a;max-width:520px;text-wrap:pretty"
+          : "display:none"
+      };
+    });
+
+    const steps = [
+      { num: "01", title: "Inmersión", text: "Entrevistas, revisión de competencia y auditoría de lo que ya existe.", weeks: "Semana 1–2" },
+      { num: "02", title: "Territorio", text: "Dos rutas visuales con argumento estratégico. Elegís una y la afinamos.", weeks: "Semana 3–4" },
+      { num: "03", title: "Construcción", text: "Sistema completo: tipografía, color, grilla, aplicaciones y piezas clave.", weeks: "Semana 5–8" },
+      { num: "04", title: "Puesta en marcha", text: "Manual, archivos productivos y una sesión de traspaso con tu equipo.", weeks: "Semana 9" }
+    ];
+
+    const quotes = [
+      { text: "Llegamos con un logo y una idea difusa. Salimos con una marca que el equipo comercial usa sin preguntarnos nada.", name: "Malena Duarte", role: "Fundadora, Ferment", tone: "#c9bda8" },
+      { text: "Lo que más valoramos fue el rigor: cada decisión visual venía con un motivo, no con un gusto.", name: "Ignacio Serra", role: "CPO, Kali Fintech", tone: "#a9b4ae" }
+    ];
+
+    const chipOpts = ["Identidad", "Sitio web", "Packaging", "Campaña", "Rebranding"];
+    const chips = chipOpts.map(label => {
+      const on = this.state.chips.indexOf(label) > -1;
+      return {
+        label,
+        toggle: () => this.setState(s => ({ chips: on ? s.chips.filter(c => c !== label) : [...s.chips, label] })),
+        style: "font-size:12.5px;padding:7px 13px;border-radius:30px;cursor:pointer;border:1px solid " +
+          (on ? accent + ";background:" + accent + ";color:#fff5f0" : "rgba(27,25,23,.18);color:#4a443b")
+      };
+    });
+
+    const social = ["Instagram", "Behance", "LinkedIn", "Newsletter"].map(name => ({ name }));
+
+    return {
+      nav, heroStats, clients, filters, works, services, steps, quotes, chips, social,
+      chipSummary: this.state.chips.length
+        ? "Seleccionado: " + this.state.chips.join(", ")
+        : "Elegí al menos un servicio para orientar la propuesta."
+    };
+  }
+}
+
+</script>
+</body>
+</html>

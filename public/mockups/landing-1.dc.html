@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  *{box-sizing:border-box}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{margin:0;background:#15171a;font-family:'Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#c6f24e;text-decoration:none}
+  a:hover{color:#dbff7d}
+  svg.lucide{width:1em;height:1em;stroke-width:1.7}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#0b0d0c}
+  ::-webkit-scrollbar-thumb{background:#2b302c;border-radius:10px}
+</style>
+</helmet>
+<div style="height:100vh;padding:30px;background:#15171a;display:flex;flex-direction:column;overflow:hidden">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;background:#0a0c0b;box-shadow:0 40px 90px -25px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.09)">
+
+  <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:#1c1f1d;border-bottom:1px solid rgba(255,255,255,.07);flex:none">
+    <div style="display:flex;gap:8px;flex:none">
+      <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#febc2e"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#28c840"></span>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:4px;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;background:#0a0c0b;border-radius:8px 8px 0 0;padding:8px 14px;margin-bottom:-11px;max-width:250px">
+        <span style="width:13px;height:13px;border-radius:3px;flex:none;background:#c6f24e"></span>
+        <span style="font-size:12px;color:#e8ece7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Vórtice — Tecnología</span>
+        <span style="font-size:12px;color:#6d746c;display:grid;place-items:center"><i data-lucide="x"></i></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;max-width:130px">
+        <span style="width:13px;height:13px;border-radius:3px;flex:none;background:#3a403b"></span>
+        <span style="font-size:12px;color:#8b938a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Comparar</span>
+      </div>
+      <span style="font-size:13px;color:#6d746c;padding:0 6px 6px"><i data-lucide="plus"></i></span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;background:#0a0c0b;border-bottom:1px solid rgba(255,255,255,.07);flex:none">
+    <div style="display:flex;gap:3px;color:#8b938a;font-size:15px">
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="arrow-left"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center;color:#454b46"><i data-lucide="arrow-right"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="rotate-cw"></i></span>
+    </div>
+    <div style="flex:1;min-width:0;display:flex;align-items:center;gap:9px;background:#151816;border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:6px 14px">
+      <span style="font-size:12px;color:#7fae4a;display:grid;place-items:center"><i data-lucide="lock"></i></span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#c3cabf;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><span style="color:#6d746c">https://</span>vortice.com.ar<span style="color:#6d746c">/audio/vx-900</span></span>
+      <span style="margin-left:auto;font-size:13px;color:#6d746c"><i data-lucide="star"></i></span>
+    </div>
+    <div style="display:flex;gap:8px;color:#8b938a;font-size:14px;flex:none">
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="puzzle"></i></span>
+      <span style="width:24px;height:24px;border-radius:50%;background:#c6f24e;color:#0a0c0b;display:grid;place-items:center;font-size:10.5px;font-weight:700">MG</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;background:#0a0c0b;color:#e8ece7">
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;background:#c6f24e;color:#0a0c0b;font-size:12.5px;font-weight:600">
+      <i data-lucide="truck"></i> Envío gratis en compras desde $150.000 · 12 cuotas sin interés con bancos seleccionados
+    </div>
+
+    <div style="position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:22px;padding:14px 32px;min-width:0;background:rgba(10,12,11,.94);border-bottom:1px solid rgba(255,255,255,.07)">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span style="width:22px;height:22px;border-radius:6px;background:#c6f24e;color:#0a0c0b;display:grid;place-items:center;font-size:13px"><i data-lucide="zap"></i></span>
+        <span style="font-size:16.5px;font-weight:700;letter-spacing:-.03em">vórtice</span>
+      </div>
+      <div style="display:flex;gap:18px;flex:none">
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+          <span style="{{ n.style }}">{{ n.label }}</span>
+        </sc-for>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 auto;justify-content:flex-end">
+        <div style="display:flex;align-items:center;gap:8px;background:#151816;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px 12px;width:150px;min-width:0;flex:1 1 auto;overflow:hidden">
+          <span style="font-size:13px;color:#6d746c;flex:none"><i data-lucide="search"></i></span>
+          <span style="font-size:12.5px;color:#6d746c;white-space:nowrap">Buscar productos</span>
+        </div>
+        <span style="font-size:16px;color:#a8b0a5;flex:none"><i data-lucide="heart"></i></span>
+        <div style="position:relative;display:flex;align-items:center;gap:8px;flex:none;background:#151816;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px 13px;cursor:pointer" onClick="{{ toggleCart }}">
+          <span style="font-size:15px;color:#c6f24e"><i data-lucide="shopping-cart"></i></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#e8ece7">{{ cartCount }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:14px 52px;display:flex;gap:10px;min-width:0;overflow-x:auto;border-bottom:1px solid rgba(255,255,255,.07);background:#0c0f0d">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="6">
+        <div style="{{ c.style }}"><span style="font-size:14px;color:#c6f24e"><i data-lucide="{{ c.icon }}"></i></span>{{ c.label }}</div>
+      </sc-for>
+    </div>
+
+    <div style="padding:44px 52px 52px;display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:radial-gradient(720px 380px at 78% 10%,rgba(198,242,78,.09),transparent 70%)">
+      <div style="position:relative;height:420px;border-radius:14px;overflow:hidden;background:#101312;border:1px solid rgba(255,255,255,.08)">
+        <image-slot id="vortice-hero" placeholder="Foto del producto destacado — auriculares sobre fondo oscuro" src="https://images.unsplash.com/photo-1761005654142-819960af0658?q=80&amp;w=2000&amp;auto=format&amp;fit=crop" credit="Photo by Mustafi Numann on Unsplash" credit-href="https://unsplash.com/@mustafijpg" style="width:100%;height:100%"></image-slot>
+        <span style="position:absolute;top:16px;left:16px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;background:#ff5f45;color:#fff;padding:5px 10px;border-radius:20px">LANZAMIENTO</span>
+        <div style="position:absolute;bottom:16px;left:16px;display:flex;gap:8px">
+          <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="4">
+            <span style="{{ t.style }}"></span>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:#7d857b">
+          <span style="color:#c6f24e">★★★★★</span> 4,8 · 316 opiniones · SKU VX-900
+        </div>
+        <h1 style="margin:14px 0 0;font-size:50px;line-height:1.03;letter-spacing:-.04em;font-weight:700">Auriculares Vórtice VX-900 con cancelación activa</h1>
+        <p style="margin:16px 0 0;font-size:16px;line-height:1.6;color:#a8b0a5;max-width:500px;text-wrap:pretty">Drivers de 40 mm, 38 horas de batería y ANC adaptativo que mide el ruido del ambiente 200 veces por segundo. Bluetooth 5.4 multipunto.</p>
+
+        <div style="display:flex;align-items:flex-end;gap:14px;margin-top:26px">
+          <span style="font-size:40px;font-weight:700;letter-spacing:-.04em">{{ price }}</span>
+          <span style="font-size:16px;color:#6d746c;text-decoration:line-through;padding-bottom:8px">{{ listPrice }}</span>
+          <span style="font-size:12px;font-weight:600;background:rgba(198,242,78,.14);color:#c6f24e;padding:4px 9px;border-radius:20px;margin-bottom:10px">-18%</span>
+        </div>
+        <div style="margin-top:6px;font-size:13.5px;color:#7fae4a">12 cuotas sin interés de {{ installment }}</div>
+
+        <div style="margin-top:24px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#7d857b">Color</div>
+        <div style="display:flex;gap:10px;margin-top:10px">
+          <sc-for list="{{ colors }}" as="c" hint-placeholder-count="3">
+            <div style="{{ c.style }}" onClick="{{ c.select }}">
+              <span style="width:16px;height:16px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:{{ c.hex }}"></span>{{ c.name }}
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;margin-top:26px">
+          <div style="display:flex;align-items:center;gap:14px;border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:10px 14px">
+            <span style="font-size:14px;color:#a8b0a5;cursor:pointer" onClick="{{ dec }}"><i data-lucide="minus"></i></span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:14px;min-width:14px;text-align:center">{{ qty }}</span>
+            <span style="font-size:14px;color:#a8b0a5;cursor:pointer" onClick="{{ inc }}"><i data-lucide="plus"></i></span>
+          </div>
+          <span style="flex:1;text-align:center;font-size:14.5px;font-weight:600;background:#c6f24e;color:#0a0c0b;padding:14px 22px;border-radius:9px;cursor:pointer" onClick="{{ addMain }}">Agregar al carrito</span>
+          <span style="font-size:14.5px;font-weight:500;color:#e8ece7;border:1px solid rgba(255,255,255,.16);padding:14px 20px;border-radius:9px;cursor:pointer">Comprar ahora</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px">
+          <sc-for list="{{ assurances }}" as="a" hint-placeholder-count="3">
+            <div style="display:flex;gap:9px;align-items:flex-start">
+              <span style="font-size:15px;color:#c6f24e;margin-top:1px"><i data-lucide="{{ a.icon }}"></i></span>
+              <div>
+                <div style="font-size:12.5px;font-weight:600">{{ a.title }}</div>
+                <div style="font-size:11.5px;color:#7d857b;line-height:1.45">{{ a.text }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:54px 52px;border-bottom:1px solid rgba(255,255,255,.07)">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px">
+        <div>
+          <h2 style="margin:0;font-size:32px;letter-spacing:-.03em;font-weight:700">Más vendidos de la semana</h2>
+          <p style="margin:10px 0 0;font-size:15px;color:#a8b0a5">Stock real actualizado cada 15 minutos. Retiro en sucursal sin cargo.</p>
+        </div>
+        <span style="font-size:13.5px;font-weight:600;color:#c6f24e;display:flex;align-items:center;gap:7px;cursor:pointer;flex:none">Ver catálogo completo <i data-lucide="arrow-right"></i></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
+          <div style="border:1px solid rgba(255,255,255,.08);border-radius:11px;background:#0e1110;overflow:hidden;display:flex;flex-direction:column">
+            <div style="position:relative;height:170px;background:#131614">
+              <image-slot id="{{ p.slotId }}" placeholder="{{ p.slotHint }}" src="{{ p.slotSrc }}" credit="{{ p.slotCredit }}" credit-href="{{ p.slotCreditHref }}" style="width:100%;height:100%"></image-slot>
+              <span style="{{ p.badgeStyle }}">{{ p.badge }}</span>
+            </div>
+            <div style="padding:16px;display:flex;flex-direction:column;flex:1">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#6d746c">{{ p.brand }}</div>
+              <div style="margin-top:5px;font-size:14.5px;font-weight:600;line-height:1.3;letter-spacing:-.01em">{{ p.name }}</div>
+              <div style="margin-top:auto;padding-top:14px">
+                <div style="font-size:20px;font-weight:700;letter-spacing:-.03em">{{ p.price }}</div>
+                <div style="margin-top:3px;font-size:11.5px;color:#7fae4a">{{ p.cuotas }}</div>
+                <div style="margin-top:12px;display:flex;align-items:center;gap:8px">
+                  <span style="flex:1;text-align:center;font-size:12.5px;font-weight:600;background:rgba(198,242,78,.12);color:#c6f24e;padding:9px;border-radius:7px;cursor:pointer" onClick="{{ p.add }}">Agregar</span>
+                  <span style="width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.12);border-radius:7px;font-size:14px;color:#a8b0a5;cursor:pointer"><i data-lucide="heart"></i></span>
+                </div>
+                <div style="margin-top:9px;font-size:11px;color:{{ p.stockColor }}">{{ p.stock }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding:54px 52px;background:#0c0f0d;border-bottom:1px solid rgba(255,255,255,.07);display:grid;grid-template-columns:.85fr 1.15fr;gap:48px">
+      <div>
+        <h2 style="margin:0;font-size:30px;letter-spacing:-.03em;font-weight:700">Especificaciones del VX-900</h2>
+        <p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#a8b0a5">Ficha completa, manual en español y certificación ENACOM incluidos en la caja.</p>
+        <div style="margin-top:22px;display:flex;flex-direction:column;gap:10px">
+          <span style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:#c3cabf"><i data-lucide="file-text" style="color:#c6f24e"></i> Descargar ficha técnica (PDF)</span>
+          <span style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:#c3cabf"><i data-lucide="scale" style="color:#c6f24e"></i> Comparar con otros modelos</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px">
+        <sc-for list="{{ specs }}" as="s" hint-placeholder-count="8">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+            <span style="font-size:13px;color:#7d857b">{{ s.k }}</span>
+            <span style="font-size:13px;color:#e8ece7;text-align:right">{{ s.v }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding:54px 52px;border-bottom:1px solid rgba(255,255,255,.07)">
+      <div style="display:flex;align-items:center;gap:16px">
+        <h2 style="margin:0;font-size:30px;letter-spacing:-.03em;font-weight:700">Opiniones verificadas</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#7d857b">316 compras confirmadas</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div style="padding:22px;border:1px solid rgba(255,255,255,.08);border-radius:11px;background:#0e1110">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:12.5px;color:#c6f24e">{{ r.stars }}</span>
+              <span style="font-size:11.5px;color:#6d746c">{{ r.date }}</span>
+            </div>
+            <div style="margin-top:12px;font-size:14px;line-height:1.55;color:#c3cabf;text-wrap:pretty">{{ r.text }}</div>
+            <div style="margin-top:14px;font-size:12.5px;color:#7d857b">{{ r.name }} · {{ r.city }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding:56px 52px;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;background:radial-gradient(560px 280px at 20% 120%,rgba(198,242,78,.12),transparent 70%)">
+      <div>
+        <h2 style="margin:0;font-size:36px;letter-spacing:-.035em;font-weight:700;line-height:1.08">Enterate primero de cada lanzamiento</h2>
+        <p style="margin:12px 0 0;font-size:15.5px;color:#a8b0a5;max-width:440px">Suscribite y recibí un cupón de 10% para tu primera compra, más acceso anticipado a las preventas.</p>
+      </div>
+      <div style="display:flex;gap:10px">
+        <div style="flex:1;display:flex;align-items:center;padding:14px 16px;background:#151816;border:1px solid rgba(255,255,255,.1);border-radius:9px;font-size:13.5px;color:#6d746c">tu@email.com</div>
+        <span style="font-size:14px;font-weight:600;background:#c6f24e;color:#0a0c0b;padding:14px 22px;border-radius:9px;cursor:pointer">Suscribirme</span>
+      </div>
+    </div>
+
+    <div style="padding:40px 52px;border-top:1px solid rgba(255,255,255,.07);background:#0c0f0d;display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:32px">
+      <div>
+        <div style="display:flex;align-items:center;gap:9px">
+          <span style="width:20px;height:20px;border-radius:6px;background:#c6f24e;color:#0a0c0b;display:grid;place-items:center;font-size:12px"><i data-lucide="zap"></i></span>
+          <span style="font-size:15px;font-weight:700;letter-spacing:-.03em">vórtice</span>
+        </div>
+        <div style="margin-top:12px;font-size:12.5px;color:#6d746c;line-height:1.6">Tecnología con garantía oficial<br>Sucursales en CABA, Rosario y Córdoba</div>
+        <div style="display:flex;gap:8px;margin-top:16px">
+          <sc-for list="{{ pays }}" as="p" hint-placeholder-count="4">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8b938a;border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:5px 8px">{{ p.name }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="3">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:#6d746c">{{ c.title }}</div>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:14px">
+            <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+              <span style="font-size:13px;color:#a8b0a5;cursor:pointer">{{ l }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:16px 52px;border-top:1px solid rgba(255,255,255,.07);background:#0a0c0b;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:#565d57">
+      <span>© 2026 Vórtice S.A. · CUIT 30-71455822-4</span>
+      <span>Defensa de las y los consumidores · Botón de arrepentimiento</span>
+    </div>
+  </div>
+
+  <div style="{{ drawerStyle }}">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.08)">
+      <span style="font-size:15px;font-weight:600">Tu carrito</span>
+      <span style="font-size:16px;color:#8b938a;cursor:pointer" onClick="{{ toggleCart }}"><i data-lucide="x"></i></span>
+    </div>
+    <div style="flex:1;min-height:0;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ cart }}" as="c" hint-placeholder-count="2">
+        <div style="display:flex;gap:12px">
+          <span style="width:56px;height:56px;flex:none;border-radius:8px;background:#1b201d"></span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:13.5px;font-weight:600;line-height:1.3">{{ c.name }}</div>
+            <div style="margin-top:3px;font-size:11.5px;color:#7d857b">{{ c.variant }}</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
+              <span style="font-size:12px;color:#a8b0a5;cursor:pointer" onClick="{{ c.dec }}"><i data-lucide="minus"></i></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px">{{ c.qty }}</span>
+              <span style="font-size:12px;color:#a8b0a5;cursor:pointer" onClick="{{ c.inc }}"><i data-lucide="plus"></i></span>
+              <span style="margin-left:auto;font-size:13px;font-weight:600">{{ c.line }}</span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+      <div style="{{ emptyStyle }}">Todavía no agregaste productos.</div>
+    </div>
+    <div style="padding:18px 20px;border-top:1px solid rgba(255,255,255,.08);background:#0c0f0d">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#a8b0a5"><span>Subtotal</span><span style="color:#e8ece7">{{ subtotal }}</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#a8b0a5;margin-top:7px"><span>Envío</span><span style="color:#7fae4a">{{ shipping }}</span></div>
+      <div style="margin-top:12px;text-align:center;font-size:14px;font-weight:600;background:#c6f24e;color:#0a0c0b;padding:12px;border-radius:8px;cursor:pointer">Iniciar compra</div>
+      <div style="margin-top:9px;text-align:center;font-size:11.5px;color:#6d746c">o 12 cuotas sin interés de {{ cartInstallment }}</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#c6f24e&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#c6f24e&quot;,&quot;#7dd3fc&quot;,&quot;#ff5f45&quot;,&quot;#a78bfa&quot;]}}">
+class Component extends DCLogic {
+  state = { color: "Grafito", qty: 1, cartOpen: false, cart: [{ name: "Auriculares Vórtice VX-900", variant: "Grafito", qty: 1, price: 289000 }] };
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  money(n) { return "$" + n.toLocaleString("es-AR"); }
+
+  add(name, variant, price) {
+    this.setState(s => {
+      const hit = s.cart.find(c => c.name === name && c.variant === variant);
+      const cart = hit
+        ? s.cart.map(c => (c === hit ? { ...c, qty: c.qty + 1 } : c))
+        : [...s.cart, { name, variant, qty: 1, price }];
+      return { cart, cartOpen: true };
+    });
+  }
+
+  setQty(i, d) {
+    this.setState(s => ({ cart: s.cart.map((c, j) => (j === i ? { ...c, qty: c.qty + d } : c)).filter(c => c.qty > 0) }));
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? "#c6f24e";
+    const nav = ["Audio", "Notebooks", "Gaming", "Smart home", "Ofertas"].map((label, i) => ({
+      label,
+      style: "font-size:13.5px;cursor:pointer;white-space:nowrap;" + (i === 0 ? "color:#e8ece7;font-weight:500" : "color:#a8b0a5")
+    }));
+
+    const cats = [
+      { label: "Audio", icon: "headphones" }, { label: "Notebooks", icon: "laptop" },
+      { label: "Monitores", icon: "monitor" }, { label: "Periféricos", icon: "keyboard" },
+      { label: "Smartphones", icon: "smartphone" }, { label: "Almacenamiento", icon: "hard-drive" },
+      { label: "Smart home", icon: "house-plug" }
+    ].map((c, i) => ({
+      ...c,
+      style: "display:flex;align-items:center;gap:9px;font-size:13px;padding:9px 15px;border-radius:8px;cursor:pointer;white-space:nowrap;flex:none;border:1px solid " +
+        (i === 0 ? "rgba(198,242,78,.35);background:rgba(198,242,78,.09);color:#e8ece7" : "rgba(255,255,255,.08);background:#0e1110;color:#a8b0a5")
+    }));
+
+    const thumbs = [0, 1, 2, 3].map(i => ({
+      style: "width:44px;height:44px;border-radius:7px;cursor:pointer;background:#1b201d;border:1px solid " +
+        (i === 0 ? accent : "rgba(255,255,255,.14)")
+    }));
+
+    const colorOpts = [
+      { name: "Grafito", hex: "#3a3f3c" }, { name: "Arena", hex: "#cbbfa6" }, { name: "Lima", hex: accent }
+    ];
+    const colors = colorOpts.map(c => ({
+      ...c,
+      select: () => this.setState({ color: c.name }),
+      style: "display:flex;align-items:center;gap:9px;font-size:12.5px;padding:9px 14px;border-radius:8px;cursor:pointer;border:1px solid " +
+        (this.state.color === c.name ? accent + ";color:#e8ece7;background:rgba(198,242,78,.07)" : "rgba(255,255,255,.12);color:#a8b0a5")
+    }));
+
+    const base = 289000;
+    const assurances = [
+      { icon: "shield-check", title: "Garantía 24 meses", text: "Oficial, con service en el país" },
+      { icon: "truck", title: "Envío en 48 h", text: "Gratis en AMBA y capitales" },
+      { icon: "rotate-ccw", title: "Cambios 30 días", text: "Sin costo de logística" }
+    ];
+
+    const rawProducts = [
+      { brand: "VÓRTICE", name: "Notebook Vórtice Air 14\" · Ryzen 7 / 16 GB", price: 1349000, badge: "Envío gratis", stock: "Últimas 6 unidades", low: true, slotHint: "Notebook abierta, vista 3/4", slotSrc: "https://images.unsplash.com/photo-1627766556564-5d89b3765c46?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by AltumCode on Unsplash", slotCreditHref: "https://unsplash.com/@altumcode" },
+      { brand: "KRAKEN", name: "Teclado mecánico Kraken K7 · switches lineales", price: 178000, badge: "", stock: "Stock disponible", low: false, slotHint: "Teclado mecánico visto de arriba", slotSrc: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by Stefen Tan on Unsplash", slotCreditHref: "https://unsplash.com/@stefentan" },
+      { brand: "VÓRTICE", name: "Monitor 27\" QHD 165 Hz IPS", price: 645000, badge: "-12%", stock: "Stock disponible", low: false, slotHint: "Monitor de frente", slotSrc: "https://images.unsplash.com/photo-1603481546238-487240415921?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by Jack B on Unsplash", slotCreditHref: "https://unsplash.com/@nervum" },
+      { brand: "NODO", name: "SSD NVMe Nodo 2 TB Gen4", price: 224000, badge: "Más vendido", stock: "Últimas 3 unidades", low: true, slotHint: "SSD M.2 sobre fondo oscuro", slotSrc: "https://images.unsplash.com/photo-1661347561181-148c03cb4554?q=80&w=1600&auto=format&fit=crop", slotCredit: "Photo by Samsung Memory on Unsplash", slotCreditHref: "https://unsplash.com/@samsungmemory" }
+    ];
+
+    const products = rawProducts.map((p, i) => ({
+      ...p,
+      price: this.money(p.price),
+      cuotas: "12 x " + this.money(Math.round(p.price / 12)) + " sin interés",
+      slotId: "vortice-p" + (i + 1),
+      stockColor: p.low ? "#f7b955" : "#7fae4a",
+      badgeStyle: p.badge
+        ? "position:absolute;top:10px;left:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 9px;border-radius:20px;background:" +
+          (p.badge === "-12%" ? "#ff5f45;color:#fff" : accent + ";color:#0a0c0b")
+        : "display:none",
+      add: () => this.add(p.name, p.brand, p.price)
+    }));
+
+    const specs = [
+      { k: "Drivers", v: "40 mm neodimio" }, { k: "Cancelación", v: "ANC adaptativo −42 dB" },
+      { k: "Batería", v: "38 h (ANC on: 27 h)" }, { k: "Carga rápida", v: "10 min = 6 h" },
+      { k: "Bluetooth", v: "5.4 · multipunto" }, { k: "Códecs", v: "LDAC, AAC, SBC" },
+      { k: "Peso", v: "268 g" }, { k: "Resistencia", v: "IPX4" },
+      { k: "Micrófonos", v: "6 con beamforming" }, { k: "En la caja", v: "Estuche rígido, cable USB-C, jack 3,5" }
+    ];
+
+    const reviews = [
+      { stars: "★★★★★", date: "hace 3 días", name: "Luciana P.", city: "Córdoba", text: "La cancelación en el colectivo es otra cosa. Los usé nueve horas seguidas y quedaron con 60%." },
+      { stars: "★★★★★", date: "hace 1 semana", name: "Diego R.", city: "CABA", text: "Llegaron al día siguiente y con factura A. El estuche es rígido de verdad, no el cartón de siempre." },
+      { stars: "★★★★☆", date: "hace 2 semanas", name: "Ana M.", city: "Rosario", text: "Muy cómodos y el multipunto funciona sin cortes entre notebook y celular. Le pediría un poco más de graves." }
+    ];
+
+    const pays = ["VISA", "MASTER", "AMEX", "MODO"].map(name => ({ name }));
+
+    const footerCols = [
+      { title: "COMPRAR", links: ["Todo el catálogo", "Ofertas de la semana", "Financiación", "Retiro en sucursal"] },
+      { title: "AYUDA", links: ["Seguimiento de pedido", "Cambios y devoluciones", "Garantías y service", "Preguntas frecuentes"] },
+      { title: "EMPRESA", links: ["Quiénes somos", "Venta mayorista", "Trabajá con nosotros"] }
+    ];
+
+    const cart = this.state.cart.map((c, i) => ({
+      ...c,
+      line: this.money(c.price * c.qty),
+      inc: () => this.setQty(i, 1),
+      dec: () => this.setQty(i, -1)
+    }));
+    const total = this.state.cart.reduce((a, c) => a + c.price * c.qty, 0);
+
+    return {
+      nav, cats, thumbs, colors, assurances, products, specs, reviews, pays, footerCols, cart,
+      price: this.money(base), listPrice: this.money(352000),
+      installment: this.money(Math.round(base / 12)),
+      qty: String(this.state.qty),
+      inc: () => this.setState(s => ({ qty: s.qty + 1 })),
+      dec: () => this.setState(s => ({ qty: Math.max(1, s.qty - 1) })),
+      addMain: () => this.add("Auriculares Vórtice VX-900", this.state.color, base),
+      toggleCart: () => this.setState(s => ({ cartOpen: !s.cartOpen })),
+      cartCount: String(this.state.cart.reduce((a, c) => a + c.qty, 0)),
+      subtotal: this.money(total),
+      shipping: total >= 150000 ? "Gratis" : this.money(9800),
+      cartInstallment: this.money(Math.round(total / 12) || 0),
+      emptyStyle: this.state.cart.length ? "display:none" : "font-size:13px;color:#6d746c;text-align:center;padding:30px 0",
+      drawerStyle: "position:absolute;top:0;bottom:0;width:352px;z-index:40;background:#0e1110;border-left:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;box-shadow:-24px 0 60px rgba(0,0,0,.55);transition:right .28s ease,visibility .28s;right:" +
+        (this.state.cartOpen ? "0;visibility:visible" : "-360px;visibility:hidden")
+    };
+  }
+}
+
+</script>
+</body>
+</html>

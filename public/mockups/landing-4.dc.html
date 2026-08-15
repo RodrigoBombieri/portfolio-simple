@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#0d2b2a;font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#0f3b3a;text-decoration:none}
+  a:hover{color:#b4622d}
+  svg.lucide{width:1em;height:1em;stroke-width:1.7}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#e7e2d6}
+  ::-webkit-scrollbar-thumb{background:#bdb5a2;border-radius:10px}
+</style>
+</helmet>
+<div style="height:100vh;padding:30px;background:#0d2b2a;display:flex;flex-direction:column">
+<div style="flex:1;min-height:0;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;background:#f5f2ea;box-shadow:0 40px 90px -25px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.25)">
+
+  <div style="display:flex;align-items:center;gap:14px;padding:10px 14px;background:#123634;border-bottom:1px solid rgba(255,255,255,.07);flex:none">
+    <div style="display:flex;gap:8px;flex:none">
+      <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#febc2e"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#28c840"></span>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:4px;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;background:#f5f2ea;border-radius:8px 8px 0 0;padding:8px 14px;margin-bottom:-11px;max-width:270px">
+        <span style="width:13px;height:13px;border-radius:3px;flex:none;background:#0f3b3a"></span>
+        <span style="font-size:12px;color:#12211f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Meridiano — Consultoría contable</span>
+        <span style="font-size:12px;color:#7d7768;display:grid;place-items:center"><i data-lucide="x"></i></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;max-width:120px">
+        <span style="width:13px;height:13px;border-radius:3px;flex:none;background:#3d5250"></span>
+        <span style="font-size:12px;color:#9a9384;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">AFIP</span>
+      </div>
+      <span style="font-size:13px;color:#7d7768;padding:0 6px 6px"><i data-lucide="plus"></i></span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;background:#f5f2ea;border-bottom:1px solid rgba(18,33,31,.1);flex:none">
+    <div style="display:flex;gap:3px;color:#5f5a4e;font-size:15px">
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="arrow-left"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center;color:#b6ae9c"><i data-lucide="arrow-right"></i></span>
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="rotate-cw"></i></span>
+    </div>
+    <div style="flex:1;min-width:0;display:flex;align-items:center;gap:9px;background:#e7e2d6;border:1px solid rgba(18,33,31,.06);border-radius:18px;padding:6px 14px">
+      <span style="font-size:12px;color:#2f7350;display:grid;place-items:center"><i data-lucide="lock"></i></span>
+      <span style="font-size:12px;color:#2f2b23;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><span style="color:#8f8878">https://</span>estudiomeridiano.com.ar</span>
+      <span style="margin-left:auto;font-size:13px;color:#8f8878"><i data-lucide="star"></i></span>
+    </div>
+    <div style="display:flex;gap:8px;color:#5f5a4e;font-size:14px;flex:none">
+      <span style="width:26px;height:26px;display:grid;place-items:center"><i data-lucide="puzzle"></i></span>
+      <span style="width:24px;height:24px;border-radius:50%;background:#0f3b3a;color:#f5f2ea;display:grid;place-items:center;font-size:10.5px;font-weight:600">MG</span>
+    </div>
+  </div>
+
+  <div style="flex:1;min-height:0;overflow-y:auto;background:#f5f2ea;color:#12211f">
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:26px;padding:8px 52px;background:#0f3b3a;color:#e6eae5;font-size:12px">
+      <span style="display:flex;align-items:center;gap:7px"><i data-lucide="phone"></i> 0341 425 7788</span>
+      <span style="display:flex;align-items:center;gap:7px"><i data-lucide="map-pin"></i> Córdoba 1345, piso 4 · Rosario</span>
+      <span style="display:flex;align-items:center;gap:7px"><i data-lucide="clock"></i> Lunes a viernes de 9 a 18</span>
+    </div>
+
+    <div style="position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:30px;padding:16px 52px;background:rgba(245,242,234,.95);border-bottom:1px solid rgba(18,33,31,.1)">
+      <div style="display:flex;align-items:center;gap:11px">
+        <span style="width:26px;height:26px;border-radius:50%;border:1.5px solid #0f3b3a;color:#0f3b3a;display:grid;place-items:center;font-family:'Newsreader',serif;font-size:14px">M</span>
+        <span style="font-family:'Newsreader',serif;font-size:19px;letter-spacing:-.01em">Estudio Meridiano</span>
+      </div>
+      <div style="display:flex;gap:24px">
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+          <span style="{{ n.style }}">{{ n.label }}</span>
+        </sc-for>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:14px">
+        <span style="font-size:13px;color:#3d5250;display:flex;align-items:center;gap:7px;cursor:pointer"><i data-lucide="message-circle"></i> WhatsApp</span>
+        <span style="font-size:13.5px;font-weight:600;background:#0f3b3a;color:#f5f2ea;padding:10px 18px;border-radius:6px;cursor:pointer">Pedir diagnóstico</span>
+      </div>
+    </div>
+
+    <div style="padding:60px 52px 52px;display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center;border-bottom:1px solid rgba(18,33,31,.1)">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#6b6558">
+          <span style="width:34px;height:1px;background:#b4622d"></span>Contadores públicos · Matrícula CPCE Santa Fe
+        </div>
+        <h1 style="font-family:'Newsreader',serif;margin:22px 0 0;font-size:60px;line-height:1.04;letter-spacing:-.025em;font-weight:400;max-width:600px">Tu pyme, en orden y sin sorpresas con <span style="font-style:italic;color:#b4622d">la AFIP</span>.</h1>
+        <p style="margin:20px 0 0;font-size:17px;line-height:1.62;color:#413c33;max-width:520px;text-wrap:pretty">Acompañamos a comercios, profesionales y pymes de Rosario y la región con liquidación de impuestos, sueldos y planificación fiscal. Un contador asignado que conoce tu negocio, no un call center.</p>
+        <div style="display:flex;gap:12px;margin-top:30px">
+          <span style="font-size:14.5px;font-weight:600;background:#0f3b3a;color:#f5f2ea;padding:14px 22px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:9px">Agendar diagnóstico gratuito <i data-lucide="arrow-right"></i></span>
+          <span style="font-size:14.5px;font-weight:500;color:#12211f;border:1px solid rgba(18,33,31,.22);padding:14px 22px;border-radius:6px;cursor:pointer">Ver servicios</span>
+        </div>
+        <div style="display:flex;gap:32px;margin-top:34px;padding-top:24px;border-top:1px solid rgba(18,33,31,.12)">
+          <sc-for list="{{ heroStats }}" as="s" hint-placeholder-count="3">
+            <div>
+              <div style="font-family:'Newsreader',serif;font-size:30px;letter-spacing:-.02em">{{ s.value }}</div>
+              <div style="margin-top:2px;font-size:12.5px;color:#6b6558">{{ s.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="height:250px;border-radius:8px;overflow:hidden;background:#ddd7c8">
+          <image-slot id="meridiano-hero" placeholder="Foto del equipo o de la oficina del estudio" src="https://images.unsplash.com/photo-1758518727707-b023e285b709?q=80&amp;w=2000&amp;auto=format&amp;fit=crop" credit="Photo by Vitaly Gariev on Unsplash" credit-href="https://unsplash.com/@silverkblack" style="width:100%;height:100%"></image-slot>
+        </div>
+        <div style="padding:22px;border-radius:8px;background:#0f3b3a;color:#e6eae5">
+          <div style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Primera reunión</div>
+          <div style="margin-top:10px;font-family:'Newsreader',serif;font-size:23px;line-height:1.3">Media hora, sin cargo y sin compromiso. Salís con un diagnóstico escrito de tu situación fiscal.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:52px;border-bottom:1px solid rgba(18,33,31,.1)">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:30px">
+        <div>
+          <h2 style="font-family:'Newsreader',serif;margin:0;font-size:38px;letter-spacing:-.02em;font-weight:400">Servicios</h2>
+          <p style="margin:10px 0 0;font-size:15.5px;color:#413c33">Elegí un área para ver qué incluye y a quién le sirve.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+            <span style="{{ t.style }}" onClick="{{ t.select }}">{{ t.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="margin-top:28px;display:grid;grid-template-columns:1.05fr .95fr;gap:0;border:1px solid rgba(18,33,31,.14);border-radius:10px;overflow:hidden;background:#fbf9f4">
+        <div style="padding:32px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="width:38px;height:38px;border-radius:8px;background:#e7e2d6;color:#0f3b3a;display:grid;place-items:center;font-size:17px"><i data-lucide="{{ active.icon }}"></i></span>
+            <h3 style="font-family:'Newsreader',serif;margin:0;font-size:27px;font-weight:400;letter-spacing:-.02em">{{ active.title }}</h3>
+          </div>
+          <p style="margin:16px 0 0;font-size:15.5px;line-height:1.62;color:#413c33;text-wrap:pretty">{{ active.text }}</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px">
+            <sc-for list="{{ active.items }}" as="i" hint-placeholder-count="6">
+              <span style="display:flex;align-items:flex-start;gap:9px;font-size:13.5px;line-height:1.45;color:#2f2b23"><i data-lucide="check" style="color:#b4622d;margin-top:2px"></i> {{ i.text }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:32px;background:#efebe0;border-left:1px solid rgba(18,33,31,.12)">
+          <div style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#6b6558">Ideal para</div>
+          <div style="margin-top:10px;font-size:15.5px;line-height:1.55;color:#2f2b23">{{ active.who }}</div>
+          <div style="margin-top:24px;padding-top:22px;border-top:1px solid rgba(18,33,31,.14)">
+            <div style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#6b6558">Abono mensual desde</div>
+            <div style="margin-top:8px;display:flex;align-items:flex-end;gap:8px">
+              <span style="font-family:'Newsreader',serif;font-size:34px;letter-spacing:-.02em">{{ active.price }}</span>
+              <span style="font-size:12.5px;color:#6b6558;padding-bottom:7px">+ IVA</span>
+            </div>
+            <div style="margin-top:6px;font-size:12.5px;color:#6b6558">{{ active.priceNote }}</div>
+          </div>
+          <div style="margin-top:24px;text-align:center;font-size:13.5px;font-weight:600;background:#0f3b3a;color:#f5f2ea;padding:12px;border-radius:6px;cursor:pointer">Consultar por {{ active.title }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:52px;background:#efebe0;border-bottom:1px solid rgba(18,33,31,.1)">
+      <h2 style="font-family:'Newsreader',serif;margin:0;font-size:38px;letter-spacing:-.02em;font-weight:400">Cómo empezamos a trabajar</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <div style="padding:24px;background:#f5f2ea;border:1px solid rgba(18,33,31,.13);border-radius:8px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="width:26px;height:26px;border-radius:50%;background:#0f3b3a;color:#f5f2ea;display:grid;place-items:center;font-size:12px;font-weight:600">{{ s.num }}</span>
+              <span style="font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#6b6558">{{ s.when }}</span>
+            </div>
+            <div style="margin-top:14px;font-size:16.5px;font-weight:600;letter-spacing:-.01em">{{ s.title }}</div>
+            <div style="margin-top:7px;font-size:13.5px;line-height:1.55;color:#4c473d;text-wrap:pretty">{{ s.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding:52px;border-bottom:1px solid rgba(18,33,31,.1);display:grid;grid-template-columns:1fr 1fr;gap:44px">
+      <div>
+        <h2 style="font-family:'Newsreader',serif;margin:0;font-size:38px;letter-spacing:-.02em;font-weight:400">Quiénes somos</h2>
+        <p style="margin:16px 0 0;font-size:15.5px;line-height:1.65;color:#413c33;text-wrap:pretty">Somos un estudio de cuatro contadores y dos administrativos. Trabajamos con 180 clientes activos, la mayoría comercios y profesionales de Rosario, Funes y Roldán. Cada cliente tiene un contador asignado y un canal directo de WhatsApp con respuesta en el día.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:26px">
+          <sc-for list="{{ team }}" as="t" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(18,33,31,.12)">
+              <span style="width:44px;height:44px;flex:none;border-radius:50%;background:{{ t.tone }}"></span>
+              <div style="flex:1">
+                <div style="font-size:14.5px;font-weight:600">{{ t.name }}</div>
+                <div style="margin-top:2px;font-size:12.5px;color:#6b6558">{{ t.role }}</div>
+              </div>
+              <span style="font-size:11.5px;color:#6b6558">{{ t.mat }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <h2 style="font-family:'Newsreader',serif;margin:0;font-size:38px;letter-spacing:-.02em;font-weight:400">Lo que dicen los clientes</h2>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:22px">
+          <sc-for list="{{ quotes }}" as="q" hint-placeholder-count="3">
+            <div style="padding:24px;background:#fbf9f4;border:1px solid rgba(18,33,31,.13);border-radius:8px">
+              <div style="font-family:'Newsreader',serif;font-size:20px;line-height:1.42;font-style:italic;text-wrap:pretty">“{{ q.text }}”</div>
+              <div style="margin-top:14px;font-size:12.5px;color:#6b6558">{{ q.name }} · {{ q.biz }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:52px;background:#0f3b3a;color:#e6eae5;border-bottom:1px solid rgba(18,33,31,.1)">
+      <div style="display:grid;grid-template-columns:.85fr 1.15fr;gap:48px">
+        <div>
+          <h2 style="font-family:'Newsreader',serif;margin:0;font-size:38px;letter-spacing:-.02em;font-weight:400">Preguntas frecuentes</h2>
+          <p style="margin:14px 0 0;font-size:15px;line-height:1.6;opacity:.75">Si tu caso no está acá, escribinos y lo revisamos sin cargo.</p>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+            <div style="{{ f.rowStyle }}" onClick="{{ f.toggle }}">
+              <div style="display:flex;align-items:center;gap:14px">
+                <span style="font-size:15.5px;font-weight:600;flex:1">{{ f.q }}</span>
+                <span style="font-size:16px;color:#e0a06a"><i data-lucide="{{ f.icon }}"></i></span>
+              </div>
+              <div style="{{ f.bodyStyle }}">{{ f.a }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start">
+      <div>
+        <h2 style="font-family:'Newsreader',serif;margin:0;font-size:40px;letter-spacing:-.025em;font-weight:400;line-height:1.1">Pedí tu diagnóstico<br>sin cargo</h2>
+        <p style="margin:16px 0 0;font-size:15.5px;line-height:1.62;color:#413c33;max-width:440px">Completá el formulario y te contactamos dentro de las 24 horas hábiles para coordinar una reunión de 30 minutos, presencial o por videollamada.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:26px">
+          <sc-for list="{{ contactInfo }}" as="c" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:13px">
+              <span style="width:34px;height:34px;border-radius:8px;background:#e7e2d6;color:#0f3b3a;display:grid;place-items:center;font-size:15px"><i data-lucide="{{ c.icon }}"></i></span>
+              <div>
+                <div style="font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#6b6558">{{ c.label }}</div>
+                <div style="margin-top:2px;font-size:14.5px;font-weight:500">{{ c.value }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:26px;height:180px;border-radius:8px;overflow:hidden;background:#ddd7c8">
+          <image-slot id="meridiano-mapa" placeholder="Mapa o foto de la fachada de la oficina" src="https://images.unsplash.com/photo-1745015446589-7ee6f702d8c1?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" credit="Photo by Fabian Kleiser on Unsplash" credit-href="https://unsplash.com/@fabiankleiser" style="width:100%;height:100%"></image-slot>
+        </div>
+      </div>
+      <div style="padding:30px;background:#fbf9f4;border:1px solid rgba(18,33,31,.14);border-radius:10px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <div style="font-size:12px;color:#6b6558">Nombre y apellido</div>
+            <div style="margin-top:6px;font-size:13.5px;color:#8f8878;background:#f5f2ea;border:1px solid rgba(18,33,31,.15);border-radius:5px;padding:11px 12px">Ej. Laura Giménez</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:#6b6558">Teléfono</div>
+            <div style="margin-top:6px;font-size:13.5px;color:#8f8878;background:#f5f2ea;border:1px solid rgba(18,33,31,.15);border-radius:5px;padding:11px 12px">341 …</div>
+          </div>
+        </div>
+        <div style="margin-top:14px">
+          <div style="font-size:12px;color:#6b6558">Email</div>
+          <div style="margin-top:6px;font-size:13.5px;color:#8f8878;background:#f5f2ea;border:1px solid rgba(18,33,31,.15);border-radius:5px;padding:11px 12px">laura@miempresa.com.ar</div>
+        </div>
+        <div style="margin-top:18px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6b6558">Situación actual</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+          <sc-for list="{{ situations }}" as="s" hint-placeholder-count="4">
+            <span style="{{ s.style }}" onClick="{{ s.select }}">{{ s.label }}</span>
+          </sc-for>
+        </div>
+        <div style="margin-top:18px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#6b6558">Servicios que te interesan</div>
+        <div style="display:flex;flex-direction:column;gap:9px;margin-top:10px">
+          <sc-for list="{{ checks }}" as="c" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onClick="{{ c.toggle }}">
+              <span style="{{ c.boxStyle }}"><i data-lucide="check"></i></span>
+              <span style="font-size:13.5px;color:#2f2b23">{{ c.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:16px">
+          <div style="font-size:12px;color:#6b6558">Comentario (opcional)</div>
+          <div style="margin-top:6px;height:72px;font-size:13.5px;color:#8f8878;background:#f5f2ea;border:1px solid rgba(18,33,31,.15);border-radius:5px;padding:11px 12px">Contanos brevemente tu situación…</div>
+        </div>
+        <div style="margin-top:18px;text-align:center;font-size:14.5px;font-weight:600;background:#0f3b3a;color:#f5f2ea;padding:13px;border-radius:6px;cursor:pointer">Enviar solicitud</div>
+        <div style="margin-top:10px;font-size:11.5px;color:#6b6558;text-align:center">{{ formSummary }}</div>
+      </div>
+    </div>
+
+    <div style="padding:34px 52px;background:#12211f;color:#c6cdc7;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px">
+      <div>
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="width:24px;height:24px;border-radius:50%;border:1.5px solid #c6cdc7;display:grid;place-items:center;font-family:'Newsreader',serif;font-size:13px">M</span>
+          <span style="font-family:'Newsreader',serif;font-size:17px;color:#f5f2ea">Estudio Meridiano</span>
+        </div>
+        <div style="margin-top:12px;font-size:12.5px;line-height:1.6">Contadores públicos · CPCE Santa Fe<br>Córdoba 1345, piso 4 · Rosario, Santa Fe</div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="2">
+        <div>
+          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8b938c">{{ c.title }}</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+            <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+              <span style="font-size:12.5px;cursor:pointer">{{ l }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:14px 52px;background:#0d1a19;color:#7d857e;display:flex;justify-content:space-between;font-size:11.5px">
+      <span>© 2026 Estudio Meridiano · CUIT 30-71299845-1</span>
+      <span>Política de privacidad</span>
+    </div>
+
+  </div>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#b4622d&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#b4622d&quot;,&quot;#0f3b3a&quot;,&quot;#7a2e3c&quot;,&quot;#2f5d8a&quot;]}}">
+class Component extends DCLogic {
+  state = { tab: "Impuestos", faq: 0, situation: "Ya tengo contador", checks: ["Impuestos mensuales"] };
+
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    const go = () => window.lucide && window.lucide.createIcons();
+    go(); setTimeout(go, 300); setTimeout(go, 1200);
+  }
+
+  money(n) { return "$" + n.toLocaleString("es-AR"); }
+
+  renderVals() {
+    const accent = this.props.accent ?? "#b4622d";
+
+    const nav = ["Servicios", "Proceso", "Estudio", "Preguntas", "Contacto"].map((label, i) => ({
+      label,
+      style: "font-size:13.5px;cursor:pointer;" + (i === 0 ? "color:#12211f;font-weight:600" : "color:#413c33")
+    }));
+
+    const heroStats = [
+      { value: "180", label: "Clientes activos" },
+      { value: "22 años", label: "En Rosario" },
+      { value: "24 h", label: "Tiempo de respuesta" }
+    ];
+
+    const services = {
+      "Impuestos": {
+        icon: "receipt", title: "Impuestos", price: this.money(78000), priceNote: "Monotributo desde " + this.money(32000),
+        text: "Liquidamos y presentamos todo el calendario impositivo nacional y provincial. Te avisamos con antelación cuánto vas a pagar y por qué, sin sorpresas el día del vencimiento.",
+        who: "Comercios, profesionales independientes y pymes con facturación mensual regular.",
+        items: ["IVA y Ganancias", "Ingresos Brutos y Convenio Multilateral", "Monotributo y recategorizaciones", "Regímenes de retención", "Planes de pago y moratorias", "Presentación de balances"]
+      },
+      "Sueldos": {
+        icon: "users", title: "Sueldos y cargas sociales", price: this.money(42000), priceNote: "Hasta 10 empleados; luego por legajo",
+        text: "Liquidación mensual de sueldos, cargas sociales y libro digital. Preparamos altas, bajas y la documentación de ART y sindicato, con recibos listos para firmar.",
+        who: "Empresas con empleados en relación de dependencia, de 1 a 60 legajos.",
+        items: ["Recibos y libro sueldo digital", "F-931 y cargas sociales", "Altas, bajas y modificaciones", "Vacaciones y licencias", "Convenios y escalas salariales", "Indemnizaciones y acuerdos"]
+      },
+      "Consultoría": {
+        icon: "compass", title: "Consultoría y planificación", price: this.money(160000), priceNote: "Por proyecto, según alcance",
+        text: "Analizamos tu estructura para bajar la carga impositiva dentro de la ley y ordenar la información con la que decidís. Incluye reuniones mensuales de seguimiento.",
+        who: "Empresas familiares, socios que están reorganizando la sociedad o proyectando una inversión.",
+        items: ["Planificación fiscal anual", "Elección de figura societaria", "Tablero de indicadores", "Análisis de costos y precios", "Proyección de flujo de fondos", "Asistencia en financiamiento"]
+      },
+      "Auditoría": {
+        icon: "file-search", title: "Auditoría y certificaciones", price: this.money(210000), priceNote: "Por informe, según volumen",
+        text: "Certificaciones e informes especiales firmados y legalizados en el Consejo, con los papeles de trabajo que respaldan cada cifra.",
+        who: "Empresas que necesitan presentar información ante bancos, licitaciones u organismos.",
+        items: ["Certificación de ingresos", "Auditoría de estados contables", "Informes para licitaciones", "Valuación de participaciones", "Revisión de control interno", "Legalización en CPCE"]
+      }
+    };
+
+    const tabs = Object.keys(services).map(label => ({
+      label,
+      select: () => this.setState({ tab: label }),
+      style: "font-size:13px;font-weight:500;padding:9px 16px;border-radius:6px;cursor:pointer;border:1px solid " +
+        (this.state.tab === label ? "#0f3b3a;background:#0f3b3a;color:#f5f2ea" : "rgba(18,33,31,.2);color:#413c33")
+    }));
+
+    const act = services[this.state.tab];
+    const active = { ...act, items: act.items.map(text => ({ text })) };
+
+    const steps = [
+      { num: "1", when: "Día 1", title: "Diagnóstico", text: "Media hora para entender tu situación y revisar tus últimas presentaciones." },
+      { num: "2", when: "Día 2 a 4", title: "Propuesta", text: "Te enviamos alcance, honorarios y qué necesitamos de tu parte, por escrito." },
+      { num: "3", when: "Semana 1", title: "Traspaso", text: "Pedimos las claves fiscales y los papeles al contador anterior. Nos ocupamos nosotros." },
+      { num: "4", when: "Mes a mes", title: "Rutina", text: "Calendario con avisos previos, liquidaciones a término y un informe mensual claro." }
+    ];
+
+    const team = [
+      { name: "Cra. Verónica Alsina", role: "Socia · Impositivo", mat: "Mat. 18.442", tone: "#c9c0aa" },
+      { name: "Cr. Federico Roldán", role: "Socio · Laboral y sueldos", mat: "Mat. 19.017", tone: "#aab8b0" },
+      { name: "Cra. Julieta Marín", role: "Consultoría y auditoría", mat: "Mat. 21.386", tone: "#cbb9ad" }
+    ];
+
+    const quotes = [
+      { text: "Veníamos de dos años de presentaciones fuera de término. En cuatro meses estábamos al día y con un plan de pago razonable.", name: "Gustavo D.", biz: "Ferretería, 9 empleados" },
+      { text: "Lo que más valoro es que me explican en castellano qué firmo y por qué.", name: "Mariana T.", biz: "Estudio de arquitectura" },
+      { text: "Contestan el WhatsApp el mismo día. Para mí eso vale más que el honorario.", name: "Leandro F.", biz: "Distribuidora de alimentos" }
+    ];
+
+    const rawFaqs = [
+      { q: "¿Trabajan con clientes de otras ciudades?", a: "Sí. Casi todo se hace en forma digital y las reuniones pueden ser por videollamada. Tenemos clientes en Santa Fe, Córdoba y Buenos Aires." },
+      { q: "¿Cómo es el cambio de contador?", a: "Nos ocupamos del traspaso: pedimos claves, papeles y últimas presentaciones. Vos solo firmás la autorización en AFIP." },
+      { q: "¿Los honorarios son fijos?", a: "Se acuerda un abono mensual por escrito, con actualización semestral pautada. Los trabajos especiales se cotizan aparte antes de empezar." },
+      { q: "¿Qué pasa si tengo deuda con AFIP?", a: "Primero medimos el total real y las opciones de plan vigentes. Después definimos juntos cuál conviene según tu flujo de caja." },
+      { q: "¿Atienden monotributistas?", a: "Sí, con un abono reducido que incluye recategorizaciones y control de facturación para no pasarte de escala." }
+    ];
+    const faqs = rawFaqs.map((f, i) => {
+      const open = this.state.faq === i;
+      return {
+        ...f,
+        icon: open ? "minus" : "plus",
+        toggle: () => this.setState({ faq: open ? -1 : i }),
+        rowStyle: "padding:19px 0;cursor:pointer;border-top:1px solid rgba(230,234,229,.2)" + (i === rawFaqs.length - 1 ? ";border-bottom:1px solid rgba(230,234,229,.2)" : ""),
+        bodyStyle: open ? "margin-top:10px;font-size:14px;line-height:1.6;opacity:.78;max-width:560px;text-wrap:pretty" : "display:none"
+      };
+    });
+
+    const contactInfo = [
+      { icon: "phone", label: "Teléfono", value: "0341 425 7788" },
+      { icon: "mail", label: "Email", value: "contacto@estudiomeridiano.com.ar" },
+      { icon: "map-pin", label: "Oficina", value: "Córdoba 1345, piso 4 · Rosario" }
+    ];
+
+    const situations = ["Ya tengo contador", "Recién arranco", "Estoy al día", "Tengo deuda"].map(label => ({
+      label,
+      select: () => this.setState({ situation: label }),
+      style: "font-size:12.5px;padding:8px 13px;border-radius:20px;cursor:pointer;border:1px solid " +
+        (this.state.situation === label ? accent + ";background:" + accent + ";color:#fff" : "rgba(18,33,31,.18);color:#413c33")
+    }));
+
+    const checkOpts = ["Impuestos mensuales", "Sueldos y cargas sociales", "Consultoría y planificación", "Auditoría o certificación"];
+    const checks = checkOpts.map(label => {
+      const on = this.state.checks.indexOf(label) > -1;
+      return {
+        label,
+        toggle: () => this.setState(s => ({ checks: on ? s.checks.filter(c => c !== label) : [...s.checks, label] })),
+        boxStyle: "width:19px;height:19px;flex:none;border-radius:4px;display:grid;place-items:center;font-size:12px;border:1px solid " +
+          (on ? "#0f3b3a;background:#0f3b3a;color:#f5f2ea" : "rgba(18,33,31,.28);background:#f5f2ea;color:transparent")
+      };
+    });
+
+    const footerCols = [
+      { title: "Servicios", links: ["Impuestos", "Sueldos", "Consultoría", "Auditoría"] },
+      { title: "Estudio", links: ["Equipo", "Proceso de trabajo", "Preguntas frecuentes", "Contacto"] }
+    ];
+
+    return {
+      nav, heroStats, tabs, active, steps, team, quotes, faqs, contactInfo, situations, checks, footerCols,
+      formSummary: this.state.checks.length
+        ? this.state.situation + " · " + this.state.checks.length + " servicio(s) seleccionado(s)"
+        : "Seleccioná al menos un servicio."
+    };
+  }
+}
+
+</script>
+</body>
+</html>
