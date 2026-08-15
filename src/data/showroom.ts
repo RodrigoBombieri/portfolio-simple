@@ -53,7 +53,11 @@ export const SHOWROOM_CATEGORIES: ShowroomCategory[] = [
       {
         title: "Ecommerce",
         description: "Tienda online de producto artesanal, catálogo y ficha de producto con checkout.",
-        embed: { src: "/mockups/web-4.dc.html", width: 1440, height: 1500 },
+        // El diseño real mide ~1500px de alto (catálogo + ficha + checkout), pero se
+        // recorta a 1060 —igual que sus hermanas de esta fila— para que las 4 cards
+        // del showroom queden del mismo tamaño. El mockup completo se sigue viendo
+        // entero (con scroll) al abrir "Ver interactivo".
+        embed: { src: "/mockups/web-4.dc.html", width: 1440, height: 1060 },
       },
     ],
   },
