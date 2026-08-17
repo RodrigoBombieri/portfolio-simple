@@ -33,11 +33,12 @@ export const PROJECTS: Project[] = [
     url: "https://github.com/RodrigoBombieri/SistemaEscritorio"
   },
   {
-    title: "Plataforma web",
+    title: "Control de Vencimientos",
     category: "Aplicación Web",
-    description: "Panel administrativo con dashboards, roles y APIs para terceros.",
-    tags: ["Node.js", "PostgreSQL", "Docker"],
-    image: "/images/proyecto-plataforma.jpg",
+    description: "Control de vencimientos de servicios y trámites con notificaciones automáticas.",
+    tags: ["C#", "SQL Server", ".NET MVC"],
+    image: "/images/proyecto-vencimientos.jpg",
+    url: "https://github.com/RodrigoBombieri/ControlVencimientos"
   },
   {
     title: "Software para drones",
