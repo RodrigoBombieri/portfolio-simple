@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     category: "Aplicación Web",
     description: "Control de vencimientos de servicios y trámites con notificaciones automáticas.",
     tags: ["C#", "SQL Server", ".NET MVC"],
-    image: "/images/proyecto-vencimientos.jpg",
+    image: "/images/proyecto-vencimientos.png",
     url: "https://github.com/RodrigoBombieri/ControlVencimientos"
   },
   {
