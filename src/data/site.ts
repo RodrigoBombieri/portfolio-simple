@@ -13,6 +13,11 @@ export const WHATSAPP_LINK = `https://wa.me/${SITE.whatsapp}?text=${encodeURICom
   "Hola! Quiero pedir un presupuesto para un proyecto de software."
 )}`;
 
+// Flag para ocultar temporalmente todo el contenido relacionado a "Drones"
+// (nav, proyecto, servicio, sección dedicada, opción del form y SEO) sin
+// borrar nada. Para volver a mostrarlo, cambiar a true.
+export const SHOW_DRONES = false;
+
 // Los links con "#" apuntan siempre a secciones de la home ("/#seccion"),
 // así funcionan tanto parados en la home (scroll suave) como desde páginas
 // separadas como /showroom o /portfolio-tecnico (navegan a la home y saltan
@@ -21,7 +26,7 @@ export const NAV_LINKS = [
   { label: "Servicios", href: "/#servicios" },
   { label: "Showroom", href: "/showroom" },
   { label: "Cómo trabajo", href: "/#proceso" },
-  { label: "Drones", href: "/#drones" },
+  ...(SHOW_DRONES ? [{ label: "Drones", href: "/#drones" }] : []),
   { label: "FAQ", href: "/#faq" },
   { label: "Portfolio técnico", href: "/portfolio-tecnico" },
   { label: "Contacto", href: "/#contacto" },

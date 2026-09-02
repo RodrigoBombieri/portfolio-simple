@@ -1,3 +1,5 @@
+import { SHOW_DRONES } from "./site";
+
 export interface Project {
   title: string;
   category: string;
@@ -40,14 +42,14 @@ export const PROJECTS: Project[] = [
     image: "/images/proyecto-vencimientos.png",
     url: "https://github.com/RodrigoBombieri/ControlVencimientos"
   },
-  {
+  ...(SHOW_DRONES ? [{
     title: "Software para drones",
     category: "Drones",
     description: "Planificación de misiones autónomas y procesamiento de datos de sensores.",
     tags: ["Python", "ROS2", "OpenAI"],
     image: "/images/proyecto-drones.jpg",
     url:"https://github.com/RodrigoBombieri/agrotello"
-  },
+  }] : []),
   {
     title: "Web API para Profesionales",
     category: "Desarrollo Web",

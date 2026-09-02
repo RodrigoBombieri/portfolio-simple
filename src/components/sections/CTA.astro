@@ -1,6 +1,6 @@
 ---
 import Icon from "@components/ui/Icon.astro";
-import { SITE, WHATSAPP_LINK } from "@data/site";
+import { SITE, WHATSAPP_LINK, SHOW_DRONES } from "@data/site";
 ---
 
 <section id="contacto" class="relative overflow-hidden border-t border-border-soft py-16 lg:py-24">
@@ -77,7 +77,7 @@ import { SITE, WHATSAPP_LINK } from "@data/site";
             <option value="Landing Page">Landing Page</option>
             <option value="Aplicación Web">Aplicación Web</option>
             <option value="Aplicación de Escritorio">Aplicación de Escritorio</option>
-            <option value="Software para Drones">Software para Drones</option>
+            {SHOW_DRONES && <option value="Software para Drones">Software para Drones</option>}
             <option value="Otro">Otro</option>
           </select>
         </div>

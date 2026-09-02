@@ -1,7 +1,7 @@
 ---
 import "@styles/global.css";
 import Analytics from "@vercel/analytics/astro";
-import { SITE } from "@data/site";
+import { SITE, SHOW_DRONES } from "@data/site";
 import { TECHNOLOGIES } from "@data/tech";
 import { PROJECTS } from "@data/projects";
 
@@ -146,7 +146,7 @@ const projectsWithRepo = PROJECTS.filter((p) => p.url);
           "Aplicaciones de Escritorio",
           "Software a medida",
           "Automatización de procesos",
-          "Software para drones",
+          ...(SHOW_DRONES ? ["Software para drones"] : []),
         ],
       })}
     />
