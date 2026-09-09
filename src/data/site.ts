@@ -16,7 +16,7 @@ export const WHATSAPP_LINK = `https://wa.me/${SITE.whatsapp}?text=${encodeURICom
 // Flag para ocultar temporalmente todo el contenido relacionado a "Drones"
 // (nav, proyecto, servicio, sección dedicada, opción del form y SEO) sin
 // borrar nada. Para volver a mostrarlo, cambiar a true.
-export const SHOW_DRONES = false;
+export const SHOW_DRONES = true;
 
 // Los links con "#" apuntan siempre a secciones de la home ("/#seccion"),
 // así funcionan tanto parados en la home (scroll suave) como desde páginas
