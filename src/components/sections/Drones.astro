@@ -1,6 +1,7 @@
 ---
 import Icon from "@components/ui/Icon.astro";
 import Button from "@components/ui/Button.astro";
+import ExperimentalBadge from "@components/ui/ExperimentalBadge.astro";
 import { DRONE_USE_CASES } from "@data/drones";
 ---
 
@@ -14,10 +15,13 @@ import { DRONE_USE_CASES } from "@data/drones";
 
       <div class="relative grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <div class="flex flex-col gap-6" data-animate>
-          <span class="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-cyan">
-            <span class="size-1.5 rounded-full bg-cyan"></span>
-            Software para Drones
-          </span>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-cyan">
+              <span class="size-1.5 rounded-full bg-cyan"></span>
+              Software para Drones
+            </span>
+            <ExperimentalBadge />
+          </div>
           <h2 class="text-balance text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
             Operaciones aéreas <span class="text-gradient">inteligentes y automatizadas</span>
           </h2>
@@ -25,6 +29,11 @@ import { DRONE_USE_CASES } from "@data/drones";
             Diseño software que conecta drones, sensores y datos en tiempo real
             para automatizar tareas críticas en el campo, la industria y la
             seguridad.
+          </p>
+          <p class="flex items-start gap-2 text-sm leading-relaxed text-amber-400/90">
+            <Icon name="flask" class="mt-0.5 size-4 shrink-0" strokeWidth={2} />
+            Esta línea está en fase experimental: todavía en desarrollo y ajuste,
+            aún no es un producto 100% disponible.
           </p>
           <div>
             <Button href="#contacto" icon="arrow-right">Cuéntame tu proyecto</Button>

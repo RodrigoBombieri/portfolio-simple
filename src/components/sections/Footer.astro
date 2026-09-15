@@ -1,5 +1,6 @@
 ---
 import Icon from "@components/ui/Icon.astro";
+import ExperimentalBadge from "@components/ui/ExperimentalBadge.astro";
 import { SITE, WHATSAPP_LINK, NAV_LINKS } from "@data/site";
 
 const year = new Date().getFullYear();
@@ -49,8 +50,9 @@ const socials = [
     <nav class="flex flex-wrap gap-x-8 gap-y-3 border-t border-border-soft pt-8 text-sm text-muted" aria-label="Footer">
       {
         NAV_LINKS.map((link) => (
-          <a href={link.href} class="transition-colors hover:text-ink">
+          <a href={link.href} class="inline-flex items-center gap-1.5 transition-colors hover:text-ink">
             {link.label}
+            {link.badge && <ExperimentalBadge compact />}
           </a>
         ))
       }

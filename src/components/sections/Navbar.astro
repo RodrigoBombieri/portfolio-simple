@@ -1,6 +1,7 @@
 ---
 import Button from "@components/ui/Button.astro";
 import Icon from "@components/ui/Icon.astro";
+import ExperimentalBadge from "@components/ui/ExperimentalBadge.astro";
 import { NAV_LINKS } from "@data/site";
 ---
 
@@ -26,8 +27,9 @@ import { NAV_LINKS } from "@data/site";
       {
         NAV_LINKS.map((link) => (
           <li>
-            <a href={link.href} class="transition-colors duration-200 hover:text-ink">
+            <a href={link.href} class="inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-ink">
               {link.label}
+              {link.badge && <ExperimentalBadge compact />}
             </a>
           </li>
         ))
@@ -80,10 +82,11 @@ import { NAV_LINKS } from "@data/site";
       NAV_LINKS.map((link) => (
         <a
           href={link.href}
-          class="rounded-lg px-3 py-3 text-sm font-medium text-muted transition-colors hover:bg-bg-elevated hover:text-ink"
+          class="flex items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium text-muted transition-colors hover:bg-bg-elevated hover:text-ink"
           data-mobile-link
         >
           {link.label}
+          {link.badge && <ExperimentalBadge compact />}
         </a>
       ))
     }

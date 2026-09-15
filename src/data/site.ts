@@ -18,15 +18,22 @@ export const WHATSAPP_LINK = `https://wa.me/${SITE.whatsapp}?text=${encodeURICom
 // borrar nada. Para volver a mostrarlo, cambiar a true.
 export const SHOW_DRONES = true;
 
+export interface NavLink {
+  label: string;
+  href: string;
+  /** Etiqueta corta opcional (ej. "Beta") para marcar contenido en prueba. */
+  badge?: string;
+}
+
 // Los links con "#" apuntan siempre a secciones de la home ("/#seccion"),
 // así funcionan tanto parados en la home (scroll suave) como desde páginas
 // separadas como /showroom o /portfolio-tecnico (navegan a la home y saltan
 // a la sección). Ver src/scripts/smoothScroll.ts.
-export const NAV_LINKS = [
+export const NAV_LINKS: NavLink[] = [
   { label: "Servicios", href: "/#servicios" },
   { label: "Showroom", href: "/showroom" },
   { label: "Cómo trabajo", href: "/#proceso" },
-  ...(SHOW_DRONES ? [{ label: "Drones", href: "/#drones" }] : []),
+  ...(SHOW_DRONES ? [{ label: "Drones", href: "/#drones", badge: "Beta" }] : []),
   { label: "FAQ", href: "/#faq" },
   { label: "Portfolio técnico", href: "/portfolio-tecnico" },
   { label: "Contacto", href: "/#contacto" },

@@ -7,6 +7,8 @@ export interface Project {
   tags: string[];
   image: string;
   url?: string;
+  /** Marca el proyecto como en fase experimental (aún no 100% disponible). */
+  experimental?: boolean;
 }
 
 export const PROJECTS: Project[] = [
@@ -48,7 +50,8 @@ export const PROJECTS: Project[] = [
     description: "Planificación de misiones autónomas y procesamiento de datos de sensores.",
     tags: ["Python", "ROS2", "OpenAI"],
     image: "/images/proyecto-drones.jpg",
-    url:"https://github.com/RodrigoBombieri/agrotello"
+    url:"https://github.com/RodrigoBombieri/agrotello",
+    experimental: true
   }] : []),
   {
     title: "Web API para Profesionales",

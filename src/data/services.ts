@@ -6,6 +6,8 @@ export interface Service {
   problem: string;
   description: string;
   features: string[];
+  /** Marca el servicio como en fase experimental (aún no 100% disponible). */
+  experimental?: boolean;
 }
 
 export const SERVICES: Service[] = [
@@ -33,12 +35,13 @@ export const SERVICES: Service[] = [
       "Construyo software interno en C# y .NET, integrado con tus bases de datos y procesos actuales, sin depender de internet.",
     features: ["Windows nativo", "C# / .NET", "Bases de datos", "Software interno a medida"],
   },
-  {
+  ...(SHOW_DRONES ? [{
     icon: "drone",
     title: "Software para Drones",
     problem: "¿Necesitás cubrir grandes superficies sin duplicar personal en campo?",
     description:
       "Desarrollo software de automatización, sensores e integración de datos para operaciones aéreas inteligentes.",
     features: ["Agricultura", "Inspecciones", "Seguridad", "Procesamiento de datos"],
-  },
+    experimental: true,
+  }] : []),
 ];

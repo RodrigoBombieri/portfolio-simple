@@ -1,5 +1,6 @@
 ---
 import Icon from "@components/ui/Icon.astro";
+import ExperimentalBadge from "@components/ui/ExperimentalBadge.astro";
 import type { Service } from "@data/services";
 
 export interface Props {
@@ -27,9 +28,17 @@ const { service, index = 0 } = Astro.props;
   </div>
 
   <div class="relative flex flex-col gap-3">
-    <h3 class="text-xl font-semibold text-ink">{service.title}</h3>
+    <div class="flex flex-wrap items-center gap-2">
+      <h3 class="text-xl font-semibold text-ink">{service.title}</h3>
+      {service.experimental && <ExperimentalBadge />}
+    </div>
     <p class="text-sm font-medium leading-snug text-cyan/90">{service.problem}</p>
     <p class="leading-relaxed text-muted">{service.description}</p>
+    {service.experimental && (
+      <p class="text-xs leading-relaxed text-amber-400/90">
+        Servicio en fase experimental: todavía en desarrollo y ajuste, no disponible como producto 100% cerrado.
+      </p>
+    )}
   </div>
 
   <ul class="relative mt-auto flex flex-col gap-2.5 border-t border-border-soft pt-5">
