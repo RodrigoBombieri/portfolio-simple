@@ -49,7 +49,7 @@ export const PROJECTS: Project[] = [
     category: "Drones",
     description: "Planificación de misiones autónomas y procesamiento de datos de sensores.",
     tags: ["Python", "ROS2", "OpenAI"],
-    image: "/images/proyecto-drones.jpg",
+    image: "/images/proyecto-drones.png",
     url:"https://github.com/RodrigoBombieri/agrotello",
     experimental: true
   }] : []),
