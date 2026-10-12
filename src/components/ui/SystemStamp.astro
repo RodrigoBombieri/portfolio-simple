@@ -1,0 +1,47 @@
+---
+// Sello: mini diagrama estático del sistema (mismo lenguaje que la escena 3D del hero).
+// También sirve como fallback visual si WebGL no está disponible.
+export interface Props {
+  class?: string;
+  /** Si es false se omiten las etiquetas de texto. */
+  labels?: boolean;
+}
+const { class: className = "size-full", labels = true } = Astro.props;
+
+const nodes = [
+  { id: "cli", x: 22, y: 30, label: "CLIENTE" },
+  { id: "web", x: 78, y: 18, label: "WEB·NG" },
+  { id: "api", x: 124, y: 46, label: "API·NET" },
+  { id: "db", x: 78, y: 76, label: "SQL" },
+  { id: "svc", x: 172, y: 20, label: "SERV." },
+];
+const edges = [
+  ["cli", "web"],
+  ["web", "api"],
+  ["api", "db"],
+  ["cli", "db"],
+  ["api", "svc"],
+];
+const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
+---
+
+<svg viewBox="0 0 200 100" preserveAspectRatio="xMinYMid meet" class={className} fill="none" stroke="currentColor" role="img" aria-label="Diagrama del sistema: cliente, web Angular, API .NET, SQL Server y servicios">
+  {
+    edges.map(([a, b]) => (
+      <line x1={byId[a].x} y1={byId[a].y} x2={byId[b].x} y2={byId[b].y} stroke-width="0.6" class="text-line" stroke-dasharray="2 2" />
+    ))
+  }
+  {
+    nodes.map((n) => (
+      <g>
+        <rect x={n.x - 6} y={n.y - 6} width="12" height="12" stroke-width="0.8" class={n.id === "api" ? "text-signal" : "text-muted"} fill="none" />
+        {n.id === "api" && <rect x={n.x - 2} y={n.y - 2} width="4" height="4" fill="currentColor" stroke="none" class="text-signal" />}
+        {labels && (
+          <text x={n.x} y={n.y + 15} text-anchor="middle" font-size="6.5" letter-spacing="0.3" fill="currentColor" stroke="none" class="font-mono text-muted">
+            {n.label}
+          </text>
+        )}
+      </g>
+    ))
+  }
+</svg>

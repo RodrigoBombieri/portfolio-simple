@@ -1,0 +1,20 @@
+---
+// Marcas de esquina tipo plano. El contenedor padre debe ser `relative`.
+export interface Props {
+  size?: number;
+  class?: string;
+  /** Color de las marcas: "signal" (verde) o "line" (gris de plano). */
+  tone?: "signal" | "line" | "ink";
+}
+const { size = 12, class: className = "", tone = "line" } = Astro.props;
+const color =
+  tone === "signal" ? "border-signal" : tone === "ink" ? "border-ink" : "border-muted";
+const s = `${size}px`;
+---
+
+<span class={`pointer-events-none absolute inset-0 ${className}`} aria-hidden="true">
+  <span class={`absolute -left-px -top-px border-l border-t ${color}`} style={`width:${s};height:${s}`}></span>
+  <span class={`absolute -right-px -top-px border-r border-t ${color}`} style={`width:${s};height:${s}`}></span>
+  <span class={`absolute -bottom-px -left-px border-b border-l ${color}`} style={`width:${s};height:${s}`}></span>
+  <span class={`absolute -bottom-px -right-px border-b border-r ${color}`} style={`width:${s};height:${s}`}></span>
+</span>

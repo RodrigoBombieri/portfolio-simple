@@ -8,6 +8,8 @@ export interface Service {
   features: string[];
   /** Marca el servicio como en fase experimental (aún no 100% disponible). */
   experimental?: boolean;
+  /** Cota que se muestra a la derecha de la fila (plazo o modalidad). */
+  dimension?: string;
 }
 
 export const SERVICES: Service[] = [
@@ -18,6 +20,7 @@ export const SERVICES: Service[] = [
     description:
       "Diseño páginas de alto impacto, rápidas y pensadas para convertir cada visita en una consulta o venta.",
     features: ["Diseño moderno", "SEO técnico", "100% responsive", "Optimizadas para conversión"],
+    dimension: "1–2 días",
   },
   {
     icon: "layers",
@@ -26,6 +29,7 @@ export const SERVICES: Service[] = [
     description:
       "Desarrollo sistemas de gestión, paneles administrativos y APIs a medida que ordenan tu operación y escalan con tu negocio.",
     features: ["Sistemas de gestión", "Paneles administrativos", "APIs REST/GraphQL", "Dashboards en tiempo real"],
+    dimension: "2–3 semanas",
   },
   {
     icon: "monitor",
@@ -34,6 +38,7 @@ export const SERVICES: Service[] = [
     description:
       "Construyo software interno en C# y .NET, integrado con tus bases de datos y procesos actuales, sin depender de internet.",
     features: ["Windows nativo", "C# / .NET", "Bases de datos", "Software interno a medida"],
+    dimension: "Según alcance",
   },
   ...(SHOW_DRONES ? [{
     icon: "drone",
@@ -43,5 +48,6 @@ export const SERVICES: Service[] = [
       "Desarrollo software de automatización, sensores e integración de datos para operaciones aéreas inteligentes.",
     features: ["Agricultura", "Inspecciones", "Seguridad", "Procesamiento de datos"],
     experimental: true,
+    dimension: "Experimental",
   }] : []),
 ];

@@ -1,0 +1,120 @@
+---
+// Vista en planta estática de la escena de drones (fallback sin WebGL /
+// movimiento reducido, y placeholder mientras carga el 3D). Usa la misma
+// matemática de terreno y la misma ruta que la escena 3D.
+import { DRONE_WORLD, DRONE_SCENE_STEPS, DRONE_SCENE_UI } from "@data/droneScene";
+import { contourSegments, joinSegments, ndviAt, NDVI_ALERT, catmullRom2D } from "@scripts/three/drones/terrain";
+
+export interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+
+// Ventana del mundo que se dibuja (x, z) → viewBox 600×450
+const WX0 = -62;
+const WZ0 = -32;
+const WSPAN = 112;
+const VW = 600;
+const VH = 450;
+const k = VW / WSPAN;
+const sx = (x: number) => +((x - WX0) * k).toFixed(1);
+const sz = (z: number) => +((z - WZ0) * k).toFixed(1);
+
+const lines = joinSegments(contourSegments(56, 1, WSPAN, WX0, WZ0));
+const contourPaths = lines
+  .filter((l) => l.pts.length > 2)
+  .map((l) => ({
+    d: "M" + l.pts.map((p) => `${sx(p[0])} ${sz(p[1])}`).join("L"),
+    major: Math.abs(Math.round(l.level) % 2) === 0,
+  }));
+
+const ctrl: [number, number][] = [
+  [DRONE_WORLD.base.x, DRONE_WORLD.base.z],
+  ...DRONE_WORLD.waypoints.map((w) => [w.x, w.z] as [number, number]),
+];
+const route = catmullRom2D(ctrl, 16);
+const routeD = "M" + route.map((p) => `${sx(p[0])} ${sz(p[1])}`).join("L");
+
+const lot = DRONE_WORLD.lot;
+const cw = lot.w / lot.nx;
+const cd = lot.d / lot.nz;
+const cells = Array.from({ length: lot.nx * lot.nz }, (_, n) => {
+  const i = n % lot.nx;
+  const j = Math.floor(n / lot.nx);
+  const v = ndviAt(i, j, lot.nx, lot.nz);
+  return {
+    x: sx(lot.x - lot.w / 2 + i * cw) + 0.6,
+    y: sz(lot.z - lot.d / 2 + j * cd) + 0.6,
+    w: +(cw * k - 1.2).toFixed(1),
+    h: +(cd * k - 1.2).toFixed(1),
+    alert: v < NDVI_ALERT,
+    o: v < NDVI_ALERT ? 0.55 : +(0.15 + v * 0.45).toFixed(2),
+  };
+});
+
+const per = DRONE_WORLD.perimeter;
+const mis = DRONE_WORLD.mission;
+const zig: string[] = [];
+for (let l = 0; l < mis.lanes; l++) {
+  const x = mis.x - mis.w / 2 + (l / (mis.lanes - 1)) * mis.w;
+  const a = mis.z - mis.d / 2;
+  const b = mis.z + mis.d / 2;
+  zig.push(`${sx(x)} ${sz(l % 2 ? b : a)}`, `${sx(x)} ${sz(l % 2 ? a : b)}`);
+}
+const st = DRONE_WORLD.station;
+const si = DRONE_WORLD.silos;
+---
+
+<svg
+  viewBox={`0 0 ${VW} ${VH}`}
+  class={`block h-full w-full ${className}`}
+  preserveAspectRatio="xMidYMid meet"
+  role="img"
+  aria-label={DRONE_SCENE_UI.fallbackCaption}
+  fill="none"
+>
+  <g stroke="var(--color-muted)" stroke-linejoin="round">
+    {contourPaths.map((c) => <path d={c.d} stroke-width={c.major ? 0.9 : 0.5} opacity={c.major ? 0.55 : 0.32} />)}
+  </g>
+
+  <!-- Lote NDVI -->
+  <g>
+    {cells.map((c) => (
+      <rect x={c.x} y={c.y} width={c.w} height={c.h} fill={c.alert ? "var(--color-warn)" : "var(--color-signal-dim)"} opacity={c.o} />
+    ))}
+    <rect x={sx(lot.x - lot.w / 2)} y={sz(lot.z - lot.d / 2)} width={lot.w * k} height={lot.d * k} stroke="var(--color-ink)" stroke-width="0.8" opacity="0.6" />
+  </g>
+
+  <!-- Silos, perímetro, misión, estación -->
+  <g stroke="var(--color-ink)" stroke-width="0.9" opacity="0.7">
+    <circle cx={sx(si.x - 2.6)} cy={sz(si.z)} r={1.1 * k} />
+    <circle cx={sx(si.x)} cy={sz(si.z)} r={1.1 * k} />
+    <circle cx={sx(si.x + 2.6)} cy={sz(si.z)} r={1.1 * k} />
+    <rect x={sx(per.x - per.w / 2)} y={sz(per.z - per.d / 2)} width={per.w * k} height={per.d * k} stroke-dasharray="4 3" />
+    <rect x={sx(per.x - 2)} y={sz(per.z - 1.5)} width={4 * k} height={3 * k} />
+    <rect x={sx(st.x) - 5} y={sz(st.z) - 5} width="10" height="10" transform={`rotate(45 ${sx(st.x)} ${sz(st.z)})`} />
+  </g>
+  <rect x={sx(per.x + per.w / 2) - 3} y={sz(per.z - per.d / 2) - 3} width="6" height="6" fill="var(--color-warn)" />
+  <path d={"M" + zig.join("L")} stroke="var(--color-signal-dim)" stroke-width="0.9" stroke-dasharray="3 3" />
+
+  <!-- Ruta -->
+  <path d={routeD} stroke="var(--color-ink)" stroke-width="1" stroke-dasharray="2 5" opacity="0.55" />
+  <path d={routeD} stroke="var(--color-signal)" stroke-width="2" />
+
+  <!-- Base -->
+  <g>
+    <circle cx={sx(DRONE_WORLD.base.x)} cy={sz(DRONE_WORLD.base.z)} r="7" stroke="var(--color-ink)" stroke-width="1" />
+    <text x={sx(DRONE_WORLD.base.x)} y={sz(DRONE_WORLD.base.z) + 3.5} text-anchor="middle" font-size="10" fill="var(--color-ink)" class="font-mono">H</text>
+  </g>
+
+  {
+    DRONE_WORLD.waypoints.map((w, i) => (
+      <g>
+        <rect x={sx(w.x) - 5} y={sz(w.z) - 5} width="10" height="10" fill="var(--color-bg)" stroke="var(--color-signal)" stroke-width="1.5" />
+        <text x={sx(w.x) + 10} y={sz(w.z) - 9} font-size="11" letter-spacing="0.6" fill="var(--color-ink)" class="font-mono">
+          {DRONE_SCENE_STEPS[i]?.wp}
+        </text>
+      </g>
+    ))
+  }
+</svg>

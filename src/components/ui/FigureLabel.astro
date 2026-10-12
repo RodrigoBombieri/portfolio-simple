@@ -1,0 +1,15 @@
+---
+// Etiqueta de figura: "FIG. 01 — SERVICIOS". Numeración consistente en todo el sitio.
+export interface Props {
+  n: string;
+  label: string;
+  class?: string;
+}
+const { n, label, class: className = "" } = Astro.props;
+---
+
+<p class={`mono-label flex items-center gap-3 text-muted ${className}`}>
+  <span class="text-signal">FIG. {n}</span>
+  <span aria-hidden="true" class="h-px w-8 bg-line"></span>
+  <span>{label}</span>
+</p>

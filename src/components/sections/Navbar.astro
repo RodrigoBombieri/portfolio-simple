@@ -3,32 +3,32 @@ import Button from "@components/ui/Button.astro";
 import Icon from "@components/ui/Icon.astro";
 import ExperimentalBadge from "@components/ui/ExperimentalBadge.astro";
 import { NAV_LINKS } from "@data/site";
+
+const num = (i: number) => String(i + 1).padStart(2, "0");
 ---
 
-<header
-  id="navbar"
-  class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300"
-  data-navbar
->
-  <nav
-    class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8"
-    aria-label="Navegación principal"
-  >
-    <a href="/" class="flex items-center gap-2 text-sm font-bold tracking-tight text-ink">
-      <span
-        class="flex size-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-cyan text-white"
-      >
-        <Icon name="code" class="size-4" strokeWidth={2.5} />
-      </span>
-      Bombieri<span class="text-cyan">.dev</span>
+<header id="navbar" class="fixed inset-x-0 top-0 z-50" data-navbar>
+  <nav class="mx-auto flex max-w-7xl items-stretch justify-between px-6 lg:px-8" aria-label="Navegación principal">
+    <!-- Cajetín: marca -->
+    <a
+      href="/"
+      class="mono-label flex items-center gap-3 border-x border-line py-3.5 pl-4 pr-5 text-ink transition-colors hover:text-signal"
+      aria-label="Rodrigo Bombieri — inicio"
+    >
+      <span class="font-semibold text-signal">RB/</span>
+      <span class="hidden whitespace-nowrap sm:inline xl:hidden 2xl:inline">Rodrigo Bombieri</span>
     </a>
 
-    <ul class="hidden items-center gap-8 text-sm font-medium text-muted md:flex">
+    <ul class="hidden items-stretch xl:flex">
       {
-        NAV_LINKS.map((link) => (
-          <li>
-            <a href={link.href} class="inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-ink">
-              {link.label}
+        NAV_LINKS.map((link, i) => (
+          <li class="flex border-r border-line">
+            <a
+              href={link.href}
+              class="mono-label-sm group flex items-center gap-2 whitespace-nowrap px-3 text-muted transition-colors hover:bg-bg-soft hover:text-ink"
+            >
+              <span class="text-signal">{num(i)}</span>
+              <span>{link.label}</span>
               {link.badge && <ExperimentalBadge compact />}
             </a>
           </li>
@@ -36,32 +36,35 @@ import { NAV_LINKS } from "@data/site";
       }
     </ul>
 
-    <div class="hidden items-center gap-3 md:flex">
+    <div class="flex items-stretch">
       <button
         type="button"
-        class="flex size-10 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:text-ink"
-        aria-label="Cambiar tema"
+        class="mono-label-sm hidden items-center gap-2 whitespace-nowrap border-l border-line px-4 transition-colors hover:bg-bg-soft md:flex"
+        aria-label="Cambiar tema claro/oscuro"
         data-theme-toggle
       >
-        <Icon name="sun" class="size-[18px]" data-theme-icon-sun />
-        <Icon name="moon" class="size-[18px]" data-theme-icon-moon />
+        <span data-t="light">Papel</span>
+        <span class="text-line" aria-hidden="true">/</span>
+        <span data-t="dark">Pantalla</span>
       </button>
-      <Button href="/#contacto" size="md">Cotizar mi proyecto</Button>
-    </div>
+      <div class="hidden items-center border-x border-line px-4 md:flex">
+        <Button href="/#contacto" size="md" icon="arrow-right">Cotizar</Button>
+      </div>
 
-    <div class="flex items-center gap-2 md:hidden">
+      <!-- Mobile -->
       <button
         type="button"
-        class="flex size-10 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:text-ink"
-        aria-label="Cambiar tema"
+        class="mono-label-sm flex items-center gap-2 whitespace-nowrap border-l border-line px-3 md:hidden"
+        aria-label="Cambiar tema claro/oscuro"
         data-theme-toggle
       >
-        <Icon name="sun" class="size-[18px]" data-theme-icon-sun />
-        <Icon name="moon" class="size-[18px]" data-theme-icon-moon />
+        <span data-t="light">Papel</span>
+        <span class="text-line" aria-hidden="true">/</span>
+        <span data-t="dark">Pantalla</span>
       </button>
       <button
         type="button"
-        class="flex size-10 items-center justify-center rounded-lg border border-border text-ink"
+        class="flex w-12 items-center justify-center border-x border-line text-ink xl:hidden"
         aria-label="Abrir menú"
         aria-expanded="false"
         aria-controls="mobile-menu"
@@ -75,21 +78,22 @@ import { NAV_LINKS } from "@data/site";
 
   <div
     id="mobile-menu"
-    class="hidden flex-col gap-1 border-t border-border bg-bg/95 px-6 py-4 backdrop-blur-xl md:hidden"
+    class="hidden flex-col border-b border-line bg-bg px-6 pb-6 pt-2 xl:hidden"
     data-mobile-menu
   >
     {
-      NAV_LINKS.map((link) => (
+      NAV_LINKS.map((link, i) => (
         <a
           href={link.href}
-          class="flex items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium text-muted transition-colors hover:bg-bg-elevated hover:text-ink"
+          class="mono-label flex items-center gap-4 border-b border-line-soft py-4 text-muted transition-colors hover:text-ink"
           data-mobile-link
         >
+          <span class="text-signal">{num(i)}</span>
           {link.label}
           {link.badge && <ExperimentalBadge compact />}
         </a>
       ))
     }
-    <Button href="/#contacto" class="mt-2 justify-center" data-mobile-link>Cotizar mi proyecto</Button>
+    <Button href="/#contacto" class="mt-5 w-full" icon="arrow-right" data-mobile-link>Cotizar mi proyecto</Button>
   </div>
 </header>

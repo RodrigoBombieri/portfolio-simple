@@ -22,37 +22,30 @@ const {
 } = Astro.props;
 
 const base =
-  "group relative inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 ease-out will-change-transform focus-visible:outline-2 focus-visible:outline-cyan";
+  "group relative inline-flex items-center justify-center gap-3 whitespace-nowrap font-medium transition-colors duration-200 ease-out";
 
 const sizes = {
-  md: "px-6 py-3 text-sm",
-  lg: "px-8 py-4 text-base",
+  md: "px-5 py-2.5 text-sm",
+  lg: "px-7 py-4 text-base",
 };
 
+// primary: bloque verde sólido · secondary: borde de plano · ghost: link con subrayado que se dibuja
 const variants = {
-  primary:
-    "bg-linear-to-r from-primary to-cyan text-white shadow-[0_0_0_1px_rgba(255,255,255,0.08)] hover:shadow-glow hover:-translate-y-0.5 active:translate-y-0",
-  secondary:
-    "glass-card text-ink hover:border-primary/60 hover:-translate-y-0.5 active:translate-y-0",
-  ghost: "text-muted hover:text-ink",
+  primary: "rounded-xs bg-signal text-bg hover:bg-ink",
+  secondary: "rounded-xs border border-line text-ink hover:border-signal hover:text-signal",
+  ghost: "px-0 text-ink hover:text-signal",
 };
+const sizeClass = variant === "ghost" ? "py-2 text-sm" : sizes[size];
 ---
 
 <a
   href={href}
   target={target}
   rel={rel}
-  class={`${base} ${sizes[size]} ${variants[variant]} ${className}`}
+  class={`${base} ${sizeClass} ${variants[variant]} ${className}`}
 >
-  <span>
+  <span class:list={[variant === "ghost" ? "link-draw pb-0.5" : ""]}>
     <slot />
   </span>
-  {
-    icon && (
-      <Icon
-        name={icon}
-        class="size-4 transition-transform duration-300 group-hover:translate-x-1"
-      />
-    )
-  }
+  {icon && <Icon name={icon} class="btn-tick size-4" strokeWidth={1.5} />}
 </a>

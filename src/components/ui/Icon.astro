@@ -11,11 +11,17 @@ export interface Props {
 const {
   name,
   class: className = "size-6",
-  strokeWidth = 1.75,
+  strokeWidth = 1.25,
   fill = "none",
   ...rest
 } = Astro.props;
-const path = ICONS[name] ?? "";
+
+// pathLength="1" en cada trazo permite redibujar el ícono con stroke-dashoffset
+// (ver .icon-draw en global.css) sin conocer la longitud real de cada path.
+const path = (ICONS[name] ?? "").replace(
+  /<(path|circle|rect|line|polyline|polygon)\b/g,
+  '<$1 pathLength="1"'
+);
 ---
 
 <svg
@@ -24,9 +30,9 @@ const path = ICONS[name] ?? "";
   fill={fill}
   stroke="currentColor"
   stroke-width={strokeWidth}
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  class={className}
+  stroke-linecap="square"
+  stroke-linejoin="miter"
+  class={`icon-draw ${className}`}
   aria-hidden="true"
   {...rest}
   set:html={path}

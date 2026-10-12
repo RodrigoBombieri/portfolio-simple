@@ -1,0 +1,62 @@
+---
+import Icon from "@components/ui/Icon.astro";
+import Dimension from "@components/ui/Dimension.astro";
+import ExperimentalBadge from "@components/ui/ExperimentalBadge.astro";
+import type { Service } from "@data/services";
+
+export interface Props {
+  service: Service;
+  index: number;
+}
+
+const { service, index } = Astro.props;
+const code = `MOD-${String(index + 1).padStart(2, "0")}`;
+---
+
+<article
+  class="group relative grid grid-cols-1 gap-x-8 gap-y-5 border-b border-line py-8 pl-5 transition-colors duration-300 hover:bg-bg-soft lg:grid-cols-12 lg:py-10 lg:pl-6"
+  data-animate
+>
+  <!-- Barra de selección -->
+  <span
+    class="absolute inset-y-0 left-0 w-0.5 origin-top scale-y-0 bg-signal transition-transform duration-500 ease-(--ease-draw) group-hover:scale-y-100"
+    aria-hidden="true"
+  ></span>
+
+  <div class="flex items-start gap-5 lg:col-span-4">
+    <span class="mono-label-sm shrink-0 whitespace-nowrap pt-1.5 text-signal">{code}</span>
+    <div class="flex flex-col gap-3">
+      <Icon name={service.icon} class="size-9 text-ink" />
+      <div class="flex flex-wrap items-center gap-3">
+        <h3 class="display-md text-step-2 text-ink">{service.title}</h3>
+        {service.experimental && <ExperimentalBadge />}
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-4 lg:col-span-5">
+    <p class="text-sm font-medium leading-snug text-ink">{service.problem}</p>
+    <p class="leading-relaxed text-muted">{service.description}</p>
+    {
+      service.experimental && (
+        <p class="mono-label-sm text-warn">
+          En fase experimental: todavía en desarrollo y ajuste, no es un producto 100% cerrado.
+        </p>
+      )
+    }
+    <ul class="mono-label-sm flex flex-wrap gap-x-5 gap-y-1.5 text-muted">
+      {
+        service.features.map((feature) => (
+          <li class="flex items-center gap-2">
+            <span class="size-1 bg-signal-dim" aria-hidden="true" />
+            {feature}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="flex items-end lg:col-span-3">
+    {service.dimension && <Dimension label={service.dimension} />}
+  </div>
+</article>

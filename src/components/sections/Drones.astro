@@ -1,93 +1,156 @@
 ---
 import Icon from "@components/ui/Icon.astro";
 import Button from "@components/ui/Button.astro";
+import FigureLabel from "@components/ui/FigureLabel.astro";
+import CornerMarks from "@components/ui/CornerMarks.astro";
 import ExperimentalBadge from "@components/ui/ExperimentalBadge.astro";
 import { DRONE_USE_CASES } from "@data/drones";
+import { HERO } from "@data/site";
+import { DRONE_PAGE } from "@data/droneScene";
+
+// --- Topografía: curvas de nivel generadas (dos "colinas" con relieve orgánico) ---
+type Pt = [number, number];
+const W = 600;
+const H = 400;
+
+function contour(cx: number, cy: number, r: number, seed: number): string {
+  const n = 120;
+  const pts: Pt[] = [];
+  for (let i = 0; i < n; i++) {
+    const t = (i / n) * Math.PI * 2;
+    const wob =
+      1 +
+      0.16 * Math.sin(3 * t + seed * 0.7) +
+      0.09 * Math.sin(5 * t + seed * 1.3 + 1.2) +
+      0.05 * Math.sin(9 * t + seed);
+    pts.push([cx + Math.cos(t) * r * wob * 1.35, cy + Math.sin(t) * r * wob]);
+  }
+  return "M" + pts.map((p) => `${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join("L") + "Z";
+}
+
+const hills: { cx: number; cy: number; rings: number; step: number; seed: number }[] = [
+  { cx: 180, cy: 190, rings: 8, step: 22, seed: 1 },
+  { cx: 430, cy: 250, rings: 7, step: 20, seed: 4 },
+];
+const contours = hills.flatMap((h) =>
+  Array.from({ length: h.rings }, (_, k) => ({
+    d: contour(h.cx, h.cy, (k + 1) * h.step, h.seed + k * 0.05),
+    major: (k + 1) % 4 === 0,
+  }))
+);
+
+// --- Ruta de vuelo: spline Catmull-Rom por los waypoints ---
+const waypoints: Pt[] = [
+  [60, 330],
+  [150, 215],
+  [265, 120],
+  [385, 175],
+  [470, 305],
+  [555, 110],
+].slice(0, DRONE_USE_CASES.length) as Pt[];
+
+function catmull(points: Pt[]): string {
+  const p = (i: number) => points[Math.max(0, Math.min(points.length - 1, i))];
+  let d = `M${points[0][0]} ${points[0][1]}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const [p0, p1, p2, p3] = [p(i - 1), p(i), p(i + 1), p(i + 2)];
+    const c1: Pt = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+    const c2: Pt = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    d += `C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0]} ${p2[1]}`;
+  }
+  return d;
+}
+const route = catmull(waypoints);
+const wp = (i: number) => `WP-${String(i + 1).padStart(2, "0")}`;
 ---
 
-<section id="drones" class="relative overflow-hidden py-16 lg:py-24">
-  <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-primary/5 to-transparent"></div>
-
-  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="glow-border relative overflow-hidden rounded-[2.5rem] border border-border bg-bg-elevated/60 p-8 sm:p-12 lg:p-16">
-      <div class="bg-grid pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black,transparent)]"></div>
-      <div class="pointer-events-none absolute -right-24 -top-24 size-[420px] rounded-full bg-cyan/20 blur-[120px]"></div>
-
-      <div class="relative grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-        <div class="flex flex-col gap-6" data-animate>
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-cyan">
-              <span class="size-1.5 rounded-full bg-cyan"></span>
-              Software para Drones
-            </span>
-            <ExperimentalBadge />
-          </div>
-          <h2 class="text-balance text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
-            Operaciones aéreas <span class="text-gradient">inteligentes y automatizadas</span>
-          </h2>
-          <p class="text-lg leading-relaxed text-muted">
-            Diseño software que conecta drones, sensores y datos en tiempo real
-            para automatizar tareas críticas en el campo, la industria y la
-            seguridad.
-          </p>
-          <p class="flex items-start gap-2 text-sm leading-relaxed text-amber-400/90">
-            <Icon name="flask" class="mt-0.5 size-4 shrink-0" strokeWidth={2} />
-            Esta línea está en fase experimental: todavía en desarrollo y ajuste,
-            aún no es un producto 100% disponible.
-          </p>
-          <div>
-            <Button href="#contacto" icon="arrow-right">Cuéntame tu proyecto</Button>
-          </div>
+<section id="drones" class="band-soft relative border-y border-line py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
+      <div class="flex flex-col gap-7 lg:col-span-5" data-animate>
+        <div class="flex flex-col gap-3">
+          <FigureLabel n="03" label="Software para drones" />
+          <div class="h-px w-full bg-line" data-draw></div>
         </div>
-
-        <!-- Ilustración del dron -->
-        <div class="animate-float relative mx-auto flex aspect-square w-full max-w-sm items-center justify-center">
-          <div class="absolute inset-0 rounded-full border border-dashed border-border"></div>
-          <div class="absolute inset-8 rounded-full border border-dashed border-border-soft"></div>
-
-          <svg viewBox="0 0 200 200" class="relative size-48 text-cyan drop-shadow-[0_0_30px_rgba(34,211,238,0.35)]" fill="none">
-            <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <circle cx="100" cy="100" r="16" />
-              <circle cx="40" cy="40" r="16" opacity="0.85" />
-              <circle cx="160" cy="40" r="16" opacity="0.85" />
-              <circle cx="40" cy="160" r="16" opacity="0.85" />
-              <circle cx="160" cy="160" r="16" opacity="0.85" />
-              <path d="M88 88 52 52" />
-              <path d="M112 88 148 52" />
-              <path d="M88 112 52 148" />
-              <path d="M112 112 148 148" />
-            </g>
-            <g stroke="currentColor" stroke-width="1.5" opacity="0.5">
-              <circle cx="40" cy="40" r="24" />
-              <circle cx="160" cy="40" r="24" />
-              <circle cx="40" cy="160" r="24" />
-              <circle cx="160" cy="160" r="24" />
-            </g>
-          </svg>
-
-          <div class="glass-card absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-xl px-4 py-2 text-xs font-medium text-ink">
-            <span class="text-cyan">●</span> Telemetría en vivo
-          </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <ExperimentalBadge />
+        </div>
+        <h2 class="display text-[clamp(1.9rem,8.6vw,2.594rem)] text-ink sm:text-step-5" data-reveal>
+          Operaciones aéreas <span class="text-muted">automatizadas, de punta a punta.</span>
+        </h2>
+        <p class="text-pretty leading-relaxed text-muted">
+          Diseño software que conecta drones, sensores y datos en tiempo real para automatizar tareas críticas en el
+          campo, la industria y la seguridad.
+        </p>
+        <p class="mono-label-sm flex items-start gap-3 text-warn">
+          <Icon name="flask" class="mt-0.5 size-4 shrink-0" strokeWidth={1.5} />
+          Esta línea está en fase experimental: todavía en desarrollo y ajuste, aún no es un producto 100% disponible.
+        </p>
+        <div class="flex flex-col gap-5 sm:flex-row sm:items-center">
+          <Button href="/drones" icon="arrow-right">{DRONE_PAGE.homeLink}</Button>
+          <Button href="#contacto" variant="ghost" icon="arrow-right">Contame tu proyecto</Button>
         </div>
       </div>
 
-      <div class="relative mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-        {
-          DRONE_USE_CASES.map((useCase, i) => (
-            <div
-              class="flex flex-col items-center gap-3 rounded-2xl border border-border-soft bg-bg/40 p-5 text-center transition-colors duration-300 hover:border-primary/40"
-              data-animate
-              style={`transition-delay:${i * 60}ms`}
-            >
-              <span class="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-cyan">
-                <Icon name={useCase.icon} class="size-5" />
-              </span>
-              <span class="text-sm font-medium text-ink">{useCase.title}</span>
-              <span class="text-xs leading-relaxed text-muted-soft">{useCase.description}</span>
-            </div>
-          ))
-        }
+      <!-- Mapa: curvas de nivel + ruta de vuelo -->
+      <div class="relative lg:col-span-7" data-animate>
+        <div class="sheet relative p-3 sm:p-4" data-draw-scope>
+          <CornerMarks tone="signal" size={14} />
+          <div class="mono-label-sm flex items-center justify-between px-1 pb-3 text-muted">
+            <span>Ruta autónoma — simulada</span>
+            <span>{HERO.card.coords}</span>
+          </div>
+          <svg
+            viewBox={`0 0 ${W} ${H}`}
+            class="block h-auto w-full text-muted"
+            role="img"
+            aria-label="Mapa topográfico con curvas de nivel y una ruta de vuelo que pasa por seis puntos de control"
+            fill="none"
+          >
+            <g stroke="currentColor" stroke-width="0.8" opacity="0.5">
+              {contours.map((c) => <path d={c.d} opacity={c.major ? 1 : 0.55} stroke-width={c.major ? 1.1 : 0.7} />)}
+            </g>
+
+            <!-- ruta punteada (completa) + trazo que se dibuja -->
+            <path d={route} stroke="currentColor" stroke-width="1" stroke-dasharray="2 5" class="text-ink" opacity="0.5" />
+            <path d={route} stroke="currentColor" stroke-width="2" class="text-signal" data-draw-path />
+
+            {
+              waypoints.map((p, i) => (
+                <g data-draw-marker>
+                  <rect x={p[0] - 5} y={p[1] - 5} width="10" height="10" fill="var(--color-bg-elevated)" stroke="currentColor" stroke-width="1.5" class="text-signal" />
+                  <text
+                    x={p[0] + 11}
+                    y={p[1] - 8}
+                    font-size="11"
+                    letter-spacing="0.6"
+                    fill="currentColor"
+                    class="font-mono text-ink"
+                  >
+                    {wp(i)}
+                  </text>
+                </g>
+              ))
+            }
+          </svg>
+        </div>
       </div>
     </div>
+
+    <!-- Casos de uso = waypoints de la ruta -->
+    <ul class="mt-16 grid grid-cols-1 border-l border-t border-line sm:grid-cols-2 lg:grid-cols-3">
+      {
+        DRONE_USE_CASES.map((useCase, i) => (
+          <li class="group flex flex-col gap-3 border-b border-r border-line p-6 transition-colors hover:bg-bg-elevated" data-animate>
+            <div class="flex items-center justify-between">
+              <span class="mono-label-sm text-signal">{wp(i)}</span>
+              <Icon name={useCase.icon} class="size-6 text-muted group-hover:text-ink" />
+            </div>
+            <h3 class="display-md text-step-1 text-ink">{useCase.title}</h3>
+            <p class="text-sm leading-relaxed text-muted">{useCase.description}</p>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </section>

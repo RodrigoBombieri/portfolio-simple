@@ -1,78 +1,83 @@
 ---
 import Icon from "@components/ui/Icon.astro";
+import FigureLabel from "@components/ui/FigureLabel.astro";
+import CornerMarks from "@components/ui/CornerMarks.astro";
 import { SITE, WHATSAPP_LINK, SHOW_DRONES } from "@data/site";
+
+const channels = [
+  { label: "WhatsApp", value: "Escribime directo", href: WHATSAPP_LINK, external: true, primary: true },
+  { label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, external: false, primary: false },
+  { label: "GitHub", value: "RodrigoBombieri", href: SITE.github, external: true, primary: false },
+  { label: "LinkedIn", value: "rodrigobombieri-dev", href: SITE.linkedin, external: true, primary: false },
+];
+const figure = SHOW_DRONES ? "05" : "04";
 ---
 
-<section id="contacto" class="relative overflow-hidden border-t border-border-soft py-16 lg:py-24">
-  <div class="pointer-events-none absolute left-1/2 top-0 size-[600px] -translate-x-1/2 rounded-full bg-primary/15 blur-[140px]"></div>
+<section id="contacto" class="relative border-t border-line py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="flex flex-col gap-3" data-animate>
+      <FigureLabel n={figure} label="Iniciar especificación" />
+      <div class="h-px w-full bg-line" data-draw></div>
+    </div>
 
-  <div class="relative mx-auto max-w-6xl px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-14 lg:grid-cols-2">
-      <div class="flex flex-col gap-6" data-animate>
-        <span class="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-cyan">
-          <span class="size-1.5 rounded-full bg-cyan"></span>
-          Hablemos de tu proyecto
-        </span>
-        <h2 class="text-balance text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
-          ¿Listo para llevar tu idea<br class="hidden sm:block" /> al <span class="text-gradient">siguiente nivel?</span>
+    <div class="mt-10 grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-10">
+      <div class="flex flex-col gap-7 lg:col-span-5">
+        <h2 class="display text-[clamp(1.9rem,8.6vw,2.594rem)] text-ink sm:text-step-5" data-reveal>
+          Contame qué necesitás.
+          <span class="text-muted">Te respondo yo.</span>
         </h2>
-        <p class="text-lg leading-relaxed text-muted">
-          Contame en pocas líneas qué necesitás y te respondo con una
-          propuesta clara y sin compromiso.
+        <p class="text-pretty leading-relaxed text-muted" data-animate>
+          Escribime en pocas líneas qué querés resolver y te devuelvo una propuesta clara, sin compromiso. Sin
+          intermediarios: hablás conmigo desde el primer mensaje.
         </p>
 
-        <div class="mt-4 flex flex-col gap-4 text-sm">
-          <a href={`mailto:${SITE.email}`} class="flex items-center gap-3 text-muted transition-colors hover:text-ink">
-            <span class="flex size-9 items-center justify-center rounded-lg bg-bg-elevated text-cyan"><Icon name="mail" class="size-4" /></span>
-            {SITE.email}
-          </a>
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-muted transition-colors hover:text-ink">
-            <span class="flex size-9 items-center justify-center rounded-lg bg-bg-elevated text-cyan"><Icon name="whatsapp" class="size-4" /></span>
-            Escribime por WhatsApp
-          </a>
-        </div>
+        <ul class="mt-2 flex flex-col border-t border-line" data-animate>
+          {
+            channels.map((channel) => (
+              <li class="border-b border-line">
+                <a
+                  href={channel.href}
+                  target={channel.external ? "_blank" : undefined}
+                  rel={channel.external ? "noopener noreferrer" : undefined}
+                  class:list={[
+                    "group flex items-center justify-between gap-4 py-4 transition-colors",
+                    channel.primary ? "text-signal" : "text-ink hover:text-signal",
+                  ]}
+                >
+                  <span class="flex flex-col">
+                    <span class="mono-label-sm text-muted">{channel.label}</span>
+                    <span class:list={["text-base", { "font-semibold": channel.primary }]}>{channel.value}</span>
+                  </span>
+                  <Icon name="arrow-up-right" class="btn-tick size-5" strokeWidth={1.5} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
       </div>
 
       <form
-        class="glass-card flex flex-col gap-4 rounded-2xl p-6 sm:p-8"
+        class="sheet relative flex flex-col gap-7 p-6 sm:p-9 lg:col-span-6 lg:col-start-7"
         data-contact-form
         data-endpoint={SITE.formEndpoint}
         data-animate
       >
-        <div class="flex flex-col gap-1.5">
-          <label for="name" class="text-xs font-medium text-muted-soft">Nombre</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            autocomplete="name"
-            class="rounded-xl border border-border bg-bg-elevated px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-cyan"
-            placeholder="Tu nombre"
-          />
+        <CornerMarks tone="signal" size={14} />
+        <p class="mono-label-sm text-muted">Formulario de solicitud · todos los campos son obligatorios</p>
+
+        <div class="flex flex-col gap-1">
+          <label for="name" class="mono-label-sm text-muted">01 · Nombre</label>
+          <input id="name" name="name" type="text" required autocomplete="name" class="field" placeholder="Tu nombre" />
         </div>
 
-        <div class="flex flex-col gap-1.5">
-          <label for="email" class="text-xs font-medium text-muted-soft">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            autocomplete="email"
-            class="rounded-xl border border-border bg-bg-elevated px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-cyan"
-            placeholder="tu@empresa.com"
-          />
+        <div class="flex flex-col gap-1">
+          <label for="email" class="mono-label-sm text-muted">02 · Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" class="field" placeholder="tu@empresa.com" />
         </div>
 
-        <div class="flex flex-col gap-1.5">
-          <label for="project-type" class="text-xs font-medium text-muted-soft">Tipo de proyecto</label>
-          <select
-            id="project-type"
-            name="projectType"
-            required
-            class="rounded-xl border border-border bg-bg-elevated px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-cyan"
-          >
+        <div class="flex flex-col gap-1">
+          <label for="project-type" class="mono-label-sm text-muted">03 · Tipo de proyecto</label>
+          <select id="project-type" name="projectType" required class="field">
             <option value="" selected disabled>Elegí una opción</option>
             <option value="Landing Page">Landing Page</option>
             <option value="Aplicación Web">Aplicación Web</option>
@@ -82,27 +87,20 @@ import { SITE, WHATSAPP_LINK, SHOW_DRONES } from "@data/site";
           </select>
         </div>
 
-        <div class="flex flex-col gap-1.5">
-          <label for="message" class="text-xs font-medium text-muted-soft">Contame sobre tu proyecto</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="4"
-            required
-            class="resize-none rounded-xl border border-border bg-bg-elevated px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-cyan"
-            placeholder="Necesito..."
-          ></textarea>
+        <div class="flex flex-col gap-1">
+          <label for="message" class="mono-label-sm text-muted">04 · Contame sobre tu proyecto</label>
+          <textarea id="message" name="message" rows="4" required class="field resize-none" placeholder="Necesito..."></textarea>
         </div>
 
         <button
           type="submit"
-          class="group mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-primary to-cyan px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:shadow-glow"
+          class="group mt-1 inline-flex items-center justify-between gap-3 rounded-xs bg-signal px-6 py-4 text-base font-medium text-bg transition-colors hover:bg-ink disabled:opacity-60"
         >
           Enviar solicitud
-          <Icon name="arrow-right" class="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+          <Icon name="arrow-right" class="btn-tick size-5" strokeWidth={1.5} />
         </button>
 
-        <p class="text-center text-xs text-muted-soft" data-form-status role="status" aria-live="polite"></p>
+        <p class="mono-label-sm min-h-4 text-center text-muted" data-form-status role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>

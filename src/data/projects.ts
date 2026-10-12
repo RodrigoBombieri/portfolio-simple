@@ -9,6 +9,10 @@ export interface Project {
   url?: string;
   /** Marca el proyecto como en fase experimental (aún no 100% disponible). */
   experimental?: boolean;
+  /** Opcionales: se muestran en la ficha técnica solo si están completos. */
+  problem?: string;
+  solution?: string;
+  decisions?: string[];
 }
 
 export const PROJECTS: Project[] = [

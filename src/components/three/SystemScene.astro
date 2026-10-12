@@ -1,0 +1,38 @@
+---
+// Fondo 3D del hero: "Sistema vivo en wireframe".
+// - El canvas (Three.js) lo monta src/scripts/three/initScene.ts en idle, después del primer paint.
+// - Sin WebGL o con prefers-reduced-motion se muestra el diagrama SVG estático (SystemStamp).
+// - La escena es decorativa (aria-hidden); su contenido se duplica en una lista accesible.
+import SystemStamp from "@components/ui/SystemStamp.astro";
+import { SCENE_NODES, SCENE_COPY } from "@data/scene";
+---
+
+<div id="hero-scene" class="scene-mount pointer-events-none absolute inset-0" data-scene-mount aria-hidden="true">
+  <div class="scene-fallback" data-scene-fallback>
+    <div class="scene-fallback-frame">
+      <span class="mono-label-sm text-muted">{SCENE_COPY.fallbackLabel}</span>
+      <SystemStamp class="mt-3 h-auto w-full" />
+    </div>
+  </div>
+</div>
+
+<div class="sr-only">
+  <p>{SCENE_COPY.srTitle}</p>
+  <ul>
+    {
+      SCENE_NODES.map((node) => (
+        <li>
+          {node.label}: {node.note}
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<noscript>
+  <style>
+    .scene-fallback {
+      display: block;
+    }
+  </style>
+</noscript>

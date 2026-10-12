@@ -1,0 +1,740 @@
+---
+// Escenario "scrollytelling" de /drones: canvas 3D sticky + pasos (casos de
+// uso) que avanzan con el scroll. Todo el contenido de los pasos es HTML; el
+// canvas es decorativo (aria-hidden). Sin WebGL o con movimiento reducido se
+// muestra la vista en planta (SVG) y los pasos como lista normal.
+import Icon from "@components/ui/Icon.astro";
+import FigureLabel from "@components/ui/FigureLabel.astro";
+import CornerMarks from "@components/ui/CornerMarks.astro";
+import DroneRouteSvg from "@components/drones/DroneRouteSvg.astro";
+import {
+  DRONE_SCENE_STEPS,
+  DRONE_SCENE_INTRO,
+  DRONE_SCENE_UI,
+  DRONE_HUD,
+  DRONE_LEGEND,
+} from "@data/droneScene";
+import { HERO } from "@data/site";
+
+const total = String(DRONE_SCENE_STEPS.length).padStart(2, "0");
+const hudRows: { key: keyof typeof DRONE_HUD.fields; wide?: boolean; mobileHidden?: boolean }[] = [
+  { key: "alt" },
+  { key: "vel" },
+  { key: "bat" },
+  { key: "link", mobileHidden: true },
+  { key: "pos", wide: true, mobileHidden: true },
+  { key: "lote", wide: true },
+  { key: "sensor", wide: true, mobileHidden: true },
+];
+---
+
+<section
+  id="escenario"
+  class="drone-scene relative border-y border-line"
+  data-drone-scene
+  data-scene-state="pending"
+  data-paused="false"
+  aria-labelledby="drone-scene-title"
+>
+  <h2 id="drone-scene-title" class="sr-only">{DRONE_SCENE_UI.srTitle}</h2>
+
+  <div class="drone-stage" data-drone-stage>
+    <div class="reticle pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
+
+    <figure class="drone-fallback" data-drone-fallback>
+      <DroneRouteSvg />
+      <figcaption class="mono-label-sm mt-3 text-muted">{DRONE_SCENE_UI.fallbackCaption}</figcaption>
+    </figure>
+
+    <div class="drone-canvas" data-drone-canvas aria-hidden="true"></div>
+
+    <svg class="drone-link" data-drone-link aria-hidden="true" fill="none">
+      <path data-drone-link-path stroke="var(--color-signal)" stroke-width="1" stroke-dasharray="3 5"></path>
+      <rect data-drone-link-tip width="5" height="5" fill="var(--color-signal)"></rect>
+    </svg>
+
+    <div class="drone-labels" data-drone-labels aria-hidden="true"></div>
+
+    <div class="pointer-events-none absolute inset-2 sm:inset-4" aria-hidden="true">
+      <CornerMarks tone="line" size={16} />
+    </div>
+
+    <div class="drone-topbar">
+      <FigureLabel n={DRONE_SCENE_UI.figure} label={DRONE_SCENE_UI.figureLabel} class="drone-fig" />
+      <p class="drone-hint mono-label-sm text-muted">
+        <span>{DRONE_SCENE_UI.scrollHint}</span>
+        <span aria-hidden="true" class="text-line">/</span>
+        <span>{DRONE_SCENE_UI.dragHint}</span>
+        <span aria-hidden="true" class="text-line">/</span>
+        <span>{HERO.card.coords}</span>
+      </p>
+      <button
+        type="button"
+        class="drone-pause mono-label-sm"
+        data-drone-pause
+        aria-pressed="false"
+        data-label-pause={DRONE_SCENE_UI.pause}
+        data-label-play={DRONE_SCENE_UI.play}
+      >
+        <svg class="drone-pause-icon size-3" viewBox="0 0 12 12" aria-hidden="true">
+          <g data-icon-pause fill="currentColor"><rect x="2" y="1.5" width="2.5" height="9"></rect><rect x="7.5" y="1.5" width="2.5" height="9"></rect></g>
+          <path data-icon-play d="M2.5 1.5 L10.5 6 L2.5 10.5 Z" fill="currentColor"></path>
+        </svg>
+        <span class="drone-pause-text" data-pause-label>{DRONE_SCENE_UI.pause}</span>
+      </button>
+    </div>
+
+    <div class="drone-hud" data-drone-hud role="group" aria-label={`${DRONE_HUD.title} (${DRONE_HUD.simulated})`}>
+      <div class="mono-label-sm flex items-center justify-between border-b border-line px-3 py-2">
+        <span class="text-ink">{DRONE_HUD.title}</span>
+        <span class="border border-warn px-1 leading-tight text-warn">{DRONE_HUD.simulated}</span>
+      </div>
+      <dl class="drone-hud-grid">
+        {
+          hudRows.map((row) => (
+            <div class:list={["drone-hud-row", { "drone-hud-wide": row.wide, "drone-hud-mhide": row.mobileHidden }]}>
+              <dt>{DRONE_HUD.fields[row.key]}</dt>
+              <dd data-hud={row.key}>—</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="drone-legend mono-label-sm" data-drone-legend>
+      <p class="drone-legend-active">
+        <span class="text-muted">{DRONE_LEGEND.active}</span>
+        <span class="text-signal" data-legend-wp>{DRONE_SCENE_INTRO.wp}</span>
+        <span class="text-ink" data-legend-title>{DRONE_SCENE_INTRO.title}</span>
+      </p>
+      <p class="drone-legend-sensor">
+        <span class="text-muted">{DRONE_LEGEND.sensor}</span>
+        <span class="text-ink" data-legend-sensor>—</span>
+      </p>
+      <ul class="drone-legend-items">
+        {
+          DRONE_LEGEND.items.map((item) => (
+            <li>
+              <span class={`drone-swatch drone-swatch--${item.key}`} aria-hidden="true"></span>
+              <span class="text-muted">{item.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <ol class="drone-steps" data-drone-steps>
+    <li class="drone-step" data-drone-step="0" data-active="true">
+      <div class="drone-step-inner">
+        <article class="drone-panel">
+          <CornerMarks tone="signal" size={10} />
+          <header class="mono-label-sm flex items-center justify-between">
+            <span class="text-signal">{DRONE_SCENE_INTRO.wp}</span>
+            <span class="text-muted">{DRONE_SCENE_UI.stepCounter} 00 / {total}</span>
+          </header>
+          <div class="my-3 h-px bg-line" aria-hidden="true"></div>
+          <h3 class="display-md text-step-2 text-ink">{DRONE_SCENE_INTRO.title}</h3>
+          <p class="drone-panel-desc">{DRONE_SCENE_INTRO.description}</p>
+          <p class="drone-panel-detail">{DRONE_SCENE_INTRO.hint}</p>
+        </article>
+      </div>
+    </li>
+    {
+      DRONE_SCENE_STEPS.map((step, i) => (
+        <li class="drone-step" data-drone-step={i + 1}>
+          <div class="drone-step-inner">
+            <article class="drone-panel">
+              <CornerMarks tone="signal" size={10} />
+              <header class="mono-label-sm flex items-center justify-between">
+                <span class="text-signal">{step.wp}</span>
+                <span class="text-muted">
+                  {DRONE_SCENE_UI.stepCounter} {String(i + 1).padStart(2, "0")} / {total}
+                </span>
+              </header>
+              <div class="my-3 h-px bg-line" aria-hidden="true" />
+              <div class="flex items-center gap-3">
+                <Icon name={step.icon} class="size-6 shrink-0 text-muted" />
+                <h3 class="display-md text-step-2 text-ink">{step.title}</h3>
+              </div>
+              <p class="drone-panel-desc">{step.description}</p>
+              <p class="mono-label-sm mt-4 flex flex-wrap gap-x-2">
+                <span class="text-muted">{DRONE_SCENE_UI.sensorPrefix}</span>
+                <span class="text-signal">{step.sensorLabel}</span>
+              </p>
+              <p class="drone-panel-detail">{step.detail}</p>
+            </article>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<script>
+  import { initDroneScene } from "@scripts/three/drones/initDroneScene";
+  initDroneScene();
+</script>
+
+<style is:global>
+  .drone-scene {
+    --stage-top: 46px;
+    --stage-h: calc(100svh - var(--stage-top));
+    --hud-w: 18.5rem;
+  }
+  .drone-stage {
+    position: sticky;
+    top: var(--stage-top);
+    height: var(--stage-h);
+    overflow: hidden;
+    z-index: 0;
+    background-color: var(--color-bg);
+  }
+  .drone-canvas {
+    position: absolute;
+    inset: 0;
+    touch-action: pan-y;
+    cursor: grab;
+    opacity: 0;
+    transition: opacity 0.8s var(--ease-draw);
+  }
+  .drone-stage[data-dragging="true"] .drone-canvas {
+    cursor: grabbing;
+  }
+  .drone-canvas canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .drone-scene[data-scene-state="live"] .drone-canvas {
+    opacity: 1;
+  }
+  .drone-fallback {
+    position: absolute;
+    inset: 4.5rem 2rem 2rem calc(2rem + 26rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0.55;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .drone-fallback svg {
+    min-height: 0;
+    flex: 1;
+  }
+  .drone-fallback figcaption {
+    display: none;
+  }
+  .drone-scene[data-scene-state="live"] .drone-fallback {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .drone-link {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    opacity: 0;
+  }
+  .drone-labels {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .drone-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--color-muted);
+    will-change: transform;
+    transition: opacity 0.3s ease, color 0.2s ease;
+  }
+  .drone-label > span {
+    background-color: color-mix(in srgb, var(--color-bg) 78%, transparent);
+    padding: 2px 4px;
+  }
+  .drone-label::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: currentColor;
+    flex: none;
+  }
+  .drone-label[data-active] {
+    color: var(--color-signal);
+  }
+  .drone-label--feature {
+    color: var(--color-ink);
+  }
+  .drone-label--feature::before {
+    width: 1px;
+    height: 14px;
+  }
+  .drone-label--drone {
+    color: var(--color-ink);
+  }
+  .drone-label[data-hidden] {
+    opacity: 0;
+  }
+
+  .drone-topbar {
+    position: absolute;
+    inset: 0 0 auto 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 2rem;
+    pointer-events: none;
+  }
+  .drone-hint {
+    display: flex;
+    gap: 0.6rem;
+    margin-left: auto;
+  }
+  .drone-pause {
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-line);
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    padding: 0.45rem 0.7rem;
+    border-radius: var(--radius-xs);
+    transition: border-color 0.2s ease, color 0.2s ease;
+    visibility: hidden;
+  }
+  .drone-pause:hover {
+    border-color: var(--color-signal);
+    color: var(--color-signal);
+  }
+  .drone-scene[data-scene-state="live"] .drone-pause {
+    visibility: visible;
+  }
+  .drone-pause [data-icon-play] {
+    display: none;
+  }
+  .drone-scene[data-paused="true"] .drone-pause [data-icon-play] {
+    display: inline;
+  }
+  .drone-scene[data-paused="true"] .drone-pause [data-icon-pause] {
+    display: none;
+  }
+
+  .drone-hud {
+    position: absolute;
+    top: 4.5rem;
+    right: 2rem;
+    width: var(--hud-w);
+    border: 1px solid var(--color-line);
+    background-color: var(--color-bg-elevated);
+    border-radius: var(--radius-xs);
+    visibility: hidden;
+  }
+  .drone-scene[data-scene-state="live"] .drone-hud,
+  .drone-scene[data-scene-state="live"] .drone-link {
+    visibility: visible;
+    opacity: 1;
+  }
+  .drone-hud-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: var(--font-mono);
+  }
+  .drone-hud-row {
+    padding: 0.45rem 0.75rem;
+    border-bottom: 1px solid var(--color-line-soft);
+    min-width: 0;
+  }
+  .drone-hud-row:nth-child(-n + 3) {
+    border-right: 1px solid var(--color-line-soft);
+  }
+  .drone-hud-row:nth-child(3) {
+    border-right: 0;
+  }
+  .drone-hud-row:nth-child(4) {
+    grid-column: span 3;
+  }
+  .drone-hud-wide {
+    grid-column: span 3;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .drone-hud-row:last-child {
+    border-bottom: 0;
+  }
+  .drone-hud-row:nth-child(4) {
+    display: flex;
+    justify-content: space-between;
+  }
+  .drone-hud dt {
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .drone-hud dd {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-ink);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .drone-hud dd[data-warn] {
+    color: var(--color-warn);
+  }
+
+  .drone-legend {
+    position: absolute;
+    right: 2rem;
+    bottom: 1.5rem;
+    width: var(--hud-w);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 0.6rem;
+    pointer-events: none;
+  }
+  .drone-legend p {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .drone-legend-items {
+    display: grid;
+    gap: 0.3rem;
+    margin-top: 0.3rem;
+  }
+  .drone-legend-items li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .drone-swatch {
+    width: 18px;
+    flex: none;
+  }
+  .drone-swatch--plan {
+    height: 0;
+    border-top: 1px dashed var(--color-muted);
+  }
+  .drone-swatch--done {
+    height: 2px;
+    background: var(--color-signal);
+  }
+  .drone-swatch--ndvi-high {
+    height: 9px;
+    background: var(--color-signal-dim);
+    opacity: 0.8;
+  }
+  .drone-swatch--ndvi-low {
+    height: 9px;
+    background: var(--color-warn);
+    opacity: 0.85;
+  }
+
+  .drone-steps {
+    position: relative;
+    z-index: 1;
+    margin: calc(-1 * var(--stage-h)) 0 0;
+    padding: 0;
+    list-style: none;
+    pointer-events: none;
+  }
+  .drone-step {
+    height: var(--stage-h);
+    display: flex;
+    align-items: center;
+  }
+  .drone-step-inner {
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .drone-panel {
+    position: relative;
+    pointer-events: auto;
+    max-width: 24rem;
+    border: 1px solid var(--color-line);
+    background-color: var(--color-bg-elevated);
+    border-radius: var(--radius-xs);
+    padding: 1.25rem 1.4rem 1.4rem;
+    transition: opacity 0.4s ease, border-color 0.3s ease;
+  }
+  .drone-step:not([data-active]) .drone-panel {
+    opacity: 0.14;
+  }
+  .drone-step[data-active] .drone-panel {
+    border-color: var(--color-signal-dim);
+  }
+  .drone-panel-desc {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--color-muted);
+    text-wrap: pretty;
+  }
+  .drone-panel-detail {
+    margin-top: 0.75rem;
+    border-left: 1px solid var(--color-signal);
+    padding-left: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-ink);
+    text-wrap: pretty;
+  }
+
+  /* Con la escena viva en desktop la opacidad de las tarjetas la maneja el
+     script (fundido por distancia al centro), sin transición CSS que la retrase. */
+  @media (min-width: 768px) {
+    .drone-scene[data-scene-state="live"] .drone-panel {
+      transition: border-color 0.3s ease;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .drone-hint {
+      display: none;
+    }
+    .drone-fallback {
+      inset: 4rem 1rem 1rem 1rem;
+    }
+    .drone-pause {
+      margin-left: auto;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .drone-scene {
+      --mstage-h: 52svh;
+      --hud-w: 13.75rem;
+    }
+    /* Mobile: la escena queda arriba (sticky) y POR ENCIMA de los pasos; cada
+       tarjeta aparece en la mitad inferior y se va por debajo de la escena. */
+    .drone-stage {
+      height: var(--mstage-h);
+      z-index: 2;
+    }
+    .drone-steps {
+      margin-top: 0;
+    }
+    .drone-step {
+      height: calc(100svh - var(--stage-top) - var(--mstage-h));
+      min-height: 16rem;
+      align-items: center;
+      padding-bottom: 0;
+    }
+    .drone-step:not([data-active]) .drone-panel {
+      opacity: 0.4;
+    }
+    .drone-step-inner {
+      padding: 0 0.75rem;
+    }
+    .drone-panel {
+      max-width: none;
+      padding: 0.9rem 1rem 1rem;
+    }
+    .drone-panel .display-md {
+      font-size: var(--text-step-1);
+    }
+    .drone-panel-desc {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      line-height: 1.45;
+    }
+    .drone-panel-detail {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .drone-topbar {
+      padding: 0.8rem 0.9rem;
+      gap: 0.75rem;
+    }
+    .drone-fig {
+      font-size: 0.625rem;
+      gap: 0.5rem;
+    }
+    .drone-fig > span:nth-child(2) {
+      width: 1rem;
+    }
+    .drone-pause {
+      padding: 0.4rem 0.55rem;
+    }
+    .drone-pause-text {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+    .drone-hud {
+      top: 3.1rem;
+      right: 0.75rem;
+    }
+    .drone-hud > div:first-child {
+      padding: 0.3rem 0.5rem;
+    }
+    .drone-hud-row {
+      padding: 0.3rem 0.5rem;
+    }
+    .drone-hud dd {
+      font-size: 0.65rem;
+    }
+    .drone-hud dt {
+      font-size: 0.55rem;
+    }
+    .drone-hud-mhide {
+      display: none !important;
+    }
+    .drone-legend {
+      left: 0.9rem;
+      right: auto;
+      bottom: 0.75rem;
+      width: auto;
+      max-width: 60%;
+      border-top: 0;
+      padding-top: 0;
+      font-size: 0.625rem;
+    }
+    .drone-legend-items,
+    .drone-legend-sensor {
+      display: none !important;
+    }
+  }
+
+  /* --- Fallback: sin WebGL o con movimiento reducido --- */
+  .drone-scene[data-scene-state="fallback"] .drone-stage {
+    position: relative;
+    top: auto;
+    height: auto;
+    padding: 4.5rem 1.5rem 2rem;
+  }
+  .drone-scene[data-scene-state="fallback"] .drone-fallback {
+    position: relative;
+    inset: auto;
+    max-width: 56rem;
+    margin: 0 auto;
+    opacity: 1;
+  }
+  .drone-scene[data-scene-state="fallback"] .drone-fallback figcaption {
+    display: block;
+  }
+  .drone-scene[data-scene-state="fallback"] :is(.drone-canvas, .drone-link, .drone-labels, .drone-hud, .drone-pause, .drone-legend-active, .drone-legend-sensor, .drone-hint) {
+    display: none;
+  }
+  .drone-scene[data-scene-state="fallback"] .drone-legend {
+    position: relative;
+    inset: auto;
+    width: auto;
+    max-width: 56rem;
+    margin: 1rem auto 0;
+  }
+  .drone-scene[data-scene-state="fallback"] .drone-legend-items {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+  .drone-scene[data-scene-state="fallback"] .drone-steps {
+    margin: 0 auto;
+    max-width: 80rem;
+    padding: 2rem 1.5rem 4rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+    pointer-events: auto;
+  }
+  .drone-scene[data-scene-state="fallback"] .drone-step {
+    height: auto;
+    display: block;
+    padding: 0;
+  }
+  .drone-scene[data-scene-state="fallback"] .drone-step-inner {
+    padding: 0;
+    height: 100%;
+  }
+  .drone-scene[data-scene-state="fallback"] .drone-panel {
+    max-width: none;
+    height: 100%;
+    opacity: 1;
+    border-color: var(--color-line);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drone-scene .drone-stage {
+      position: relative;
+      top: auto;
+      height: auto;
+      padding: 4.5rem 1.5rem 2rem;
+    }
+    .drone-scene .drone-fallback {
+      position: relative;
+      inset: auto;
+      max-width: 56rem;
+      margin: 0 auto;
+      opacity: 1;
+    }
+    .drone-scene .drone-fallback figcaption {
+      display: block;
+    }
+    .drone-scene :is(.drone-canvas, .drone-link, .drone-labels, .drone-hud, .drone-pause, .drone-legend-active, .drone-legend-sensor, .drone-hint) {
+      display: none;
+    }
+    .drone-scene .drone-legend {
+      position: relative;
+      inset: auto;
+      width: auto;
+      max-width: 56rem;
+      margin: 1rem auto 0;
+    }
+    .drone-scene .drone-legend-items {
+      display: flex !important;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+    }
+    .drone-scene .drone-steps {
+      margin: 0 auto;
+      max-width: 80rem;
+      padding: 2rem 1.5rem 4rem;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+      pointer-events: auto;
+    }
+    .drone-scene .drone-step {
+      height: auto;
+      display: block;
+      padding: 0;
+    }
+    .drone-scene .drone-step-inner {
+      padding: 0;
+      height: 100%;
+    }
+    .drone-scene .drone-panel {
+      max-width: none;
+      height: 100%;
+      opacity: 1;
+      border-color: var(--color-line);
+    }
+  }
+</style>

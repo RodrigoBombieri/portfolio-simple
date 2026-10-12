@@ -1,0 +1,20 @@
+---
+// Cota: línea con terminales en tick y una medida/dato en el medio. ← 4 SEMANAS →
+export interface Props {
+  label: string;
+  class?: string;
+  /** Si es true, la cota llena el ancho disponible. */
+  block?: boolean;
+}
+const { label, class: className = "", block = true } = Astro.props;
+---
+
+<span
+  class={`mono-label-sm items-center gap-2 text-muted ${block ? "flex w-full" : "inline-flex"} ${className}`}
+>
+  <span class="h-2.5 w-px shrink-0 bg-muted" aria-hidden="true"></span>
+  <span class="h-px min-w-3 flex-1 bg-line" aria-hidden="true"></span>
+  <span class="shrink-0 text-ink">{label}</span>
+  <span class="h-px min-w-3 flex-1 bg-line" aria-hidden="true"></span>
+  <span class="h-2.5 w-px shrink-0 bg-muted" aria-hidden="true"></span>
+</span>

@@ -1,113 +1,80 @@
 @import "tailwindcss";
 
-/* ------------------------------------------------------------------ */
-/* Design tokens — Tailwind v4 CSS-first theme                        */
-/* ------------------------------------------------------------------ */
+/* ================================================================== */
+/* Blueprint vivo — sistema de diseño                                  */
+/* Tokens CSS-first (Tailwind v4). Oscuro = "pantalla de instrumento", */
+/* claro = "papel de plano". El verde es SEÑAL, no decoración.         */
+/* ================================================================== */
 @theme {
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Archivo Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Archivo Variable", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
-  /* Fondo oscuro con capas (valores por defecto / tema oscuro) */
-  --color-bg: #05070d;
-  --color-bg-soft: #0e1322;
-  --color-bg-elevated: #10141f;
-  --color-border: #1e2433;
-  --color-border-soft: #161b28;
+  /* Reemplazamos por completo la paleta por defecto: solo existen estos colores */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-bg: #0a0c0b;
+  --color-bg-soft: #101412;
+  --color-bg-elevated: #141916;
+  --color-line: #26302a;
+  --color-line-soft: #1a211d;
+  --color-ink: #e8ede9;
+  --color-muted: #8a968e;
+  --color-signal: #8cff5a;
+  --color-signal-dim: #4fae34;
+  --color-warn: #ffb547;
 
-  /* Acentos: azul eléctrico + cian */
-  --color-primary: #3b6bff;
-  --color-primary-soft: #6d8bff;
-  --color-cyan: #22d3ee;
-  --color-cyan-soft: #67e8f9;
+  /* Escala tipográfica modular, ratio 1.25 (base 17px) */
+  --text-step--2: 0.68rem;
+  --text-step--1: 0.85rem;
+  --text-step-0: 1.0625rem;
+  --text-step-1: 1.328rem;
+  --text-step-2: 1.66rem;
+  --text-step-3: 2.075rem;
+  --text-step-4: 2.594rem;
+  --text-step-5: 3.242rem;
 
-  --color-ink: #f5f7fb;
-  --color-muted: #8792a8;
-  --color-muted-soft: #5c6478;
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
 
-  --shadow-glow: 0 0 80px -20px rgba(59, 107, 255, 0.45);
-  --shadow-glow-cyan: 0 0 80px -20px rgba(34, 211, 238, 0.4);
-
-  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-marquee: marquee 26s linear infinite;
-
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-14px);
-    }
-  }
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
+  --ease-draw: cubic-bezier(0.2, 0.7, 0.1, 1);
 }
 
-/* ------------------------------------------------------------------ */
-/* Tema claro — sobreescribe las variables de color del tema oscuro.   */
-/* El atributo data-theme lo fija un script inline en Layout.astro     */
-/* antes del primer paint (evita flash) según localStorage o           */
-/* prefers-color-scheme; se puede alternar con el botón del Navbar.    */
-/* ------------------------------------------------------------------ */
+/* Papel de plano (tema claro) */
 html[data-theme="light"] {
-  --color-bg: #f6f8fb;
-  --color-bg-soft: #e4e9f3;
-  --color-bg-elevated: #ffffff;
-  --color-border: #dbe1ec;
-  --color-border-soft: #e6eaf2;
-
-  --color-primary: #3455e0;
-  --color-primary-soft: #3455e0;
-  --color-cyan: #0e7f96;
-  --color-cyan-soft: #0891b2;
-
-  --color-ink: #0b0f19;
-  --color-muted: #4b5568;
-  --color-muted-soft: #6b7488;
-
-  --shadow-glow: 0 0 80px -25px rgba(59, 107, 255, 0.35);
-  --shadow-glow-cyan: 0 0 80px -25px rgba(14, 127, 150, 0.3);
-
-  --grid-line: rgba(15, 23, 42, 0.06);
-  --glass-from: rgba(15, 23, 42, 0.035);
-  --glass-to: rgba(15, 23, 42, 0.01);
+  --color-bg: #f2f1ec;
+  --color-bg-soft: #e9e8e1;
+  --color-bg-elevated: #fbfaf7;
+  --color-line: #c9c8bf;
+  --color-line-soft: #dedcd5;
+  --color-ink: #121513;
+  --color-muted: #5c625e;
+  --color-signal: #1b762a; /* AA (≥4.5:1) también sobre --color-bg-soft */
+  --color-signal-dim: #3e9a4c;
+  --color-warn: #955800;
 }
 
-/* Valores por defecto (tema oscuro) para las variables usadas fuera de @theme */
+/* Variables auxiliares fuera de @theme */
 :root {
-  --grid-line: rgba(255, 255, 255, 0.045);
-  --glass-from: rgba(255, 255, 255, 0.045);
-  --glass-to: rgba(255, 255, 255, 0.015);
+  --grid-minor: rgba(232, 237, 233, 0.035);
+  --grid-major: rgba(232, 237, 233, 0.07);
+  interpolate-size: allow-keywords;
+}
+html[data-theme="light"] {
+  --grid-minor: rgba(18, 21, 19, 0.045);
+  --grid-major: rgba(18, 21, 19, 0.09);
 }
 
 /* ------------------------------------------------------------------ */
 /* Base                                                                */
 /* ------------------------------------------------------------------ */
 @layer base {
-  * {
-    scroll-behavior: smooth;
-  }
-
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
   }
-
   html[data-theme="light"] {
     color-scheme: light;
   }
@@ -116,14 +83,16 @@ html[data-theme="light"] {
     background-color: var(--color-bg);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    font-size: var(--text-step-0);
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
-    background-color: var(--color-primary);
-    color: white;
+    background-color: var(--color-signal);
+    color: var(--color-bg);
   }
 
   ::-webkit-scrollbar {
@@ -133,17 +102,20 @@ html[data-theme="light"] {
     background: var(--color-bg);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-border);
-    border-radius: 999px;
+    background: var(--color-line);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
+    background: var(--color-signal-dim);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-cyan);
+    outline: 2px solid var(--color-signal);
     outline-offset: 3px;
-    border-radius: 2px;
+  }
+
+  button,
+  [role="button"] {
+    cursor: pointer;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -159,91 +131,347 @@ html[data-theme="light"] {
 }
 
 /* ------------------------------------------------------------------ */
-/* Utilidades reutilizables                                            */
+/* Componentes / utilidades del lenguaje gráfico                       */
 /* ------------------------------------------------------------------ */
 @layer components {
-  .text-gradient {
-    background: linear-gradient(
-      90deg,
-      var(--color-ink) 0%,
-      var(--color-primary-soft) 55%,
-      var(--color-cyan) 100%
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+  /* Titulares: Archivo expandida, contundente */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 750;
+    font-stretch: 118%;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .display-md {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-stretch: 112%;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    text-wrap: balance;
   }
 
-  .bg-grid {
-    background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: 56px 56px;
+  /* Texto técnico / anotaciones */
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .mono-label-sm {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.4;
   }
 
-  /* Franja de fondo sutil para dar ritmo visual entre secciones consecutivas */
+  /* Retícula de plano: 8px menor, 64px mayor. Sin máscara radial. */
+  .reticle {
+    background-image:
+      linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px),
+      linear-gradient(to right, var(--grid-minor) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-minor) 1px, transparent 1px);
+    background-size: 64px 64px, 64px 64px, 8px 8px, 8px 8px;
+    background-position: -1px -1px;
+  }
+
+  /* Regla con marcas, separador distintivo */
+  .ruler {
+    height: 9px;
+    background-image:
+      repeating-linear-gradient(to right, var(--color-line) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(to right, var(--color-line) 0 1px, transparent 1px 8px);
+    background-size: 100% 9px, 100% 4px;
+    background-position: 0 0, 0 bottom;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid var(--color-line);
+  }
+
   .band-soft {
     background-color: var(--color-bg-soft);
   }
 
-  .glass-card {
-    background: linear-gradient(160deg, var(--glass-from), var(--glass-to));
-    border: 1px solid var(--color-border);
-    backdrop-filter: blur(20px);
+  /* Subrayado que se dibuja al hover */
+  .link-draw {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s var(--ease-draw), color 0.2s ease;
+  }
+  .link-draw:hover,
+  .link-draw:focus-visible {
+    background-size: 100% 1px;
   }
 
-  .glow-border {
-    position: relative;
-  }
-  .glow-border::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-      135deg,
-      var(--color-primary) 0%,
-      transparent 40%,
-      transparent 60%,
-      var(--color-cyan) 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-  .glow-border:hover::before {
-    opacity: 1;
+  /* Panel de plano: borde de 1px, sin sombra ni glow */
+  .sheet {
+    border: 1px solid var(--color-line);
+    background-color: var(--color-bg-elevated);
+    border-radius: var(--radius-xs);
   }
 
-  .noise-layer {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-    mix-blend-mode: overlay;
+  /* Campos del formulario técnico */
+  .field {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--color-line);
+    border-radius: 0;
+    padding: 0.6rem 0;
+    color: var(--color-ink);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.25s ease;
+  }
+  .field::placeholder {
+    color: var(--color-muted);
+    opacity: 0.7;
+  }
+  .field:focus {
+    border-bottom-color: var(--color-signal);
+    box-shadow: 0 1px 0 0 var(--color-signal);
+  }
+  select.field option {
+    background: var(--color-bg-elevated);
+    color: var(--color-ink);
+  }
+
+  /* Íconos de línea que se "redibujan" en hover (Icon.astro agrega pathLength=1) */
+  @keyframes icon-draw {
+    from {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 0;
+    }
+  }
+  .group:hover .icon-draw :where(path, circle, rect, line, polyline, polygon),
+  .group:focus-visible .icon-draw :where(path, circle, rect, line, polyline, polygon) {
+    animation: icon-draw 0.7s var(--ease-draw) both;
+  }
+
+  /* Botón: tick de cota que se desplaza */
+  .btn-tick {
+    transition: transform 0.35s var(--ease-draw);
+  }
+  .group:hover .btn-tick {
+    transform: translateX(4px);
   }
 }
 
-/* Elementos con [data-animate] arrancan ocultos; animations.ts los revela via GSAP.
-   Si JS está deshabilitado o falla, el media query de abajo evita que queden invisibles. */
+/* ------------------------------------------------------------------ */
+/* Estados iniciales de animación (GSAP los lleva al estado final)     */
+/* ------------------------------------------------------------------ */
 [data-animate] {
   opacity: 0;
 }
-.no-js [data-animate],
-html:not(.js) [data-animate] {
-  opacity: 1;
+[data-draw] {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+[data-draw="y"] {
+  transform: scaleY(0);
+  transform-origin: center top;
+}
+[data-reveal] {
+  clip-path: inset(0 0 100% 0);
 }
 
-/* Toggle de tema: el ícono visible depende de data-theme en <html> */
-[data-theme-icon-sun] {
-  display: none;
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1;
+  }
+  [data-draw],
+  [data-draw="y"] {
+    transform: none;
+  }
+  [data-reveal] {
+    clip-path: none;
+  }
 }
-[data-theme-icon-moon] {
-  display: none;
+
+/* Navbar: transparente arriba, sólido con línea de 1px al scrollear (sin blur) */
+[data-navbar] {
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-html[data-theme="dark"] [data-theme-icon-sun] {
+[data-navbar][data-scrolled="true"] {
+  background-color: var(--color-bg);
+  border-bottom-color: var(--color-line);
+}
+
+/* Toggle de tema: la opción activa se marca en verde señal */
+[data-theme-toggle] [data-t] {
+  color: var(--color-muted);
+  transition: color 0.2s ease;
+}
+html[data-theme="dark"] [data-theme-toggle] [data-t="dark"],
+html[data-theme="light"] [data-theme-toggle] [data-t="light"] {
+  color: var(--color-signal);
+}
+
+/* Barra de progreso del proceso: la variable --p la anima GSAP con scrub */
+.process-progress {
+  transform: scaleY(var(--p, 0));
+  transform-origin: center top;
+}
+@media (min-width: 768px) {
+  .process-progress {
+    transform: scaleX(var(--p, 0));
+    transform-origin: left center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .process-progress {
+    --p: 1;
+  }
+}
+
+/* FAQ: despliegue animado de altura (details::details-content) */
+details.faq::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition: block-size 0.45s var(--ease-draw), content-visibility 0.45s var(--ease-draw) allow-discrete;
+}
+details.faq[open]::details-content {
+  block-size: auto;
+}
+details.faq .faq-sign::before {
+  content: "+";
+}
+details.faq[open] .faq-sign::before {
+  content: "−";
+}
+
+/* ------------------------------------------------------------------ */
+/* Escena 3D del hero (SystemScene)                                    */
+/* ------------------------------------------------------------------ */
+/* Escenario fijo al viewport: queda detrás del hero y, atenuado, de Servicios */
+.scene-stage {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 100vh;
+  height: 100lvh;
+  pointer-events: none;
+  opacity: 0;
+  contain: strict;
+}
+.scene-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.scene-labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+/* Label proyectado desde 3D: punto + línea guía de 1px + texto mono */
+.scene-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  white-space: nowrap;
+  color: var(--color-muted);
+  will-change: transform, opacity;
+  transition: opacity 0.3s ease, color 0.2s ease;
+}
+.scene-label::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  margin-top: -1px;
+  background: currentColor;
+  flex: none;
+}
+.scene-label-line {
+  width: 18px;
+  height: 1px;
+  margin-top: 0;
+  background: currentColor;
+  opacity: 0.6;
+  transform-origin: left center;
+  transform: rotate(-30deg);
+  flex: none;
+}
+.scene-label-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: -1.15rem 0 0 0.25rem;
+}
+.scene-label-text {
+  color: var(--color-ink);
+  opacity: 0.78;
+}
+.scene-label-note {
+  max-width: 15rem;
+  white-space: normal;
+  border-left: 1px solid var(--color-signal);
+  padding-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+  color: var(--color-ink);
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity 0.25s ease, transform 0.35s var(--ease-draw);
+}
+.scene-label[data-accent] .scene-label-text,
+.scene-label[data-active] .scene-label-text {
+  color: var(--color-signal);
+  opacity: 1;
+}
+.scene-label[data-active] {
+  color: var(--color-signal);
+}
+.scene-label[data-active] .scene-label-note {
+  opacity: 1;
+  transform: none;
+}
+
+/* Fallback: diagrama SVG estático (sin WebGL / movimiento reducido / sin JS) */
+.scene-fallback {
+  display: none;
+  position: absolute;
+  right: 4%;
+  bottom: 9%;
+  width: min(30rem, 42vw);
+  opacity: 0.7;
+}
+.scene-fallback-frame {
+  border-top: 1px solid var(--color-line);
+  padding-top: 0.75rem;
+}
+[data-scene-state="fallback"] .scene-fallback {
   display: block;
 }
-html[data-theme="light"] [data-theme-icon-moon] {
-  display: block;
+@media (prefers-reduced-motion: reduce) {
+  .scene-fallback {
+    display: block;
+  }
+}
+@media (max-width: 1023px) {
+  .scene-fallback {
+    right: 1.5rem;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    width: auto;
+    max-width: 26rem;
+    margin-left: auto;
+    opacity: 0.35;
+  }
 }

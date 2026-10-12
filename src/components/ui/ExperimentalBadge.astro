@@ -1,39 +1,20 @@
 ---
-// Badge reutilizable para marcar contenido en fase experimental (aún no
-// disponible como producto 100% cerrado). Usar en cualquier lugar donde se
-// muestre contenido de Drones u otras features en prueba.
-import Icon from "@components/ui/Icon.astro";
-
+// Etiqueta rectangular para contenido en fase experimental (Drones y similares).
 export interface Props {
   class?: string;
-  /** Versión chica sin ícono, pensada para el nav. */
+  /** Versión corta ("BETA") pensada para el nav. */
   compact?: boolean;
 }
 
 const { class: className = "", compact = false } = Astro.props;
 ---
 
-{
-  compact ? (
-    <span
-      class:list={[
-        "inline-flex items-center rounded-full border border-amber-400/40 bg-amber-400/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase leading-none tracking-wider text-amber-400",
-        className,
-      ]}
-      title="Contenido en fase experimental, aún no disponible como producto 100% cerrado"
-    >
-      Beta
-    </span>
-  ) : (
-    <span
-      class:list={[
-        "inline-flex w-fit items-center gap-1.5 rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-amber-400",
-        className,
-      ]}
-      title="Contenido en fase experimental, aún no disponible como producto 100% cerrado"
-    >
-      <Icon name="flask" class="size-3.5" strokeWidth={2} />
-      Experimental
-    </span>
-  )
-}
+<span
+  class:list={[
+    "mono-label-sm inline-flex w-fit items-center border border-warn px-1.5 py-0.5 leading-none text-warn",
+    className,
+  ]}
+  title="Contenido en fase experimental, aún no disponible como producto 100% cerrado"
+>
+  {compact ? "Beta" : "Beta / Experimental"}
+</span>

@@ -1,0 +1,41 @@
+---
+// Línea guía fina con un punto en un extremo y un label mono en el otro.
+// direction="right": punto a la izquierda, label a la derecha (se apoya en un elemento a su izquierda).
+// direction="left":  label a la izquierda, punto a la derecha.
+// direction="down":  label arriba, línea vertical, punto abajo (señala un elemento debajo).
+export interface Props {
+  label: string;
+  direction?: "right" | "left" | "down";
+  length?: number;
+  class?: string;
+  tone?: "signal" | "muted";
+}
+const { label, direction = "right", length = 56, class: className = "", tone = "muted" } = Astro.props;
+const dot = tone === "signal" ? "bg-signal" : "bg-muted";
+const text = tone === "signal" ? "text-signal" : "text-muted";
+---
+
+{
+  direction === "down" ? (
+    <span class={`inline-flex flex-col items-start gap-1.5 ${className}`} aria-hidden="true">
+      <span class={`mono-label-sm ${text}`}>{label}</span>
+      <span class="flex flex-col items-start">
+        <span class="w-px bg-line" style={`height:${length}px`} data-draw="y"></span>
+        <span class={`-ml-[2px] size-[5px] ${dot}`}></span>
+      </span>
+    </span>
+  ) : (
+    <span
+      class={`inline-flex items-center ${direction === "left" ? "flex-row-reverse" : ""} ${className}`}
+      aria-hidden="true"
+    >
+      <span class={`size-[5px] shrink-0 ${dot}`}></span>
+      <span
+        class={`h-px bg-line ${direction === "left" ? "origin-right" : ""}`}
+        style={`width:${length}px`}
+        data-draw
+      ></span>
+      <span class={`mono-label-sm whitespace-nowrap px-2 ${text}`}>{label}</span>
+    </span>
+  )
+}

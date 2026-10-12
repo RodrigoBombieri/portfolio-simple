@@ -4,21 +4,29 @@ import ProcessStep from "@components/ui/ProcessStep.astro";
 import { PROCESS_STEPS } from "@data/process";
 ---
 
-<section id="proceso" class="relative py-16 lg:py-24">
+<section id="proceso" class="band-soft relative border-y border-line py-20 lg:py-28">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <SectionHeader
+      figure="02"
       eyebrow="Cómo trabajo"
       title="Un proceso claro,"
-      highlight="todo el compromiso de un equipo"
-      description="Cinco pasos simples para pasar de una conversación a software funcionando en tu negocio, con trato directo conmigo en cada etapa."
+      highlight="de la primera conversación a producción."
+      description="Cinco pasos para pasar de una conversación a software funcionando en tu negocio, con trato directo conmigo en cada etapa."
     />
 
-    <div class="mt-12 flex flex-col gap-12 md:flex-row md:items-start md:gap-4" data-timeline>
-      {
-        PROCESS_STEPS.map((step, i) => (
-          <ProcessStep step={step} index={i} total={PROCESS_STEPS.length} />
-        ))
-      }
+    <!-- Circuito: horizontal en desktop, vertical en mobile -->
+    <div class="relative mt-16" data-process-circuit>
+      <!-- Pista y trazo de progreso (verde, controlado por scroll) -->
+      <div class="absolute bottom-0 left-5 top-0 w-px bg-line md:bottom-auto md:left-0 md:right-0 md:top-5 md:h-px md:w-auto" aria-hidden="true"></div>
+      <div
+        class="process-progress absolute bottom-0 left-5 top-0 w-px bg-signal md:bottom-auto md:left-0 md:right-0 md:top-5 md:h-px md:w-auto"
+        data-process-progress
+        aria-hidden="true"
+      ></div>
+
+      <ol class="relative flex flex-col md:flex-row md:gap-2">
+        {PROCESS_STEPS.map((step, i) => <ProcessStep step={step} index={i} total={PROCESS_STEPS.length} />)}
+      </ol>
     </div>
   </div>
 </section>

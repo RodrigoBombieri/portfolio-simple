@@ -1,66 +1,82 @@
 ---
 import Icon from "@components/ui/Icon.astro";
 import ExperimentalBadge from "@components/ui/ExperimentalBadge.astro";
-import { SITE, WHATSAPP_LINK, NAV_LINKS } from "@data/site";
+import TitleBlock from "@components/ui/TitleBlock.astro";
+import SystemStamp from "@components/ui/SystemStamp.astro";
+import { SITE, WHATSAPP_LINK, NAV_LINKS, TITLE_BLOCK } from "@data/site";
 
 const year = new Date().getFullYear();
 
 const socials = [
-  { icon: "github", href: SITE.github, label: "GitHub" },
-  { icon: "linkedin", href: SITE.linkedin, label: "LinkedIn" },
-  { icon: "mail", href: `mailto:${SITE.email}`, label: "Email" },
-  { icon: "whatsapp", href: WHATSAPP_LINK, label: "WhatsApp" },
+  { href: SITE.github, label: "GitHub", external: true },
+  { href: SITE.linkedin, label: "LinkedIn", external: true },
+  { href: `mailto:${SITE.email}`, label: "Email", external: false },
+  { href: WHATSAPP_LINK, label: "WhatsApp", external: true },
+];
+
+const cells = [
+  { k: "Proyecto", v: TITLE_BLOCK.project, wide: true },
+  { k: "Autor", v: TITLE_BLOCK.author },
+  { k: "Escala", v: TITLE_BLOCK.scale },
+  { k: "Rev.", v: TITLE_BLOCK.rev },
+  { k: "Lugar", v: TITLE_BLOCK.place, wide: true },
 ];
 ---
 
-<footer class="relative border-t border-border-soft py-14">
-  <div class="mx-auto flex max-w-7xl flex-col gap-10 px-6 lg:px-8">
-    <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-      <div class="flex flex-col gap-3">
-        <a href="/" class="flex items-center gap-2 text-sm font-bold text-ink">
-          <span class="flex size-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-cyan text-white">
-            <Icon name="code" class="size-4" strokeWidth={2.5} />
-          </span>
-          Bombieri<span class="text-cyan">.dev</span>
+<footer class="relative border-t border-line">
+  <div class="ruler" aria-hidden="true"></div>
+  <div class="mx-auto flex max-w-7xl flex-col gap-12 px-6 py-14 lg:px-8">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-12">
+      <div class="flex flex-col gap-5 lg:col-span-5">
+        <a href="/" class="mono-label flex w-fit items-center gap-3 text-ink">
+          <span class="font-semibold text-signal">RB/</span> Rodrigo Bombieri
         </a>
         <p class="max-w-sm text-sm leading-relaxed text-muted">
-          Software a medida que ahorra tiempo, dinero y reduce tareas
-          repetitivas para empresas y profesionales en Argentina y
-          Latinoamérica.
+          Software a medida que ahorra tiempo, dinero y reduce tareas repetitivas para empresas y profesionales en
+          Argentina y Latinoamérica.
         </p>
+        <div class="mt-2 h-36 w-72 text-muted">
+          <SystemStamp />
+        </div>
       </div>
 
-      <div class="flex gap-3">
-        {
-          socials.map((social) => (
-            <a
-              href={social.href}
-              target={social.icon === "mail" ? undefined : "_blank"}
-              rel={social.icon === "mail" ? undefined : "noopener noreferrer"}
-              aria-label={social.label}
-              class="flex size-11 items-center justify-center rounded-xl border border-border text-muted transition-all duration-300 hover:-translate-y-1 hover:border-cyan/50 hover:text-cyan"
-            >
-              <Icon name={social.icon} class="size-4" />
-            </a>
-          ))
-        }
+      <div class="grid grid-cols-2 gap-10 lg:col-span-6 lg:col-start-7">
+        <nav class="flex flex-col gap-3" aria-label="Footer">
+          <p class="mono-label-sm text-muted">Índice</p>
+          {
+            NAV_LINKS.map((link, i) => (
+              <a href={link.href} class="mono-label-sm link-draw inline-flex w-fit items-center gap-2 text-ink hover:text-signal">
+                <span class="text-signal">{String(i + 1).padStart(2, "0")}</span>
+                {link.label}
+                {link.badge && <ExperimentalBadge compact />}
+              </a>
+            ))
+          }
+        </nav>
+        <div class="flex flex-col gap-3">
+          <p class="mono-label-sm text-muted">Contacto</p>
+          {
+            socials.map((social) => (
+              <a
+                href={social.href}
+                target={social.external ? "_blank" : undefined}
+                rel={social.external ? "noopener noreferrer" : undefined}
+                class="mono-label-sm link-draw inline-flex w-fit items-center gap-1.5 text-ink hover:text-signal"
+              >
+                {social.label}
+                <Icon name="arrow-up-right" class="size-3" strokeWidth={1.5} />
+              </a>
+            ))
+          }
+        </div>
       </div>
     </div>
 
-    <nav class="flex flex-wrap gap-x-8 gap-y-3 border-t border-border-soft pt-8 text-sm text-muted" aria-label="Footer">
-      {
-        NAV_LINKS.map((link) => (
-          <a href={link.href} class="inline-flex items-center gap-1.5 transition-colors hover:text-ink">
-            {link.label}
-            {link.badge && <ExperimentalBadge compact />}
-          </a>
-        ))
-      }
-    </nav>
+    <TitleBlock cells={cells} />
 
-    <div class="flex flex-col gap-2 border-t border-border-soft pt-8 text-xs text-muted-soft sm:flex-row sm:items-center sm:justify-between">
-      <p>© {year} Rodrigo — Software a Medida. Todos los derechos reservados.</p>
-      <p>Diseñado y desarrollado con Astro + Tailwind CSS.</p>
+    <div class="mono-label-sm flex flex-col gap-2 text-muted sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} Rodrigo Bombieri — Software a medida</p>
+      <p>Astro · Tailwind CSS · GSAP</p>
     </div>
   </div>
 </footer>

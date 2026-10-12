@@ -1,6 +1,8 @@
 import { initSmoothScroll, initHashScrollOnLoad } from "@scripts/smoothScroll";
 import { initAnimations } from "@scripts/animations";
 import { initMockupEmbeds } from "@scripts/mockupEmbeds";
+import { initShowroomFilter } from "@scripts/showroomFilter";
+import { initHeroScene } from "@scripts/three/initScene";
 import { SITE } from "@data/site";
 
 /** Menú móvil: abrir/cerrar + accesibilidad */
@@ -44,8 +46,8 @@ function initThemeToggle(): void {
   if (!toggles.length) return;
 
   const themeColor: Record<"dark" | "light", string> = {
-    dark: "#05070d",
-    light: "#f6f8fb",
+    dark: "#0a0c0b",
+    light: "#f2f1ec",
   };
 
   const applyTheme = (theme: "dark" | "light") => {
@@ -83,7 +85,7 @@ function initContactForm(): void {
     const formData = new FormData(form);
     const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     submitButton?.setAttribute("disabled", "true");
-    status.textContent = "Enviando...";
+    status.textContent = "ENVIANDO...";
 
     try {
       if (endpoint) {
@@ -124,6 +126,8 @@ function init(): void {
   initHashScrollOnLoad();
   initAnimations();
   initMockupEmbeds();
+  initShowroomFilter();
+  initHeroScene();
 }
 
 if (document.readyState === "loading") {

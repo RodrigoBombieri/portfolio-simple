@@ -1,49 +1,73 @@
 ---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import ProjectSheet from "@components/ui/ProjectSheet.astro";
 import Icon from "@components/ui/Icon.astro";
-import ProjectCard from "@components/ui/ProjectCard.astro";
-import TechBadge from "@components/ui/TechBadge.astro";
+import { SITE } from "@data/site";
 import { PROJECTS } from "@data/projects";
 import { TECHNOLOGIES } from "@data/tech";
+
+// Cuántos proyectos del portfolio usan cada tecnología (por coincidencia en sus tags)
+const usage = TECHNOLOGIES.map((tech) => {
+  const name = tech.name.toLowerCase();
+  const count = PROJECTS.filter((p) => p.tags.some((tag) => tag.toLowerCase().includes(name))).length;
+  return { ...tech, count };
+});
 ---
 
-<!--
-  Sección de apéndice: pensada para reclutadores/equipos técnicos, no para el
-  cliente de negocio. Por eso va al final (después del CTA) y con un estilo
-  más discreto que el resto del sitio: sin glow, header chico y alineado a la
-  izquierda.
--->
-<section id="portfolio-tecnico" class="band-soft relative border-t border-border-soft py-14 lg:py-20">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="flex max-w-2xl flex-col gap-3" data-animate>
-      <span class="inline-flex w-fit items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium uppercase tracking-widest text-muted-soft">
-        <Icon name="code" class="size-3.5" />
-        Portfolio técnico
-      </span>
-      <h2 class="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
-        Para equipos técnicos y reclutadores
-      </h2>
-      <p class="leading-relaxed text-muted">
-        Soy Rodrigo Bombieri, desarrollador de software Full Stack (C#/.NET,
-        Angular, Node.js). Acá vas a encontrar el repositorio de código y el
-        stack utilizado en cada proyecto.
-      </p>
+<section id="portfolio-tecnico" class="relative">
+  <div class="reticle pointer-events-none absolute inset-x-0 top-0 h-80" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-6 pb-20 pt-10 lg:px-8 lg:pb-28 lg:pt-14">
+    <SectionHeader
+      as="h1"
+      figure="T"
+      eyebrow="Fichas — Portfolio técnico"
+      title="Para equipos técnicos"
+      highlight="y reclutadores."
+      description="Soy Rodrigo Bombieri, desarrollador de software Full Stack (C#/.NET, Angular, Node.js). Acá está el repositorio de código y el stack de cada proyecto."
+    />
+
+    <div class="mt-14 flex flex-col">
+      {PROJECTS.map((project, i) => <ProjectSheet project={project} index={i} />)}
     </div>
 
-    <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {PROJECTS.map((project, i) => <ProjectCard project={project} index={i} />)}
+    <!-- Stack como tabla de especificación -->
+    <div class="mt-16 border-t border-line pt-10" data-animate>
+      <p class="mono-label text-ink">Especificación del stack</p>
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full min-w-[32rem] border-collapse text-left">
+          <caption class="sr-only">Tecnologías utilizadas y cantidad de proyectos del portfolio que las usan</caption>
+          <thead>
+            <tr class="mono-label-sm border-b border-line text-muted">
+              <th scope="col" class="py-3 pr-4 font-normal">Tecnología</th>
+              <th scope="col" class="py-3 pr-4 font-normal">Categoría</th>
+              <th scope="col" class="py-3 text-right font-normal">En proyectos</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              usage.map((row) => (
+                <tr class="border-b border-line-soft transition-colors hover:bg-bg-soft">
+                  <th scope="row" class="py-3 pr-4 text-sm font-medium text-ink">{row.name}</th>
+                  <td class="mono-label-sm py-3 pr-4 text-muted">{row.category}</td>
+                  <td class="mono-label-sm py-3 text-right text-ink">{row.count > 0 ? String(row.count).padStart(2, "0") : "—"}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <div class="mx-auto mt-12 max-w-7xl px-6 lg:px-8">
-    <p class="text-xs font-medium uppercase tracking-widest text-muted-soft">Stack utilizado</p>
-  </div>
-  <div class="group relative mt-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-    <div class="animate-marquee flex w-max gap-4 group-hover:[animation-play-state:paused]">
-      {
-        [...TECHNOLOGIES, ...TECHNOLOGIES].map((tech) => (
-          <TechBadge tech={tech} />
-        ))
-      }
+    <div class="mono-label mt-12 flex flex-wrap gap-x-8 gap-y-3 border-t border-line pt-6" data-animate>
+      <a href={SITE.github} target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2 text-signal">
+        <span class="link-draw pb-0.5">GitHub</span><Icon name="arrow-up-right" class="btn-tick size-4" strokeWidth={1.5} />
+      </a>
+      <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2 text-signal">
+        <span class="link-draw pb-0.5">LinkedIn</span><Icon name="arrow-up-right" class="btn-tick size-4" strokeWidth={1.5} />
+      </a>
+      <a href={`mailto:${SITE.email}`} class="group inline-flex items-center gap-2 text-signal">
+        <span class="link-draw pb-0.5">Email</span><Icon name="arrow-up-right" class="btn-tick size-4" strokeWidth={1.5} />
+      </a>
     </div>
   </div>
 </section>

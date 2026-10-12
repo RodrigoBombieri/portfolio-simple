@@ -1,5 +1,5 @@
 ---
-import Icon from "@components/ui/Icon.astro";
+import Dimension from "@components/ui/Dimension.astro";
 import type { ProcessStepData } from "@data/process";
 
 export interface Props {
@@ -8,43 +8,30 @@ export interface Props {
   total: number;
 }
 
-const { step, index, total } = Astro.props;
-const isLast = index === total - 1;
+const { step } = Astro.props;
 ---
 
-<div class="relative flex flex-1 flex-col items-center gap-5 text-center" data-animate style={`transition-delay:${index * 100}ms`}>
-  {
-    !isLast && (
-      <div class="absolute left-1/2 top-8 hidden h-px w-full -translate-y-1/2 overflow-hidden md:block">
-        <div
-          class="h-full w-full origin-left scale-x-0 bg-linear-to-r from-primary to-cyan"
-          data-process-line
-        />
-      </div>
-    )
-  }
-
-  <div
-    class="relative z-10 flex size-16 items-center justify-center rounded-2xl border border-border bg-bg-elevated text-cyan shadow-glow"
+<li class="relative flex flex-1 gap-5 pb-10 md:flex-col md:gap-6 md:pb-0 md:pr-6" data-animate>
+  <!-- Nodo del circuito -->
+  <span
+    class="mono-label relative z-10 flex size-10 shrink-0 items-center justify-center border border-line bg-bg text-muted transition-colors duration-500 data-[active=true]:border-signal data-[active=true]:text-signal"
+    data-process-node
+    data-active="false"
   >
-    <Icon name={step.icon} class="size-7" />
-    <span
-      class="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-linear-to-br from-primary to-cyan text-[11px] font-bold text-white"
-    >
-      {step.number}
-    </span>
-  </div>
+    {step.number}
+  </span>
 
-  <div class="flex flex-col items-center gap-1.5 px-2">
-    <h3 class="font-semibold text-ink">{step.title}</h3>
+  <div class="flex flex-col gap-3 md:flex-1">
+    <h3 class="display-md text-step-1 text-ink">{step.title}</h3>
     <p class="text-sm leading-relaxed text-muted">{step.description}</p>
     {
       step.advantage && (
-        <span class="mt-2 inline-flex items-center gap-1.5 rounded-full border border-cyan/30 bg-cyan/5 px-3 py-1 text-xs font-medium text-cyan">
-          <Icon name="check" class="size-3" strokeWidth={2.5} />
+        <p class="mono-label-sm flex items-center gap-2 text-muted">
+          <span class="size-1.5 shrink-0 bg-signal" aria-hidden="true" />
           {step.advantage}
-        </span>
+        </p>
       )
     }
+    {step.metric && <Dimension label={step.metric} class="mt-auto pt-2" />}
   </div>
-</div>
+</li>

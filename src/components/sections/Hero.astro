@@ -1,140 +1,122 @@
 ---
 import Button from "@components/ui/Button.astro";
 import Icon from "@components/ui/Icon.astro";
-import { SITE, SHOW_DRONES } from "@data/site";
+import FigureLabel from "@components/ui/FigureLabel.astro";
+import Annotation from "@components/ui/Annotation.astro";
+import CornerMarks from "@components/ui/CornerMarks.astro";
+import SystemScene from "@components/three/SystemScene.astro";
+import { SITE, HERO, HERO_HEADLINES } from "@data/site";
 
-const TAGS = ["C# / .NET", "Angular", "Node.js", "Trato directo"];
+const headline = HERO_HEADLINES[HERO.headlineIndex] ?? HERO_HEADLINES[0];
+const card = HERO.card;
 
-const heroDescription = SHOW_DRONES
-  ? "Landing pages, aplicaciones web, software empresarial y soluciones para drones desarrolladas a medida — pensadas para ahorrarte tiempo, dinero y tareas repetitivas."
-  : "Landing pages, aplicaciones web y software empresarial desarrollados a medida — pensados para ahorrarte tiempo, dinero y tareas repetitivas.";
+const rows = [
+  { k: "Rol", v: `${SITE.role} Full Stack` },
+  { k: "Stack", v: card.stack.join(" · ") },
+  { k: "Base", v: card.base },
+  { k: "Coord.", v: card.coords },
+];
 ---
 
-<section id="top" class="relative overflow-hidden pb-16 pt-32 lg:pb-20 lg:pt-40">
-  <!-- fondo -->
-  <div class="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,black,transparent)]"></div>
-  <div class="pointer-events-none absolute left-1/2 top-[-10%] size-[640px] -translate-x-1/2 rounded-full bg-primary/25 blur-[140px]"></div>
-  <div class="pointer-events-none absolute right-[-10%] top-[20%] size-[420px] rounded-full bg-cyan/20 blur-[120px]"></div>
+<section id="top" class="relative overflow-hidden pt-28 lg:pt-32">
+  <!-- Retícula de plano -->
+  <div class="reticle pointer-events-none absolute inset-0" aria-hidden="true"></div>
 
-  <div class="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-2 lg:px-8">
-    <div class="flex flex-col items-start gap-8">
-      <span
-        class="inline-flex items-center gap-2 rounded-full border border-border bg-bg-elevated/60 px-4 py-1.5 text-xs font-medium text-muted"
-        data-animate
-      >
-        <span class="relative flex size-2">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75"></span>
-          <span class="relative inline-flex size-2 rounded-full bg-cyan"></span>
-        </span>
-        Disponible para nuevos proyectos
-      </span>
+  <!-- Fondo 3D (SystemScene): canvas en idle + fallback SVG -->
+  <SystemScene />
 
-      <h1 class="text-balance text-4xl font-bold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-6xl" data-animate>
-        Desarrollo software que
-        <span class="text-gradient">impulsa tu negocio.</span>
+  <div class="relative mx-auto grid max-w-7xl grid-cols-1 gap-14 px-6 pb-16 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:pb-24 lg:pt-6">
+    <div class="flex flex-col items-start gap-8 lg:col-span-7 lg:pt-6">
+      <div class="flex w-full flex-col gap-3" data-animate>
+        <FigureLabel n={HERO.figure} label={HERO.figureLabel} />
+        <div class="h-px w-full max-w-md bg-line" data-draw></div>
+      </div>
+
+      <h1 class="display text-[clamp(2.5rem,5.6vw,5.75rem)] text-ink" data-reveal>
+        {headline.map((line, i) => <span class:list={["block", { "text-muted": i > 0 }]}>{line}</span>)}
       </h1>
 
-      <p class="max-w-xl text-balance text-lg leading-relaxed text-muted" data-animate>
-        {heroDescription}
+      <p class="max-w-xl text-pretty text-step-0 leading-relaxed text-muted sm:text-step-1 sm:leading-relaxed" data-animate>
+        {HERO.description}
       </p>
 
-      <div class="flex flex-col gap-4 sm:flex-row" data-animate>
-        <Button href="#contacto" size="lg" icon="arrow-right">Cotizar mi proyecto</Button>
-        <Button href="#servicios" variant="secondary" size="lg">Ver servicios</Button>
+      <div class="flex flex-col gap-5 sm:flex-row sm:items-center" data-animate>
+        <div class="flex items-center">
+          <Button href="#contacto" size="lg" icon="arrow-right">Cotizar mi proyecto</Button>
+          <span class="hidden xl:inline-flex"><Annotation label="Punto de entrada" length={36} tone="signal" /></span>
+        </div>
+        <Button href="#servicios" variant="ghost" icon="arrow-right">Ver servicios</Button>
       </div>
 
-      <div class="flex items-center gap-6 pt-4 text-sm text-muted-soft" data-animate>
-        <div class="flex items-center gap-2">
-          <Icon name="check" class="size-4 text-cyan" strokeWidth={2.25} />
-          Código limpio y escalable
-        </div>
-        <div class="flex items-center gap-2">
-          <Icon name="check" class="size-4 text-cyan" strokeWidth={2.25} />
-          Comunicación directa
-        </div>
-      </div>
+      <ul class="mono-label-sm flex flex-wrap gap-x-8 gap-y-2 pt-2 text-muted" data-animate>
+        {
+          HERO.checks.map((check) => (
+            <li class="flex items-center gap-2">
+              <span class="size-1.5 bg-signal" aria-hidden="true"></span>
+              {check}
+            </li>
+          ))
+        }
+      </ul>
     </div>
 
-    <!-- Sobre mí -->
-    <div id="sobre-mi" class="relative mx-auto w-full max-w-lg" data-animate>
-      <div class="animate-float relative rounded-3xl border border-border bg-bg-elevated/80 p-8 shadow-glow backdrop-blur-xl sm:p-10">
-        <div class="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
-          <img
-            src="/images/rodrigo.jpg"
-            alt="Rodrigo Bombieri, desarrollador de software"
-            width="128"
-            height="128"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            class="size-28 shrink-0 rounded-full object-cover ring-4 ring-cyan/20 shadow-glow-cyan sm:size-32"
-          />
-          <div class="flex flex-col gap-1">
-            <p class="text-lg font-bold text-ink">Rodrigo Bombieri</p>
-            <p class="text-sm font-medium text-cyan">{SITE.role} Full Stack</p>
+    <!-- Ficha técnica / sobre mí -->
+    <div id="sobre-mi" class="relative lg:col-span-5 lg:col-start-8 lg:mt-14" data-animate>
+      <div class="hidden pb-1 pl-[3.25rem] lg:block">
+        <Annotation label={card.annotation} direction="down" length={22} />
+      </div>
+      <div class="sheet relative p-6 sm:p-8">
+        <CornerMarks tone="signal" size={14} />
+
+        <div class="mono-label-sm flex items-center justify-between gap-4 border-b border-line pb-4 text-muted">
+          <span>{card.file}</span>
+          <span class="flex items-center gap-2 text-ink">
+            <span class="size-2 bg-signal" aria-hidden="true"></span>
+            {card.status}
+          </span>
+        </div>
+
+        <div class="mt-6 flex flex-col gap-6 sm:flex-row">
+          <div class="relative h-fit w-36 shrink-0 self-center border border-line p-1.5 sm:self-start">
+            <img
+              src="/images/rodrigo.jpg"
+              alt="Rodrigo Bombieri, desarrollador de software"
+              width="144"
+              height="180"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              class="aspect-4/5 w-full object-cover"
+            />
           </div>
+          <dl class="flex flex-1 flex-col divide-y divide-line-soft">
+            {
+              rows.map((row) => (
+                <div class="flex flex-col gap-0.5 py-2 first:pt-0">
+                  <dt class="mono-label-sm text-muted">{row.k}</dt>
+                  <dd class="text-sm text-ink">{row.v}</dd>
+                </div>
+              ))
+            }
+          </dl>
         </div>
 
-        <p class="relative mt-6 text-center text-sm leading-relaxed text-muted sm:text-left">
-          Diseño y desarrollo software a medida — desde landing pages hasta
-          sistemas empresariales completos. Trato directo conmigo en cada
-          etapa, sin intermediarios ni equipos de por medio.
-        </p>
+        <p class="mt-6 border-t border-line pt-5 text-sm leading-relaxed text-muted">{card.bio}</p>
 
-        <div class="relative mt-6 flex flex-wrap justify-center gap-2 sm:justify-start">
-          {
-            TAGS.map((tag) => (
-              <span class="rounded-full border border-border bg-bg/40 px-3 py-1 text-xs font-medium text-muted-soft">
-                {tag}
-              </span>
-            ))
-          }
-        </div>
-
-        <div class="relative mt-6 flex justify-center gap-3 border-t border-border-soft pt-6 sm:justify-start">
-          <a
-            href={SITE.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn de Rodrigo Bombieri"
-            class="flex size-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:border-cyan/50 hover:text-cyan"
-          >
-            <Icon name="linkedin" class="size-4" />
+        <div class="mono-label-sm mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-4">
+          <a href={SITE.github} target="_blank" rel="noopener noreferrer" class="link-draw inline-flex items-center gap-1.5 text-ink hover:text-signal" aria-label="GitHub de Rodrigo Bombieri">
+            GitHub <Icon name="arrow-up-right" class="size-3" strokeWidth={1.5} />
           </a>
-          <a
-            href={SITE.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub de Rodrigo Bombieri"
-            class="flex size-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:border-cyan/50 hover:text-cyan"
-          >
-            <Icon name="github" class="size-4" />
+          <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="link-draw inline-flex items-center gap-1.5 text-ink hover:text-signal" aria-label="LinkedIn de Rodrigo Bombieri">
+            LinkedIn <Icon name="arrow-up-right" class="size-3" strokeWidth={1.5} />
           </a>
-          <a
-            href={`mailto:${SITE.email}`}
-            aria-label="Enviar email a Rodrigo Bombieri"
-            class="flex size-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:border-cyan/50 hover:text-cyan"
-          >
-            <Icon name="mail" class="size-4" />
+          <a href={`mailto:${SITE.email}`} class="link-draw inline-flex items-center gap-1.5 text-ink hover:text-signal" aria-label="Enviar email a Rodrigo Bombieri">
+            Email <Icon name="arrow-up-right" class="size-3" strokeWidth={1.5} />
           </a>
         </div>
-      </div>
-
-      <div
-        class="animate-float glass-card absolute -left-8 -top-6 flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-medium text-ink shadow-glow-cyan"
-        style="animation-delay:-2s"
-      >
-        <Icon name="check" class="size-4 text-cyan" strokeWidth={2.5} />
-        Proyecto entregado
-      </div>
-
-      <div
-        class="animate-float glass-card absolute -bottom-6 -right-4 flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-medium text-ink shadow-glow"
-        style="animation-delay:-4s"
-      >
-        <Icon name="rocket" class="size-4 text-primary-soft" />
-        Ya en funcionamiento
       </div>
     </div>
   </div>
+
+  <div class="ruler relative" aria-hidden="true"></div>
 </section>

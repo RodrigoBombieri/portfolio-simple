@@ -35,7 +35,7 @@ export function initMockupEmbeds(): void {
     iframe.loading = "lazy";
     iframe.setAttribute("tabindex", "-1");
     iframe.setAttribute("aria-hidden", "true");
-    iframe.style.cssText = `position:absolute;top:0;left:0;width:${w}px;height:${h}px;border:0;pointer-events:none;transform-origin:top left;transform:scale(${scale});background:#0a0c0f`;
+    iframe.style.cssText = `position:absolute;top:0;left:0;width:${w}px;height:${h}px;border:0;pointer-events:none;transform-origin:top left;transform:scale(${scale});background:var(--color-bg-soft)`;
 
     iframe.addEventListener("load", () => {
       const skeleton = thumb.querySelector<HTMLElement>("[data-mockup-skeleton]");

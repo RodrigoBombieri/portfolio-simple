@@ -1,4 +1,7 @@
 ---
+import "@fontsource-variable/archivo/wdth.css";
+import "@fontsource/ibm-plex-mono/latin-400.css";
+import "@fontsource/ibm-plex-mono/latin-500.css";
 import "@styles/global.css";
 import Analytics from "@vercel/analytics/astro";
 import { SITE, SHOW_DRONES } from "@data/site";
@@ -68,7 +71,7 @@ const projectsWithRepo = PROJECTS.filter((p) => p.url);
       })();
     </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="mask-icon" href="/favicon.svg" color="#22d3ee" />
+    <link rel="mask-icon" href="/favicon.svg" color="#8cff5a" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="me" href={SITE.github} />
     <link rel="me" href={SITE.linkedin} />
@@ -83,20 +86,12 @@ const projectsWithRepo = PROJECTS.filter((p) => p.url);
       )
     }
 
-    <!-- Preconnect fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
     <!-- Primary meta -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content="Rodrigo — Desarrollo de Software" />
-    <meta name="theme-color" content="#05070d" id="theme-color-meta" />
+    <meta name="theme-color" content="#0a0c0b" id="theme-color-meta" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -195,10 +190,10 @@ const projectsWithRepo = PROJECTS.filter((p) => p.url);
     <meta name="generator" content={Astro.generator} />
     <Analytics />
   </head>
-  <body class="bg-bg antialiased selection:bg-primary">
+  <body class="bg-bg antialiased">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:rounded-lg focus:bg-cyan focus:px-4 focus:py-2 focus:text-bg focus:font-semibold"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:rounded-xs focus:bg-signal focus:px-4 focus:py-2 focus:text-bg focus:font-semibold"
     >
       Saltar al contenido principal
     </a>

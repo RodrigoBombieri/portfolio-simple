@@ -1,25 +1,26 @@
 ---
 import SectionHeader from "@components/ui/SectionHeader.astro";
-import ServiceCard from "@components/ui/ServiceCard.astro";
+import ServiceRow from "@components/ui/ServiceRow.astro";
 import Button from "@components/ui/Button.astro";
 import { SERVICES } from "@data/services";
 ---
 
-<section id="servicios" class="relative py-16 lg:py-24">
+<section id="servicios" class="relative py-20 lg:py-28">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <SectionHeader
+      figure="01"
       eyebrow="Servicios"
-      title="Soluciones de software"
-      highlight="para cada etapa de tu negocio"
-      description="Desde una landing page que convierte hasta sistemas empresariales complejos: construyo exactamente lo que tu operación necesita."
+      title="Módulos de software,"
+      highlight="uno para cada etapa de tu negocio."
+      description="Desde una landing que convierte hasta sistemas empresariales complejos: construyo exactamente lo que tu operación necesita."
     />
 
-    <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {SERVICES.map((service, i) => <ServiceCard service={service} index={i} />)}
+    <div class="mt-14 border-t border-line">
+      {SERVICES.map((service, i) => <ServiceRow service={service} index={i} />)}
     </div>
 
-    <div class="mt-12 flex justify-center" data-animate>
-      <Button href="/showroom" size="lg" icon="arrow-right">Ver ejemplos en el Showroom</Button>
+    <div class="mt-10" data-animate>
+      <Button href="/showroom" variant="ghost" icon="arrow-right">Ver ejemplos en el Showroom</Button>
     </div>
   </div>
 </section>
