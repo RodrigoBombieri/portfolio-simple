@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
     title: "Software para drones",
     category: "Drones",
     description: "Planificación de misiones autónomas y procesamiento de datos de sensores.",
-    tags: ["Python", "ROS2", "OpenAI"],
+    tags: ["Python", "PX4 SITL", "MAVSDK", "FastAPI", "Sentinel-2 vía STAC", "rasterio", "Shapely", "Leaflet"],
     image: "/images/proyecto-drones.png",
     url:"https://github.com/RodrigoBombieri/agrotello",
     experimental: true
